@@ -1,0 +1,5 @@
+.post-type-featured_item .add-new-h2, 
+.post-type-featured_item .misc-pub-post-status,
+.post-type-featured_item #visibility {display: none;}
+
+.post-type-featured_item .misc-pub-curtime {border-top-color: #f5f5f5}
