@@ -1,0 +1,6 @@
+[submodule "wp-content/themes/benedict"]
+	path = wp-content/themes/benedict
+	url = git://github.com/memuller/benedict_theme.git
+[submodule "wp-content/mu-plugins/benedict"]
+	path = wp-content/mu-plugins/benedict
+	url = git://github.com/memuller/benedict_plugin.git
