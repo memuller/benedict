@@ -1,4 +1,6 @@
-# Do not push wp-config with your private info out to the master github repo
 wp-config.php
-# Do not push postgres database dumps with private info out to the master github repo
-*.dump
+.htaccess
+.c9revisions
+/wp-content/uploads
+.DS_Store
+*.sublime*
