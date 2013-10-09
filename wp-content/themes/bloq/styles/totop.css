@@ -1,0 +1,36 @@
+/*-----------------------------------------------------------------------------------
+TOTOP
+-----------------------------------------------------------------------------------*/
+
+a#toTop {
+	background: #D7DCE0 url('../images/ui.totop.png') no-repeat left top;
+	display:none;
+	text-decoration:none;
+	position:fixed;
+	bottom:42px;
+	right:84px;
+	overflow:hidden;
+	width:42px;
+	height:42px;
+	text-indent:100%;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px; 
+	border-radius: 4px;
+	z-index: 100;
+}
+
+span#toTopHover {
+	background: #4b4b4b url('../images/ui.totop.png') no-repeat left -42px;
+	width:42px;
+	height:42px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px; 
+	border-radius: 4px;
+	display:block;
+	overflow:hidden;
+	float:left;
+}
+
+#toTop:active, #toTop:focus {
+	outline:none;
+}
