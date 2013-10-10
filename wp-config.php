@@ -68,7 +68,7 @@ $table_prefix  = 'wp_';
  * language support.
  */
 define('WPLANG', 'pt_BR');
-
+define ('JETPACK_DEV_DEBUG', true);
 /**
  * For developers: WordPress debugging mode.
  *
