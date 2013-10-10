@@ -1,1 +1,1 @@
-sh /app/www/conf/custom-boot.sh 
+web: sh /app/www/conf/custom-boot.sh
