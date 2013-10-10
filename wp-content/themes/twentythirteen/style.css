@@ -3115,4 +3115,7 @@ footer.entry-meta {
 	.comment-reply-login {
 		color: #333;
 	}
+
 }
+
+.sd-content { float: left !important; }
