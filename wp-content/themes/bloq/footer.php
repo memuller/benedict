@@ -23,11 +23,12 @@
 </footer>
 <div class="row" id="copyright">
 	<div class="container row">
-		<div class="col span_6">
-		&copy; <?php _e('Copyright', 'themelovin') ?> <?php echo date( 'Y' ); ?> <a href="<?php echo home_url(); ?>"><?php bloginfo( 'name' ); ?></a>. <?php _e('Powered by', 'themelovin') ?> <a href="http://wordpress.org/">WordPress</a>. Adam by <a href="http://themelovin.com">Themelovin.</a>
+
+		<div class="col span_6" style="width: 20%;">
+		<img src="<?php echo get_stylesheet_directory_uri() ?>/images/benedict_symbol_white.png" alt="" width='50px'>
 		</div>
-		<div class="col span_6">
-			<?php echo glg_social_link(); ?>
+		<div class="credits">
+			&copy; 2013 Benedict' Brand Crafters. <em> Powered by <a href="http://wordpress.org/"> Wordpress </a>. </em>
 		</div>
 	</div>
 </div>
