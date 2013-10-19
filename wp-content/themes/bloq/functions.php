@@ -494,6 +494,7 @@ if(!function_exists('glg_header_slider')) :
 				foreach($all as $current) {
 					$url = get_post_meta($current->ID, 'glg_header_img', true);
 					$output .= '<li style="background-image: url('.$url.');"><div class="flex-caption"><a href="'.get_permalink($current->ID).'" title="'.get_the_title($current->ID).'">'.get_the_title($current->ID).'</a></div></li>';
+					$output .= '<div id="claim"><div class="container row">'.get_the_title($current->ID).'</div></div>' ;
 				}
 				$output .= '</ul></div>';
 			else:
