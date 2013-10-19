@@ -263,7 +263,7 @@ aside section.widget, footer section.widget {
 }
 
 #comments, #respond {
-	margin: 120px 60px 0 0;
+	margin: 10px 30px 0 0;
 }
 
 nav.comment-navigation {
@@ -275,6 +275,18 @@ nav.comment-navigation {
 
 nav#navigation {
 	text-align: center;
+}
+
+.sharedaddy .sd-content {
+	width: 100%;
+}
+
+.sharedaddy .sd-content ul li{
+	float: right !important;
+}
+
+ul#navigation {
+	display: none;
 }
 
 footer.row {
