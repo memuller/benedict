@@ -82,8 +82,8 @@ function glg_load_styles() {
 add_action('wp_enqueue_scripts', 'glg_load_styles');
 
 if (is_admin() && isset($_GET['activated'] ) && $pagenow == 'themes.php' ) {
-	update_option('adm_color', 'emerald');
-	update_option('adm_font', 'Helvetica');
+	update_option('adm_color', 'carrot');
+	update_option('adm_font', 'Ubuntu');
 	update_option('adm_port_items', '-1');
 	update_option('adm_contact_form', 'enable');
 }
