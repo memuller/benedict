@@ -31,6 +31,9 @@
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	
+	<!-- Google Fonts -->
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Overlock+SC|Bitter:400,400italic,700" media="screen">
+
 	<?php wp_head(); ?>
 </head>
 <body  <?php body_class(); ?>>
@@ -42,7 +45,7 @@
 <?php wp_nav_menu(array('theme_location' => 'header-menu', 'sort_column' => 'menu_order', 'container'=> 'nav', 'container_class' => 'menu-mobile', 'menu_class' => 'primary-menu',  'fallback_cb' => false, 'depth' => 2)); ?>
 <div class="container row">
 	<header id="primary-header">
-		<div class="col span_3">
+		<div class="col span_3" style="line-height: 0;">
 			<a href="<?php echo home_url() ?>" title="<?php bloginfo('name') ?>" id="logo-link">
 			<?php if(!get_option('adm_sitelogo')) {
 				bloginfo('name');
