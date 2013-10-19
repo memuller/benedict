@@ -1049,13 +1049,53 @@ ul.add-menu-item-tabs li.tabs {
  * Widget Management Page (Needs UX work on mobile)
  * ----------------------------------------------------------------------------
  */
-div.widget-liquid-left, div.widget-liquid-right,
+/*div.widget-liquid-left, div.widget-liquid-right,
 div#widgets-left, div#widgets-right {
 	float: none;
 	clear: none;
 	margin: 0;
 	width: auto;
+}*/
+
+/* Less than 640px wide */
+@media only screen and (max-width: 640px) {
+	div.widget-liquid-left div#widgets-left #available-widgets {
+		max-height: none;
+		overflow: visible;
+	}
+	div.widget-liquid-left div#widgets-left #available-widgets .widget {
+		width: 100%;
+		float: none;
+	}
+	div.widget-liquid-left div#widgets-left #available-widgets .widget-top {
+		margin-right: 0;
+	}
+	div.widget-liquid-right {
+		width: 50%;
+	}
+	div.widget-liquid-left div#widgets-left {
+		margin: 0 52% 0 0;
+	}
+	div.widget-liquid-right div.widgets-holder-wrap, div.widget-liquid-right div#widgets-right {
+		width: 100%;
+	}
+	div.widget-liquid-right div#widgets-right .widget {
+		width: auto !important;
+		margin: 0 8px !important;
+	}
 }
+
+
+/* Less than 640px wide */
+@media only screen and (max-width: 640px) {
+	div.widget-liquid-right {
+		width: 100%;
+	}
+	div.widget-liquid-left div#widgets-left {
+		margin: 0;
+	}
+}
+
 
 /**
  * Editor Pages

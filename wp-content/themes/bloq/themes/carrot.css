@@ -7,7 +7,7 @@ body {
 }
 
 div#claim, .page.page-template-page-contact-php section.gmap {
-	background: #e67e22;
+	background: #E2203D;
 }
 
 .single-portfolio.single-format-quote .col.span_12, .single-portfolio.single-format-quote .col.span_9.side {
@@ -15,11 +15,11 @@ div#claim, .page.page-template-page-contact-php section.gmap {
 }
 
 footer.row {
-	background: #e67e22;
+	background: #95D8EA;
 }
 
 div#copyright {
-	background: #d35400;
+	background: #82BCCD;
 }
 
 /*-----------------------------------------------------------------------------------

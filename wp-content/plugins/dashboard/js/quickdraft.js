@@ -1,33 +1,35 @@
-var quickPressLoad;
-
 (function ($) {
+	var quickPressLoad;
 	/* QuickPress */
 	quickPressLoad = function() {
 		var act = $('#quickpost-action'), t;
 		t = $('#quick-press').submit( function() {
-				$('#dashboard_quick_draft #publishing-action .spinner').show();
-				$('#quick-press .submit input[type="submit"], #quick-press .submit input[type="reset"]').prop('disabled', true);
-	
-				if ( 'post' == act.val() ) {
-					act.val( 'post-quickpress-publish' );
-				}
-	
-				$.post( t.attr( 'action' ), t.serializeArray(), function( data ) {
-					// Replace the form, and prepend the published post.
-					$('#quick-press').html( $(data).filter('#quick-press').html() );
-					$('#quick-press').prepend( $(data).filter('div.updated') );
-					$(data).find('li').prependTo("#draft-list");
-					
-					$('#dashboard_quick_draft #publishing-action .spinner').hide();
-					$('#quick-press .submit input[type="submit"], #quick-press .submit input[type="reset"]').prop('disabled', false);
-					quickPressLoad();
-				});
-				return false;
-			} );
+			$('#dashboard_quick_draft #publishing-action .spinner').show();
+			$('#quick-press .submit input[type="submit"], #quick-press .submit input[type="reset"]').prop('disabled', true);
+
+			$.post( t.attr( 'action' ), t.serializeArray(), function( data ) {
+				// Replace the form, and prepend the published post.
+				$('#dashboard_quick_draft .inside').html( data );
+				$('#quick-press').removeClass('initial-form');
+				quickPressLoad();
+				highlightLatestPost();
+				$('#title').focus();
+			});
+			
+			function highlightLatestPost () {
+				var latestPost = $('#draft-list li').first();
+				latestPost.css('background', '#fffbe5');
+				setTimeout(function () {
+					latestPost.css('background', 'none');
+				}, 1000);
+			}
+			
+			return false;
+		} );
 	
 		$('#publish').click( function() { act.val( 'post-quickpress-publish' ); } );
 
-		$('#title, #tags-input').each( function() {
+		$('#title, #tags-input, #content').each( function() {
 			var input = $(this), prompt = $('#' + this.id + '-prompt-text');
 
 			if ( '' === this.value )
@@ -49,6 +51,8 @@ var quickPressLoad;
 		});
 
 		$('#quick-press').on( 'click focusin', function() {
+			$(this).addClass("quickpress-open");
+			$("#description-wrap, p.submit").slideDown(200);
 			wpActiveEditor = 'content';
 		});
 	};

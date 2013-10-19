@@ -47,6 +47,13 @@ function mp6_colors_register_schemes() {
 		'palette' => array( '#413256', '#523f6d', '#a3b745', '#d46f15' ),
 		'icon' => array( 'base' => '#ece6f6', 'focus' => '#fff', 'current' => '#fff' ),
 	) );
+	
+	// Midnight
+	mp6_add_admin_colors( 'midnight', array(
+		'label' => 'Midnight',
+		'palette' => array( '#25282b', '#363b3f', '#69a8bb', '#e14d43' ),
+		'icon' => array( 'base' => '#f1f2f3', 'focus' => '#fff', 'current' => '#fff' ),
+	) );
 
 /*
 	// Malibu Dreamhouse
@@ -183,7 +190,7 @@ function mp6_colors_set_script_colors() {
 add_action( 'admin_enqueue_scripts', 'mp6_colors_enqueue_picker' );
 function mp6_colors_enqueue_picker() {
 
-	if ( ! in_array( get_current_screen()->base, array( 'profile', 'user-edit', 'profile-network', 'user-edit-network' ) ) )
+	if ( ! in_array( get_current_screen()->base, apply_filters( 'mp6_colors_allowed_pages', array( 'profile', 'user-edit', 'profile-network', 'user-edit-network' ) ) ) )
 		return;
 
 	wp_enqueue_style( 'mp6-color-scheme-picker', plugins_url( 'picker/style.css', __FILE__ ) );

@@ -388,7 +388,6 @@ header#primary-header a#logo-link {
 	color: #4b4b4b;
 	font-weight: 600;
 	text-transform: uppercase;
-	margin-left: 45px;
 }
 
 header#primary-header nav ul.primary-menu li a, nav.menu-mobile ul.primary-menu li a {
@@ -396,6 +395,11 @@ header#primary-header nav ul.primary-menu li a, nav.menu-mobile ul.primary-menu 
 	font-weight: 400;
 	color: #4b4b4b;
 	text-transform: uppercase;
+}
+
+header#primary-header nav.col { 
+	width: 30%;
+	margin-left: 35%;
 }
 
 header#primary-header nav ul.primary-menu li ul.sub-menu li a, nav.menu-mobile ul.primary-menu li ul.sub-menu li a {
@@ -638,8 +642,12 @@ div#claim .span_3 h1 {
 	margin: 0 0 10px;
 }
 
-.page .container.row p, .search .container.row p, .search .container.row h1.post-title, .single-portfolio .container.row h1.post-title, .page-template-page-blog-php .container.row h1.post-title, .container.row h1.page-title, .blog article.type-post.format-quote p, .page-template-page-blog-php article.type-post.format-quote p, .archive article.type-post.format-quote p, .blog article.type-post.format-link p, .page-template-page-blog-php article.type-post.format-link p, .archive article.type-post.format-link p  {
+.search .container.row p, .search .container.row h1.post-title, .page-template-page-blog-php .container.row h1.post-title, .container.row h1.page-title, .blog article.type-post.format-quote p, .page-template-page-blog-php article.type-post.format-quote p, .archive article.type-post.format-quote p, .blog article.type-post.format-link p, .page-template-page-blog-php article.type-post.format-link p, .archive article.type-post.format-link p  {
 	text-align: center;
+}
+
+.page .container.row p, .single-portfolio .container.row h1.post-title {
+	text-align: left;
 }
 
 .single-portfolio .container.row aside h1.post-title {
@@ -756,7 +764,7 @@ footer.row section.widget h4 {
     text-transform: uppercase;
     line-height: 1.2;
     color: #4B4B4B;
-    margin: 0 0 90px;
+    margin: 0 0 60px;
 }
 
 .container.row h2 {

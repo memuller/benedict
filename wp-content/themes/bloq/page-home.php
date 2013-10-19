@@ -9,18 +9,13 @@
 $subtitle = get_post_meta($post->ID, 'glg_page_subtitle', true);
 $header = '';
 get_header();
-$slider = glg_header_slider($post->ID, 'portfolio');
+$slider = glg_header_slider($post->ID, 'post');
 if($slider != false)
 	echo $slider;
 else
 	$header = 'simple';
 if(!empty($subtitle)) :
 ?>
-<div id="claim" <?php if($header == 'simple') echo "class='big'"; ?>>
-	<div class="container row">
-		<?php echo $subtitle; ?>
-	</div>
-</div>
 <?php endif; ?>
 <div id="portfolios">
 <?php
