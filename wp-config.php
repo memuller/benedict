@@ -18,8 +18,8 @@ define('WP_CACHE', true); // Added by W3 Total Cache
  */
 
 	define( 'DB_NAME',     'benedict'       );
-	define( 'DB_USER',     'benedict'       );
-	define( 'DB_PASSWORD', 'benedict'           );
+	define( 'DB_USER',     'root'       );
+	define( 'DB_PASSWORD', ''           );
 	define( 'DB_HOST',     'localhost'           );
 
 	define( 'WP_HOME', 'http://benedict.dev');
@@ -89,7 +89,7 @@ if ( !defined( 'SAVEQUERIES' ) )
 
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
-	define('ABSPATH', dirname(__FILE__) . '/wordpress/');
+	define('ABSPATH', dirname(__FILE__));
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
