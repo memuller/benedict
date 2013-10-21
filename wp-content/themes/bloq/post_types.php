@@ -30,7 +30,6 @@ function glg_post_type_portfolio() {
 	);
 	
 	register_post_type( 'portfolio', $args );
-	flush_rewrite_rules();
 }
 add_action( 'init', 'glg_post_type_portfolio', 1 );
 
@@ -65,7 +64,6 @@ function glg_post_type_team() {
 	);
 	
 	register_post_type( 'team', $args );
-	flush_rewrite_rules();
 }
 add_action( 'init', 'glg_post_type_team', 1 );
 
@@ -98,7 +96,6 @@ function glg_taxonomy_portfolio_type(){
 			'rewrite' => array('slug' => 'skill', 'hierarchical' => true)
 		)
 	);
-	flush_rewrite_rules();
 }
 add_action( 'init', 'glg_taxonomy_portfolio_type', 1 );
 
@@ -130,5 +127,4 @@ function glg_taxonomy_team_type(){
 			'rewrite' => array('slug' => 'job-position', 'hierarchical' => true)
 		)
 	);
-	flush_rewrite_rules();
 } ?>
