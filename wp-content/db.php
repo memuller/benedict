@@ -1,9 +1,4 @@
 <?php
-/* 
-Added Development Environment/localhost check to return localhost URL 
-inspired by http://codex.wordpress.org/Running_a_Development_Copy_of_WordPress
-Author: @khbites
-*/
 
 add_filter ( 'pre_option_home', 'test_localhosts' );
 add_filter ( 'pre_option_siteurl', 'test_localhosts' );
@@ -18,20 +13,11 @@ function test_localhosts( ) {
   else return false; // act as normal; will pull main site info from db
 }
 
-/*
-Plugin Name: PostgreSQL for WordPress (PG4WP)
-Plugin URI: http://www.hawkix.net
-Description: PG4WP is a special 'plugin' enabling WordPress to use a PostgreSQL database.
-Version: 1.3.0
-Author: Hawk__
-Author URI: http://www.hawkix.net
-License: GPLv2 or newer.
-*/
 
 if( !defined('PG4WP_ROOT'))
 {
 // You can choose the driver to load here
-define('DB_DRIVER', 'pgsql'); // 'pgsql' or 'mysql' are supported for now
+define('DB_DRIVER', 'mysql'); // 'pgsql' or 'mysql' are supported for now
 
 // Set this to 'true' and check that `pg4wp` is writable if you want debug logs to be written
 define( 'PG4WP_DEBUG', false);
