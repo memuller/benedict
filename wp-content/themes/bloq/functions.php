@@ -207,6 +207,7 @@ if (function_exists('add_image_size')) :
 	add_image_size('inner', 960);
 	add_image_size('inner-blog', 655);
 	add_image_size('team', 210, 210, true);
+	add_image_size('header', 1400, 600);
 endif;
 
 if(!function_exists('glg_excerpt_more')) :
@@ -341,17 +342,18 @@ if(!function_exists('glg_header_slider')) :
 			$output .= '</ul></div>';
 		elseif(get_custom_header()->url == ''):
 			$args = array(
-				'post_type' => $type,
+				'post_type' => 'any',
 				'showposts' => -1,
-				'meta_key' => 'glg_slideshow',
-				'meta_value' => 'yes',
+				'meta_key' => 'featured',
+				'meta_value' => '1',
 			);
 			$all = get_posts($args);
 			if(count($all) != 0):
 				$output = '<div class="flexslider" id="header-slider"><ul class="slides">';
 				foreach($all as $current) {
-					$url = get_post_meta($current->ID, 'glg_header_img', true);
-					$output .= '<li style="background-image: url('.$url.');"></li>';
+					$thumb = get_post_thumbnail_id( $current->ID );
+					$url = wp_get_attachment_image_src( $thumb, 'header');
+					$output .= '<li style="background-image: url('.$url[0].');"></li>';
 					$output .= '<a href="'.get_permalink($current->ID).'" title="'.get_the_title($current->ID).'">
 						<div id="claim"><div class="container row">'.get_the_title($current->ID).'</div> </a></div>' ;
 				}
