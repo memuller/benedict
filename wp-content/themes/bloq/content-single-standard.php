@@ -20,6 +20,27 @@
 	<?php comments_template(); ?>
 </div>
 <aside class="col span_3" style="margin-top: 60px;">
-	<?php if(!function_exists('dynamic_sidebar') || dynamic_sidebar('Blog Widget')) {}; ?>
 	<?php echo glg_entry_meta($post) ?>
+	<?php if (in_array($post->post_type, array('pedia', 'post'))): ?>
+		<?php foreach (\Benedict\Folio::belongs_to() as $folio): ?>
+			<div class='folio box'>
+				Part of the 
+				<h2><?php echo $folio->title ?></h2>
+				<ul><?php foreach ($folio->items() as $item): ?>
+					<li>
+						<?php if ($item->ID != $post->ID): ?>
+							<a href="<?php echo $item->permalink ?>">
+								<?php echo $item->title ?>
+							</a>
+						<?php else: ?>
+							<?php echo $item->title ?>
+						<?php endif ?>	
+					</li>
+				<?php endforeach ?></ul>
+			</div>
+
+		<?php endforeach ?>
+	<?php endif ?>
+	<?php if(!function_exists('dynamic_sidebar') || dynamic_sidebar('Blog Widget')) {}; ?>
+	
 </aside>
