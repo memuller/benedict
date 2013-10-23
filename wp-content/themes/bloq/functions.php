@@ -208,6 +208,7 @@ if (function_exists('add_image_size')) :
 	add_image_size('inner-blog', 655);
 	add_image_size('team', 210, 210, true);
 	add_image_size('header', 1400, 600);
+	add_image_size('header_short', 1400, 300);
 endif;
 
 if(!function_exists('glg_excerpt_more')) :
@@ -355,7 +356,7 @@ if(!function_exists('glg_header_slider')) :
 					$url = wp_get_attachment_image_src( $thumb, 'header');
 					$output .= '<li style="background-image: url('.$url[0].');"></li>';
 					$output .= '<a href="'.get_permalink($current->ID).'" title="'.get_the_title($current->ID).'">
-						<div id="claim"><div class="container row">'.get_the_title($current->ID).'</div> </a></div>' ;
+						<div id="title"><div class="container row">'.get_the_title($current->ID).'</div> </a></div>' ;
 				}
 				$output .= '</ul></div>';
 			else:
@@ -373,10 +374,11 @@ endif;
 if(!function_exists('glg_post_header')) :
 	function glg_post_header($id) {
 		$output = '';
-		if('header' == get_post_meta($id, 'glg_header', true)) {
+		if(get_post_meta( $id, 'image_header', true) == 1) {
 			$output = '<div class="flexslider" id="header-slider"><ul class="slides">';
-			$url = get_post_meta($id, 'glg_header_img', true);
-			$output .= '<li style="background-image: url('.$url.');"></li>';
+			$thumb = get_post_thumbnail_id( $id );
+			$url = wp_get_attachment_image_src( $thumb, 'header_short');
+			$output .= '<li style="background-image: url('.$url[0].'); height:400px; display: block;"></li>';
 			$output .= '</ul></div>';
 		}
 		return $output;

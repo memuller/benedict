@@ -145,7 +145,7 @@ div.flexslider#header-slider {
 	background: #f5f5f5 url('./images/loading.gif') center center no-repeat;
 }
 
-div.flexslider#header-slider, div#claim, .page.page-template-page-contact-php section.gmap {
+div.flexslider#header-slider, div#title, .page.page-template-page-contact-php section.gmap {
 	max-width: 1400px;
 	margin: 0px auto;
 }
@@ -158,7 +158,7 @@ div.flex-caption {
 	margin: 40px 0 0 -420px;
 }
 
-div#claim {
+div#title {
 	height: auto !important;
     height: 10px;
     min-height: 10px;
@@ -170,23 +170,23 @@ div#claim {
     font-weight: 400;
 }
 
-div#claim.big {
+div#title.big {
 	padding: 250px 0 50px;
 }
 
-.blog div#claim, .page-template-page-blog-php div#claim, .archive div#claim {
+.blog div#title, .page-template-page-blog-php div#title, .archive div#title {
 	margin: 0 auto 90px;
 }
 
-.page-template-page-home-php div#claim {
+.page-template-page-home-php div#title {
 	margin: 0px auto;
 }
 
-div#claim .container {
+div#title .container {
 	text-align: center;
 }
 
-div#claim .span_3 {
+div#title .span_3 {
 	font-size: 20px;
 	font-weight: normal;
 }
@@ -644,7 +644,7 @@ h1 {
 	-o-transition: color 0.2s ease-out 0s;
 }
 
-div#claim .span_3 h1 {
+div#title .span_3 h1 {
 	font-size: 14px;
 	text-align: left;
 	color: #ffffff;
