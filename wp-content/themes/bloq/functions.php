@@ -129,8 +129,8 @@ if(function_exists('register_sidebar')) {
 /*	Custom post type
 /*-----------------------------------------------------------------------------------*/
 
-require 'post_types.php' ;
-add_action( 'init', 'glg_taxonomy_team_type', 1 );
+#require 'post_types.php' ;
+#add_action( 'init', 'glg_taxonomy_team_type', 1 );
 
 /*-----------------------------------------------------------------------------------*/
 /*	Widget(s)
