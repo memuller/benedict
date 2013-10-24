@@ -22,7 +22,7 @@
 <aside class="col span_3" style="margin-top: 60px;">
 	<?php echo glg_entry_meta($post) ?>
 	<?php if (in_array($post->post_type, array('pedia', 'post'))): ?>
-		<?php foreach (\Benedict\Folio::belongs_to() as $folio): ?>
+		<?php foreach (\Benedict\Folio::current() as $folio): ?>
 			<div class='folio box'>
 				Part of the 
 				<h2><?php echo $folio->title ?></h2>
