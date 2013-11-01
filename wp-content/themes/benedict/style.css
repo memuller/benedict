@@ -167,6 +167,7 @@ div#claim{
     line-height: 1.2;
     color: #ffffff;
     font-weight: 400;
+	max-width: 1400px;
 }
 
 div#claim.big {
