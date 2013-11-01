@@ -1,0 +1,235 @@
+/*-----------------------------------------------------------------------------------
+RIVER THEME
+-----------------------------------------------------------------------------------*/
+
+body {
+	background: #f5f5f5;
+}
+
+div#claim, .page.page-template-page-contact-php section.gmap {
+	background: #3498db;
+}
+
+.single-portfolio.single-format-quote .col.span_12, .single-portfolio.single-format-quote .col.span_9.side {
+	color: #c0c0c0;
+}
+
+footer.row {
+	background: #3498db;
+}
+
+div#copyright {
+	background: #2980b9;
+}
+
+/*-----------------------------------------------------------------------------------
+FORMS
+-----------------------------------------------------------------------------------*/
+
+input[type=text], textarea {
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+	border: 1px solid #CBD0D4;
+	background: #f9f9f9;
+	color: #757677;
+	line-height: 1.5;
+}
+
+input:focus, textarea:focus {
+	border: 1px solid #A9ADB1;
+	background: #f9f9f9;
+	color: #757677;
+}
+
+form#commentform input[type=submit], form#contactForm input[type=submit], #searchFadeIn form#searchform input#searchsubmit {
+    background: #3498db;
+	border-bottom: 2px solid #2980b9;
+    color: #ffffff;
+    transition: background 0.2s ease-out 0s, color 0.2s ease-out 0s;
+	-moz-transition: background 0.2s ease-out 0s, color 0.2s ease-out 0s;
+	-webkit-transition: background 0.2s ease-out 0s, color 0.2s ease-out 0s;
+	-o-transition: background 0.2s ease-out 0s, color 0.2s ease-out 0s;
+}
+
+form#commentform input[type=submit]:hover, form#contactForm input[type=submit]:hover {
+	background: #2980b9;
+	color: #ffffff;
+}
+
+input#searchsubmit {
+	background: #2980b9;
+}
+
+input#searchsubmit:hover {
+	background-color: #ffffff;
+	color: #2980b9;
+}
+
+aside input#searchsubmit, #searchFadeIn form#searchform input#searchsubmit {
+	background: #3498db;
+}
+
+aside input#searchsubmit:hover, #searchFadeIn form#searchform input#searchsubmit:hover {
+	background-color: #2980b9;
+	color: #ffffff;
+}
+
+/*-----------------------------------------------------------------------------------
+LINKS
+-----------------------------------------------------------------------------------*/
+
+a:hover {
+	color: #909090;
+}
+
+header#primary-header a#logo-link:hover, a#iconFadeIn:hover, header#primary-header nav ul.primary-menu li.current-menu-item a, header#primary-header nav ul.primary-menu li a:hover {
+	color: #3498db;
+}
+
+.flex-control-paging li a:hover {
+	background: #3498db;
+}
+
+.flex-control-paging li a.flex-active {
+	border: 3px solid #3498db;
+}
+
+.container.row a:hover h1.post-title, .container.row a:hover p {
+	color: #3498db;
+}
+
+a.more-link, a.more {
+	background: #3498db;
+	border-bottom: 2px solid #2980b9;
+}
+
+a.more-link:hover, a.more:hover {
+	background: #2980b9;
+	color: #ffffff;
+}
+
+a.comment-reply-link {
+	background: #3498db;
+	color: #ffffff;
+	padding: 5px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	font-size: 12px;
+	margin: 0 0 0 90px;
+}
+
+a.comment-reply-link:hover {
+	background: #2980b9;
+}
+
+a.love-it:hover, a.love-it.loved {
+	color: #3498db !important;
+}
+
+/*-----------------------------------------------------------------------------------
+LISTS
+-----------------------------------------------------------------------------------*/
+
+ul.primary-menu li ul.sub-menu {
+	margin-top: 7px;
+	background: #ffffff;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	border-top: 2px solid #3498db;
+	-webkit-border-bottom-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-radius-bottomright: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+/*-----------------------------------------------------------------------------------
+TYPO
+-----------------------------------------------------------------------------------*/
+
+div.flex-caption a {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.35);
+	-webkit-box-shadow: 10px 0 0 rgba(0,0,0,0.35), -10px 0 0 rgba(0,0,0,0.35);
+	-moz-box-shadow: 10px 0 0 rgba(0,0,0,0.35), -10px 0 0 rgba(0,0,0,0.35);
+	box-shadow: 10px 0 0 rgba(0,0,0,0.35), -10px 0 0 rgba(0,0,0,0.35);
+	color: #ffffff;
+	font-size: 32px;
+	font-weight: 400;
+	padding: 5px;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
+
+div.flex-caption a:hover {
+	background: #3498db;
+	-webkit-box-shadow: 10px 0 0 #3498db, -10px 0 0 #3498db;
+	-moz-box-shadow: 10px 0 0 #3498db, -10px 0 0 #3498db;
+	box-shadow: 10px 0 0 #3498db, -10px 0 0 #3498db;
+}
+
+.blog article.type-post.format-quote p, .page-template-page-blog-php article.type-post.format-quote p, .archive article.type-post.format-quote p, .single-post.single-format-quote article p, .single-portfolio.single-format-quote .col.span_12 p, .single-portfolio.single-format-quote .col.span_9.side p {
+	color: #3498db;
+	font-weight: 600;
+}
+
+.single-portfolio.single-format-quote .col.span_12 p, .single-portfolio.single-format-quote .col.span_9.side p {
+	color: #6b6b6b;
+}
+
+/*-----------------------------------------------------------------------------------
+SHORTCODES
+-----------------------------------------------------------------------------------*/
+
+.glg_short-circle:hover {
+    background-color: #3498db;
+}
+
+.glg_short-circle.current,circles:hover {
+    border: 3px solid #3498db;
+}
+
+/*-----------------------------------------------------------------------------------
+STUFF
+-----------------------------------------------------------------------------------*/
+
+form sup {
+	color: #3498db;
+}
+
+.container.row ul.team-members li.member-wrap img {
+	border: 10px solid #d7dce0;
+	margin-bottom: 10px;
+	transition: border 0.2s ease-out 0s, color 0.2s ease-out 0s;
+	-webkit-transition: border 0.2s ease-out 0s, color 0.2s ease-out 0s;
+	-o-transition: border 0.2s ease-out 0s, color 0.2s ease-out 0s;
+}
+
+.container.row ul.team-members li.member-wrap img:hover {
+	border: 10px solid #3498db;
+}
+
+footer.row .widget.glg-flickr .flickr_badge_image a img, aside.col.span_3 .widget.glg-flickr .flickr_badge_image a img {
+	width: 64px;
+	height. 64px;
+	border: 5px solid #2980b9;
+	display: block;
+	border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+aside.col.span_3 .widget.glg-flickr .flickr_badge_image a img {
+	border: 5px solid #D7DCE0;
+}
+
+footer.row .widget.glg-flickr .flickr_badge_image a:hover img {
+	border: 5px solid #ffffff;
+}
+
+aside.col.span_3 .widget.glg-flickr .flickr_badge_image a:hover img {
+	border: 5px solid #3498db;
+}
