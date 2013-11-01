@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2013-10-21 12:28:21+0000\n"
+"PO-Revision-Date: 2013-10-25 21:15:41+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,7 +62,7 @@ msgstr "Incorporar Tocador de Mídia"
 
 #: wp-includes/media-template.php:209
 msgid "Length:"
-msgstr "Duração:"
+msgstr "Tamanho:"
 
 #: wp-includes/media-template.php:289
 msgid "Embed or Link"
@@ -86,7 +86,7 @@ msgstr "Fazer download do vídeo"
 
 #: wp-includes/script-loader.php:298
 msgid "Play/Pause"
-msgstr "Play/Pause"
+msgstr "Iniciar/Pausar"
 
 #: wp-includes/script-loader.php:299
 msgid "Mute Toggle"
@@ -204,7 +204,7 @@ msgstr "Excluir automaticamente spams antigos"
 
 #: wp-content/plugins/akismet/admin.php:229
 msgid "Show approved comments"
-msgstr "Mostrar comentário aprovados"
+msgstr "Mostrar comentários aprovados"
 
 #: wp-content/plugins/akismet/admin.php:238
 msgid "Save Changes"
@@ -266,7 +266,7 @@ msgstr "<strong>ERRO</strong>: Não foi possível cadastrá-lo&hellip; contate o
 #: wp-includes/post-template.php:1330
 msgctxt "post revision title extra"
 msgid "%1$s [Autosave]"
-msgstr "%1$s [Salvamento automático]"
+msgstr "%1$s [Salvar automático]"
 
 #: wp-includes/post-template.php:1332
 msgctxt "post revision title extra"
@@ -383,7 +383,7 @@ msgstr "Inserir do URL"
 
 #: wp-includes/media.php:1917
 msgid "Set Featured Image"
-msgstr "Usar como imagem destacada"
+msgstr "Usar uma Imagem Destacada"
 
 #: wp-includes/default-widgets.php:164
 msgctxt "Links widget"
@@ -404,7 +404,7 @@ msgstr "Inverter a ordem"
 
 #: wp-includes/media.php:1918
 msgid "Set featured image"
-msgstr "Usar como imagem destacada"
+msgstr "Usar uma Imagem Destacada"
 
 #: wp-includes/media-template.php:152
 msgid "Deselect"
@@ -413,7 +413,7 @@ msgstr "Desmarcar"
 #: wp-includes/class-wp-xmlrpc-server.php:3842
 #: wp-includes/class-wp-xmlrpc-server.php:3852
 msgid "Sorry, that file cannot be edited."
-msgstr "Este arquivo não pode ser editado."
+msgstr "Desculpe, este arquivo não pode ser editado."
 
 #: wp-includes/media-template.php:99
 msgid "Your browser has some limitations uploading large files with the multi-file uploader. Please use the <a href=\"%1$s\" target=\"%2$s\">browser uploader</a> for files over 100MB."
@@ -547,7 +547,7 @@ msgstr "Configurações da galeria"
 
 #: wp-includes/media.php:1900
 msgid "Upload Images"
-msgstr "Fazer upload das imagens"
+msgstr "Enviar arquivos de imagem"
 
 #: wp-includes/media.php:1923
 msgid "&#8592; Cancel Gallery"
@@ -563,7 +563,7 @@ msgstr "Solte os arquivos em qualquer lugar para fazer o upload"
 
 #: wp-includes/media.php:1899
 msgid "Upload Files"
-msgstr "Fazer upload dos arquivos"
+msgstr "Enviar arquivos"
 
 #: wp-includes/media.php:1924
 msgid "Insert gallery"
@@ -1484,7 +1484,7 @@ msgstr "Tente enviar este arquivo com o %1$suploader do navegador %2$s."
 
 #: wp-includes/script-loader.php:243
 msgid "&#8220;%s&#8221; has failed to upload."
-msgstr "Falha ao fazer upload de &#8220;%s&#8221;."
+msgstr "Falha ao enviar &#8220;%s&#8221;."
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:231
 msgid "Toggle spellchecker (Alt + Shift + N)"
@@ -3442,7 +3442,7 @@ msgstr "Tem certeza que quer instalar este plugin?"
 
 #: wp-includes/script-loader.php:500
 msgid "Use as featured image"
-msgstr "Usar como imagem destacada"
+msgstr "Usar como Imagem Destacada"
 
 #: wp-includes/script-loader.php:328
 msgid "Mismatch"
