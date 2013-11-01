@@ -1,9 +1,3 @@
-[submodule "wp-content/themes/benedict"]
-	path = wp-content/themes/benedict
-	url = git://github.com/memuller/benedict_theme.git
-[submodule "wp-content/mu-plugins/benedict"]
-	path = wp-content/mu-plugins/benedict
-	url = git://github.com/memuller/benedict_plugin.git
 [submodule "wp-content/plugins/wp-front-end-editor"]
 	path = wp-content/plugins/wp-front-end-editor
 	url = https://github.com/avryl/wp-front-end-editor.git
