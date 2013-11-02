@@ -401,9 +401,10 @@ header#primary-header a#logo-link {
 
 header#primary-header nav ul.primary-menu li a, nav.menu-mobile ul.primary-menu li a {
 	font-size: 14px;
-	font-weight: 400;
-	color: #4b4b4b;
-	text-transform: uppercase;
+	font-weight: bold;
+	font-style: italic;
+	color: #27A9E1;
+	font-family: Overlock;
 }
 
 header#primary-header nav.col { 
@@ -495,7 +496,7 @@ header#primary-header nav ul.primary-menu {
 }
 
 header#primary-header nav ul.primary-menu li, ul.entry-meta li {
-	margin: 0 25px 0 0;
+	margin: 0 40px 0 0;
 	display: inline-block;
 	zoom: 1;
 	*display: inline;
@@ -547,6 +548,10 @@ ul.primary-menu li:hover {
 ul.primary-menu li {
 	float: left;
 	position: relative;
+}
+
+ul.primary-menu li.selected a{
+	color: #E2203D !important;
 }
 
 ul.primary-menu li:hover ul, ul.primary-menu li.sfHover ul {

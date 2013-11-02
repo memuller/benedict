@@ -54,10 +54,20 @@
 			<?php } ?>
 			</a>
 		</div>
-		<?php
-			wp_nav_menu(array('theme_location' => 'header-menu', 'sort_column' => 'menu_order', 'container'=> 'nav', 'container_class' => 'col span_8', 'menu_class' => 'primary-menu',  'fallback_cb' => false, 'depth' => 2));
-			get_template_part('search', 'custom');
-		?>
+		<?php global $current_section ;  ?>
+		<nav class="col span_8">
+			<ul class="primary-menu sf-js-enabled" id="menu">
+				<?php foreach (array('board', 'pedia', 'folio') as $section): ?>
+					<li class="menu-item
+						 <?php if($GLOBALS['current_section'] == $section) echo 'selected'; ?>
+						 <?php echo $section ; ?>
+						">
+						<a href="<?php echo $section == 'board' ? '' : '/'.$section ?>"><?php echo $section ?></a>
+					</li>
+				<?php endforeach ?>
+			</ul>
+		</nav>
+		<?php get_template_part('search', 'custom'); ?>
 		<div class="clear"></div>
 	</header>
 </div>

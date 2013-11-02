@@ -27,6 +27,7 @@ echo glg_post_header($post->ID);
 		endwhile;
 	?>
 </div>
+<div class="col holder" style="width: 100%; height: 100%; background-color: red;"></div>
 <script type="text/javascript">
 </script>
 <?php get_footer(); ?>
