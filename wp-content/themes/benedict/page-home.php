@@ -28,8 +28,22 @@ if(!empty($subtitle)) :
 		wp_reset_query();
 ?>
 </div>
-<div class="container row">
-	<?php the_content(); ?>
+<div class="container row list">
+	<?php $posts = get_posts(); ?>
+	<?php foreach ($posts as $post): setup_postdata( $post ); ?>
+		<article style="">
+			<h1><?php the_title() ?></h1>
+			<?php the_excerpt() ?>
+			<div class="separator gray">
+				<div class="diamond"></div>				
+				<div class="line"></div>
+			</div>
+
+		</article>
+		
+		
+		
+	<?php endforeach ?>
 </div>
 <script type="text/javascript">
       jQuery('.flexslider').flexslider({

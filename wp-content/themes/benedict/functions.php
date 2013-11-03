@@ -204,7 +204,7 @@ endif;
 
 if (function_exists('add_image_size')) :
 	add_image_size('square', 300, 300, true);
-	add_image_size('inner', 960);
+	add_image_size('inner', 960, 200, true);
 	add_image_size('inner-blog', 655);
 	add_image_size('team', 210, 210, true);
 	add_image_size('header', 1400, 600);

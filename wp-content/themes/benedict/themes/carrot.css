@@ -82,28 +82,28 @@ a:hover {
 }
 
 header#primary-header a#logo-link:hover, a#iconFadeIn:hover, header#primary-header nav ul.primary-menu li.current-menu-item a, header#primary-header nav ul.primary-menu li a:hover {
-	color: #e67e22;
+	color: #7C51A1;
 }
 
 .flex-control-paging li a:hover {
-	background: #e67e22;
+	background: #7C51A1;
 }
 
 .flex-control-paging li a.flex-active {
-	border: 3px solid #e67e22;
+	border: 3px solid #7C51A1;
 }
 
 .container.row a:hover h1.post-title, .container.row a:hover p {
-	color: #e67e22;
+	color: #7C51A1;
 }
 
 a.more-link, a.more {
-	background: #e67e22;
-	border-bottom: 2px solid #d35400;
+	background: #7C51A1;
+	border-bottom: 2px solid #A2CFEF;
 }
 
 a.more-link:hover, a.more:hover {
-	background: #d35400;
+	background: #A2CFEF;
 	color: #ffffff;
 }
 
