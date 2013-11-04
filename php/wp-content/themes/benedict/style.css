@@ -1147,3 +1147,46 @@ RETINA
 footer.row {
 	margin-top: 50px;
 }
+
+.title .col.center {
+	height: 50px;
+	width: 50px;
+	background-color: black;
+}
+
+.title .col.left.line, .title .col.right.line {
+	height: 1px;
+	background-color: red;
+	width: 40px;
+	margin-top: 25px;
+}
+
+.title .col.diamond {
+	margin-top: 23px;
+     width:8px; 
+     height:8px; 
+     border:1px solid red; 
+     background: white;
+     margin-left: auto;
+     margin-right: auto;
+     -webkit-transform: rotate(-45deg);
+     -moz-transform: rotate(-45deg);
+     -ms-transform: rotate(-45deg);
+     -o-transform: rotate(-45deg);
+     transform: rotate(-45deg);
+     -webkit-transform-origin: 0 100%;
+     -moz-transform-origin: 0 100%;
+     -ms-transform-origin: 0 100%;
+     -o-transform-origin: 0 100%;
+     transform-origin: 0 100%;
+}
+.title .col.diamond.left {
+	margin-left: 6px ;
+	margin-right: 0px ;
+}
+
+.title .col.diamond.right {
+	margin-left: 12px ;
+	margin-right: -7px ;
+}
+

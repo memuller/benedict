@@ -20,6 +20,14 @@
 	<?php comments_template(); ?>
 </div>
 <aside class="col span_3" style="margin-top: 60px;">
+	<div class="title">
+		<div class="col left line"></div>
+		<div class="col diamond left"></div>
+		<div class="col center"></div>
+		<div class="col diamond right"></div>
+		<div class="col right line"></div>
+	</div>
+	
 	<?php echo glg_entry_meta($post) ?>
 	<?php if (in_array($post->post_type, array('pedia', 'post'))): ?>
 		<?php foreach (\Benedict\Folio::current() as $folio): ?>
