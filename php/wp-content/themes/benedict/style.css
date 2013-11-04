@@ -97,6 +97,7 @@ body {
 header#primary-header {
 	padding-top: 20px;
 	padding-bottom: 20px;
+	border-bottom: #82bdcf 2px solid;
 }
 
 header#primary-header div#overlay {
@@ -189,6 +190,10 @@ div#claim .container {
 div#claim .span_3 {
 	font-size: 20px;
 	font-weight: normal;
+}
+
+div#claim a {
+	color: white;
 }
 
 .page.page-template-page-contact-php section.gmap {
@@ -878,11 +883,11 @@ article.type-portfolio .pictogram {
 
 #logo-link img {
 	width: auto;
-	max-height: 40px;
+	max-height: 35px;
 	max-width: none;
 	display: inline-block;
 	zoom: 1;
-	*display: inline;
+	display: inline;
 	padding: 0 30px;
 }
 
@@ -1061,6 +1066,10 @@ RETINA
 
 .flex-control-nav {
 	bottom: 218px !important;
+}
+
+.container.list article h1.post-title {
+	color: rgb(39, 169, 225);
 }
 
 .container.list article {
