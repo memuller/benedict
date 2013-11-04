@@ -1,6 +1,6 @@
 <?php
 /** Enable W3 Total Cache */
-define('WP_CACHE', true); // Added by W3 Total Cache
+#define('WP_CACHE', true); // Added by W3 Total Cache
 
 /**
  * The base configurations of the WordPress.
@@ -16,13 +16,12 @@ define('WP_CACHE', true); // Added by W3 Total Cache
  *
  * @package WordPress
  */
-
+    $host = $_ENV['OPENSHIFT_MYSQL_DB_HOST'].':'.$_ENV['OPENSHIFT_MYSQL_DB_PORT'] ;
 	define( 'DB_NAME',     'benedict'       );
-	define( 'DB_USER',     'root'       );
-	define( 'DB_PASSWORD', ''           );
-	define( 'DB_HOST',     'localhost'           );
-
-	define( 'WP_HOME', 'http://benedict.dev');
+	define( 'DB_USER',     'adminiDyVKzu'       );
+	define( 'DB_PASSWORD', 'LWtdRzq4uJNS'         );
+	define( 'DB_HOST',     $host           );
+	define( 'WP_HOME', 'http://dev.benedict.com.br');
 	#define( 'WP_SITEURL', WP_HOME.'/wordpress');
 
 	define('WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content');
@@ -71,7 +70,7 @@ $table_prefix  = 'wp_';
  * language support.
  */
 define('WPLANG', 'pt_BR');
-define ('JETPACK_DEV_DEBUG', true);
+#define ('JETPACK_DEV_DEBUG', true);
 /**
  * For developers: WordPress debugging mode.
  *
@@ -83,7 +82,7 @@ if ( !defined( 'WP_DEBUG' ) )
 	define('WP_DEBUG', false);
 
 if ( !defined( 'SAVEQUERIES' ) )
-	define('SAVEQUERIES', true);
+	define('SAVEQUERIES', false);
 
 /* That's all, stop editing! Happy blogging. */
 
