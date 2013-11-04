@@ -97,6 +97,7 @@ body {
 header#primary-header {
 	padding-top: 20px;
 	padding-bottom: 20px;
+	border-bottom: #82bdcf 2px solid;
 }
 
 header#primary-header div#overlay {
