@@ -883,11 +883,11 @@ article.type-portfolio .pictogram {
 
 #logo-link img {
 	width: auto;
-	max-height: 40px;
+	max-height: 35px;
 	max-width: none;
 	display: inline-block;
 	zoom: 1;
-	*display: inline;
+	display: inline;
 	padding: 0 30px;
 }
 

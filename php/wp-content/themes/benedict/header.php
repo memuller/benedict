@@ -47,11 +47,7 @@
 	<header id="primary-header">
 		<div class="col span_3" style="line-height: 0;">
 			<a href="<?php echo home_url() ?>" title="<?php bloginfo('name') ?>" id="logo-link">
-			<?php if(!get_option('adm_sitelogo')) {
-				bloginfo('name');
-			} else { ?>
-				<img src="<?php echo get_option('adm_sitelogo') ?>" alt="<?php bloginfo('name') ?>" />
-			<?php } ?>
+				<img src="<?php echo get_template_directory_uri().'/images/benedict_logo.png'; ?>" alt="<?php bloginfo('name') ?>" />
 			</a>
 		</div>
 		<?php global $current_section ;  ?>
