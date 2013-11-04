@@ -7,7 +7,7 @@
  * @since Bloq 1.0
  */
  ?>
- <article id="post-<?php the_ID(); ?>"  <?php post_class(); ?>>
+ <article id="post-<?php the_ID(); ?>"  <?php post_class();?>>
  	<?php if(has_post_thumbnail()): ?>
 		<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" rel="bookmark">
 			<?php the_post_thumbnail('inner'); ?>
@@ -18,6 +18,10 @@
 	<?php
 		global $more;
 		$more = false;
-		the_content();
+		the_content('leia mais...');
 	?>
+	<div class="separator gray">
+		<div class="diamond"></div>				
+		<div class="line"></div>
+	</div>
 </article>

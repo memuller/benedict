@@ -17,33 +17,29 @@ else
 if(!empty($subtitle)) :
 ?>
 <?php endif; ?>
-<div id="portfolios">
-<?php
-	$wp_query = new WP_Query();
-		$num = get_option('adm_port_items');
-		$wp_query->query('showposts='.$num.'&post_type=portfolio');
-		while ($wp_query->have_posts()) : $wp_query->the_post(); 
-			get_template_part('loop', 'portfolio');
-		endwhile;
-		wp_reset_query();
-?>
-</div>
-<div class="container row list">
-	<?php $posts = get_posts(); ?>
-	<?php foreach ($posts as $post): setup_postdata( $post ); ?>
-		<article style="">
-			<h1><?php the_title() ?></h1>
-			<?php the_excerpt() ?>
-			<div class="separator gray">
-				<div class="diamond"></div>				
-				<div class="line"></div>
-			</div>
 
-		</article>
-		
-		
-		
-	<?php endforeach ?>
+<div class="container row list">
+	<?php $paged = $page; ?>
+	<?php $paged = isset($paged) && $paged != 0 ? $paged : 1 ?>
+	<?php $posts = get_posts(array('paged' => $paged, 'posts_per_page' => get_option('posts_per_page'))); ?>
+	<?php foreach ($posts as $post){ setup_postdata( $post );
+			$format = get_post_format();
+			if($format == 'quote') :
+				get_template_part('loop', 'single-quote');
+			elseif($format == 'link'):
+				get_template_part('loop', 'single-link');
+			elseif($format == 'video'):
+				get_template_part('loop', 'single-video');
+			else :
+				get_template_part('loop', 'single-blog');
+			endif;	
+	} ?>
+	<nav id="navigation">
+		<a href="<?php echo home_url("page/").strval($paged+1) ?>" class="next nav">antigos</a>
+		<?php if(isset($paged) && $paged > 1): ?>
+			<a href="<?php echo home_url("page/").strval($paged-1) ?>" class="previous nav">recentes</a>
+		<?php endif; ?>
+	</nav>
 </div>
 <script type="text/javascript">
       jQuery('.flexslider').flexslider({

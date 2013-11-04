@@ -204,7 +204,7 @@ endif;
 
 if (function_exists('add_image_size')) :
 	add_image_size('square', 300, 300, true);
-	add_image_size('inner', 960, 200, true);
+	add_image_size('inner', 960, 300, true);
 	add_image_size('inner-blog', 655);
 	add_image_size('team', 210, 210, true);
 	add_image_size('header', 1400, 600);
@@ -217,13 +217,6 @@ if(!function_exists('glg_excerpt_more')) :
 		return '...<br /><a href="'. get_permalink($post->ID) . '" class="more">'.__('Continue reading', 'themelovin').'</a>';
 	}
 	add_filter('excerpt_more', 'glg_excerpt_more');
-endif;
-
-if(!function_exists('glg_content_more')) :
-function glg_content_more($more_link, $more_link_text) {
-	return str_replace( $more_link_text, 'Continue reading', $more_link );
-}
-add_filter( 'the_content_more_link', 'glg_content_more', 10, 2 );
 endif;
 
 if(!function_exists('glg_truncate_title')) :
@@ -354,9 +347,11 @@ if(!function_exists('glg_header_slider')) :
 				foreach($all as $current) {
 					$thumb = get_post_thumbnail_id( $current->ID );
 					$url = wp_get_attachment_image_src( $thumb, 'header');
-					$output .= '<li style="background-image: url('.$url[0].');"></li>';
+					$claim = get_post_meta( $current->ID, 'claim', true );
+					if(!$claim) $claim = get_the_title($current->ID);
+					$output .= '<li><div class="image" style="background-image: url('.$url[0].');"></div>';
 					$output .= '<a href="'.get_permalink($current->ID).'" title="'.get_the_title($current->ID).'">
-						<div id="claim"><div class="container row">'.get_the_title($current->ID).'</div> </a></div>' ;
+						<div id="claim"><div class="container row">'.$claim.'</div> </a></div></li>' ;
 				}
 				$output .= '</ul></div>';
 			else:

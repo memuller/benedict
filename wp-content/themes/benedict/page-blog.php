@@ -45,7 +45,7 @@ if(!empty($subtitle)) :
 			endif;
 		endwhile;
 		?>
-		<nav id="navigation">
+				
 		<?php
 			posts_nav_link('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', '<span class="pictogram post-nav">&#59225;</span> Previous page', '<span class="pictogram post-nav">&#59226;</span> Next page');
 		?>
