@@ -261,7 +261,7 @@ endif;
 
 if(!function_exists('glg_link_custom_styles')) :
 function glg_link_custom_styles() {
-    $output = '';
+    $output = ' ';
     if(apply_filters('glg_custom_styles', $output)) {
     	$permalink_structure = get_option('permalink_structure');
     	$css = home_url().'/glg-custom-styles.css?'.time();
