@@ -1,0 +1,11 @@
+.glg-metabox-table input[type=text], .glg-metabox-table textarea {
+	width: 100%;
+}
+
+.glg-metabox-table textarea {
+	height: 150px;
+}
+
+.menu-icon-post#menu-posts-portfolio div.wp-menu-image {
+	background-image: url('admin/images/portfolio-icon.png');
+}
