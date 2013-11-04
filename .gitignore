@@ -1,6 +1,6 @@
 .htaccess
 .c9revisions
-/wp-content/uploads
+/php/wp-content/uploads
 .DS_Store
 *.sublime*
 *.svn
