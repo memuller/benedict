@@ -192,6 +192,10 @@ div#claim .span_3 {
 	font-weight: normal;
 }
 
+div#claim a {
+	color: white;
+}
+
 .page.page-template-page-contact-php section.gmap {
 	height: auto !important;
     height: 500px;
@@ -1062,6 +1066,10 @@ RETINA
 
 .flex-control-nav {
 	bottom: 218px !important;
+}
+
+.container.list article h1.post-title {
+	color: rgb(39, 169, 225);
 }
 
 .container.list article {
