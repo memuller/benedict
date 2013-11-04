@@ -1,6 +1,0 @@
-[submodule "wp-content/plugins/wp-front-end-editor"]
-	path = wp-content/plugins/wp-front-end-editor
-	url = https://github.com/avryl/wp-front-end-editor.git
-[submodule "wp-content/mu-plugins/benedict"]
-	path = wp-content/mu-plugins/benedict
-	url = https://github.com/memuller/benedict_plugin.git
