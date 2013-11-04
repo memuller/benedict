@@ -98,7 +98,7 @@ jQuery(document).ready(function(jQuery){
 	SCROLL HEADER RESIZE
 	-----------------------------------------------------------------------------------*/
 	
-	jQuery(window).bind('scroll',smallNav);
+	//jQuery(window).bind('scroll',smallNav);
 	
 	function smallNav() {
 		var jQueryoffset = jQuery(window).scrollTop();
