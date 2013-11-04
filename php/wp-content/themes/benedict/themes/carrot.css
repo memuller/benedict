@@ -85,12 +85,15 @@ header#primary-header a#logo-link:hover, a#iconFadeIn:hover, header#primary-head
 	color: #7C51A1;
 }
 
-.flex-control-paging li a:hover {
-	background: #7C51A1;
+.flex-control-paging li a {
+	background: none;
+	border: 1px solid black;
+	width: 20px;
+	height: 20px;
 }
 
 .flex-control-paging li a.flex-active {
-	border: 3px solid #7C51A1;
+	background: rgb(39, 169, 225)
 }
 
 .container.row a:hover h1.post-title, .container.row a:hover p {
