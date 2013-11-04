@@ -238,7 +238,7 @@ function glg_custom_css($content) {
 		'numberposts' => -1,
 		'post_type' => 'portfolio'
 	));
-	$output = '';
+	$output = ' ';
 	
 	foreach($items as $item) {
 		$hover_color = get_post_meta($item->ID, "glg_hover_color", true);
@@ -373,7 +373,7 @@ if(!function_exists('glg_post_header')) :
 			$output = '<div class="flexslider" id="header-slider"><ul class="slides">';
 			$thumb = get_post_thumbnail_id( $id );
 			$url = wp_get_attachment_image_src( $thumb, 'header_short');
-			$output .= '<li style="background-image: url('.$url[0].'); height:400px; display: block;"></li>';
+			$output .= '<li style="height:400px; display: block;"><div class="image" style="background-image: url('.$url[0].'); height:400px;"></div></li>';
 			$output .= '</ul></div>';
 		}
 		return $output;
