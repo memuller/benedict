@@ -87,8 +87,8 @@ header#primary-header a#logo-link:hover, a#iconFadeIn:hover, header#primary-head
 }
 
 .flex-control-paging li a {
-	background: none;
-	border: 1px solid black;
+	background: #f4edda;
+	
 	width: 20px;
 	height: 20px;
 }
