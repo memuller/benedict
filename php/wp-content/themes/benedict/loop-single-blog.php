@@ -18,7 +18,7 @@
 	<?php
 		global $more;
 		$more = false;
-		the_content('leia mais...');
+		the_content('...leia mais');
 	?>
 	<div class="separator gray">
 		<div class="diamond"></div>				

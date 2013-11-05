@@ -435,15 +435,15 @@ header#primary-header a#iconFadeIn {
 }
 
 a.more-link, a.more {
-	width: auto;
-	margin: 40px 0 0;
+	margin-right: 2%;
+	width: 98%;
+	text-align: right;
+	height: 20px;
 	display: inline-block;
-	color: #ffffff;
-	padding: 12px 15px;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	font-size: 14px;
+	font-style: italic;
+	color: #27A9E1;
+	font-size: 18px;
+	font-family: Overlock;
 }
 
 aside ul#navigation li a {
