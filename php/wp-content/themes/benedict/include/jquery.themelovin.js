@@ -218,10 +218,10 @@ jQuery(document).ready(function(jQuery){
 	SCROLLTOTOP
 	-----------------------------------------------------------------------------------*/
 	
-	jQuery().UItoTop({
-		scrollSpeed: 700,
-		easingType: 'easeOutQuart'
-	});
+	// jQuery().UItoTop({
+	// 	scrollSpeed: 700,
+	// 	easingType: 'easeOutQuart'
+	// });
 	
 	/*-----------------------------------------------------------------------------------
 	NICESCROLL
