@@ -56,12 +56,13 @@ form#commentform input[type=submit]:hover, form#contactForm input[type=submit]:h
 }
 
 input#searchsubmit {
-	background: #d35400;
+	background: #7C51A1 !important;
+	border-bottom: 2px solid #A2CFEF !important;
 }
 
 input#searchsubmit:hover {
-	background-color: #ffffff;
-	color: #d35400;
+	background: #A2CFEF !important;
+	color: #ffffff !important;
 }
 
 aside input#searchsubmit, #searchFadeIn form#searchform input#searchsubmit {
@@ -78,33 +79,26 @@ LINKS
 -----------------------------------------------------------------------------------*/
 
 a:hover {
-	color: #909090;
+	color: #7C51A1;
 }
 
 header#primary-header a#logo-link:hover, a#iconFadeIn:hover, header#primary-header nav ul.primary-menu li.current-menu-item a, header#primary-header nav ul.primary-menu li a:hover {
 	color: #7C51A1;
 }
 
-.flex-control-paging li a:hover {
-	background: #7C51A1;
+.flex-control-paging li a {
+	background: none;
+	border: 1px solid black;
+	width: 20px;
+	height: 20px;
 }
 
 .flex-control-paging li a.flex-active {
-	border: 3px solid #7C51A1;
+	background: rgb(39, 169, 225)
 }
 
 .container.row a:hover h1.post-title, .container.row a:hover p {
 	color: #7C51A1;
-}
-
-a.more-link, a.more {
-	background: #7C51A1;
-	border-bottom: 2px solid #A2CFEF;
-}
-
-a.more-link:hover, a.more:hover {
-	background: #A2CFEF;
-	color: #ffffff;
 }
 
 a.comment-reply-link {
