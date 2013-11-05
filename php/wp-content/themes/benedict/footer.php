@@ -7,6 +7,7 @@
  * @since Bloq 1.0
  */
 ?>
+</div>
 <footer class="row">
 	<div class="container row">
 		<div class="col span_4">

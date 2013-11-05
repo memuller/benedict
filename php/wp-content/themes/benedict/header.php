@@ -67,3 +67,4 @@
 		<div class="clear"></div>
 	</header>
 </div>
+<div id="main">

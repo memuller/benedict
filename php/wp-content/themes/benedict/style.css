@@ -1154,7 +1154,9 @@ RETINA
 }
 
 footer.row {
-	margin-top: 50px;
+	margin-top: 0px;
+	padding-top: 50px;
+	display: none;
 }
 
 .title {
@@ -1207,3 +1209,9 @@ footer.row {
 }
 
 .title:after {clear: both;}
+
+#main { 
+	background-color: #F3EDDA; 
+	max-width: 1400px ;
+	margin: 0 auto;
+}
