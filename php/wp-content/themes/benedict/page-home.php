@@ -19,6 +19,14 @@ if(!empty($subtitle)) :
 <?php endif; ?>
 
 <div class="container row list">
+	<div class="title">
+		<div class="col left line"></div>
+		<div class="col diamond left"></div>
+		<div class="col center"><img src="<?php echo get_template_directory_uri().'/images/icons/board-g.png'; ?>" alt=""></div>
+		<div class="col diamond right"></div>
+		<div class="col right line"></div>
+	</div>
+
 	<?php $paged = $page; ?>
 	<?php $paged = isset($paged) && $paged != 0 ? $paged : 1 ?>
 	<?php $posts = get_posts(array('paged' => $paged, 'posts_per_page' => get_option('posts_per_page'))); ?>
