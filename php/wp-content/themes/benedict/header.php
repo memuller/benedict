@@ -45,12 +45,11 @@
 <?php wp_nav_menu(array('theme_location' => 'header-menu', 'sort_column' => 'menu_order', 'container'=> 'nav', 'container_class' => 'menu-mobile', 'menu_class' => 'primary-menu',  'fallback_cb' => false, 'depth' => 2)); ?>
 <div class="container row">
 	<header id="primary-header">
-		<div class="col span_3" style="line-height: 0;">
+		<div class="col span_3 logo" style="line-height: 0;">
 			<a href="<?php echo home_url() ?>" title="<?php bloginfo('name') ?>" id="logo-link">
 				<img src="<?php echo get_template_directory_uri().'/images/benedict_logo.png'; ?>" alt="<?php bloginfo('name') ?>" />
 			</a>
 		</div>
-		<?php global $current_section ;  ?>
 		<nav class="col span_8">
 			<ul class="primary-menu sf-js-enabled" id="menu">
 				<?php foreach (array('board', 'pedia', 'folio') as $section): ?>
@@ -58,7 +57,12 @@
 						 <?php if($GLOBALS['current_section'] == $section) echo 'selected'; ?>
 						 <?php echo $section ; ?>
 						">
-						<a href="<?php echo $section == 'board' ? '' : '/'.$section ?>"><?php echo $section ?></a>
+						<a href="<?php echo home_url($section == 'board' ? '' : '/'.$section) ?>">
+							<?php if($GLOBALS['current_section'] == $section): ?>
+								<img src="<?php echo get_template_directory_uri()."/images/icons/$section-m.png" ?>" alt="">
+							<?php endif; ?>
+							<?php echo $section ?>
+						</a>
 					</li>
 				<?php endforeach ?>
 			</ul>

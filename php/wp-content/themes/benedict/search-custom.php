@@ -7,7 +7,7 @@
  * @since Bloq 1.0
  */
 ?>
-<div class="col span_1">
+<div class="col span_1 search">
 	<a href="#" title="<?php esc_attr_e( 'Search', 'themelovin' ); ?>" id="iconFadeIn"><span class="search" style="width: 22px; height: 22px; vertical-align: middle;">
 		<img src="<?php echo get_template_directory_uri() ?>/images/header-search-icon.png" alt="">
 	</span></a>
