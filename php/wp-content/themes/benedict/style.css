@@ -95,8 +95,6 @@ body {
 }
 
 header#primary-header {
-	padding-top: 20px;
-	padding-bottom: 20px;
 	border-bottom: #82bdcf 2px solid;
 }
 
@@ -549,6 +547,10 @@ ul.primary-menu ul {
 
 ul.primary-menu ul li {
 	width: 100%;
+}
+
+ul.primary-menu ul li img{
+	display:block;
 }
 
 ul.primary-menu li:hover {
@@ -1215,3 +1217,14 @@ footer.row {
 	max-width: 1400px ;
 	margin: 0 auto;
 }
+
+#primary-header .col.logo, #primary-header .col.search {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#primary-header .col.span_8{ width: 35%; margin-left: 30%; }
+ul.primary-menu li img { display: block;}
+ul.primary-menu li { padding-top: 18px; margin-right: 50px !important; text-align:center ;}
+ul.primary-menu li.selected { padding-top: 8px; line-height: 1.1; }
+ul.primary-menu li.selected a { font-style: normal !important; text-align: center;}
