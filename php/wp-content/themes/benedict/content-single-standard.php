@@ -33,7 +33,7 @@
 		</div>
 		<div class="meta box vertical">
 			<span class="author meta">
-				<?php $crafter = new Benedict\Crafter($post->author); $person = new Benedict\Pedia($crafter->person); ?>
+				<?php $crafter = new Benedict\Crafter($post->post_author); $person = new Benedict\Pedia($crafter->person); ?>
 				<?php inline_svg($person->icon, 'icon')  ?>
 				<span><a href="<?php echo $person->permalink ?>"><?php the_author() ?></a></span>
 			</span>

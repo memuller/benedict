@@ -17,7 +17,7 @@
 	<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" rel="bookmark"><?php the_title('<h1 class="post-title">', '</h1>'); ?></a>
 	<div class="meta box horizontal">
 		<span class="author meta">
-			<?php $crafter = new Benedict\Crafter($post->author); $person = new Benedict\Pedia($crafter->person); ?>
+			<?php $crafter = new Benedict\Crafter($post->post_author); $person = new Benedict\Pedia($crafter->person); ?>
 			<img src="<?php echo $person->icon ?>" alt="" class="svg icon">
 			<span><a href="<?php echo $person->permalink ?>"><?php the_author() ?></a></span>
 		</span>
