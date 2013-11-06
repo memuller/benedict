@@ -14,6 +14,6 @@
 		</a>
 	<?php endif; ?>
 	<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" rel="bookmark"><?php the_title('<h1 class="post-title">', '</h1>'); ?></a>
-	<?php echo glg_entry_meta($post) ?>
+	
 	<?php the_content(); ?>
 </article>

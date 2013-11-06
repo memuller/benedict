@@ -738,4 +738,22 @@ function get_the($field){
 		the_($field, $condition);
 	}
 
+	function inline_svg($url, $class='', $html=array()){
+		if(strpos($url, 'http://') === false){
+			$url = get_stylesheet_directory_uri().$url ;
+		}
+		$path = str_replace(home_url().'/', ABSPATH, $url);
+		debug($path);
+		$content = file_get_contents($path);
+		$document = new SimpleXMLElement($content);
+		$document->registerXPathNamespace('svg', 'http://www.w3.org/2000/svg');
+		$document->xpath('/');
+		$document->attributes()->class = $class ;
+		foreach ($html as $k => $v) {
+			$document->attributes()->$$k = $v ;
+		}
+		echo $document->asXML();
+		
+	}
+
 ?>
