@@ -1,0 +1,9 @@
+/*
+Add support for languages written RTL by pasting the style.css code
+below. Maintain the attributes for the body selector included below.
+*/
+
+body {
+    direction: rtl;
+    unicode-bidi: embed;
+}
