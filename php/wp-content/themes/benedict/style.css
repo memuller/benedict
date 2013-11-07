@@ -311,6 +311,7 @@ nav#navigation {
 
 .sharedaddy .sd-content ul li{
 	float: right !important;
+	margin-top: 4px !important;
 }
 
 ul#navigation {
@@ -1326,3 +1327,12 @@ ul.primary-menu li.selected a { font-style: normal !important; text-align: cente
 .meta.box.vertical .meta span { overflow: hidden; width: 76%; }
 
 .meta.box .meta div { color: #652C90 ; margin-left: 10px ;  }
+
+
+.meta.box.horizontal.sharing {
+	width: 700px;
+	margin-bottom: 0px;
+}
+.meta.box.horizontal.sharing .meta { font-weight: bold; margin-left: 370px;}
+.meta.box.horizontal.sharing .meta span { margin-top: 13px; }
+

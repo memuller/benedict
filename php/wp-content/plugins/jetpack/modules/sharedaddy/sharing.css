@@ -12,14 +12,12 @@ div.sharedaddy,
 #main div.sharedaddy {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 12px;
-	clear: both;
+	float: right;
+	width: 23%;
 }
 
 div.sharedaddy,
 div.sharedaddy div {
-	-webkit-border-radius: 0 !important;
-	-moz-border-radius: 0 !important;
-	border-radius: 0 !important;
 }
 
 div.sharedaddy h3,
@@ -102,11 +100,9 @@ div.sharedaddy ul {
 -------------------------------------------------------------- */
 
 div.sharedaddy div.sd-block {
-	border-top: 1px solid #ddd;
-	border-top: 1px solid rgba(0,0,0,.13);
 	padding: 10px 0 5px;
 	margin: 0;
-	width: 100% !important;
+	float:right;
 }
 
 div.sharedaddy.sharedaddy-dark .sd-block {
@@ -115,7 +111,6 @@ div.sharedaddy.sharedaddy-dark .sd-block {
 }
 
 div.sharedaddy .sd-content {
-	width: 82.125%; /* 530px / 640px */
 	float: right;
 	margin: -2px 0 0 0;
 }
@@ -126,7 +121,7 @@ div.sharedaddy .sd-content ul {
 
 div.sharedaddy .sd-content li {
 	float: left;
-	margin: 0 5px 5px 0 !important;
+	margin: 7px 5px 5px 0 !important;
 	display: block;
 }
 
@@ -138,7 +133,7 @@ div.sharedaddy .sd-content li {
 /* @noflip */
 .rtl div.sharedaddy .sd-content li {
 	float: right;
-	margin: 0 0 5px 5px !important;
+	margin: 6px 0 5px 5px !important;
 }
 
 /* Base Button .sd-button */
@@ -147,16 +142,6 @@ div.sharedaddy a.sd-button {
 	margin: 0;
 	padding: 0;
 	display: inline-block;
-	background: #efefef;
-	background: -moz-linear-gradient(top, #f7f7f7 0%, #efefef 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#efefef));
-	background: -webkit-linear-gradient(top, #f7f7f7 0%,#efefef 100%);
-	background: -o-linear-gradient(top, #f7f7f7 0%,#efefef 100%);
-	background: -ms-linear-gradient(top, #f7f7f7 0%,#efefef 100%);
-	background: linear-gradient(top, #f7f7f7 0%,#efefef 100%);
-	border-radius: 3px;
-	border: 1px solid #ddd !important;
-	box-shadow: inset 0 1px 0 #fff;
 	color: #000 !important;
 	text-decoration: none;
 	line-height: 1;
@@ -179,9 +164,7 @@ div.sharedaddy a.sd-button:hover {
 }
 
 div.sharedaddy a.sd-button:active {
-	background-color: #efefef;
-	box-shadow: inset 0 -1px 0 #fff;
-	border-color: #ddd;
+
 }
 
 a.sd-button > span {
