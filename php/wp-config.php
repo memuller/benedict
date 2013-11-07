@@ -21,7 +21,7 @@
 	define( 'DB_USER',     'adminiDyVKzu'       );
 	define( 'DB_PASSWORD', 'LWtdRzq4uJNS'         );
 	define( 'DB_HOST',     $host           );
-	define( 'WP_HOME', 'http://dev.benedict.com.br');
+	define( 'WP_HOME', 'http://benedict.com.br');
 	#define( 'WP_SITEURL', WP_HOME.'/wordpress');
 
 	define('WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content');
@@ -59,7 +59,7 @@ define('NONCE_SALT',       '3S{O_/tYOPGB^s-},?$I<{5[A:%N75f!-h*lx.emj|B$U8h3)baV
  * You can have multiple installations in one database if you give each a unique
  * prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix  = 'wp_';
+$table_prefix  = 'xm_';
 
 /**
  * WordPress Localized Language, defaults to English.
