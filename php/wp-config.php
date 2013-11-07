@@ -70,7 +70,7 @@ $table_prefix  = 'xm_';
  * language support.
  */
 define('WPLANG', 'pt_BR');
-#define ('JETPACK_DEV_DEBUG', true);
+define ('JETPACK_DEV_DEBUG', true);
 /**
  * For developers: WordPress debugging mode.
  *
