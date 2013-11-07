@@ -21,7 +21,7 @@
 	define( 'DB_USER',     'adminiDyVKzu'       );
 	define( 'DB_PASSWORD', 'LWtdRzq4uJNS'         );
 	define( 'DB_HOST',     $host           );
-	define( 'WP_HOME', 'http://benedict.com.br');
+	define( 'WP_HOME', 'http://www.benedict.com.br');
 	#define( 'WP_SITEURL', WP_HOME.'/wordpress');
 
 	define('WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content');
