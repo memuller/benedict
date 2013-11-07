@@ -9,7 +9,7 @@
  $board = new \Benedict\Post($post) ; 
  ?>
  <article id="post-<?php the_ID(); ?>"  <?php post_class();?>>
- 	<?php if(has_post_thumbnail()): ?>
+ 	<?php if( $board->show_image && has_post_thumbnail()): ?>
 		<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" rel="bookmark">
 			<?php the_post_thumbnail('inner'); ?>
 		</a>
