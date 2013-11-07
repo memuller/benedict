@@ -743,7 +743,6 @@ function get_the($field){
 			$url = get_stylesheet_directory_uri().$url ;
 		}
 		$path = str_replace(home_url().'/', ABSPATH, $url);
-		debug($path);
 		$content = file_get_contents($path);
 		$document = new SimpleXMLElement($content);
 		$document->registerXPathNamespace('svg', 'http://www.w3.org/2000/svg');
