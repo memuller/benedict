@@ -212,28 +212,44 @@ div#claim a {
 	margin: 120px 0 0;
 }
 
-article.type-portfolio {
-	width: 11.111%;
+article.type-folio {
+	width: 25%;
 	display: inline-block;
 	zoom: 1;
 	*display: inline;
 	position: relative;
 	font-size: 18px;
+	border-left: 2px #c6bead solid;
+	border-top: 2px #c6bead solid;
+	border-bottom: 2px #c6bead solid;
 }
 
-.search article.type-portfolio {
+article.type-folio.bordered { border-right: 2px #c6bead solid; }
+
+article.type-folio svg {
+	width: 80%;
+	height: 80%;
+	margin: auto;
+	display: block;
+}
+article.type-folio svg path { fill: #c6bead; }
+
+.search article.type-folio {
 	width: 100%;
 }
 
-article.type-portfolio div.caption {
+article.type-folio div.caption {
 	width: 100%;
 	height: 100%;
-	padding: 40% 0 0;
+	padding: 35% 0 0;
 	position: absolute;
 	top: 0px;
 	display: none;
 	text-align: center;
+	background-color: rgba(39, 169, 255, 0.3);
 }
+
+article.type-folio a, article.type-folio:hover { color: #e3203d; }
 
 .blog article.type-post, .page-template-page-blog-php article.type-post, .archive article.type-post, .search article {
 	margin: 0 60px 80px 0;
@@ -258,7 +274,7 @@ article.type-portfolio div.caption {
 }
 
 .single-post article {
-	margin: 0 60px 0 0;
+	margin: 0 0 0 0;
 }
 
 .single-portfolio article {
@@ -295,6 +311,7 @@ nav#navigation {
 
 .sharedaddy .sd-content ul li{
 	float: right !important;
+	margin-top: 4px !important;
 }
 
 ul#navigation {
@@ -388,7 +405,7 @@ LINKS
 -----------------------------------------------------------------------------------*/
 
 a, a p, input[type = submit] {
-	color: #c0c0c0;
+	color: #27A9E1;
 	text-decoration: none;
 	transition: background 0.2s ease-out 0s, color 0.2s ease-out 0s, box-shadow 0.2s ease-out 0s, opacity 0.2s ease-out 0s;
 	-webkit-transition: background 0.2s ease-out 0s, color 0.2s ease-out 0s, box-shadow 0.2s ease-out 0s, opacity 0.2s ease-out 0s;
@@ -421,15 +438,6 @@ header#primary-header nav ul.primary-menu li ul.sub-menu li a, nav.menu-mobile u
 
 header#primary-header a#iconFadeIn {
 	font-size: 14px;
-}
-
-.blog aside.col.span_3 a, .single-post aside.col.span_3 a {
-	color: #8b8b8b;
-	border-bottom: 1px solid #c0c0c0;
-}
-
-.single-post aside.col.span_3 a {
-	border-bottom: 1px solid #c0c0c0;
 }
 
 a.more-link, a.more {
@@ -1161,6 +1169,7 @@ footer.row {
 	display: none;
 }
 
+/* TITLE HEADERS */
 .title {
 	margin-top: 50px;
 	width: 100%;
@@ -1180,7 +1189,6 @@ footer.row {
 	max-width: 400px;
 	margin-top: 45px;
 }
-
 .title .col.diamond {
 	margin-top: 43px;
      width:12px; 
@@ -1209,22 +1217,122 @@ footer.row {
 	margin-left: 0px ;
 	margin-right: -4px;
 }
-
 .title:after {clear: both;}
 
+/* SMALL HEADERS */
+.title.small { height: 40px; margin-bottom: 10px; margin-top:0px; }
+.title.small .center {
+	height: 40px; width: 40px;
+	margin-left: 3px ;
+	margin-right: 11px ; 
+}
+
+.title.small .center svg {
+	width: 40px;
+	height: 40px;
+}
+.title.small .center svg path { fill: #C6BEAD; }
+
+.title.small .line { 
+	background-color: #C6BEAD !important; 
+	height: 2px !important;  
+	width: 34% !important;
+	max-width: 100px !important;
+	margin-top: 20px !important;
+}
+.title.small .diamond { 
+	border: 2px solid #C6BEAD ; 
+	width: 8px;
+	height: 8px;
+	margin-top: 19px;
+}
+
+.title.small .col.diamond.left {
+	margin-left: 5px ;
+	margin-right: 0px ;
+}
+.title.small .col.diamond.right {
+	margin-left: 0px ;
+	margin-right: -3px;
+}
+
+/* CONTENT/MAIN COLLUMN BACKGROUND */
 #main { 
 	background-color: #F3EDDA; 
 	max-width: 1400px ;
 	margin: 0 auto;
 }
 
+/* MAIN MENU */
 #primary-header .col.logo, #primary-header .col.search {
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
 
 #primary-header .col.span_8{ width: 35%; margin-left: 30%; }
-ul.primary-menu li img { display: block;}
+ul.primary-menu li img { display: block; }
 ul.primary-menu li { padding-top: 18px; margin-right: 50px !important; text-align:center ;}
 ul.primary-menu li.selected { padding-top: 8px; line-height: 1.1; }
 ul.primary-menu li.selected a { font-style: normal !important; text-align: center;}
+
+
+/* FOLIO */
+.container.list.folio { margin-top: 150px ; padding-bottom: 50px;}
+
+
+
+/* META BOXES */
+.meta.box {
+	width: 100% ;
+	background-color: #F7F2E7 ;
+	border-top: 1px #C6BEAD solid ;
+	border-bottom: 1px #C6BEAD solid ;
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+.meta.box.horizontal .meta {
+	float: left;
+	font-family: Bitter ;
+	font-size: 14px ;
+	margin-right: 30px ;
+	margin-left: 30px ;
+}
+
+.meta.box .meta span { 
+	float: left ; 
+	margin-top: 14px; 
+	color: #652C90; 
+}
+
+.meta.box .meta svg {
+	width: 30px;
+	height: 30px;
+	margin: 10px 15px 10px 0px;
+	float: left;
+}
+.meta.box .meta svg path { fill: #652C90 ; }
+.meta.box .meta span.links { color: #27A9E1; }
+
+.meta.box.vertical .meta .icon { height: 100%; }
+.meta.box.vertical .meta:after { clear:both; content: ''; display: block; visibility: hidden; height: 0px; }
+.meta.box.vertical { height: 100%; }
+.meta.box.vertical .meta { 
+	display: block; float: none;  
+	margin-right: 0px; margin-left: 0px;  
+	padding-left: 10px ; 
+	width: 100% ;
+	font-size: 14px;
+}
+.meta.box.vertical .meta span { overflow: hidden; width: 76%; }
+
+.meta.box .meta div { color: #652C90 ; margin-left: 10px ;  }
+
+
+.meta.box.horizontal.sharing {
+	width: 700px;
+	margin-bottom: 0px;
+}
+.meta.box.horizontal.sharing .meta { font-weight: bold; margin-left: 370px;}
+.meta.box.horizontal.sharing .meta span { margin-top: 13px; }
+

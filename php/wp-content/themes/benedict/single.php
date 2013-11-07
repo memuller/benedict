@@ -6,19 +6,22 @@
  * @subpackage Bloq
  * @since Bloq 1.0
  */
-get_header();
+get_header(); global $spacing;
 $format = get_post_format();
 if($format === false ) $format = 'standard';
+$spacing = 60 ;
 $header = get_post_meta( $post->ID, 'image_header', true) == 1 ? 'image' : 'big' ;
-echo glg_post_header($post->ID);
+echo glg_post_header($post->ID); 
 ?>
-<?php if ( get_the('claim') ): ?>
+<?php if ( get_the('claim') ){ ?>
 	<div id="claim" <?php if($header != 'image') echo "class='big'"; ?>>
 		<div class="container row">
 			<?php echo get_the('claim') ?>
 		</div>
 	</div>	
-<?php endif ?>
+<?php } else {
+	if($header != 'image') $spacing += 60; 
+}?>
 
 <div class="container row">
 	<?php
