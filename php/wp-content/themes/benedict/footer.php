@@ -29,8 +29,21 @@
 		<img src="<?php echo get_stylesheet_directory_uri() ?>/images/benedict_symbol_white.png" alt="" width='50px'>
 		</div>
 		<div class="credits">
-			&copy; 2013 Benedict' Brand Crafters. <em> Powered by <a href="http://wordpress.org/"> Wordpress </a>. </em>
+			<span style='float: right; margin-left: 10px;'>
+				<a href="https://www.facebook.com/benedictbrandcrafters" style="border-bottom: none;">
+					<?php inline_svg('/images/icons/facebook.svg') ?>
+				</a>
+				<a href="http://www.behance.net/benedict" style="border-bottom: none;">
+					<?php inline_svg('/images/icons/behance.svg') ?>
+				</a>
+			</span>
+			<span>
+				<a href='mailto:benedict@benedict.com.br'>benedict@benedict.com.br</a> - (12) 3144-7010 <br/>
+				&copy; 2013 Benedict' Brand Crafters.	
+			</span>
+
 		</div>
+
 	</div>
 </div>
 <?php echo get_option('adm_tracking'); ?>

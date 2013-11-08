@@ -55,7 +55,7 @@
 	<header id="primary-header">
 		<div class="col span_3 logo" style="line-height: 0;">
 			<a href="<?php echo home_url() ?>" title="<?php bloginfo('name') ?>" id="logo-link">
-				<img src="<?php echo get_template_directory_uri().'/images/benedict_logo.png'; ?>" alt="<?php bloginfo('name') ?>" />
+				<?php inline_svg('/images/icons/signature.svg') ?>
 			</a>
 		</div>
 		<nav class="col span_8">

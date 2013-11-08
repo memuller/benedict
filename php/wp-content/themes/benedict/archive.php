@@ -17,12 +17,11 @@ get_header();
 		<?php elseif ( is_year() ) : ?>
 			<?php printf( __('Yearly Archives: %s', 'themelovin'), get_the_date( _x( 'Y', 'yearly archives date format', 'themelovin'))); ?>
 		<?php else : ?>
-			<?php _e( 'Archives', 'themelovin' ); ?>
+			tag: <em><?php echo $GLOBALS['tag']; ?></em>
 		<?php endif; ?>
 	</div>
 </div>
 <div class="container row">
-	<div class="col span_9">
 <?php
 	if(have_posts()):
 		while (have_posts()) : the_post();
@@ -40,9 +39,5 @@ get_header();
 	endif;
 	posts_nav_link(' | ', '<span class="pictogram post-nav">&#59225;</span> previous page', 'next page <span class="pictogram post-nav">&#59226;</span>');
 ?>
-	</div>
-	<aside class="col span_3 col_last">
-		<?php if(!function_exists('dynamic_sidebar') || dynamic_sidebar('Blog Widget')) {}; ?>
-	</aside>
 </div>
 <?php get_footer(); ?>
