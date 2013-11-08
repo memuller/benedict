@@ -55,7 +55,7 @@
 	<header id="primary-header">
 		<div class="col span_3 logo" style="line-height: 0;">
 			<a href="<?php echo home_url() ?>" title="<?php bloginfo('name') ?>" id="logo-link">
-				<?php inline_svg('/images/icons/signature.svg') ?>
+				<?php inline_svg('/images/icons/signature.svg', 'logo') ?>
 			</a>
 		</div>
 		<nav class="col span_8">
