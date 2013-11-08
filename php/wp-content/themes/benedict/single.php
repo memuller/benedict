@@ -8,12 +8,19 @@
  */
 get_header(); global $spacing;
 $format = get_post_format();
-if($format === false ) $format = 'standard';
+if($format === false ){
+	if(get_post_type() != 'post'){
+		$format = get_post_type();
+	} else {
+		$format = 'standard' ;
+	}
+} 
 $spacing = 60 ;
 $header = get_post_meta( $post->ID, 'image_header', true) == 1 ? 'image' : 'big' ;
+if(get_post_type() == 'folio') $header = 'big';
 echo glg_post_header($post->ID); 
 ?>
-<?php if ( get_the('claim') ){ ?>
+<?php if ( get_the('claim') && get_post_type() != 'folio'){ ?>
 	<div id="claim" <?php if($header != 'image') echo "class='big'"; ?>>
 		<div class="container row">
 			<?php echo get_the('claim') ?>

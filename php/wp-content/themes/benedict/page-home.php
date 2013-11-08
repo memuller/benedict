@@ -29,7 +29,7 @@ if(!empty($subtitle)) :
 
 	<?php $paged = $page; ?>
 	<?php $paged = isset($paged) && $paged != 0 ? $paged : 1 ?>
-	<?php $posts = get_posts(array('paged' => $paged, 'posts_per_page' => get_option('posts_per_page'))); ?>
+	<?php $posts = get_posts(array('paged' => $paged, 'posts_per_page' => get_option('posts_per_page'), 'post_status' => 'publish')); ?>
 	<?php foreach ($posts as $post){ setup_postdata( $post );
 			$format = get_post_format();
 			if($format == 'quote') :

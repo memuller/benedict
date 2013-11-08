@@ -1,6 +1,6 @@
 <div class="meta box horizontal sharing">
 	<span class="share meta">
-		<?php inline_svg('/images/icons/person.svg', 'icon')  ?>
+		<?php inline_svg('/images/icons/share.svg', 'icon')  ?>
 		<span>Compartilhe</span>
 	</span>
 	<?php echo sharing_display(); ?>

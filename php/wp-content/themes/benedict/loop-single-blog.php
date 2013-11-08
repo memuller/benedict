@@ -36,7 +36,12 @@
 	<?php
 		global $more;
 		$more = false;
-		the_content('...leia mais');
+		if(has_excerpt()){
+			the_excerpt();
+		} else {
+			the_content('...leia mais');	
+		}
+		
 	?>
 	<div class="separator gray">
 		<div class="diamond"></div>				
