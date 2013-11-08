@@ -273,8 +273,8 @@ article.type-folio a, article.type-folio:hover { color: #e3203d; }
 	text-align: center;
 }
 
-.single-post article {
-	margin: 0 30px 0 0;
+.single article {
+	margin-right: 30px;
 }
 
 .single-portfolio article {
@@ -337,7 +337,7 @@ div#copyright .credits {
 	float: right;
 	width: 40% ;
 	margin-right: 20%;
-	margin-top: 20px;
+	margin-top: 10px;
 	text-align: right;
 }
 
@@ -740,7 +740,7 @@ article.type-portfolio div.caption h1 {
 }
 
 .container.row p {
-	margin: 0 0 30px;
+	margin-bottom: 1rem;
 }
 
 .single-portfolio .container.row aside p {
@@ -795,35 +795,44 @@ footer.row section.widget h4 {
     font-size: 36px;
     font-weight: 800;
     line-height: 1.2;
-    color: #29aae2;
+    color: #837c73;
     margin: 0 0 60px;
 }
 
 .container.row h2 {
-    font-size: 28px;
-    font-weight: 800;
+	font-family: Overlock;
+    font-size: 26px;
+    font-weight: bold;
     line-height: 1.2;
-    color: #29aae2;
+    color: #837c73;
+    margin-bottom: 1rem;
+    margin-top: 30px;
 }
 
 .container.row h3 {
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: bold;
     line-height: 1.1;
-    color: #4B4B4B;
+    color: #837c73;
+    margin-bottom: 0.7rem;
+    margin-top: 30px;
 }
 
 .container.row h4 {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
     line-height: 1.1;
-    color: #4B4B4B;
+    color: #837c73;
+    margin-bottom: 0.3rem;
+    margin-top: 20px;
 }
 
 .container.row h5 {
-    font-size: 18px;
+	font-style: italic;
+    font-size: 14px;
     font-weight: normal;
-	color: #c0c0c0;
+	color: #f8f3e7;
 }
 
 .container.row h6 {
@@ -1320,7 +1329,18 @@ ul.primary-menu li.selected a { font-style: normal !important; text-align: cente
 	font-size: 14px;
 }
 .meta.box.vertical .meta span { overflow: hidden; width: 76%; }
-
+.meta.box.vertical .meta.field {  }
+.meta.box.vertical .meta.field em {
+	color: #c6bead; 
+	font-size: 12px;
+	margin-top: 4px;
+	display: inline-block;
+}
+.meta.box.vertical .meta.field span {
+	margin-top: 0px; line-height:1;
+}
+.meta.box.vertical .meta.field.no-icon { margin-top: 3px; }
+.meta.box.vertical .meta.field.no-icon span { width: 100%; }
 .meta.box .meta div { color: #652C90 ; margin-left: 10px ;  }
 
 
@@ -1348,4 +1368,9 @@ ul.primary-menu li.selected a { font-style: normal !important; text-align: cente
 .list.container.folio .meta.box.folio svg { width: 50px; height: 50px; }
 .list.container.folio .meta.box.folio { margin-bottom: 0px; margin-top: 0px;}
 .title.folio { margin-top: 135px; margin-bottom: 30px ; }
+
+article {font-size: 14px;}
+
+
+#social { 	margin-top: 60px; min-height: 300px; } 
 

@@ -14,7 +14,7 @@ if($format === false ){
 	} else {
 		$format = 'standard' ;
 	}
-} 
+}
 $spacing = 60 ;
 $header = get_post_meta( $post->ID, 'image_header', true) == 1 ? 'image' : 'big' ;
 if(get_post_type() == 'folio') $header = 'big';
