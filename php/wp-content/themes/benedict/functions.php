@@ -34,22 +34,22 @@ add_action('admin_print_styles', 'glg_admin_styles');
 /*-----------------------------------------------------------------------------------*/
 
 require_once(TEMPLATEPATH . '/admin/admin-functions.php');
-require_once(TEMPLATEPATH . '/admin/admin-interface.php');
+#require_once(TEMPLATEPATH . '/admin/admin-interface.php');
 require_once(TEMPLATEPATH . '/admin/theme-settings.php');
-require_once(TEMPLATEPATH . '/themelovin/post-metabox.php');
+#require_once(TEMPLATEPATH . '/themelovin/post-metabox.php');
 require_once(TEMPLATEPATH . '/themelovin/init.php');
-
+require_once('lib/scripts.php');
 function glg_load_scripts() {
 	if (!is_admin()) {
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('easing', get_template_directory_uri().'/include/jquery.easing.js', array('jquery'), false, true);
-		wp_enqueue_script('flexslider', get_template_directory_uri().'/include/jquery.flexslider.js', array('jquery'), false, false);
-		wp_enqueue_script('hoverintent', get_template_directory_uri().'/include/jquery.hoverIntent.js', array('jquery'), false, true);
-		wp_enqueue_script('supersubs', get_template_directory_uri().'/include/jquery.supersubs.js', array('jquery'), false, true);
-		wp_enqueue_script('superfish', get_template_directory_uri().'/include/jquery.superfish.js', array('jquery'), false, true);
-		wp_enqueue_script('fitvids', get_template_directory_uri().'/include/jquery.fitvids.js', array('jquery'), false, true);
-		wp_enqueue_script('nicescroll', get_template_directory_uri().'/include/jquery.nicescroll.js', array('jquery'), false, true);
-		wp_enqueue_script('cookie', get_template_directory_uri().'/include/jquery.cookie.js', array('jquery'), false, true);
+		// wp_enqueue_script('easing', get_template_directory_uri().'/include/jquery.easing.js', array('jquery'), false, true);
+		// wp_enqueue_script('flexslider', get_template_directory_uri().'/include/jquery.flexslider.js', array('jquery'), false, false);
+		// wp_enqueue_script('hoverintent', get_template_directory_uri().'/include/jquery.hoverIntent.js', array('jquery'), false, true);
+		// wp_enqueue_script('supersubs', get_template_directory_uri().'/include/jquery.supersubs.js', array('jquery'), false, true);
+		// wp_enqueue_script('superfish', get_template_directory_uri().'/include/jquery.superfish.js', array('jquery'), false, true);
+		// wp_enqueue_script('fitvids', get_template_directory_uri().'/include/jquery.fitvids.js', array('jquery'), false, true);
+		// wp_enqueue_script('nicescroll', get_template_directory_uri().'/include/jquery.nicescroll.js', array('jquery'), false, true);
+		// wp_enqueue_script('cookie', get_template_directory_uri().'/include/jquery.cookie.js', array('jquery'), false, true);
 		//conditional load for contact page scripts
 		if(is_page_template('page-contact.php')) {
 			wp_enqueue_script('gmaps', get_template_directory_uri().'/include/jquery.mobilegmap.js', array('jquery'), false, true);
@@ -59,8 +59,8 @@ function glg_load_scripts() {
 				)
 			);
 		}
-		wp_enqueue_script('totop', get_template_directory_uri().'/include/jquery.ui.totop.js', array('jquery'), false, true);
-		wp_enqueue_script('themelovin', get_template_directory_uri().'/include/jquery.themelovin.js', array('jquery'), false, true);
+		#wp_enqueue_script('totop', get_template_directory_uri().'/include/jquery.ui.totop.js', array('jquery'), false, true);
+		#wp_enqueue_script('themelovin', get_template_directory_uri().'/include/jquery.themelovin.js', array('jquery'), false, true);
 		wp_localize_script('themelovin', 'glg_script_vars', array(
 			'wpDir' => site_url(),
 			'loveNonce' => wp_create_nonce('love-it-nonce')
@@ -68,16 +68,16 @@ function glg_load_scripts() {
 		);
 		if(is_singular() && get_option('thread_comments'))
 			wp_enqueue_script('comment-reply');
-		wp_enqueue_script('modernizr', get_template_directory_uri().'/include/modernizr.custom.71362.js', array('jquery'));
+		#wp_enqueue_script('modernizr', get_template_directory_uri().'/include/modernizr.custom.71362.js', array('jquery'));
 	}
 }
 add_action('wp_enqueue_scripts', 'glg_load_scripts');
 
 function glg_load_styles() {
-	wp_enqueue_style('default', get_stylesheet_uri());
-	wp_enqueue_style('totop', get_template_directory_uri().'/styles/totop.css');
-	wp_enqueue_style('responsive', get_template_directory_uri().'/styles/responsive.css');
-	wp_enqueue_style('flexslider', get_template_directory_uri().'/styles/flexslider.css');
+	#wp_enqueue_style('default', get_stylesheet_uri());
+	#wp_enqueue_style('totop', get_template_directory_uri().'/styles/totop.css');
+	#wp_enqueue_style('responsive', get_template_directory_uri().'/styles/responsive.css');
+	#wp_enqueue_style('flexslider', get_template_directory_uri().'/styles/flexslider.css');
 }
 add_action('wp_enqueue_scripts', 'glg_load_styles');
 
@@ -136,16 +136,16 @@ if(function_exists('register_sidebar')) {
 /*	Widget(s)
 /*-----------------------------------------------------------------------------------*/
 
-include("themelovin/widgets/widget-flickr.php");
-include("themelovin/widgets/widget-twitter.php");
-include("themelovin/widgets/widget-social.php");
+#include("themelovin/widgets/widget-flickr.php");
+#include("themelovin/widgets/widget-twitter.php");
+#include("themelovin/widgets/widget-social.php");
 
 /*-----------------------------------------------------------------------------------*/
 /*	Shortcode(s)
 /*-----------------------------------------------------------------------------------*/
 
 if(!function_exists('glg_enqueue_script')){
-	require_once('shortcodes/themelovin.php');
+	#require_once('shortcodes/themelovin.php');
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -256,7 +256,7 @@ function glg_custom_css($content) {
 	
 	return $output;
 }
-add_action('glg_custom_styles', 'glg_custom_css', 10);
+#add_action('glg_custom_styles', 'glg_custom_css', 10);
 endif;
 
 if(!function_exists('glg_link_custom_styles')) :
@@ -270,7 +270,7 @@ function glg_link_custom_styles() {
         echo '<link rel="stylesheet" href="'.$css.'" type="text/css" media="screen" />'.'<link rel="stylesheet" href="'.$color.'" type="text/css" media="screen" />';
     }
 }
-add_action('wp_head', 'glg_link_custom_styles', 10);
+#add_action('wp_head', 'glg_link_custom_styles', 10);
 endif;
 
 if(!function_exists('glg_create_custom_styles')) :
@@ -296,7 +296,7 @@ function glg_create_custom_styles() {
 		exit;	
 	}
 }
-add_action('init', 'glg_create_custom_styles');
+#add_action('init', 'glg_create_custom_styles');
 endif;
 
 if(!function_exists('glg_header_slider')) :
@@ -531,161 +531,6 @@ if(!function_exists('glg_img_paragraph')) :
 		return $content;
 	}
 	add_filter('the_content', 'glg_img_paragraph', 10);
-endif;
-
-if(!function_exists('glg_social_link')) :
-function glg_social_link() {
-	$output = '<ul class="social">';
-	$social = array('behance' => 'adm_behance', 'dribbble' => 'adm_dribbble', 'facebook' => 'adm_facebook', 'flickr' => 'adm_flickr', 'google' => 'adm_google', 'instagram' => 'adm_instagram', 'linkedin' => 'adm_linkedin', 'pinterest' => 'adm_pinterest', 'tumblr' => 'adm_tumblr', 'twitter' => 'adm_twitter', 'vimeo' => 'adm_vimeo');
-	$pictograms = array('behance' => '&#62286;', 'dribbble' => '&#62235;', 'facebook' => '&#62220;', 'flickr' => '&#62211;', 'google' => '&#62223;', 'instagram' => '&#62253;', 'linkedin' => '&#62232;', 'pinterest' => '&#62226;', 'tumblr' => '&#62229;', 'twitter' => '&#62217;', 'vimeo' => '&#62214;');
-	foreach($social as $key => $value) {
-		$var = get_option($value);
-		if(!empty($var)) {
-			$var = trim($var, '/');
-			if(!preg_match('~^(?:f|ht)tps?://~i', $var)) {
-				$var = 'http://'.$var;
-			}
-			$output .= '<li><a href="'.$var.'" title="Join us on '.$key.'" target="_blank"><span class="pictogram-social">'.$pictograms[$key].'</span></a></li>';
-		}
-	}
-	$output .= '</ul>';
-	echo $output;
-}
-endif;
-
-if(!function_exists('glg_member_social')) :
-function glg_member_social($id) {
-	$output = '<ul class="social">';
-	$social = array('behance' => 'glg_team_behance', 'dribbble' => 'glg_team_dribbble', 'facebook' => 'glg_team_facebook', 'flickr' => 'glg_team_flickr', 'google' => 'glg_team_google', 'instagram' => 'glg_team_instagram', 'linkedin' => 'glg_team_linkedln', 'pinterest' => 'glg_team_pinterest', 'tumblr' => 'glg_team_tumblr', 'twitter' => 'glg_team_twitter', 'vimeo' => 'glg_team_vimeo');
-	$pictograms = array('behance' => '&#62286;', 'dribbble' => '&#62235;', 'facebook' => '&#62220;', 'flickr' => '&#62211;', 'google' => '&#62223;', 'instagram' => '&#62253;', 'linkedin' => '&#62232;', 'pinterest' => '&#62226;', 'tumblr' => '&#62229;', 'twitter' => '&#62217;', 'vimeo' => '&#62214;');
-	$var = get_post_meta($id, 'glg_team_mail', true);
-	if(!empty($var)) {
-		$output .= '<li><a href="mailto:'.$var.'" title="Mail us"><span class="pictogram">&#9993;</span></a></li>';
-	}
-	foreach($social as $key => $value) {
-		$var = get_post_meta($id, $value , true);
-		if(!empty($var)) {
-			$var = trim($var, '/');
-			if(!preg_match('~^(?:f|ht)tps?://~i', $var)) {
-				$var = 'http://'.$var;
-			}
-			$output .= '<li><a href="'.$var.'" title="Join us on '.$key.'" target="_blank"><span class="pictogram-social">'.$pictograms[$key].'</span></a></li>';
-		}
-	}
-	$output .= '</ul>';
-	return $output;
-}
-endif;
-
-if(!function_exists('glg_check_love')) :
-	function glg_check_love($id){
-		if(isset($_COOKIE['loved-'.$id]))
-			return '<a href="#" class="love-it loved" data-post-id="'.$id.'"><span class="pictogram">&hearts;</span></a> <span class="love-it-counter">'.glg_get_love_count($id).'</span><span class="love-it-mex"></span>';
-		else
-			return '<a href="#" class="love-it" data-post-id="'.$id.'"><span class="pictogram">&hearts;</span></a> <span class="love-it-counter">'.glg_get_love_count($id).'</span><span class="love-it-mex"></span>';
-	}
-endif;
-
-if(!function_exists('glg_get_love_count')) :
-	function glg_get_love_count($id) {
-		$love_count = get_post_meta($id, 'glg_love_it', true);
-		if($love_count)
-			return $love_count;
-		return 0;
-	}
-endif;
-
-if(!function_exists('glg_process_love')) :
-	function glg_process_love() {
-		if (isset($_POST['itemid']) && wp_verify_nonce($_POST['loveitnonce'], 'love-it-nonce')) {
-			if(glg_mark_loved($_POST['itemid']))
-				die(true);
-			else
-				die(false);
-		}
-	}
-	add_action( 'wp_ajax_nopriv_glg_process_love', 'glg_process_love' );  
-	add_action( 'wp_ajax_glg_process_love', 'glg_process_love' );
-endif;
-
-if(!function_exists('glg_mark_loved')) :
-	function glg_mark_loved($id) {
-		$love_count = get_post_meta($id, 'glg_love_it', true);
-		$love_count = $love_count + 1;
-		if(update_post_meta($id, 'glg_love_it', $love_count)) {
-			return true;
-		}
-		return false;
-	}
-endif;
-
-if(!function_exists('glg_send_contact')) :
-	function glg_send_contact() {
-		$header = '';
-		$recipient = get_option('slr_recipient');
-		$emailTo = $recipient;
-		$name = $_POST['name'];
-		$email = $_POST['email'];
-		$comments = $_POST['comments'];
-		if (!isset($emailTo) || ($emailTo == '') ){
-			$emailTo = get_option('admin_email');
-		}
-	
-		$header .= "Reply-To: ".$email." <".$email.">\r\n"; 
-		$header .= "Return-Path: ".$email." <".$email.">\r\n"; 
-		$header .= "From: ".$name." <".$name.">\r\n"; 
-		$header .= "Content-type: text/html\r\n";
-	
-		$subject = "From ".$name;
-		$body = "Name: $name \n\nEmail: $email \n\nComments: $comments";
-		wp_mail("$emailTo", $subject, $body, $header);
-		die(__("Thanks, your email was sent successfully.", 'themelovin'));
-	}
-	add_action( 'wp_ajax_nopriv_glg_send_contact', 'glg_send_contact' );  
-	add_action( 'wp_ajax_glg_send_contact', 'glg_send_contact' );
-endif;
-
-if(!function_exists('glg_edit_comment_form')) :
-	function glg_edit_comment_form() {
-		$fields = array(
-			'author' => '<label for="author">' . __('Name', 'themelovin') . '<sup>*</sup></label><input id="author" name="author" type="text" value="" class="required" /><br />',
-			'email' => '<label for="email">' . __('Email', 'themelovin') . '<sup>*</sup></label><input id="email" name="email" type="text" value="" class="required requiredField email" />',
-		);
-		$defaults['fields'] = apply_filters('comment_form_default_fields', $fields);
-		$defaults['comment_notes_after'] = '';
-		$defaults['comment_notes_before'] = '';
-		$defaults['label_submit'] = 'Submit';
-		return $defaults;
-	}
-endif;
-
-if(!function_exists('glg_comment')) :
-	function glg_comment($comment, $args, $depth) {
-		$GLOBALS['comment'] = $comment;
-	?>
-		<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-					<?php
-						echo get_avatar( $comment, 60);
-						printf( __('<span class="author">%1s</span><br />%2s', 'themelovin'),
-							get_comment_author_link(),
-							sprintf( __('<a href="%1$s" class="pubtime"><time pubdate datetime="%2$s">%3$s</time></a>', 'themelovin'),
-								esc_url(get_comment_link($comment->comment_ID)),
-								get_comment_time('c'),
-								sprintf( __('%1$s - %2$s', 'themelovin'), get_comment_date(), get_comment_time() )
-							)
-						);
-					if ( $comment->comment_approved == '0' ) : ?>
-						<em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.', 'themelovin'); ?></em>
-						<br />
-					<?php endif; ?>
-				<div class="comment-content"><?php comment_text(); ?></div>
-				<?php
-					comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth'])));
-					edit_comment_link( __('Edit', 'themelovin'), '&nbsp;<span class="edit-link">', '</span>' );
-				?>	
-		</li>	
-	<?php
-	}
 endif;
 
 function get_the($field){

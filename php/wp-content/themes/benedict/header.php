@@ -67,7 +67,7 @@
 						">
 						<a href="<?php echo home_url($section == 'board' ? '' : '/'.$section) ?>">
 							<?php if($GLOBALS['current_section'] == $section): ?>
-								<img src="<?php echo get_template_directory_uri()."/images/icons/$section-m.png" ?>" alt="">
+								<?php inline_svg('/images/icons/'.$section.'.svg') ?>
 							<?php endif; ?>
 							<?php echo $section ?>
 						</a>
@@ -75,8 +75,7 @@
 				<?php endforeach ?>
 			</ul>
 		</nav>
-		<?php get_template_part('search', 'custom'); ?>
+		<?php get_template_part('search', 'custom');?>
 		<div class="clear"></div>
 	</header>
 </div>
-<div id="main">
