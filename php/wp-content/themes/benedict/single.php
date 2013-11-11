@@ -26,11 +26,9 @@ echo glg_post_header($post->ID);
 			<?php echo get_the('claim') ?>
 		</div>
 	</div>	
-<?php } else {
-	if($header != 'image') $spacing += 60; 
-}?>
+<?php } ?>
 
-<div class="container row">
+<div class="container row main">
 	<?php
 		while (have_posts()) : the_post();
 			get_template_part('content-single', $format);

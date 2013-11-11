@@ -18,16 +18,16 @@
 	<div class="meta box horizontal">
 		<span class="author meta">
 			<?php $crafter = new Benedict\Crafter($post->post_author); $person = new Benedict\Pedia($crafter->person); ?>
-			<img src="<?php echo $person->icon ?>" alt="" class="svg icon">
+			<?php inline_svg($person->icon) ?>
 			<span><a href="<?php echo $person->permalink ?>"><?php the_author() ?></a></span>
 		</span>
 		<span class="date meta">
-			<img src="<?php echo get_template_directory_uri().'/images/icons/date.svg' ?>" alt="" class="svg icon">
+			<?php inline_svg('/images/icons/date.svg') ?>
 			<span><?php the_date() ?></span>
 		</span>
 		<?php if (has_tag()) { ?>
 			<span class="tags meta">
-				<img src="<?php echo get_template_directory_uri().'/images/icons/tag.svg' ?>" alt="" class="svg icon">
+				<?php inline_svg('/images/icons/tag.svg') ?>
 				<span class="links"><?php the_tags('', ', ', '') ?></span>
 			</span>			
 		<?php } ?>

@@ -7,8 +7,6 @@
  * @since Bloq 1.0
  */
 
-get_header();
-$header = 'simple';
 $folio = new \Benedict\Folio();
 ?>
 
@@ -54,7 +52,7 @@ $folio = new \Benedict\Folio();
 			endif;	
 	} ?>
 
-</div>
+</div></div>
 <?php
 	get_footer();
 ?>

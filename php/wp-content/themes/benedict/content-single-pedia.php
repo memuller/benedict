@@ -44,7 +44,7 @@
 		<div class="meta box vertical">
 			<span class="format meta field">
 				<?php inline_svg('/images/icons/'.$pedia->post_format.'.svg') ?>
-				<em>isto é <?php echo $feminine ? 'uma' : 'um' ?></em>
+				<em><?php echo $feminine ? 'uma' : 'um' ?></em>
 				<span><?php echo $format_labels[$pedia->post_format] ?></span>
 			</span>
 			<span class="date meta">

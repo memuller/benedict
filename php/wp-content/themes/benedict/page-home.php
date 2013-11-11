@@ -22,7 +22,7 @@ if(!empty($subtitle)) :
 	<div class="title">
 		<div class="col left line"></div>
 		<div class="col diamond left"></div>
-		<div class="col center"><img src="<?php echo get_template_directory_uri().'/images/icons/board-g.png'; ?>" alt=""></div>
+		<div class="col center"><?php inline_svg('/images/icons/board.svg') ?></div>
 		<div class="col diamond right"></div>
 		<div class="col right line"></div>
 	</div>
