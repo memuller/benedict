@@ -1,4 +1,4 @@
-<?php
+<?php global $format ;
 
 $subtitle = get_post_meta($post->ID, 'glg_page_subtitle', true);
 $header = '';
@@ -11,7 +11,7 @@ else
 if(!empty($subtitle)) :
 ?>
 <?php endif; ?>
-<div class="container row main">
+<div class="container row main pedia">
 	<div class="title folio">
 		<div class="col left line"></div>
 		<div class="col diamond left"></div>
@@ -20,24 +20,39 @@ if(!empty($subtitle)) :
 		<div class="col right line"></div>
 	</div>
 
-	<div class="container row list folio">
-		<div id="portfolios">
-		<?php if(have_posts()): $count = 1 ; ?> 
-			<?php while(have_posts()): the_post(); $pedia = new Benedict\Pedia(); ?>
-				<article class="meta box horizontal folio" <?php if($count != 1) echo 'style="border-top: none;"' ?>>
-					<span class="title">
-						<a href=<?php echo $pedia->permalink ?>>
-							<h1 class='post-title'><?php echo $pedia->title ?></h1>
-						</a>
-					</span>
-					<?php inline_svg('/images/icons/'.$pedia->post_format.'.svg', 'icon') ?>
-				</article>		
-			<?php $count++; endwhile ;?>
-		<?php endif ?>
-			
-		</div>
-
+	<div class="pedia selector">
+		<?php foreach (\Benedict\Pedia::$formats as $i => $format): ?>
+			<span class="format item <?php echo $format ?> <?php if($format == $active) echo 'active' ?>" 
+				id="<?php echo $format ?>-selector"
+				<?php if($i != 0) echo 'style="border-left: none;"' ?>
+			>
+				<a href="<?php echo home_url("pedia/$format") ?>">
+					<?php inline_svg('/images/icons/'.$format.'.svg') ?>	
+				
+					<label for="<?php echo $format.'-selector' ?>">
+						<?php echo __('pedia-'.$format).'s' ?>
+					</label>
+				</a>
+			</span>
+		<?php endforeach ?>
 	</div>
+	<div style="clear: both;"></div>
+	<div class="container row pedia">
+		<?php if(have_posts()): ?>
+			<ul>
+				<?php while(have_posts()): the_post(); $pedia = new Benedict\Pedia(); ?>
+					<li class="item">
+						<a href="<?php echo $pedia->permalink ?>"><?php echo $pedia->title ?></a>
+					</li>
+				<?php endwhile ?>
+			</ul>	
+		<?php else: ?>
+			<div class="notfound">
+				Ainda não temos nada aqui.
+			</div>
+		<?php endif ?>	 
+	</div>
+
 </div>
 <?php
 	get_footer();

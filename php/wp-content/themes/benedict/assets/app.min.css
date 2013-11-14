@@ -29,6 +29,12 @@
   width: 50px;
   height: 50px;
 }
+.list.container.folio .meta.box.folio svg path {
+  fill: #652C90;
+}
+.list.container.folio .meta.box.folio svg polygon {
+  fill: #652C90;
+}
 .title.folio {
   margin-top: 135px;
   margin-bottom: 30px;
@@ -124,6 +130,12 @@
   margin-top: 19px;
 }
 
+.purple svg path {
+  fill: #652c90;
+}
+.purple svg polygon {
+  fill: #652c90;
+}
 footer.row {
   margin-top: 0px;
   padding-top: 50px;
@@ -140,7 +152,7 @@ article {
   min-height: 500px;
 }
 #copyright {
-  margin-top: 90px;
+  margin-top: 20px;
 }
 article ul {
   list-style: none !important;
@@ -213,6 +225,60 @@ ul.primary-menu li svg {
   width: 32px;
   height: 32px;
 }
+.pedia .selector .item {
+  float: left;
+  width: 16.666666666666668%;
+  border: 1px solid #c6bead;
+  background-color: #f7f2e7;
+}
+.pedia .selector .item svg {
+  width: 90px;
+  height: 90px;
+  display: block;
+  margin: 20px auto 10px auto;
+}
+.pedia .selector .item a label {
+  color: #27a9e1;
+  display: block;
+  margin-bottom: 10px;
+  text-transform: none;
+  text-align: center;
+  font-style: italic;
+}
+.pedia .selector .item a:hover label {
+  color: #652c90;
+}
+.pedia .selector .item a:hover svg path {
+  fill: #652c90;
+}
+.pedia .selector .item a:hover svg polygon {
+  fill: #652c90;
+}
+.pedia .selector .item.active svg path {
+  fill: #652c90;
+}
+.pedia .selector .item.active svg polygon {
+  fill: #652c90;
+}
+.pedia .selector .item.active a label {
+  color: #652c90;
+}
+.pedia .row {
+  margin-top: 30px;
+}
+.pedia .row ul {
+  list-style: none !important;
+}
+.pedia .row ul li {
+  float: left;
+  width: 33.333333333333336%;
+  text-align: center ;
+}
+.pedia .row .notfound {
+  font-style: italic;
+  color: #c6bead;
+  text-align: center;
+}
 
 .meta.box {
   width: 100%;
@@ -232,6 +298,9 @@ ul.primary-menu li svg {
   float: left;
 }
 .meta.box .meta svg path {
+  fill: #652C90;
+}
+.meta.box .meta svg polygon {
   fill: #652C90;
 }
 .meta.box .meta div {

@@ -1,3 +1,14 @@
+@purple: #652C90;
+@grey: ##C6BFAE;
+@dark-beige: rgb(198, 190, 173);
+@light-beige: rgb(247, 242, 231);
+@blue: rgb(39, 169, 225);
+
+.purple {
+    svg path { fill: @purple ; }
+    svg polygon { fill: @purple; }
+}
+
 footer.row {
     margin-top: 0px;
     padding-top: 50px;
@@ -10,7 +21,7 @@ article {font-size: 14px;}
 
 .container.row.main { min-height: 500px; }
 
-#copyright { margin-top: 90px; }
+#copyright { margin-top: 20px; }
 
 
 
@@ -94,3 +105,60 @@ ul.primary-menu {
     }
 }
 
+.pedia {
+    .selector {
+
+        .item {
+            float: left;
+            width: (100%/6);
+            border: 1px solid @dark-beige;
+            background-color: @light-beige;
+
+            svg {
+                width: 90px;
+                height: 90px;
+                display: block;
+                margin: 20px auto 10px auto;
+            }
+            
+            a label {
+                color: @blue;
+                display: block;
+                margin-bottom: 10px;
+                text-transform: none;
+                text-align: center;
+                font-style: italic;
+            }
+
+            a:hover {
+                label { color: @purple; }
+                .purple;
+            }
+        }
+
+        .item.active {
+            .purple;
+            a label { color: @purple ; }
+        }
+    }
+    
+    .row {
+        margin-top: 30px;
+        ul {
+            list-style: none !important;
+            li { 
+                float: left; 
+                width: (100%/3);
+                text-align:center ;
+            }
+            
+        }
+
+        .notfound {
+            font-style: italic;
+            color: @dark-beige;
+            text-align: center; 
+        }
+    }
+
+}

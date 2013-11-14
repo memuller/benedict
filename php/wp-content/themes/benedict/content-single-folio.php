@@ -38,15 +38,11 @@ $folio = new \Benedict\Folio();
 			</div>
 		<?php endforeach ?>
 	</div>	
-
-	<?php foreach ($folio->items() as $item){ $post = $item->base ; setup_postdata( $post );
+	<?php $posts = $folio->items(false); ?>
+	<?php foreach ($posts as $post){ setup_postdata( $post );
 			$format = get_post_format();
-			if($format == 'quote') :
-				get_template_part('loop', 'single-quote');
-			elseif($format == 'link'):
-				get_template_part('loop', 'single-link');
-			elseif($format == 'video'):
-				get_template_part('loop', 'single-video');
+			if($post->post_type == 'pedia') :
+				get_template_part('loop', 'single-pedia');
 			else :
 				get_template_part('loop', 'single-blog');
 			endif;	
