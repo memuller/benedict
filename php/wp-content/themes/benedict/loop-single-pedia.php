@@ -6,20 +6,19 @@
  * @subpackage Bloq
  * @since Bloq 1.0
  */
- $board = new \Benedict\Post($post) ; 
+ $pedia = new \Benedict\Post($post) ; 
  ?>
  <article id="post-<?php the_ID(); ?>"  <?php post_class();?>>
- 	<?php if( $board->show_image && has_post_thumbnail()): ?>
+ 	<?php if( $pedia->show_image && has_post_thumbnail()): ?>
 		<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" rel="bookmark">
 			<?php the_post_thumbnail('inner'); ?>
 		</a>
 	<?php endif; ?>
 	<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" rel="bookmark"><?php the_title('<h1 class="post-title">', '</h1>'); ?></a>
 	<div class="meta box horizontal">
-		<span class="author meta">
-			<?php $crafter = new Benedict\Crafter($post->post_author); $person = new Benedict\Pedia($crafter->person); ?>
-			<?php inline_svg($person->icon) ?>
-			<span><a href="<?php echo $person->permalink ?>"><?php the_author() ?></a></span>
+		<span class="type meta">
+			<?php inline_svg("/images/icons/$pedia->post_format.svg") ?>
+			<span><?php _e("pedia-$pedia->post_format") ?></span>
 		</span>
 		<span class="date meta">
 			<?php inline_svg('/images/icons/date.svg') ?>
