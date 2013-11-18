@@ -380,75 +380,6 @@ if(!function_exists('glg_post_header')) :
 	}
 endif;
 
-if(!function_exists('glg_post_categories')) :
-	function glg_post_categories($id, $taxonomy, $link = true) {
-		$output = '';
-		$all = wp_get_object_terms($id, $taxonomy);
-		$lastItem = (end($all));
-		foreach($all as $current) {
-			if($current) {
-				if($link)
-					$output .= '<a href="'.get_term_link($current->slug, $taxonomy).'" title="'.$current->name.'" rel="tag">'.$current->name.'</a>';
-				else
-					$output .= $current->name;
-				if($lastItem->term_id != $current->term_id)
-					$output .= ', ';
-			}
-		}
-		return $output;
-	}
-endif;
-
-if (!function_exists('glg_entry_meta')) :
-	function glg_entry_meta($post) {
-		if(get_post_type($post) != 'portfolio') {
-			$categories_list = get_the_category_list( __(', ', 'themelovin' ));
-			$categories_label = '<span class="pictogram">&#128193;</span>';
-		} else {
-			$categories_list = glg_post_categories($post->ID, 'skill');
-			$categories_label = '<span class="pictogram">&#128188;</span>';
-		}
-		$tag_label = '<span class="pictogram">&#59148;</span>';
-		
-		$tag_list = get_the_tag_list( '', __(', ', 'themelovin'));
-
-		$date = sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a>',
-			esc_url( get_permalink()),
-			esc_attr( get_the_time()),
-			esc_attr( get_the_date( 'c' )),
-			esc_html( get_the_date())
-		);
-		
-		if ($categories_list && $tag_list && get_post_type($post) != 'portfolio') {
-			$utility_text = __('<ul class="entry-meta"><li><span class="pictogram">&#128340;</span> %2$s</li><li>%3$s %1$s</li><li>%4$s %5$s</li></ul>', 'themelovin');			
-		}
-		elseif($categories_list && !$tag_list && get_post_type($post) != 'portfolio') {
-			$utility_text = __('<ul class="entry-meta"><li><span class="pictogram">&#128340;</span> %2$s</li><li>%3$s %1$s</li></ul>', 'themelovin');		
-		}
-		elseif(!$categories_list && $tag_list && get_post_type($post) != 'portfolio') {
-			$utility_text = __('<ul class="entry-meta"><li><span class="pictogram">&#128340;</span> %2$s</li><li>%4$s %5$s</li></ul>', 'themelovin');		
-		}
-		elseif(get_post_type($post) != 'portfolio') {
-			$utility_text = __('<ul class="entry-meta"><li><span class="pictogram">&#128340;</span> %2$s</li></ul>', 'themelovin');
-		}
-		elseif($categories_list && get_post_type($post) == 'portfolio') {
-			$utility_text = __('<ul class="entry-meta"><li><span class="pictogram">&#128340;</span> %2$s</li><li>%3$s %1$s</li><li>'.glg_check_love($post->ID).'</li></ul>', 'themelovin');
-		}
-		else {
-			$utility_text = __('<ul class="entry-meta"><li><span class="pictogram">&#128340;</span> %2$s</li><li>'.glg_check_love($post->ID).'</li></ul>', 'themelovin');
-		}
-		
-		printf(
-			$utility_text,
-			$categories_list,
-			$date,
-			$categories_label,
-			$tag_label,
-			$tag_list
-		);
-	}
-endif;
-
 if(!function_exists('glg_get_id_from_src')) :
 function glg_get_id_from_src ($image_src) {
 	global $wpdb;
@@ -587,16 +518,8 @@ function get_the($field){
 		if(strpos($url, 'http://') === false){
 			$url = get_stylesheet_directory_uri().$url ;
 		}
-		$path = str_replace(home_url().'/', ABSPATH, $url);
-		$content = file_get_contents($path);
-		$document = new SimpleXMLElement($content);
-		$document->registerXPathNamespace('svg', 'http://www.w3.org/2000/svg');
-		$document->xpath('/');
-		$document->attributes()->class = $class ;
-		foreach ($html as $k => $v) {
-			$document->attributes()->$$k = $v ;
-		}
-		echo $document->asXML();
+		$path = str_replace(home_url(), ABSPATH, $url);
+		require $path ;
 		
 	}
 
