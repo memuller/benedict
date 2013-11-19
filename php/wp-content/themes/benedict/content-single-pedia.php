@@ -35,6 +35,9 @@
 	<?php if ('person' == $pedia->post_format): ?>
 		<?php require 'widgets/pedia-person.php' ?>
 	<?php endif ?>
+	<?php if ('project' == $pedia->post_format): ?>
+		<?php require 'widgets/pedia-project.php' ?>
+	<?php endif ?>
 
 	<?php require 'widgets/folio.php' ?>
 </aside>
