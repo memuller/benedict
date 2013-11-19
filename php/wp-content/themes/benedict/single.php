@@ -26,7 +26,7 @@ echo glg_post_header($post->ID);
 			<?php echo get_the('claim') ?>
 		</div>
 	</div>	
-<?php } ?>
+<?php } else { if ( 'folio' != get_post_type() ) $spacing += 40;} ?>
 
 <div class="container row main">
 	<?php
