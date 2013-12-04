@@ -38,6 +38,8 @@
 	<?php if ('project' == $pedia->post_format): ?>
 		<?php require 'widgets/pedia-project.php' ?>
 	<?php endif ?>
-
+	<?php if ('module' == $pedia->post_format): ?>
+		<?php require 'widgets/pedia-module.php' ?>
+	<?php endif ?>
 	<?php require 'widgets/folio.php' ?>
 </aside>
