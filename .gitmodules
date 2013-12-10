@@ -1,3 +1,6 @@
 [submodule "php/wp-content/mu-plugins/benedict"]
 	path = php/wp-content/mu-plugins/benedict
 	url = https://github.com/memuller/benedict_plugin.git
+[submodule "php/wp-content/plugins/ah-o2"]
+	path = php/wp-content/plugins/ah-o2
+	url = https://github.com/jazzsequence/WordPress-Admin-Help.git
