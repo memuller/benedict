@@ -148,7 +148,7 @@ function wptouchProgressBarReset( barElement ){
 
 //  function wptouchHandleCarousels(){
 //  	jQuery( '.carousel' ).each( function( i ) {
-//  
+//
 //  		var items = jQuery( this ).find( '.carousel-inner .item' );
 //  		var toAdd = '';
 //  		for ( i = 0; i < items.length; i++ ) {
@@ -158,9 +158,9 @@ function wptouchProgressBarReset( barElement ){
 //  				toAdd = toAdd + '<li data-num="' + i + '">&nbsp;</li>';
 //  			}
 //  		}
-//  
+//
 //  		jQuery( this ).find( 'ul.dots' ).append( toAdd );
-//  
+//
 //  		jQuery( this ).on( 'slid', function() {
 //  			var which = 1;
 //  			var found = 0;
@@ -169,7 +169,7 @@ function wptouchProgressBarReset( barElement ){
 //  					which = which + 1;
 //  				} else found = 1;
 //  			});
-//  
+//
 //  			jQuery( this ).find( 'ul.dots li' ).removeClass( 'active' );
 //  			jQuery( this ).find( 'ul.dots li:nth-child(' + which + ')' ).addClass( 'active' );
 //  		});
@@ -246,7 +246,7 @@ function wptouchSetupHomescreenUploaders() {
 					if ( result == 0 ) {
 						// Remove placeholder background if we have an image
 						placeHolder.css(
-							'background', 'url(' + WPtouchCustom.plugin_admin_image_url + '/logo-placeholder.jpg) no-repeat -8px -22px'
+							'background', 'url(' + WPtouchCustom.plugin_admin_image_url + '/upload-placeholder.png) no-repeat -8px -22px'
 						);
 
 						deleteButton.fadeOut();
@@ -705,7 +705,11 @@ function wptouchSetupRadios() {
 // A little extra gravy to make sure the Overview News is the correct height
 function wptouchRefreshOverviewHeight(){
 	if ( jQuery( '#touchboard-news' ).length ) {
-		var leftHeight = ( jQuery( '#touchboard-left' ).height() - 182 );
+		if ( jQuery( '.wptouch-free' ).length ) {
+			var leftHeight = ( jQuery( '#touchboard-left' ).height() - 216 );
+		} else {
+			var leftHeight = ( jQuery( '#touchboard-left' ).height() - 192 );
+		}
 		jQuery( '#touchboard-news' ).height( leftHeight );
 	}
 }
@@ -735,7 +739,7 @@ function wptouchSetupAdminToggles() {
 	// Cache menu settings (advanced)
 	wptouchCheckToggle( '#show_share', '#setting-share_location, #setting-share_colour_scheme' );
 	wptouchCheckToggle( '#automatically_backup_settings', '#setting-backup' );
-	
+
 }
 
 function wptouchHandleDownloadSettings() {
@@ -898,7 +902,7 @@ function wptouchLoadTouchBoardImages() {
 			var ajaxParams = {};
 			wptouchAdminAjax( 'load-touchboard-area', ajaxParams, function( result ) {
 				touchboard.html( result );
-				setTimeout( function(){ wptouchAdminResize() }, 500 );
+				setTimeout( function(){ wptouchAdminResize() }, 200 );
 			});
 		}
 	}
@@ -997,25 +1001,25 @@ function wptouchLoadThemes() {
 
 			// No internet connection
 			if ( !navigator.onLine ) {
-				themesDiv.find( '.load' ).replaceWith( '<div class="not-available">' + WPtouchCustom.cloud_offline_message + '</div>' );				
+				themesDiv.find( '.load' ).replaceWith( '<div class="not-available">' + WPtouchCustom.cloud_offline_message + '</div>' );
 			// looks like we're online
 			} else {
 				themesDiv.find( '.load' ).parent().replaceWith( result );
-			
+
 				jQuery( '#setup-themes-browser' ).on( 'click', 'a.download, a.upgrade', function( e ) {
 					var pressedButton = jQuery( this );
 					var installURL = jQuery( this ).attr( 'data-url' );
 					var basePath = jQuery( this ).attr( 'data-name' );
-	
+
 					var loadingText = jQuery( this ).attr( 'data-loading-text' );
-	
+
 					var ajaxParams = {
 						url: installURL,
 						base: basePath
 					};
-	
+
 					pressedButton.html( loadingText ).addClass( 'disabled' );
-	
+
 					wptouchAdminAjax( 'download-theme', ajaxParams, function( result ) {
 						ourResult = jQuery.parseJSON( result );
 						if ( ourResult.status == '1' ) {
@@ -1026,7 +1030,7 @@ function wptouchLoadThemes() {
 							alert( str.replace( '%reason%', ourResult.error ) );
 						}
 					});
-	
+
 					e.preventDefault();
 				});
 			}
@@ -1043,26 +1047,26 @@ function wptouchLoadAddons() {
 
 			// No internet connection
 			if ( !navigator.onLine ) {
-				addonDiv.find( '.load' ).replaceWith( '<div class="not-available">' + WPtouchCustom.cloud_offline_message + '</div>' );	
+				addonDiv.find( '.load' ).replaceWith( '<div class="not-available">' + WPtouchCustom.cloud_offline_message + '</div>' );
 			// looks like we're online
 			} else {
 				addonDiv.find( '.load' ).parent().replaceWith( result );
-	
+
 				jQuery( '#setup-addons-browser' ).on( 'click', 'a.download, a.upgrade', function( e ) {
 					var pressedButton = jQuery( this );
 					var installURL = jQuery( this ).attr( 'data-url' );
 					var basePath = jQuery( this ).attr( 'data-name' );
-	
+
 					var loadingText = jQuery( this ).attr( 'data-loading-text' );
-	
+
 					var ajaxParams = {
 						url: installURL,
 						base: basePath
 					};
-	
+
 					var oldText = pressedButton.html();
 					pressedButton.html( loadingText ).addClass( 'disabled' );
-	
+
 					wptouchAdminAjax( 'download-addon', ajaxParams, function( result ) {
 						ourResult = jQuery.parseJSON( result );
 						if ( ourResult.status == '1' ) {
@@ -1075,7 +1079,7 @@ function wptouchLoadAddons() {
 							pressedButton.html( loadingText ).removeClass( 'disabled' ).html( oldText );
 						}
 					});
-	
+
 					e.preventDefault();
 				});
 			}

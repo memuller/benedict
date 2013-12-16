@@ -31,7 +31,7 @@ function wptouch_get_available_cloud_addons() {
 
 function wptouch_check_api() {
 	global $wptouch_pro;
-	$wptouch_pro->setup_bncapi();	
+	$wptouch_pro->setup_bncapi();
 
 	$bnc_settings = wptouch_get_settings( 'bncid' );
 
@@ -40,7 +40,7 @@ function wptouch_check_api() {
 	$now = time();
 	if ( $now > $bnc_settings->next_update_check_time ) {
 		WPTOUCH_DEBUG( WPTOUCH_INFO, '...performing update' );
-		$result = $wptouch_pro->bnc_api->check_api();	
+		$result = $wptouch_pro->bnc_api->check_api();
 		if ( isset( $result['has_valid_license'] ) ) {
 			if ( !$result['has_valid_license'] ) {
 				WPTOUCH_DEBUG( WPTOUCH_INFO, '...DOES NOT appear to have a valid license' );
@@ -51,11 +51,11 @@ function wptouch_check_api() {
 
 					if ( $bnc_settings->failures >= WPTOUCH_API_CHECK_FAILURES ) {
 						$bnc_settings->failures = 0;
-						
+
 						$bnc_settings->license_accepted = false;
 						$bnc_settings->license_accepted_time = 0;
-						$bnc_settings->save();	
-					}					
+						$bnc_settings->save();
+					}
 				}
 			} else {
 				WPTOUCH_DEBUG( WPTOUCH_INFO, '...user DOES HAVE a valid license' );
@@ -71,6 +71,6 @@ function wptouch_check_api() {
 
 		$bnc_settings->next_update_check_time = $now + WPTOUCH_API_CHECK_INTERVAL;
 		$bnc_settings->save();
-	} 
+	}
 }
 

@@ -126,7 +126,7 @@ function wptouch_get_addon_base() {
 		return apply_filters( 'wptouch_addon_base', $wptouch_cur_addon->base );
 	}
 
-	return false;	
+	return false;
 }
 
 function wptouch_the_addon_download_url() {
@@ -219,7 +219,7 @@ function wptouch_get_addon_description() {
 function wptouch_cloud_addon_update_available() {
 	global $wptouch_cur_addon;
 
-	return ( !wptouch_is_addon_in_cloud() && isset( $wptouch_cur_addon->upgrade_available ) && $wptouch_cur_addon->upgrade_available );		
+	return ( !wptouch_is_addon_in_cloud() && isset( $wptouch_cur_addon->upgrade_available ) && $wptouch_cur_addon->upgrade_available );
 }
 
 
@@ -233,7 +233,7 @@ function wptouch_cloud_addon_get_update_version() {
 function wptouch_is_addon_in_cloud() {
 	global $wptouch_cur_addon;
 
-	return ( isset( $wptouch_cur_addon->location ) && ( $wptouch_cur_addon->location == 'cloud' ) );	
+	return ( isset( $wptouch_cur_addon->location ) && ( $wptouch_cur_addon->location == 'cloud' ) );
 }
 
 function wptouch_the_addon_screenshot() {

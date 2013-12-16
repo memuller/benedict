@@ -135,11 +135,11 @@ function wptouch_admin_handle_ajax( $wptouch_pro, $ajax_action ) {
 			} else {
 				$content = wp_remote_get( 'http://wptouch-pro-3.s3.amazonaws.com/WPtouchBoard/pro/page.xhtml' );
 			}
-			
+
 			if ( !is_wp_error( $content ) ) {
-				echo $content['body'];	
+				echo $content['body'];
 			}
-			
+
 			break;
 		case 'download-icon-set':
 			global $wptouch_pro;
@@ -155,7 +155,7 @@ function wptouch_admin_handle_ajax( $wptouch_pro, $ajax_action ) {
 				echo '0';
 			}
 
-			break;													
+			break;
 		case 'get-icon-set-info':
 			require_once( WPTOUCH_DIR . '/core/admin-icons.php' );
 
@@ -167,7 +167,7 @@ function wptouch_admin_handle_ajax( $wptouch_pro, $ajax_action ) {
 			} else {
 				$change_log = wp_remote_get( 'http://plugins.svn.wordpress.org/wptouch/trunk/readme.txt' );
 			}
-			
+
 			if ( !is_wp_error( $change_log ) ) {
 
 				$content = $change_log[ 'body' ];

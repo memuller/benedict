@@ -126,7 +126,7 @@ function wptouch_notification_setup() {
 			'warning',
 			'admin.php?page=wptouch-admin-general-settings'
 		);
-	}	
+	}
 
 	if ( WPTOUCH_SIMULATE_ALL || $settings->display_mode === 'disabled'  ) {
 		$wptouch_pro->add_notification(
@@ -135,7 +135,7 @@ function wptouch_notification_setup() {
 			'warning',
 			'admin.php?page=wptouch-admin-general-settings'
 		);
-	}	
+	}
 
 	// Warning
 	$permalink_structure = get_option('permalink_structure');
@@ -212,7 +212,7 @@ function wptouch_notification_setup() {
 	if ( WPTOUCH_SIMULATE_ALL || !is_writable( WPTOUCH_CUSTOM_SET_DIRECTORY ) ) {
 		$wptouch_pro->add_notification(
 			__( 'Icon Installation Issue', 'wptouch-pro' ),
-			sprintf( __( 'The %s%s%s directory is not currently writable. %sPlease fix this issue to enable installation of additional icon sets.', 'wptouch-pro' ), '', '/uploads/wptouch-data/icons', '', '' ),
+			sprintf( __( 'The %s%s%s directory is not currently writable. %sPlease fix this issue to enable installation of additional icon sets.', 'wptouch-pro' ), '', 'wp-content/wptouch-data/icons', '', '' ),
 			'warning',
 			'http://www.bravenewcode.com/support/knowledgebase/server-setup/#permissions'
 		);

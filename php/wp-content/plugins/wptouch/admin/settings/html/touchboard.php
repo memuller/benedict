@@ -21,20 +21,20 @@
 			<?php } ?>
 		</ul>
 	</div>
-	
+
 	<div id="touchboard-news" class="overview-box-appearance">
 		<h3>
-			<?php _e( 'WPtouch News', 'wptouch-pro' ); ?> 
+			<?php _e( 'WPtouch News', 'wptouch-pro' ); ?>
 			<a href="//www.bravenewcode.com/blog/" target="_blank"><?php _e( 'Read More', 'wptouch-pro' ); ?> <i class="icon-external-link"></i></a>
-		</h3>	
+		</h3>
 		<span id="ajax-news">
 			<!-- ajaxed news here -->
 		</span>
 		<h3>
-			<?php _e( 'WPtouch Updates', 'wptouch-pro' ); ?>: 
-			<a href="//www.twitter.com/bravenewcode" target="_blank"><i class="icon-twitter-sign"></i></a> 
-			<a href="//www.facebook.com/bravenewcode" target="_blank"><i class="icon-facebook-sign"></i></a> 
+			<?php _e( 'WPtouch Updates', 'wptouch-pro' ); ?>:
 			<a href="https://www.google.com/+BraveNewCode" target="_blank"><i class="icon-google-plus-sign"></i></a>
+			<a href="//www.facebook.com/bravenewcode" target="_blank"><i class="icon-facebook-sign"></i></a>
+			<a href="//www.twitter.com/bravenewcode" target="_blank"><i class="icon-twitter-sign"></i></a>
 		</h3>
 	</div><!-- touchboard-news -->
 </div><!-- over-right-side -->

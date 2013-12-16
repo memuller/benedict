@@ -1,6 +1,6 @@
 <form method="post" action=""<?php if ( strpos( $_SERVER['REQUEST_URI'], 'wptouch-admin-license' ) !== false ) echo ' autocomplete="off"'; ?>>
 	<div id="wptouch-settings-area" class="<?php wptouch_admin_panel_classes( array( 'wrap', 'clearfix' ) ); ?>">
-		
+
 		<?php if ( $_GET['page'] != 'wptouch-admin-license' ) { ?>
 			<?php include_once( WPTOUCH_ADMIN_DIR . '/html/notification-center.php' ); ?>
 		<?php } ?>
@@ -79,8 +79,8 @@
 	<?php if ( ( $_GET['page'] != 'wptouch-admin-touchboard' ) && ( $_GET['page'] != 'wptouch-admin-license' ) && ( $_GET['page'] != 'wptouch-admin-themes-and-addons' ) ) { ?>
 		<br /><br /><br /><!-- add some space above -->
 		<input type="submit" name="wptouch-submit-3" id="submit" class="button-primary" value="<?php _e( 'Save Changes', 'wptouch-pro' ); ?>" />
-		<input type="submit" name="wptouch-preview-theme" id="preview" class="button" value="<?php _e( "Preview Theme", "wptouch-pro" ); ?>" data-url="<?php wptouch_bloginfo( 'url' ); ?>/?wptouch_preview_theme=enabled"  />
-		<input type="submit" name="wptouch-reset-3" id="reset" class="reset-button" value="<?php _e( 'Reset Settings', 'wptouch-pro' ); ?>" />
+		<input type="submit" name="wptouch-preview-theme" id="preview" class="preview-button button-secondary" value="<?php _e( "Preview Theme", "wptouch-pro" ); ?>" data-url="<?php wptouch_bloginfo( 'url' ); ?>/?wptouch_preview_theme=enabled"  />
+		<input type="submit" name="wptouch-reset-3" id="reset" class="reset-button button-secondary" value="<?php _e( 'Reset Settings', 'wptouch-pro' ); ?>" />
 		<input type="hidden" name="wptouch-admin-nonce" value="<?php echo wp_create_nonce( 'wptouch-post-nonce' ); ?>" />
 	<?php } ?>
 </form>

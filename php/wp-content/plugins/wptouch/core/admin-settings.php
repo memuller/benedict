@@ -99,6 +99,6 @@ function wptouch_settings_process( $wptouch_pro ) {
 			wptouch_backup_settings();
 		}
 
-		wptouch_delete_all_transients();		
+		wptouch_delete_all_transients();
 	}
 }

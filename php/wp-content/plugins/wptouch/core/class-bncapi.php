@@ -27,7 +27,7 @@ class BNCAPI {
 		if ( false === $this->time_variance ) {
 			$this->time_variance = $this->get_server_time();
 			set_transient( 'wptouch_pro_server_time', $this->time_variance, 3600 );
-		} 
+		}
 
 		if ( $this->bncid && $this->license_key ) {
 			$this->might_have_license = true;
@@ -160,11 +160,11 @@ class BNCAPI {
 		if ( $result and $result['status'] == 'ok' ) {
 			if ( isset( $result[ 'result' ] ) ) {
 				return $result[ 'result' ];
-			} 
+			}
 		}
 
 		return false;
-	}	
+	}
 
 	function get_all_available_themes() {
 		$params = array(

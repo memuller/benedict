@@ -19,7 +19,7 @@ function wptouch_admin_menu_nonce_is_valid( $nonce ) {
 
 function wptouch_admin_check_api() {
 	require_once( WPTOUCH_DIR . '/core/bncid.php' );
-	wptouch_check_api();	
+	wptouch_check_api();
 }
 
 
@@ -154,7 +154,7 @@ function wptouch_admin_render_setting( $setting ) {
 			$rendered = true;
 			break;
 		}
-	} 
+	}
 
 	if ( !$rendered ) {
 		do_action( 'wptouch_admin_render_setting', $setting );
@@ -180,7 +180,7 @@ function wptouch_admin_render_special_setting( $setting ) {
 				include( $dir . '/html/' . $setting_filename );
 
 				break;
-			}			
+			}
 		}
 	}
 }

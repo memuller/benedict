@@ -5,7 +5,7 @@
 			<?php _e( 'Notifications', 'wptouch-pro' ); ?>
 		</button>
 		<span class="number" style="display: none;"></span>
-		
+
 		<div class="dropdown-menu notifications-div" role="menu" aria-labelledby="notification-drop">
 			<span id="ajax-notifications"></span>
 		</div><!-- drop-down menu -->

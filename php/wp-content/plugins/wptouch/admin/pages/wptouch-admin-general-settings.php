@@ -322,7 +322,7 @@ function wptouch_render_general_page( $page_options ) {
 				'checkbox', 
 				'automatically_backup_settings', 
 				sprintf( __( 'Automatically backup settings to the %s folder', 'wptouch-pro' ), 
-				'<em>uploads/wptouch-data</em>' ), 
+				'<em>/wptouch-data/backups</em>' ), 
 				__( 'WPtouch Pro backups your settings each time they are saved.', 'wptouch-pro' ), 
 				WPTOUCH_SETTING_BASIC, 
 				'3.0' 

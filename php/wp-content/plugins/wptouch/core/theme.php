@@ -174,7 +174,16 @@ function wptouch_get_the_post_thumbnail( $param = false ) {
 		$thumbnail = get_the_post_thumbnail( $post->ID, 'wptouch-new-thumbnail' );
 		if ( preg_match( '#src=\"(.*)\"#iU', $thumbnail, $matches ) ) {
 			$thumbnail = $matches[1];
-		}
+
+			$our_size = sprintf( "%dx%d", WPTOUCH_THUMBNAIL_SIZE, WPTOUCH_THUMBNAIL_SIZE );
+			if ( strpos( $thumbnail, $our_size ) === false ) {
+				// It's not our image, so just use the WP thumbnail size
+				$thumbnail = get_the_post_thumbnail( $post->ID, 'thumbnail' );
+				if ( preg_match( '#src=\"(.*)\"#iU', $thumbnail, $matches ) ) {
+					$thumbnail = $matches[1];
+				}	
+			}
+		}	
 	}
 
 	return apply_filters( 'wptouch_the_post_thumbnail', $thumbnail, $param );
