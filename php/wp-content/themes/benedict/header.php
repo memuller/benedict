@@ -32,7 +32,7 @@
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	
 	<!-- Google Fonts -->
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Overlock+SC|Bitter:400,400italic,700" media="screen">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Overlock|Bitter:400,400italic,700" media="screen">
 
 	<?php wp_head(); ?>
 </head>
