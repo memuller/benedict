@@ -249,7 +249,7 @@ class WC_Meta_Box_Product_Data {
 						woocommerce_wp_select( array( 'id' => '_tax_status', 'label' => __( 'Tax Status', 'woocommerce' ), 'options' => array(
 							'taxable' 	=> __( 'Taxable', 'woocommerce' ),
 							'shipping' 	=> __( 'Shipping only', 'woocommerce' ),
-							'none' 		=> __( 'None', 'woocommerce' )
+							'none' 		=> _x( 'None', 'Tax status', 'woocommerce' )
 						) ) );
 
 						$tax_classes = array_filter( array_map( 'trim', explode( "\n", get_option( 'woocommerce_tax_classes' ) ) ) );
@@ -1451,7 +1451,7 @@ class WC_Meta_Box_Product_Data {
 
 					$files         = array();
 					$file_names    = isset( $_POST['_wc_variation_file_names'][ $variation_id ] ) ? array_map( 'wc_clean', $_POST['_wc_variation_file_names'][ $variation_id ] ) : array();
-					$file_urls     = isset( $_POST['_wc_variation_file_urls'][ $variation_id ] ) ? array_map( 'esc_url_raw', array_map( 'trim', $_POST['_wc_variation_file_urls'][ $variation_id ] ) ) : array();
+					$file_urls     = isset( $_POST['_wc_variation_file_urls'][ $variation_id ] ) ? array_map( 'wc_clean', $_POST['_wc_variation_file_urls'][ $variation_id ] ) : array();
 					$file_url_size = sizeof( $file_urls );
 
 					for ( $ii = 0; $ii < $file_url_size; $ii ++ ) {

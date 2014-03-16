@@ -96,7 +96,7 @@ function wc_get_template( $template_name, $args = array(), $template_path = '', 
 	$located = wc_locate_template( $template_name, $template_path, $default_path );
 
 	if ( ! file_exists( $located ) ) {
-		_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', $located ) );
+		_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', $located ), '2.1' );
 		return;
 	}
 
@@ -164,6 +164,7 @@ function get_woocommerce_currencies() {
 	return array_unique(
 		apply_filters( 'woocommerce_currencies',
 			array(
+				'AED' => __( 'United Arab Emirates Dirham', 'woocommerce' ),
 				'AUD' => __( 'Australian Dollars', 'woocommerce' ),
 				'BRL' => __( 'Brazilian Real', 'woocommerce' ),
 				'BGN' => __( 'Bulgarian Lev', 'woocommerce' ),
@@ -218,6 +219,9 @@ function get_woocommerce_currency_symbol( $currency = '' ) {
 	}
 
 	switch ( $currency ) {
+		case 'AED' :
+			$currency_symbol = '(د.إ';
+			break;
 		case 'BRL' :
 			$currency_symbol = '&#82;&#36;';
 			break;

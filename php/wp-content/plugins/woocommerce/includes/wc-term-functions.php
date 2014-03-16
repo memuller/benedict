@@ -109,8 +109,10 @@ function wc_product_dropdown_categories( $args = array(), $deprecated_hierarchic
 
 	$args = wp_parse_args( $args, $defaults );
 
-	if ( $args['orderby'] == 'order' )
-		$r['menu_order'] = 'asc';
+	if ( $args['orderby'] == 'order' ) {
+		$args['menu_order'] = 'asc';
+		$args['orderby']    = 'name';
+	}
 
 	$terms = get_terms( 'product_cat', $args );
 
@@ -411,7 +413,10 @@ function _wc_term_recount( $terms, $taxonomy, $callback = true, $terms_are_term_
 	$count_query = "
 		SELECT COUNT( DISTINCT posts.ID ) FROM {$wpdb->posts} as posts
 		LEFT JOIN {$wpdb->postmeta} AS meta_visibility ON posts.ID = meta_visibility.post_id
-		LEFT JOIN {$wpdb->term_relationships} AS rel ON posts.ID = rel.object_ID
+		LEFT JOIN {$wpdb->term_relationships} AS rel ON posts.ID=rel.object_ID
+		LEFT JOIN {$wpdb->term_taxonomy} AS tax USING( term_taxonomy_id )
+		LEFT JOIN {$wpdb->terms} AS term USING( term_id )
+		LEFT JOIN {$wpdb->postmeta} AS postmeta ON posts.ID = postmeta.post_id
 		$stock_join
 		WHERE 	post_status = 'publish'
 		AND 	post_type 	= 'product'
@@ -448,7 +453,7 @@ function _wc_term_recount( $terms, $taxonomy, $callback = true, $terms_are_term_
 			}
 
 			// Generate term query
-			$term_query = 'AND term_taxonomy_id IN ( ' . implode( ',', $terms_to_count ) . ' )';
+			$term_query = 'AND term_id IN ( ' . implode( ',', $terms_to_count ) . ' )';
 
 			// Get the count
 			$count = $wpdb->get_var( $count_query . $term_query );

@@ -518,9 +518,10 @@ function get_the($field){
 		if(strpos($url, 'http://') === false){
 			$url = get_stylesheet_directory_uri().$url ;
 		}
+
 		$path = str_replace(home_url(), ABSPATH, $url);
+		if($url == '') die ($path);
 		require $path ;
-		
 	}
 
 ?>

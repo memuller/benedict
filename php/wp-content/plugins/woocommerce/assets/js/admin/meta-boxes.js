@@ -1123,11 +1123,11 @@ jQuery( function($){
 	});
 
 	// File inputs
-	$('.downloadable_files').on('click','a.insert',function(){
+	$('#woocommerce-product-data').on('click','.downloadable_files a.insert',function(){
 		$(this).closest('.downloadable_files').find('tbody').append( $(this).data( 'row' ) );
 		return false;
 	});
-	$('.downloadable_files').on('click','a.delete',function(){
+	$('#woocommerce-product-data').on('click','.downloadable_files a.delete',function(){
 		$(this).closest('tr').remove();
 		return false;
 	});
@@ -1507,17 +1507,17 @@ jQuery( function($){
 		}
 
 		// Create the media frame.
-		product_gallery_frame = wp.media.frames.downloadable_file = wp.media({
+		product_gallery_frame = wp.media.frames.product_gallery = wp.media({
 			// Set the title of the modal.
 			title: $el.data('choose'),
 			button: {
 				text: $el.data('update'),
 			},
-			multiple: true,
 			states : [
 				new wp.media.controller.Library({
 					title: $el.data('choose'),
-					filterable :	'all'
+					filterable :	'all',
+					multiple: true,
 				})
 			]
 		});
