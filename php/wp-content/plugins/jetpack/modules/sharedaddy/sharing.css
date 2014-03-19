@@ -12,7 +12,8 @@ div.sharedaddy,
 #main div.sharedaddy {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 12px;
-	clear: both;
+	float: right;
+	width: 23%;
 }
 
 div.sharedaddy,
@@ -102,11 +103,9 @@ div.sharedaddy ul {
 -------------------------------------------------------------- */
 
 div.sharedaddy div.sd-block {
-	border-top: 1px solid #ddd;
-	border-top: 1px solid rgba(0,0,0,.13);
 	padding: 10px 0 5px;
 	margin: 0;
-	width: 100% !important;
+	float:right;
 }
 
 div.sharedaddy.sharedaddy-dark .sd-block {
@@ -115,7 +114,7 @@ div.sharedaddy.sharedaddy-dark .sd-block {
 }
 
 div.sharedaddy .sd-content {
-	width: 82.125%; /* 530px / 640px */
+
 	float: right;
 	margin: -2px 0 0 0;
 }
@@ -126,7 +125,7 @@ div.sharedaddy .sd-content ul {
 
 div.sharedaddy .sd-content li {
 	float: left;
-	margin: 0 5px 5px 0 !important;
+	margin: 7px 5px 5px 0 !important;
 	display: block;
 }
 
@@ -138,7 +137,7 @@ div.sharedaddy .sd-content li {
 /* @noflip */
 .rtl div.sharedaddy .sd-content li {
 	float: right;
-	margin: 0 0 5px 5px !important;
+	margin: 6px 0 5px 5px !important;
 }
 
 /* Base Button .sd-button */
