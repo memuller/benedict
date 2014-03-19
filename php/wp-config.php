@@ -72,6 +72,7 @@ $table_prefix  = 'xm_';
  */
 define('WPLANG', 'pt_BR');
 define ('JETPACK_DEV_DEBUG', true);
+define( 'WP_ALLOW_MULTISITE', true );
 /**
  * For developers: WordPress debugging mode.
  *
