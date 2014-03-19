@@ -1,7 +1,4 @@
 <?php
-/** Enable W3 Total Cache */
-define('WP_CACHE', true); // Added by W3 Total Cache
-
 /**
  * The base configurations of the WordPress.
  *
@@ -73,6 +70,14 @@ $table_prefix  = 'xm_';
 define('WPLANG', 'pt_BR');
 define ('JETPACK_DEV_DEBUG', true);
 define( 'WP_ALLOW_MULTISITE', true );
+
+define('MULTISITE', true);
+define('SUBDOMAIN_INSTALL', true);
+define('DOMAIN_CURRENT_SITE', 'benedict.dev');
+define('PATH_CURRENT_SITE', '/');
+define('SITE_ID_CURRENT_SITE', 1);
+define('BLOG_ID_CURRENT_SITE', 1);
+
 /**
  * For developers: WordPress debugging mode.
  *
