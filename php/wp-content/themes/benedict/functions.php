@@ -81,6 +81,14 @@ function glg_load_styles() {
 }
 add_action('wp_enqueue_scripts', 'glg_load_styles');
 
+add_action('wp_print_styles', function(){
+	if(is_admin_bar_showing()){?>
+		<style type="text/css">
+			#primary-header {margin-top: 32px !important;}
+		</style>
+	<?php }
+});
+
 if (is_admin() && isset($_GET['activated'] ) && $pagenow == 'themes.php' ) {
 	update_option('adm_color', 'carrot');
 	update_option('adm_font', 'Ubuntu');
