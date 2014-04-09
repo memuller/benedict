@@ -1,5 +1,6 @@
 .c9revisions
 /php/wp-content/uploads
+/php/nginx.conf
 node_modules
 .DS_Store
 *.sublime*
