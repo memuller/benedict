@@ -111,7 +111,7 @@ function ridizain_posted_on() {
 	}
 
 	// Set up and print post meta information.
-	printf( '<span class="entry-date"><a href="%1$s" rel="bookmark"><time class="entry-date" datetime="%2$s">%3$s</time></a></span> <span class="byline"><span class="author vcard"><a class="url fn n" href="%4$s" rel="author">%5$s</a></span></span>',
+	printf( '<span class="entry-date date updated"><a href="%1$s" rel="bookmark"><time class="entry-date date updated" datetime="%2$s">%3$s</time></a></span> <span class="byline"><span class="vcard author"><a class="fn url n" href="%4$s" rel="author">%5$s</a></span></span>',
 		esc_url( get_permalink() ),
 		esc_attr( get_the_date( 'c' ) ),
 		esc_html( get_the_date() ),

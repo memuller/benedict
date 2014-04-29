@@ -57,9 +57,7 @@ class TC_comments {
       * @since Customizr 3.0
      */
       function tc_comment_title() {
-        
-        
-        
+
         echo apply_filters( 'tc_comment_title' ,
               sprintf( '<h2 id="tc-comment-title" class="comments-title">%1$s</h2>' ,
                     sprintf( _n( 'One thought on &ldquo;%2$s&rdquo;' , '%1$s thoughts on &ldquo;%2$s&rdquo;' , get_comments_number(), 'customizr' ),
@@ -148,7 +146,7 @@ class TC_comments {
 
                 $tc_show_comment_content ? sprintf('<div class="%1$s">%2$s</div>',
                                           apply_filters( 'tc_comment_reply_btn_class', 'reply btn btn-small' ),
-                                          get_comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply' , 'customizr' ), 'after' => ' <span>&darr;</span>' , 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) )
+                                          get_comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply' , 'customizr' ).' <span>&darr;</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) )
                                           ) : '',
 
                 sprintf('<header class="comment-meta comment-author vcard">%1$s %2$s</header>',

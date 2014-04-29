@@ -206,6 +206,10 @@ class TC_headings {
           $edit_enabled                      = ( (is_user_logged_in()) && current_user_can('edit_posts') && !is_page() ) ? true : $edit_enabled;
           $edit_enabled                      = apply_filters( 'tc_edit_in_title', $edit_enabled );
 
+          //declares vars
+          $html = '';
+          $filter_args = array();
+
           if ( (get_the_title() != null) ) {
             
             //gets the post/page title

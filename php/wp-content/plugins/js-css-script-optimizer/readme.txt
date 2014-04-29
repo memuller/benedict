@@ -3,7 +3,7 @@ Contributors: evgenniy
 Donate link: http://4coder.info/en/
 Tags: performance, javascript, css, script, js, compress, pack, combine, optimization
 Requires at least: 2.8
-Tested up to: 3.5.1
+Tested up to: 3.9.0
 Stable tag: trunk
 
 Make your Website faster by packing and grouping JavaScript and CSS files. Also it provides an opportunity to add CSS & JS via admin panel.
@@ -37,8 +37,25 @@ For more info visit <a title="This WordPress plugin home page" href="http://4cod
 1. Plugin settings page
 1. Ability to include JavaScript files
 1. Ability to include CSS files
+1. YSlow speed test before installation
+1. YSlow speed test after installation
 
 == Changelog ==
+= 0.2.8 =
+* Support JavaScript L10n (wp_localize_script)
+* Support conditional JS (html5.js, <!--[if lt IE 9]>)
+* Disable plugin when define('SCRIPT_DEBUG', true); 
+= 0.2.7 =
+* Ability to change cache directory from the plugin settings
+* Default cache directory changed to "wp-content/cache/scripts"
+* Cache directory creation bug  were fixed
+= 0.2.6 =
+* Better compatibility with others plugins and themes
+* Support conditional CSS (IE CSS, <!--[if lt IE 9]>)
+* Dean Edwards's packer was updated
+* Using "wp_remote_get" instead of "file_get_contents"
+* Do not pack JS which already packed
+* More correct (save) ordering
 = 0.2.5 =
 * Better compatibility with other plugins (betta)
 * Plugin options updated
@@ -67,17 +84,5 @@ For more info visit <a title="This WordPress plugin home page" href="http://4cod
 * Ability to include JavaScript and CSS scripts has been added
 = 0.1.0 =
 * Release version!
-= 0.0.8 =
-* Bug with WYSIWYG is fixed
-= 0.0.7 =
-* Bug with URLs in CSS is fixed
-* Settings page is more useful
-* And Some other bugs are fixed
-= 0.0.5 =
-* Added exclude scripts list
-* Modified "Combine JavaScripts" options
-* Grouping CSS by "media" (screen, print e.t.c.)
-= 0.0.4 =
-* Some bugs are fixed
 = 0.0.2 =
 * Beta version of the JS & CSS Script Optimizer

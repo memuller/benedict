@@ -302,13 +302,13 @@ class Omega {
 		require_once( trailingslashit( OMEGA_FUNCTIONS ) . 'template-post.php' );
 
 		/* Load the media meta class. */
-		require_once( trailingslashit( OMEGA_CLASSES ) . 'omega-media-meta.php' );
+		require_once( trailingslashit( OMEGA_CLASSES ) . 'media-meta.php' );
 
 		/* Load the media grabber class. */
-		require_once( trailingslashit( OMEGA_CLASSES ) . 'omega-media-grabber.php' );
+		require_once( trailingslashit( OMEGA_CLASSES ) . 'media-grabber.php' );
 
-		/* Load the theme settings functions if supported. */
-		require_if_theme_supports( 'omega-theme-settings', trailingslashit( OMEGA_FUNCTIONS ) . 'settings.php' );
+		/* Load the theme settings functions */
+		require_once( trailingslashit( OMEGA_FUNCTIONS ) . 'settings.php' );
 
 		/* Load the shortcodes if supported. */
 		require_once( trailingslashit( OMEGA_FUNCTIONS ) . 'shortcodes.php' );
@@ -324,10 +324,10 @@ class Omega {
 		require_if_theme_supports( 'post-formats', trailingslashit( OMEGA_FUNCTIONS ) . 'post-formats.php' );
 
 		/* Custom template tags for omega theme. */
-		require_once( trailingslashit( OMEGA_FUNCTIONS ) . 'omega-template-tags.php' );
+		require_once( trailingslashit( OMEGA_FUNCTIONS ) . 'template-tags.php' );
 
 		/* Custom functions that act independently of the theme templates. */
-		require_once( trailingslashit( OMEGA_FUNCTIONS ) . 'omega-extras.php' );
+		require_once( trailingslashit( OMEGA_FUNCTIONS ) . 'extras.php' );
 
 		/* Load the deprecated functions */
 		require_once( trailingslashit( OMEGA_FUNCTIONS ) . 'deprecated.php' );
@@ -360,7 +360,7 @@ class Omega {
 		/* Load the Loop Pagination extension if supported. */
 		require_if_theme_supports( 'loop-pagination', trailingslashit( OMEGA_EXTENSIONS ) . 'loop-pagination.php' );
 
-		/* Load the Theme Layouts extension if supported. */
+		/* Load the Theme Layouts extension */
 		require_if_theme_supports( 'theme-layouts', trailingslashit( OMEGA_EXTENSIONS ) . 'theme-layouts.php' );
 
 		/* Load the Post Stylesheets extension if supported. */
@@ -411,9 +411,7 @@ class Omega {
 
 			/* Load the main admin file. */
 			require_once( trailingslashit( OMEGA_ADMIN ) . 'admin.php' );
-
-			/* Load the theme settings feature if supported. */
-			require_if_theme_supports( 'omega-theme-settings', trailingslashit( OMEGA_ADMIN ) . 'theme-settings.php' );
+			require_once( trailingslashit( OMEGA_ADMIN ) . 'omega-upgrade.php' );
 		}
 	}
 

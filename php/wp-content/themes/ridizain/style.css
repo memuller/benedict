@@ -4,7 +4,7 @@ Theme URI:    http://wordpress.org/themes/ridizain
 Author:       WP Strap Code
 Author URI:   http://ridizain.com/
 Description:  Ridizain is a redesigned version of the default theme Twenty Fourteen - Create a responsive magazine website with a sleek, modern design - full width and fully centred. Feature your favourite homepage content in either a grid or a slider. Use the three widget areas + the custom recent posts and the ephemera widgets to customize your website, and change your content's layout with a full-width page template and a contributor page to show off your authors. With full color control for many of the theme's elements, creating a magazine website with WordPress has never been easier. View demo at: http://www.wpstrapcode.com/ridizain/
-Version:      1.0.25
+Version:      1.0.33
 License:      GNU General Public License v2 or later
 License URI:  http://www.gnu.org/licenses/gpl-2.0.html
 Tags: black, green, white, light, dark, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, fluid-layout, responsive-layout, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
@@ -260,6 +260,7 @@ blockquote {
 	font-weight: 300;
 	line-height: 1.2631578947;
 	margin-bottom: 24px;
+	padding-left: 30px;
 }
 
 blockquote cite,

@@ -32,7 +32,7 @@ function print_custom_css() {
 		return;
 	} else {
 		/* Put the final style output together. */
-		$style = "\n" . '<style type="text/css" id="custom-colors-css">' . trim( get_theme_mod( 'custom_css' ) ) . '</style>' . "\n";
+		$style = "\n" . '<style type="text/css" id="custom-css">' . trim( get_theme_mod( 'custom_css' ) ) . '</style>' . "\n";
 
 		/* Cache the style, so we don't have to process this on each page load. */
 		wp_cache_set( 'custom_css', $style );
@@ -103,20 +103,17 @@ function omega_customize_preview_script() {
 
 	?>
 	<script type="text/javascript">
-	wp.customize(
-		'custom_css',
-		function( value ) {
-			value.bind(
-				function( to ) {
-					jQuery( '#custom-colors-css' ).text( to );
-				}
-			);
-		}
-	);
+	( function( $ ){
+		// Bind the Live CSS
+		wp.customize('custom_css', function( value ) {
+			value.bind(function( to ) {
+					$( '#custom-css' ).text( to );
+			});
+		});
+	} )( jQuery )
 	</script>
 	<?php
 }
-
 
 /**
  * sanitize css input
@@ -124,9 +121,18 @@ function omega_customize_preview_script() {
  * @since 0.9.5
  * @access private
  */
-function custom_css_sanitize($value) {
+function custom_css_sanitize($css) {
 
-	return stripslashes( wp_filter_post_kses( addslashes( $value ) ) );
+	if (''!=$css) {
+		//$css = stripslashes( wp_filter_post_kses( addslashes( $value ) ) );
+		$css = str_replace( '<=', '&lt;=', $css );
+		$css = wp_kses_split( $css, array(), array() );
+		$css = str_replace( '&gt;', '>', $css );
+		$css = strip_tags( $css );
+	}
+
+	return $css;
 
 }
+
 ?>

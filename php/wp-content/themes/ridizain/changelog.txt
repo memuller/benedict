@@ -1,9 +1,38 @@
 Theme Name:   Ridizain
 File Name:    Changelog
-Tested up to: 3.9-alpha
-Stable tag:	  1.0.25
+Tested up to: 3.9.1-alpha
+Stable tag:	  1.0.33
 
 == Changelog ==
+
+= 1.0.33 =
+* Reformulated the check for bbPress function to address the fatal errors reported when bbPress is not active.
+
+= 1.0.32 =
+* NEW: Added full width support for bbPress forums
+* Fixed bug that was causing the Ephemera widget to skip the post image when set to show image post format.
+
+= 1.0.31 =
+* Fixed bug that was causing masthead-fixed not to work on IE when using header image - Props: Kau-Boy, https://core.trac.wordpress.org/ticket/27220#comment:5
+
+= 1.0.30 =
+* Fixed PHP Warning on the Featured Content section due to a left over experimental code.
+
+= 1.0.29 =
+* Added the required data sanitization for the options Order & Orderby - file(s): customizer.php.
+
+= 1.0.28 =
+* NEW: Added option to hide the Featured content section - files: customizer.php & functions.php.
+* NEW: Added option to select orderby appearance for Featured Content - files: customizer.php, functions.php & featured-content.php.
+* NEW: Added option to display Featured Content in either Ascending or Descending order - files: customizer.php, functions.php & featured-content.php.
+
+= 1.0.27 =
+* Minor code adjustments for Google Authorship compatibility.
+* Fixed indentation for blockquote.
+* Added html5 support for both gallery and caption.
+
+= 1.0.26 =
+* Added support for Google Authorship compatibility
 
 = 1.0.25 =
 * Introducing tha_hooks support to the theme - first implementation, still needs more work.

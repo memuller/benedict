@@ -2,9 +2,6 @@
 if ( ! isset( $content_width ) )
 	$content_width = 520;
 
-$Destro_themename = "Destro";
-$Destro_textdomain = "Destro";
-
 function Destro_setup(){
   // This theme uses wp_nav_menu() in one location.
   register_nav_menus( array(
@@ -24,18 +21,6 @@ function Destro_setup(){
   
   // Delete default WordPress gallery css
   add_filter( 'use_default_gallery_style', '__return_false' );
-
-  // Add Custom header feature  
-  $customhargs = array(
-	'default-image' => get_template_directory_uri() . '/images/defaulth.jpg',
-	'flex-width'    => true,
-	'width'         => 1200,
-	'flex-height'    => true,
-	'height'        => 500,
-	'header-text'   => false,
-	'uploads'       => true,
-  );
-  add_theme_support( 'custom-header', $customhargs );  
   
   // Add Custom background feature
   if ( of_get_option('skin_style') ) {
@@ -64,6 +49,11 @@ function Destro_setup(){
   add_theme_support( 'custom-background', $custombgargs );  
 }
 add_action( 'after_setup_theme', 'Destro_setup' );
+
+/**
+ * Implement the Custom Header feature.
+ */
+require get_template_directory() . '/inc/custom-header.php';
 
 /* 
  * Loads the Options Panel
@@ -215,9 +205,6 @@ function Destro_add_stylesheets( ) {
 	if( !is_admin() ) {
 
 								wp_enqueue_style('Destro_dropdowncss', get_stylesheet_directory_uri().'/css/dropdown.css');
-								wp_enqueue_style('Destro_rtldropdown', get_stylesheet_directory_uri().'/css/dropdown.vertical.rtl.css');
-								wp_enqueue_style('Destro_advanced_dropdown', get_stylesheet_directory_uri().'/css/default.advanced.css');
-
 								
 								echo '<!--[if lte IE 7]>
 <style type="text/css">
@@ -360,12 +347,10 @@ function Destro_add_javascript( ) {
 	if (is_singular() && get_option('thread_comments'))
 		wp_enqueue_script('comment-reply');
 		
-	wp_enqueue_script('jquery');
-	
 	if( !is_admin() ) {
 
 		wp_enqueue_script('Destro_respond', get_template_directory_uri().'/js/respond.min.js' );
-		wp_enqueue_script('Destro_respmenu', get_template_directory_uri().'/js/tinynav.min.js' );	
+		wp_enqueue_script('Destro_respmenu', get_template_directory_uri().'/js/tinynav.min.js', array('jquery') );	
 		wp_enqueue_script('Destro_wilto', get_template_directory_uri().'/js/wilto.js');
 		wp_enqueue_script('Destro_wiltoint', get_template_directory_uri().'/js/wilto.int.js');
 

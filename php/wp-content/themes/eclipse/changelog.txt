@@ -2,6 +2,30 @@ Eclipse 2 Free Changelog
 
 ****************************
 
+Version 2.0.59 (4-24-14)
+- Added recommendation for clef plugin.
+- Updated translations.
+- Youtube video fixed.
+
+Version 2.0.58 (4-16-14)
+- Changed social font icons to font awesome.
+- Removed unwanted function_exists() conditional wrapper.
+
+Version 2.0.57 (4-9-14)
+-Added upgrade button to the free theme customizer.
+-Fixed Vimeo video responsiveness.
+
+Version 2.0.56 (4-3-14)
+- Added new background option.
+- Removed wp_register_style(or script) for local css/js files.
+
+Version 2.0.55 (3-27-14)
+- Updated Elements Translation.
+
+Version 2.0.54 (3-21-14)
+- Updated support forum URL.
+- Fixed IE8 compatibility issue.
+
 Version 2.0.53 (3-12-14)
 - Fixed duplicate plugin install notification in option page.
 - Modified "More Themes" page to show up all CyberChimps free theme with option to install/activate right there.

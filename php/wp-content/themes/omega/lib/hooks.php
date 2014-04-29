@@ -10,8 +10,9 @@ add_filter( 'omega_default_theme_settings', 'omega_set_default_theme_settings');
 
 add_action( 'wp_enqueue_scripts', 'omega_scripts' );
 add_action( 'wp_head', 'omega_styles' );
-add_action( 'wp_head', 'omega_header_scripts' );
-add_action( 'wp_footer', 'omega_footer_scripts' );
+
+/* Load the primary menu. */
+add_action( 'omega_before_header', 'omega_get_primary_menu' );
 
 /* Header actions. */
 add_action( 'omega_header', 'omega_header_markup_open', 5 );
@@ -22,9 +23,6 @@ add_action( 'omega_header', 'omega_header_markup_close', 15 );
 add_action( 'omega_footer', 'omega_footer_markup_open', 5 );
 add_action( 'omega_footer', 'omega_footer_insert' );
 add_action( 'omega_footer', 'omega_footer_markup_close', 15 );
-
-/* Load the primary menu. */
-add_action( 'omega_before_header', 'omega_get_primary_menu' );
 
 /* load content */
 add_action( 'omega_content', 'omega_content');
@@ -40,9 +38,6 @@ add_action( 'omega_after_main', 'omega_primary_sidebar' );
 /* Filter the sidebar widgets. */
 add_filter( 'sidebars_widgets', 'omega_disable_sidebars' );
 add_action( 'template_redirect', 'omega_one_column' );
-
-/* Allow developers to filter the default sidebar arguments. */
-add_filter( 'omega_sidebar_defaults', 'omega_sidebar_defaults' );
 
 add_filter( 'omega_footer_insert', 'omega_default_footer_insert' );
 
@@ -69,27 +64,17 @@ function omega_register_menus() {
  */
 
 function omega_register_sidebars() {
-
 	omega_register_sidebar(
 		array(
 			'id'          => 'primary',
 			'name'        => _x( 'Primary', 'sidebar', 'omega' ),
-			'description' => __( 'The main sidebar. It is displayed on either the left or right side of the page based on the chosen layout.', 'omega' )
+			'description' => __( 'The main sidebar. It is displayed on either the left or right side of the page based on the chosen layout.', 'omega' ),
+			'before_widget' => '<li id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</li>',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>'
 		)
 	);
-
-}
-
-function omega_sidebar_defaults($defaults) {
-	/* Set up some default sidebar arguments. */
-	$defaults = array(
-		'before_widget' => '<section id="%1$s" class="widget %2$s widget-%2$s"><div class="widget-wrap">',
-		'after_widget'  => '</div></section>',
-		'before_title'  => '<h4 class="widget-title">',
-		'after_title'   => '</h4>'
-	);
-
-	return $defaults;
 }
 
 /**
@@ -104,16 +89,16 @@ function omega_sidebar_defaults($defaults) {
 function omega_set_default_theme_settings( $settings ) {
 
 	$settings = array(
-		'comments_pages'            => 0,
+		'comments_pages'            => 1,
 		'comments_posts'            => 1,
-		'trackbacks_pages'          => 0,
+		'trackbacks_pages'          => 1,
 		'trackbacks_posts'          => 1,
 		'content_archive'           => 'full',
 		'content_archive_limit'		=> 0,
-		'content_archive_thumbnail' => 0,
+		'content_archive_thumbnail' => 1,
 		'content_archive_more'      => '[Read more...]',
 		'more_link_scroll'			=> 0,
-		'image_size'                => 'thumbnail',
+		'image_size'                => 'large',
 		'posts_nav'                 => 'numeric',
 		'single_nav'                 => 0,
 		'header_scripts'            => '',
@@ -235,7 +220,7 @@ function omega_entry() {
 
 	if ( is_home() || is_archive() || is_search() ) {
 		if(omega_get_setting( 'content_archive_thumbnail' )) {
-			get_the_image( array( 'meta_key' => 'Thumbnail', 'default_size' => omega_get_setting( 'image_size' ) ) ); 
+			get_the_image( array('attachment' => false, 'meta_key' => 'Thumbnail', 'default_size' => omega_get_setting( 'image_size' ) ) ); 
 		}
 	
 
@@ -293,25 +278,6 @@ function omega_styles() {
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
 	<![endif]-->
 <?php 
-}
-
-
-/**
- * Echo header scripts in to wp_head().
- */
-function omega_header_scripts() {
-
-	echo omega_get_setting( 'header_scripts' );
-
-}
-
-/**
- * Echo the footer scripts, defined in Theme Settings.
- */
-function omega_footer_scripts() {
-
-	echo omega_get_setting( 'footer_scripts' );
-
 }
 
 /**

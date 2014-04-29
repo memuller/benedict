@@ -84,6 +84,9 @@ class TC_meta_boxes {
         
         //3- Adding the meta-boxes to those screens
         foreach ( $screens as $key => $screen) {
+            //skip if acf
+            if ('acf' == $screen )
+              continue;
             add_meta_box(
                 'layout_sectionid' ,
                 __( 'Layout Options' , 'customizr' ),
@@ -455,8 +458,6 @@ class TC_meta_boxes {
     ------------------ ATTACHMENT SLIDER META BOX ------------------
     ----------------------------------------------------------------
     */
-
-
     /**
      * Add a slider metabox to attachments
      * @package Customizr

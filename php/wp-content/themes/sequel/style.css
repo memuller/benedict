@@ -1,11 +1,11 @@
 /*
 	Theme Name:   Sequel
 	Theme URI:    http://wpdefault.com/sequel
-	Description:  Sequel continues and expands upon the story of the default theme - Twenty Fourteen. If used with the [Fourteen Extended plugin] (http://wordpress.org/plugins/fourteen-extended/) and [Styles: TwentyFourteen] (http://wordpress.org/plugins/styles-twentyfourteen/)  Sequel becomes a powerhouse packed with ample customization options. Main features are the ability to set the home blog feed to the Grid format mimicking the Featured Content grid, make Featured Grid span full width above the left sidebar and Author bio that mimics the Contributor's page output, upload site logo and much more. Full demo @ http://sequel.wpdefault.com/
+	Description:  Sequel continues and expands upon the story of the default theme - Twenty Fourteen. If used with the [Fourteen Extended plugin] (http://wordpress.org/plugins/fourteen-extended/) and [Styles: TwentyFourteen] (http://wordpress.org/plugins/styles-twentyfourteen/)  Sequel becomes a powerhouse packed with ample customization options. Main features are the ability to set the home blog feed to the Grid format mimicking the Featured Content grid, make Featured Grid span full width above the left sidebar and Author bio that mimics the Contributor's page output, upload site logo and much more. NEW: Added option to combine the grid layout with the standard layout for the blog feed. {Experimental and therefore may need some adjustments} Full demo @ http://sequel.wpdefault.com/
 	Author:       Zulfikar Nore
 	Author URI:   http://znore.wordpress.com/
 	Template:     twentyfourteen
-	Version:      1.0.1
+	Version:      1.0.4
 	License:	  GNU General Public License v2.0
     License URI:  http://www.gnu.org/licenses/gpl-2.0.html
 	Tags: black, green, white, light, dark, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, responsive-layout, custom-background, custom-header, custom-menu, featured-images, flexible-header, full-width-template, microformats, post-formats, sticky-post, theme-options, translation-ready
@@ -15,7 +15,7 @@
 @import url("../twentyfourteen/style.css");
 
 /*  
-Copyright 2013 Zulfikar Nore. (email : info@sequel.com)
+Copyright 2013 Zulfikar Nore. (email : info@default.com)
 
 Sequel is a Sequel child theme and therefore incorporates/uses code from its parent theme - 
 Twenty Fourteen Copyright: Automattic, automattic.com - Licensed under GPLv2 or later

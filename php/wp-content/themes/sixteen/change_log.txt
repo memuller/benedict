@@ -103,4 +103,18 @@ Version 1.2.1
 		   
 Version 1.2.1.3
 
-	i) Extended support for Child Themes, Removed Filter on Header		   
+	i) Extended support for Child Themes, Removed Filter on Header		
+	
+Version 1.2.1.4
+
+	i) Minor Changes to CSS Code
+	ii) Improved Behaviour when Header Text is disabled.	 
+	
+Version 1.2.1.5
+
+	i) Changed the way Slider is rendered	  
+	
+Version 1.2.1.6
+
+	i) Relocated Code for Social Icons.
+		

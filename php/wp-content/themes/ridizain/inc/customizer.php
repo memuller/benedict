@@ -97,6 +97,23 @@ function ridizain_customize_register( $wp_customize ) {
         )
     );
 	
+	// Remove the featured Content output
+	$wp_customize->add_setting(
+        'ridizain_featured_remove', array (
+			'sanitize_callback' => 'ridizain_sanitize_checkbox',
+		)
+    );
+
+    $wp_customize->add_control(
+        'ridizain_featured_remove',
+    array(
+        'type'     => 'checkbox',
+        'label'    => __('Remove the featured content section?', 'ridizain'),
+        'section'  => 'ridizain_general_options',
+		'priority' => 1,
+        )
+    );
+	
 	// Set Blog feed to full width i.e. hide the content sidebar.
 	$wp_customize->add_setting(
         'ridizain_fullwidth_blog_feed', array (
@@ -110,7 +127,7 @@ function ridizain_customize_register( $wp_customize ) {
         'type'     => 'checkbox',
         'label'    => __('Check to hide the sidebar on the blog feed', 'ridizain'),
         'section'  => 'ridizain_general_options',
-		'priority' => 1,
+		'priority' => 2,
         )
     );
 	
@@ -126,7 +143,7 @@ function ridizain_customize_register( $wp_customize ) {
     array(
         'label' => __('Set Overall Content Image max-height (numbers only!) - Full Width Blog Feed Only.','ridizain'),
         'section' => 'ridizain_general_options',
-		'priority' => 2,
+		'priority' => 3,
         'type' => 'text',
     ));
 	
@@ -143,7 +160,7 @@ function ridizain_customize_register( $wp_customize ) {
         'type'     => 'checkbox',
         'label'    => __('Check to show full width single post', 'ridizain'),
         'section'  => 'ridizain_general_options',
-		'priority' => 3,
+		'priority' => 4,
         )
     );
 	
@@ -159,7 +176,7 @@ function ridizain_customize_register( $wp_customize ) {
         'type'     => 'checkbox',
         'label'    => __('Check to hide thumbnail on single post', 'ridizain'),
         'section'  => 'ridizain_general_options',
-		'priority' => 4,
+		'priority' => 5,
         )
     );
 			
@@ -175,7 +192,7 @@ function ridizain_customize_register( $wp_customize ) {
     array(
         'label' => __('Set Single Post Featured Image max-height (numbers only!) - Full Width Posts Only.','ridizain'),
         'section' => 'ridizain_general_options',
-		'priority' => 5,
+		'priority' => 6,
         'type' => 'text',
     ));
 	
@@ -311,6 +328,44 @@ function ridizain_customize_register( $wp_customize ) {
 	    'choices' => $cpt,
 	));
 	
+	// Featured Section Order By.
+	$wp_customize->add_setting( 'ridizain_featured_orderby', array(
+	    'default' => 'date',
+		'sanitize_callback' => 'ridizain_sanitize_orderby',
+	) );
+	
+	$wp_customize->add_control( 'ridizain_featured_orderby', array(
+        'label'   => __( 'Featured Content Order By', 'ridizain' ),
+        'section' => 'featured_content',
+	    'priority' => 5,
+        'type'    => 'radio',
+        'choices' => array(
+            'date'          => __( 'Default - By Post Dates', 'ridizain' ),				
+		    'name'          => __( 'By Post Names', 'ridizain' ),
+			'comment_count' => __( 'Popular By Comments', 'ridizain' ),
+			'title'         => __( 'By Titles {*Pages - works on posts}', 'ridizain' ),
+			'menu_order'    => __( 'By Menu {For Pages Only!}', 'ridizain' ),
+			'rand'          => __( 'Random', 'ridizain' ),
+        ),
+    ));
+		
+	$wp_customize->add_setting( 'ridizain_featured_order', array(
+	    'default' => 'DESC',
+		'sanitize_callback' => 'ridizain_sanitize_order',
+	) );
+	
+	$wp_customize->add_control( 'ridizain_featured_order', array(
+        'label'   => __( 'Featured Content Display Order - Descending|Ascending order!', 'ridizain' ),
+        'section' => 'featured_content',
+	    'priority' => 6,
+        'type'    => 'radio',
+            'choices' => array(
+                'DESC' => __( 'Descending Order - Default', 'ridizain' ),
+			    'ASC'  => __( 'Ascending Order', 'ridizain' ),
+        ),
+    ));
+	
+	// Column numbers
 	$wp_customize->add_setting(
         'ridizain_num_grid_columns', array (
 			'sanitize_callback' => 'ridizain_sanitize_checkbox',
@@ -323,7 +378,7 @@ function ridizain_customize_register( $wp_customize ) {
                 'type'     => 'checkbox',
                 'label'    => __('Switch Featured Grid Columns to 4?', 'ridizain'),
                 'section'  => 'featured_content',
-		        'priority' => 5,
+		        'priority' => 7,
             )
     );
 	
@@ -335,7 +390,7 @@ function ridizain_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'num_posts_grid', array(
         'label' => __( 'Number of posts for grid', 'text-domain'),
         'section' => 'featured_content',
-		'priority' => 6,
+		'priority' => 8,
         'settings' => 'num_posts_grid',
     ) );
 	
@@ -347,7 +402,7 @@ function ridizain_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'num_posts_slider', array(
         'label' => __( 'Number of posts for slider', 'text-domain'),
         'section' => 'featured_content',
-		'priority' => 7,
+		'priority' => 9,
         'settings' => 'num_posts_slider',
     ) );
 	
@@ -363,7 +418,7 @@ function ridizain_customize_register( $wp_customize ) {
         'type' => 'checkbox',
         'label' => __('Show Featured Posts Excerpts?', 'ridizain'),
         'section' => 'featured_content',
-		'priority' => 8,
+		'priority' => 10,
         )
     );
 	
@@ -663,6 +718,30 @@ function ridizain_sanitize_transition( $transition ) {
 endif;
 
 /**
+ * Sanitize Orderby
+ */
+ if ( ! function_exists( 'ridizain_sanitize_orderby' ) ) :
+function ridizain_sanitize_orderby( $orderby ) {
+	if ( ! in_array( $orderby, array( 'date', 'name', 'comment_count', 'title', 'menu_order', 'rand' ) ) ) {
+		$orderby = 'date';
+	}
+	return $orderby;
+}
+endif;
+
+/**
+ * Sanitize Orderby
+ */
+ if ( ! function_exists( 'ridizain_sanitize_order' ) ) :
+function ridizain_sanitize_order( $order ) {
+	if ( ! in_array( $order, array( 'DESC', 'ASC' ) ) ) {
+		$order = 'DESC';
+	}
+	return $order;
+}
+endif;
+
+/**
  * Sanitize the Integer Input values.
  *
  * @since Ridizain 1.0.09
@@ -679,7 +758,8 @@ function ridizain_sanitize_integer( $input ) {
  * @since Ridizain 1.0
  */
 function ridizain_customize_preview_js() {
-$version = '1.0.14';
+    $ridizain_theme = wp_get_theme();
+    $version = $ridizain_theme->get( 'Version' );
 	wp_enqueue_script( 'ridizain_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), $version, true );
 }
 add_action( 'customize_preview_init', 'ridizain_customize_preview_js' );
@@ -1088,3 +1168,59 @@ endif;
 }
 }
 add_action( 'wp_enqueue_scripts' , 'ridizain_featured_content_scripts' , 210 );
+
+
+// So we don't want the featured section at all - OK, lets remove it!
+if ( get_theme_mod( 'ridizain_featured_remove' ) != 0 ) { 
+function ridizain_remove_featured_sections(){
+    global $wp_customize;
+
+    $wp_customize->remove_section('featured_content');
+	$wp_customize->remove_section('ridizain_slider_options');
+}
+
+// Priority 20 so that we remove options only once they've been added
+add_action( 'customize_register', 'ridizain_remove_featured_sections', 20 );
+}
+
+function ridizain_HookCSS () {
+  echo ridizain_CleanupCSS( ridizain_GenerateCSS() );
+}
+add_action( 'wp_head', 'ridizain_HookCSS' );
+
+function ridizain_GenerateCSS() {
+
+// The concatenating string for the CSS:
+$s = '<style>';
+
+if (get_theme_mod( 'ridizain_featured_remove' ) != 0) {
+    $s.='.featured-content { display:none; visibility: hidden; }';
+  }
+  
+$s.='</style>';
+
+return $s;
+
+} // ridizain_GenerateCSS()
+
+
+/**
+* Little helper function 
+* Does a better job then WP
+*/
+function ridizain_CleanupCSS($buffer) {
+  // Remove comments
+  $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
+ 
+  // Remove some unnecessary white space
+  $buffer = str_replace(': ', ':', $buffer);
+  $buffer = str_replace('{ ', '{', $buffer);
+  $buffer = str_replace(' }', '}', $buffer);
+ 
+  // Remove rest of the whitespace and CR/LF/TAB
+  $buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '   ', '    '), '', $buffer);
+  
+  return $buffer;
+} // ItekCleanupCSS()
+
+// EOF

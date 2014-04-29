@@ -9,7 +9,7 @@ if ( is_admin() ) {
 		$page = add_theme_page( 
 			sprintf( esc_html__( 'Omega Child Themes', 'omega' ) ),	// Settings page name.
 			esc_html__( 'Omega Child Themes', 'omega' ), 			// Menu item name.
-			'edit_theme_options', 						// Required capability.
+			'edit_theme_options', 									// Required capability.
 			'omega-child-themes', 									// Screen name.
 			'omega_child_themes_list' );							// Callback function.
 
@@ -48,7 +48,10 @@ if ( is_admin() ) {
 			 		   'img' => 'shopping.png'),
 			 	array( 'name' => 'Family',
 			 		   'url' => 'http://themehall.com/free-responsive-family-wordpress-theme',
-			 		   'img' => 'family.png')
+			 		   'img' => 'family.png'),
+			 	array( 'name' => 'Hotel',
+			 		   'url' => 'http://themehall.com/hotel-wordpress-theme',
+			 		   'img' => 'hotel.png')
 			 );
 		?>
 	 	<div class="wrap">

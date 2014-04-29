@@ -26,13 +26,13 @@ class TC_featured_pages {
 
 
 
-      /**
-  	 * The template displaying the front page featured page block.
-  	 *
-  	 *
-  	 * @package Customizr
-  	 * @since Customizr 3.0
-  	 */
+    /**
+  	* The template displaying the front page featured page block.
+  	*
+  	*
+  	* @package Customizr
+  	* @since Customizr 3.0
+  	*/
     function tc_fp_block_display() {
 
     		//gets display options
@@ -138,7 +138,7 @@ class TC_featured_pages {
         }
           
         else {
-            $featured_page_id               = esc_attr( tc__f( '__get_option' , 'tc_featured_page_'.$fp_single_id) );
+            $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( tc__f( '__get_option' , 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
             $featured_page_link             = apply_filters( 'tc_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id );
             $featured_page_title            = apply_filters( 'tc_fp_title', get_the_title( $featured_page_id ), $fp_single_id, $featured_page_id );
             $featured_text                  = apply_filters( 'tc_fp_text', tc__f( '__get_option' , 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
@@ -157,12 +157,13 @@ class TC_featured_pages {
               
             //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
             $fp_img_size                    = apply_filters( 'tc_fp_img_size' , 'tc-thumb' );
+            $fp_img_id                      = apply_filters( 'fp_img_id', false , $fp_single_id , $featured_page_id );
 
-            if ( has_post_thumbnail( $featured_page_id) ) {
-                  $fp_img_id                = get_post_thumbnail_id( $featured_page_id);
+            if ( has_post_thumbnail( $featured_page_id ) && ! $fp_img_id ) {
+                  $fp_img_id                = get_post_thumbnail_id( $featured_page_id );
 
                   //check if tc-thumb size exists for attachment and return large if not
-                  $image                    = wp_get_attachment_image_src( $fp_img_id, $fp_img_size);
+                  $image                    = wp_get_attachment_image_src( $fp_img_id , $fp_img_size );
                   $fp_img_size              = ( null == $image[3] ) ? 'medium' : $fp_img_size ;
 
                   $fp_img                   = get_the_post_thumbnail( $featured_page_id , $fp_img_size);
@@ -182,7 +183,7 @@ class TC_featured_pages {
                     'post_mime_type'        =>  array( 'image/jpeg' , 'image/gif' , 'image/jpg' , 'image/png' )
                     ); 
 
-                    $attachments            = get_posts( $tc_args);
+                    $attachments            =  ! $fp_img_id ? get_posts( $tc_args) : get_post( $fp_img_id );
 
                     if ( $attachments) {
 
@@ -198,12 +199,10 @@ class TC_featured_pages {
 
                     }//end if
 
-              }//end else
+              }
 
               //finally we define a default holder if no thumbnail found or page is protected
-              $fp_img                 = apply_filters ('fp_img_src' ,
-                                      ( !isset( $fp_img) || post_password_required($featured_page_id) ) ? $fp_holder_img : $fp_img
-                                      );
+              $fp_img                 = apply_filters ('fp_img_src' , ( ! isset( $fp_img) || post_password_required($featured_page_id) ) ? $fp_holder_img : $fp_img , $fp_single_id , $featured_page_id );
           }//end if
 
           //Let's render this

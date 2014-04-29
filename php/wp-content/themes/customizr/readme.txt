@@ -33,6 +33,47 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.1.11 =
+* added : (php , css) customizer : new option in the Skin Settings, enable/disable the minified version of skin
+* added : (php) customizer : new option in the Responsive Settings, enable/disable the automatic centering of slides
+* added : (js, php) automatic centering of the slider's slides on any devices. Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/">Rocco</a>.
+* improved : (css) skins have been minified to speed up load time (~ saved 80Ko)
+* improved : (php) logo and favicon are now saved as relative path => avoid server change issues.
+* improved : (php) better class loading. Check the context and loads only the necessary classes.
+* improved : (php) customizer map has been moved into the class-fire-utils.php
+* improved : (php) performance improvement for options. Default options are now generated once from the customizer map and saved into database as default_options
+* improved : (js) block repositioning is only triggered on load for responsive devices
+* updated : (translation) Slovak translation has been updated. Thanks to <a href="www.pcipservis.eu">Michal Hranicky</a>.
+
+= 3.1.10 =
+* fixed : (php : TC_init::tc_plugins_compatibility() , custom-page.php) WooCommerce compatibility issue fixed.
+* added : (TC_customize::tc_customize_register() , TC_resources::tc_enqueue_customizr_scripts() , tc_script.js ) New option in customizer : Enable/Disable block reordering for smartphone viewport.
+
+= 3.1.9 =
+* fixed : (js  : tc_scripts.js , php : index.php ) responsive : dynamic content block position bug fixed in tc_script.js, the wrapper had to be more specific to avoid block duplication when inserting other .row inside main content. Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/" target="_blank">Rocco Aliberti</a>.
+* fixed : (php : TC_resources::tc_enqueue_customizr_scripts() ) comment : notice on empty archives due to the function comments_open(). A test on  0 != $wp_query -> post_count has been added in TC_resources::tc_enqueue_customizr_scripts(). Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/" target="_blank">Rocco Aliberti</a>.
+* improved : (js  : tc_scripts.js) responsive : the sidebar classes are set dynamically with a js localized var using the tc_{$position}_sidebar_class filter
+
+= 3.1.8 =
+* fixed : (js) responsive : dynamic content block position bug fixed in tc_script.js
+
+
+= 3.1.7 =
+* fixed : (css) : icons rendering for chrome
+* improved : (css) : footer white icons also for black skin
+* added : (php) utils : new filter with 2 parameters to tc_get_option
+* added : (php) featured pages : new filter tc_fp_id for the featured pages
+* added : (php) featured pages : new parameters added to the fp_img_src filter
+* improved : (php) metaboxes : no metaboxes for acf post types
+* improved : (js) responsive : dynamic content block position on resize hase been improved in tc_script.js
+* fixed : (php) Image size : slider full size sets to 9999 instead of 99999 => was no compatible with Google App engine
+* improved : (php) slider : make it easier to target individual slides with a unique class/or id
+* added : (php) footer : dynamic actions added inside the widget wrapper
+* improved : (php) footer : additional parameter for the tc_widgets_footer filter
+* improved : (php)(js) comments : Comment reply link the whole button is now clickable
+* fixed : (html) Google Structured Data : addition of the "updated" class in entry-date
+
+
 = 3.1.6 =
 * added : (php)(js) customizer controls : new filter for localized params
 * added : (php) featured pages : new filters for title, excerpt and button blocks

@@ -50,8 +50,8 @@ class TC_footer_main {
 		if ( !$status )
 			return;
 		
-		//hack to render white color icons if skin is grey
-		$skin_class 	= ( 'grey.css' == tc__f('__get_option' , 'tc_skin') ) ? 'white-icons' : '';
+		//hack to render white color icons if skin is grey or black
+		$skin_class 	= ( in_array( tc__f('__get_option' , 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
 
 		ob_start();
 		?>
@@ -62,8 +62,10 @@ class TC_footer_main {
 
 						<?php if ( is_active_sidebar( $key ) ) : ?>
 							
-							<div id="<?php echo $key; ?>" class="<?php echo apply_filters( $key . '_widget_class', 'span4' ) ?>">
-								<?php dynamic_sidebar( $key ); ?>
+							<div id="<?php echo $key; ?>" class="<?php echo apply_filters( "{$key}_widget_class", "span4" ) ?>">
+								<?php do_action("__before_{$key}_widgets"); ?>
+									<?php dynamic_sidebar( $key ); ?>
+								<?php do_action("__after_{$key}_widgets"); ?>
 							</div>
 
 						<?php endif; ?>
@@ -74,7 +76,7 @@ class TC_footer_main {
 		<?php
 		$html = ob_get_contents();
         if ($html) ob_end_clean();
-        echo apply_filters( 'tc_widgets_footer', $html );
+        echo apply_filters( 'tc_widgets_footer', $html , $footer_widgets );
 	}//end of function
 
 

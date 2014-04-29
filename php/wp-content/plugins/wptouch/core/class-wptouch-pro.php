@@ -333,7 +333,7 @@ class WPtouchProThree {
 
 	function check_for_critical_notifications() {
 		if ( defined( 'WPTOUCH_MIGRATION_OLD_ISSUE' ) ) {
-			$this->add_critical_notification( sprintf( __( 'Automatic theme migration from uploads/wptouch-data directory failed. Please manually move these files to wp-content/wptouch-data, or %scontact support%s to address this issue.', 'wptouch-pro' ), '<a href="http://www.bravenewcode.com/support/">', '</a>' ) );
+			$this->add_critical_notification( sprintf( __( 'Automatic theme migration from uploads/wptouch-data directory failed. Please manually move these files to wp-content/wptouch-data, or %scontact support%s to address this issue.', 'wptouch-pro' ), '<a href="http://www.wptouch.com/support/">', '</a>' ) );
 		}
 	}
 
@@ -353,11 +353,11 @@ class WPtouchProThree {
 			if ( $this->can_perform_cloud_install( true ) ) {
 				echo '<div class="updated" id="repair-cloud-theme" style="display: none;"></div>';
 				echo '<div class="error" id="repair-cloud-failure" style="display: none;"><p>';
-				echo sprintf( __( 'We were unable to install your WPtouch theme from the Cloud. Please visit %sthis article%s for more information.', 'wptouch-pro' ), '<a href="http://www.bravenewcode.com/support/knowledgebase/themes-or-extensions-cannot-be-downloaded/">', '</a>' );
+				echo sprintf( __( 'We were unable to install your WPtouch theme from the Cloud. Please visit %sthis article%s for more information.', 'wptouch-pro' ), '<a href="http://www.wptouch.com/support/knowledgebase/themes-or-extensions-cannot-be-downloaded/">', '</a>' );
 				echo '</p></div>';
 			} else {
 				echo '<div class="error" id="repair-cloud-failure" style="margin-top: 10px;"><p>';
-				echo sprintf( __( 'You server setup is preventing WPtouch from installing your active theme from the Cloud. Please visit %sthis article%s for more information on how to fix it.', 'wptouch-pro' ), '<a href="http://www.bravenewcode.com/support/knowledgebase/themes-or-extensions-cannot-be-downloaded/">', '</a>' );
+				echo sprintf( __( 'Your server setup is preventing WPtouch from installing your active theme from the Cloud. Please visit %sthis article%s for more information on how to fix it.', 'wptouch-pro' ), '<a href="http://www.wptouch.com/support/knowledgebase/themes-or-extensions-cannot-be-downloaded/">', '</a>' );
 				echo '</p></div>';
 			}
 		} else if ( $this->has_critical_notifications() ) {
@@ -1119,7 +1119,7 @@ class WPtouchProThree {
 
     function check_for_update() {
     	if ( function_exists( 'wptouch_pro_check_for_update' ) ) {
-    		wptouch_pro_check_for_update();
+    		return wptouch_pro_check_for_update();
     	}
     }
 
@@ -2155,6 +2155,9 @@ class WPtouchProThree {
 		$settings = wptouch_get_settings();
 
 		if ( $settings->show_wptouch_in_footer ) {
+			global $footer_settings;
+			$footer_settings = $settings;
+
 			echo wptouch_capture_include_file( WPTOUCH_DIR . '/include/html/footer.php' );
 		}
 
@@ -2461,13 +2464,27 @@ class WPtouchProThree {
 	}
 
 	function process_submitted_settings() {
+		$old_settings = wptouch_get_settings();
+
 		if ( 'POST' != $_SERVER['REQUEST_METHOD'] ) {
 			return;
 		}
 
 		require_once( WPTOUCH_DIR . '/core/admin-settings.php' );
 		wptouch_settings_process( $this );
+
 		$this->delete_theme_add_on_cache();
+
+		$new_settings = wptouch_get_settings();
+
+		if ( !$old_settings->add_referral_code && $new_settings->add_referral_code ) {
+			$bnc_settings = wptouch_get_settings( 'bncid' );
+			$bnc_settings->next_update_check_time = 0;
+			$bnc_settings->save();
+
+			$this->setup_bncapi();
+			wptouch_check_api();
+		}
 	}
 
 	function get_theme_copy_num( $base ) {
@@ -2490,10 +2507,6 @@ class WPtouchProThree {
 
 		// 3.0 domain specific filtering
 		$settings = apply_filters( 'wptouch_update_settings_domain', $settings, $domain );
-
-		if ( $domain == 'bncid' ) {
-			WPTOUCH_DEBUG( WPTOUCH_VERBOSE, 'Saving settings to database with domain ' . $domain . " " . print_r( $settings, true ) );
-		}
 
 		// Save the old domain
 		$old_domain = $settings->domain;

@@ -63,7 +63,7 @@ class TC_sidebar {
 
       //defines the sidebar wrapper class
       $class                = sprintf('%1$s %2$s tc-sidebar',
-                            apply_filters( 'tc_' .$position. '_sidebar_class', $sidebar_layout['sidebar'] ),
+                            apply_filters( "tc_{$position}_sidebar_class", $sidebar_layout['sidebar'] ),
                             $position
       );
       ob_start();
@@ -72,9 +72,9 @@ class TC_sidebar {
       <div class="<?php echo $class  ?>">
          <div id="<?php echo $position ?>" class="widget-area" role="complementary">
              <?php if ( is_active_sidebar( $position ) ) : ?>
-                <?php do_action( '__before_' .$position. '_sidebar' );##hook of social icons ?>
+                <?php do_action( "__before_{$position}_sidebar" );##hook of social icons ?>
                 <?php get_sidebar( $position ) ?>
-                <?php do_action( '__after_' .$position. '_sidebar' ); ?>
+                <?php do_action( "__after_{$position}_sidebar" ); ?>
               <?php endif; ?>
           </div><!-- #left -->
       </div><!--.tc-sidebar -->

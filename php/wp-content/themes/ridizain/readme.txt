@@ -12,8 +12,8 @@ Coded by Zulfikar Nore
 Brought to you by WP Strap Code, http://wpstrapcode.com/
 
 Requires at least:	3.6.0
-Tested up to:		3.9-alpha
-Stable tag:			1.0.25
+Tested up to:		3.9.1-alpha
+Stable tag:			1.0.33
 
 == Copyright ==
 Ridizain, Copyright 2014 WPStrapCode.com

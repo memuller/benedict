@@ -91,7 +91,7 @@ function ridizain_setup() {
 	 * to output valid HTML5.
 	 */
 	add_theme_support( 'html5', array(
-		'search-form', 'comment-form', 'comment-list',
+		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
 	) );
 
 	/*
@@ -141,7 +141,8 @@ if ( $ridizain_options ) {
 // At this point in the filter we are recalling the layout and content count.
 $layout = get_theme_mod( 'featured_content_layout' );
 $max_posts = get_theme_mod( 'num_posts_' . $layout, 2 );
-
+$orderby = get_theme_mod( 'ridizain_featured_orderby' );
+$order = get_theme_mod( 'ridizain_featured_order' );
 // Here we determine what content type we are going to feature - Posts, Pages or a Custom Post Type.
 $content_type = get_theme_mod( 'featured_content_custom_type' );
 
@@ -150,8 +151,8 @@ $args = array(
     'tag' => $tag_name,
     'posts_per_page' => $max_posts,
     'post_type' => array( $content_type ),
-    'order_by' => 'post_date',
-    'order' => 'DESC',
+    'orderby' => $orderby,
+    'order' => $order,
     'post_status' => 'publish',
 );
 
@@ -175,6 +176,13 @@ if( ! function_exists('ridizain_register_taxonomy') ){
         register_taxonomy_for_object_type('post_tag', 'page');
     }
     add_action('admin_init', 'ridizain_register_taxonomy');
+}
+
+if ( get_theme_mod( 'ridizain_featured_visibility' ) != 0 ||  get_theme_mod( 'ridizain_featured_remove' ) != 0 ) {
+	function ridizain_remove_pre_get_posts() {
+	    remove_action( 'pre_get_posts', array( 'Featured_Content', 'pre_get_posts' ) );
+    }
+add_action( 'init', 'ridizain_remove_pre_get_posts', 31 );
 }
 
 /**
@@ -333,6 +341,19 @@ function ridizain_recentpost_excerpt () {
 
 // Lets do a separate excerpt length for the alternative recent post widget
 function ridizain_featured_excerpt () {
+	$theContent = trim(strip_tags(get_the_content()));
+		$output = str_replace( '"', '', $theContent);
+		$output = str_replace( '\r\n', ' ', $output);
+		$output = str_replace( '\n', ' ', $output);
+			$limit = '15';
+			$content = explode(' ', $output, $limit);
+			array_pop($content);
+		$content = implode(" ",$content)."  ";
+	return strip_tags($content, ' ');
+}
+
+// Lets do a separate excerpt length for the alternative recent post widget
+function ridizain_ephemera_excerpt () {
 	$theContent = trim(strip_tags(get_the_content()));
 		$output = str_replace( '"', '', $theContent);
 		$output = str_replace( '\r\n', ' ', $output);
@@ -632,14 +653,21 @@ global $content_width;
 	   || is_attachment() ) {
 	    $classes[] = 'full-width';
 	}
+	
+	if ( class_exists( 'bbPress' ) ) {
+	   if ( is_bbpress() ) {
+	       $classes[] = 'full-width';
+	   }
+	}
+	
 	if (is_home() ) : 
     if (get_theme_mod( 'ridizain_fullwidth_blog_feed' ) != 0 ) {
-	$classes[] = 'full-width';
+	    $classes[] = 'full-width';
 	} endif;
 	
 	if (is_singular() && !is_page() ) : 
     if (get_theme_mod( 'ridizain_fullwidth_single_post' ) != 0 ) {
-    $classes[] = 'full-width';
+        $classes[] = 'full-width';
     } endif;
 	
 	if ( is_active_sidebar( 'sidebar-3' ) ) {

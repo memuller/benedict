@@ -183,8 +183,13 @@ class TC_slider {
         <div class="carousel-inner">
               
           <?php foreach ($slides as $id => $data) : ?>
-
-            <div class="item <?php echo $data['active']; ?>">
+            <?php 
+              $slide_class = sprintf('%1$s %2$s',
+                $data['active'],
+                'slide-'.$id
+              );
+              ?>
+            <div class="item <?php echo $slide_class; ?>">
 
               <?php
                 printf('<div class="%1$s %2$s">%3$s</div>',

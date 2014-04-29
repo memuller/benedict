@@ -65,18 +65,12 @@ and we will include it within the theme from next version update.
 
 == CHANGE LOG == 
 
-= Version 1.0 =
-* All brand new. 
-
-= Version 1.0.1 =
-* Backtotop js file and related part removed.
-* Replaced wp_reset_query with wp_reset_postdata for front page. 
-* Custom js (our own creation) is licensed under the same license as this theme. 
-
-= Version 1.0.2 =
-* Added dependency for custom.js file and loaded it in footer. 
-* Naming change for wrong theme textdomain. 
-* Naming change for featured page section in customizer. 
+= Version 1.0.4 = 
+* Author name to appear for post in archive view.
+* French language file updated.
+* German language file added. Thanks to Mr. Markus Frenzel <themegrill@markusfrenzel.de> for providing the language files.
+* Adjustment for IE 8 compatibility.
+* CSS adjustment for ordered and unordered list in content area.
 
 = Version 1.0.3 = 
 * Some CSS adjustment for gallery one column.
@@ -86,3 +80,16 @@ and we will include it within the theme from next version update.
 * Added french language file. Thanks to Mr. Wolforg (http://www.wptrads.com/theme/radiate) for providing us the translation file.
 * Some more description added in Theme description.
 * html5 support for lower versions of IE.
+
+= Version 1.0.2 =
+* Added dependency for custom.js file and loaded it in footer. 
+* Naming change for wrong theme textdomain. 
+* Naming change for featured page section in customizer. 
+
+= Version 1.0.1 =
+* Backtotop js file and related part removed.
+* Replaced wp_reset_query with wp_reset_postdata for front page. 
+* Custom js (our own creation) is licensed under the same license as this theme. 
+
+= Version 1.0 =
+* All brand new.

@@ -15,10 +15,10 @@
 	<article <?php omega_attr( 'comment' ); ?>>
 		<p <?php omega_attr( 'comment-author' ); ?>>
 			<?php echo get_avatar( $comment, 48 ); ?>
-			<?php printf( __( '<cite class="fn">%s</cite> <span class="says">%s:</span>', 'omega' ), get_comment_author_link(), apply_filters( 'comment_author_says_text', __( 'says', 'omega' ) ) ); ?>
+			<?php printf( __( '<cite class="fn">%s</cite>', 'omega' ), get_comment_author_link() ); ?>
 		</p>
 		<p class="comment-meta"> 
-			<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><?php printf( __( '%1$s at %2$s', 'omega' ), get_comment_date(), get_comment_time() ); ?></a>
+			<time <?php omega_attr( 'comment-published' ); ?>><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><?php printf( __( '%1$s at %2$s', 'omega' ), get_comment_date(), get_comment_time() ); ?></a></time>
 				<?php edit_comment_link( __( '(Edit)', 'omega' ), '' ); ?>
 		<p>
 		<div class="comment-content">

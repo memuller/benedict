@@ -194,11 +194,29 @@ class TC___ {
     * @since Customizr 3.0
     */
     function tc__ ( $load ) {
-        
+        //checks if is customizing : two context, admin and front (preview frame)
+        global $pagenow;
+        $is_customizing = false;
+        if ( is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow ) {
+              $is_customizing = true;
+        } else if ( ! is_admin() && isset($_REQUEST['wp_customize']) ) {
+              $is_customizing = true;
+        }
         static $instances;
 
         foreach ( $load as $group => $files ) {
             foreach ($files as $path_suffix ) {
+
+                //don't load admin classes if not admin && not customizing
+                if ( is_admin() && ! $is_customizing ) {
+                    if ( false !== strpos($path_suffix[0], 'parts') )
+                        continue;
+                }
+                if ( ! is_admin() && ! $is_customizing ) {
+                    if ( false !== strpos($path_suffix[0], 'admin') )
+                        continue;
+                }
+
                 //checks if a child theme is used and if the required file has to be overriden
                 if ( $this -> tc_is_child() && file_exists( TC_BASE_CHILD . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ) {
                     require_once ( TC_BASE_CHILD . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ;
@@ -214,7 +232,6 @@ class TC___ {
                 }
             }
         }
-
         return $instances[ $classname ];
     }
 

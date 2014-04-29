@@ -1,5 +1,4 @@
 <?php
-
 /* Load Omega theme framework. */
 require ( trailingslashit( get_template_directory() ) . 'lib/framework.php' );
 new Omega();
@@ -27,6 +26,8 @@ function omega_theme_setup() {
 	
 	add_theme_support( 'omega-theme-settings' );
 
+	add_theme_support( 'omega-content-archives' );
+
 	/* Enable custom template hierarchy. */
 	//add_theme_support( 'omega-template-hierarchy' );
 
@@ -38,8 +39,9 @@ function omega_theme_setup() {
 			'2c-l'      => __( 'Content / Sidebar', 'omega' ),
 			'2c-r'      => __( 'Sidebar / Content', 'omega' )
 		),
-		array( 'default' => is_rtl() ? '2c-r' :'2c-l', 'customizer' => true ) 
+		array( 'default' => is_rtl() ? '2c-r' :'2c-l', 'customize' => true ) 
 	);
+	
 		
 	/* implement editor styling, so as to make the editor content match the resulting post output in the theme. */
 	add_editor_style();

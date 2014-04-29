@@ -3,8 +3,8 @@ Theme Name: Radiate
 Theme URI: http://themegrill.com/themes/radiate/
 Author: ThemeGrill
 Author URI: http://themegrill.com/
-Description: Radiate is a clean, creative and light retina ready responsive blogging theme supporting parallax header image. It integrates primary color option, custom background, custom css and few other features through WordPress customizer. The theme is translation ready and you can get free support on http://themegrill.com/support-forum. View demo at http://demo.themegrill.com/radiate. Available Translations -> French.
-Version: 1.0.3
+Description: Radiate is a clean, creative and light retina ready responsive blogging theme supporting parallax header image. It integrates primary color option, custom background, custom css and few other features through WordPress customizer. The theme is translation ready and you can get free support on http://themegrill.com/support-forum. View demo at http://demo.themegrill.com/radiate. Available Translations -> French and German.
+Version: 1.0.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: radiate
@@ -66,6 +66,7 @@ ol, ul {
 table { /* tables still need 'cellspacing="0"' in the markup */
 	border-collapse: collapse;
 	border-spacing: 0;
+	margin: 0 0 15px;
 	margin: 0 0 1.5em;
 	width: 100%;
 }
@@ -139,10 +140,11 @@ h4 { font-size: 24px; line-height: 30px; }
 h5 { font-size: 22px; line-height: 28px; }
 h6 { font-size: 19px; line-height: 25px; }
 hr {
-	background-color: #ccc;
+	background-color: #eaeaea;
 	border: 0;
 	height: 1px;
-	margin-bottom: 1.5em;
+	margin-bottom: 15px;
+	margin-bottom: 1.5rem;
 }
 .entry-content h1,
 .entry-content h2,
@@ -150,6 +152,7 @@ hr {
 .entry-content h4,
 .entry-content h5,
 .entry-content h6 {
+	margin-bottom: 10px;
 	margin-bottom: 1rem;
 }
 
@@ -157,7 +160,8 @@ hr {
 p {
 	color: #444444;
 	line-height: 1.5;
-	margin-bottom: 1.5em;
+	margin-bottom: 15px;
+	margin-bottom: 1.5rem;
 }
 ul, ol {
 	margin: 0;
@@ -171,13 +175,15 @@ ol {
 li > ul,
 li > ol {
 	margin-bottom: 0;
-	margin-left: 1.5em;
+	margin-left: 15px;
+	margin-left: 1.5rem;
 }
 dt {
 	font-weight: bold;
 }
 dd {
-	margin: 0 1.5em 1.5em;
+	margin: 0 15px 15px;
+	margin: 0 1.5rem 1.5rem;
 }
 b, strong {
 	font-weight: bold;
@@ -201,11 +207,13 @@ blockquote {
 blockquote cite {
 	color: #333333;
 	font: 300 15px "Helvetica Neue",Helvetica,Arial,sans-serif;
-	letter-spacing: 0.05em;
+	letter-spacing: 1px;
+	letter-spacing: 0.1rem;
 	text-transform: uppercase;
 }
 address {
-	margin: 0 0 1.5em;
+	margin: 0 0 15px;
+	margin: 0 0 1.5rem;
 	display: block;
    font-style: italic;
 }
@@ -216,10 +224,12 @@ pre {
 	font-size: 15px;
 	font-size: 1.5rem;
 	line-height: 1.5;
-	margin-bottom: 1.6em;
+	margin-bottom: 16px;
+	margin-bottom: 1.6rem;
 	max-width: 100%;
 	overflow: auto;
-	padding: 1.6em;
+	padding: 16px;
+	padding: 1.6rem;
 	white-space: pre-wrap;
 	overflow: auto;
 }
@@ -289,6 +299,7 @@ input[type="submit"] {
 	border: none;
 	border-radius: 4px;
 	color: #FFFFFF;
+	font-size: 14px;
 	font-size: 1.4rem;
 	padding: 8px 16px;
 }
@@ -389,12 +400,14 @@ a:active {
 .alignleft {
 	display: inline;
 	float: left;
-	margin-right: 1.5em;
+	margin-right: 15px;
+	margin-right: 1.5rem;
 }
 .alignright {
 	display: inline;
 	float: right;
-	margin-left: 1.5em;
+	margin-left: 15px;
+	margin-left: 1.5rem;
 }
 .aligncenter {
 	clear: both;
@@ -518,6 +531,7 @@ body.admin-bar .header-wrap {
 .site-title {
 	font-size: 36px;
 	font-size: 3.6rem;
+	padding: 5px 20px 5px 25px;
 	padding: 0.5rem 2rem 0.5rem 2.5rem;
 	float: left;
 	line-height: 1.5;
@@ -665,19 +679,20 @@ img.header-image {
 .sticky {
 }
 .hentry {
-	margin: 0 0 4.5em;
+	margin-bottom: 40px;
 	margin-bottom: 4rem;
+	padding: 30px;
 	padding: 3rem;
 	background-color: #FFFFFF;
 }
 .page-header {
-	margin: 0 0 4.5em;
+	margin-bottom: 40px;
 	margin-bottom: 4rem;
+	padding: 10px 30px;
 	padding: 1rem 3rem;
 	background-color: #FFFFFF;
 	text-align: center;
 }
-.byline,
 .updated {
 	display: none;
 }
@@ -688,19 +703,24 @@ img.header-image {
 .page-content,
 .entry-content,
 .entry-summary {
-	margin: 1.5em 0 0;
+	margin: 15px 0 0; 
+	margin: 1.5rem 0 0;
 }
 .page-links {
 	clear: both;
-	margin: 0 0 1.5em;
+	margin: 0 0 15px;
+	margin: 0 0 1.5rem;
 }
 .entry-title {
-	font-size: 2em;
-	margin: 0 0 0.5em;
+	font-size: 30px;
+	font-size: 3rem;
+	margin: 0 0 10px;
+	margin: 0 0 1rem;
 	line-height: 1.5;
 }
 .page-title {
-	font-size: 2em;
+	font-size: 30px;
+	font-size: 3rem;
 	line-height: 1.5;
 }
 .entry-title a {
@@ -710,15 +730,18 @@ img.header-image {
 	color: #632E9B;
 	text-decoration: none;
 }
-
-
-.post .entry-content ul, .post .entry-content ol {
-   margin: 0 0 20px 20px;
+.entry-content ul {
+	list-style: square;
 }
-.post .entry-content ul {
-   list-style: square outside none;
+.entry-content ul,
+.entry-content ol {	
+	padding: 0 0 0 35px; 
+   margin-bottom: 30px;
 }
-
+.entry-content li > ul,
+.entry-content li > ol {
+	margin-bottom: 0;
+}
 .entry-header .entry-meta span {
 	padding-right: 20px;
 }
@@ -762,6 +785,7 @@ img.header-image {
 .tg-one-third {
 	float: left;
 	width: 31.143952%;
+	margin: 0 3.284072% 30px 0;
 	margin: 0 3.284072% 3rem 0;
 }
 .tg-one-third-last {
@@ -773,10 +797,12 @@ img.header-image {
 }
 #featured_pages img {
 	vertical-align: top;
+	margin-bottom: 20px;
 	margin-bottom: 2rem;
 }
 #featured_pages .page_text_container {
-	background-color: #FFFFFF;	
+	background-color: #FFFFFF;
+	padding: 30px 30px 20px;
 	padding: 3rem 3rem 2rem;
 }
 #featured_pages .entry-title {
@@ -811,6 +837,7 @@ img.header-image {
 /* =No Results
 ----------------------------------------------- */
 .not-found .page-content {
+	padding: 30px;
 	padding: 3rem;
 	background-color: #FFFFFF;
 }
@@ -840,7 +867,8 @@ img.header-image {
 }
 .wp-caption {
 	border: 1px solid #ccc;
-	margin-bottom: 1.5em;
+	margin-bottom: 15px;
+	margin-bottom: 1.5rem;
 	max-width: 100%;
 }
 .wp-caption img[class*="wp-image-"] {
@@ -852,7 +880,8 @@ img.header-image {
 	text-align: center;
 }
 .wp-caption .wp-caption-text {
-	margin: 0.8075em 0;
+	margin: 8px 0;
+	margin: 0.8075rem 0;
 }
 .site-main .gallery {
 }
@@ -870,7 +899,8 @@ img.header-image {
 /* =WordPress Gallery Support
 ----------------------------------------------- */
 .gallery { 
-	margin: 0 auto 2em; 
+	margin: 0 auto 20px;
+	margin: 0 auto 2rem;
 }
 .gallery .gallery-item { 
 	float: left; 
@@ -905,7 +935,7 @@ img.header-image {
 }
 .gallery .gallery-caption { 	
 	font-size: 14px; 
-	line-height: 1.2em; 
+	line-height: 1.2; 
 	margin: 10px 0 0; 
 }
 .gallery br+br { display:none; }
@@ -922,7 +952,8 @@ object {
 ----------------------------------------------- */
 
 .site-main [class*="navigation"] {
-	margin: 0 0 1.5em;
+	margin: 0 0 15px;
+	margin: 0 0 1.5rem;
 	overflow: hidden;
 }
 [class*="navigation"] .nav-previous {
@@ -939,8 +970,10 @@ object {
 ----------------------------------------------- */
 
 #comments {
+	padding: 30px;
 	padding: 3rem;
 	background-color: #FFFFFF;
+	margin-bottom: 40px;
 	margin-bottom: 4rem;
 }
 .comment-content a {
@@ -954,6 +987,7 @@ object {
 #comments h4,
 #comments h5,
 #comments h6 {
+	margin-bottom: 10px;
    margin-bottom: 1rem;
 }
 #comments h2.comments-title {
@@ -1008,6 +1042,7 @@ object {
 .comments-area article header .comment-permalink:before { content: '\f107'; }
 .comments-area article header .comment-date-time:before { content: '\f307'; }
 .comment-content {
+	padding: 20px;
 	padding: 2rem;
 	background-color: #F8F8F8;
 	border: 1px solid #EAEAEA;
@@ -1102,7 +1137,9 @@ object {
 /* =Widgets
 ----------------------------------------------- */
 .widget {
+	margin-bottom: 40px;
 	margin-bottom: 4rem;
+	padding: 30px;
 	padding: 3rem;
 	background-color: #FFFFFF;
 }
@@ -1195,6 +1232,7 @@ object {
 	float: right;
 	padding-top: 0;
 	background-color: #000;
+	margin: 10px 25px 0 0;
 	margin: 1rem 2.5rem 0 0;
 }
 .main-small-navigation ul {
@@ -1282,6 +1320,7 @@ object {
 		max-width: 60%;
 	}
 	.main-navigation {
+		margin: 10px 25px 0 0;
 		margin: 1rem 2.5rem 0 0;
 	}
 	.main-small-navigation ul {

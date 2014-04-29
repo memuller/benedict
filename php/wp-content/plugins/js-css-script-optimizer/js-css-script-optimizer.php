@@ -2,14 +2,13 @@
 /*
   Plugin Name: JS & CSS Script Optimizer
   Plugin URI: http://4coder.info/en/code/wordpress-plugins/js-css-script-optimizer/
-  Version: 0.2.5
-  Author: Evgeniy Kotelnitskiy
+  Version: 0.2.8
+  Author: Yevhen Kotelnytskyi
   Author URI: http://4coder.info/en/
-  Description: Features: Combine all scripts into the single file, Pack scripts using <a href="http://joliclic.free.fr/php/javascript-packer/en/">PHP version of the Dean Edwards's JavaScript Packer</a>, Move all JavaScripts to the bottom, Combine all CSS scripts into the single file, Pack CSS files (remove comments, tabs, spaces, newlines).
+  Description: Features: Combine all scripts into the single file, Pack scripts using <a href="http://joliclic.free.fr/php/javascript-packer/en/">PHP version of the Dean Edwards's JavaScript Packer</a>, Move all JavaScripts to the bottom, Combine all CSS scripts into the single file, Minify CSS files (remove comments, tabs, spaces, newlines).
 */
 class evScriptOptimizer {
 
-    static $upload_path = '';
     static $upload_url = '';
     static $plugin_path = '';
     static $cache_directory = '';
@@ -27,17 +26,8 @@ class evScriptOptimizer {
         $is_logged_in = is_user_logged_in();
 
         // init some constants
-        $uploads = wp_upload_dir();        
-        self::$upload_path = $uploads['basedir'] . '/';
-        self::$upload_url = $uploads['baseurl'] . '/';       
-        
-		if (substr(self::$upload_path, -1) != '/') self::$upload_path .= '/';
-		if (substr(self::$upload_url, -1) != '/') self::$upload_url .= '/';
-		
         self::$plugin_path = dirname(__FILE__);
-        self::$cache_directory = self::$upload_path . 'spacker-cache/';
-        self::$cache_url = self::$upload_url . 'spacker-cache/';
-
+        
         // load plugin localizations
         load_plugin_textdomain('spacker', self::$plugin_path . '/lang', self::$plugin_path . '/lang');
 
@@ -46,11 +36,11 @@ class evScriptOptimizer {
 		//self::$options = false;//***
         if (! is_array(self::$options)) {
             self::$options = array(
-                'only-selfhosted-js'    => true,
+                'only-selfhosted-js'    => false,
                 'combine-js'            => 'combine',
                 'packing-js'            => true,
 				'css'                   => true,
-                'only-selfhosted-css'   => true,
+                'only-selfhosted-css'   => false,
                 'combine-css'           => true,
                 'packing-css'           => true,
                 'inc-js'                => null,
@@ -60,7 +50,27 @@ class evScriptOptimizer {
                 'cache'                 => array(),
                 'cache-css'             => array(),
 				'strict-ordering-beta'  => false,
+				'cache-dir-path'        => WP_CONTENT_DIR . '/cache/scripts/',
+				'cache-dir-url'         => content_url()  . '/cache/scripts/',
 			);
+        }
+        else {
+            // Old cache directory
+            if (! isset(self::$options['cache-dir-path'])) {
+                $uploads = wp_upload_dir();        
+                $upload_path = $uploads['basedir'] . '/';
+                $upload_url = $uploads['baseurl'] . '/';       
+                
+                if (substr($upload_path, -1) != '/') $upload_path .= '/';
+                if (substr($upload_url, -1) != '/') $upload_url .= '/';
+                
+                $cache_directory = $upload_path . 'spacker-cache/';
+                $cache_url = $upload_url . 'spacker-cache/';
+
+                self::$options['cache-dir-path'] = $cache_directory;
+				self::$options['cache-dir-url']  = $cache_url;
+                self::save_options();
+            }
         }
 		
 		if (! isset(self::$options['strict-ordering-beta'])) {
@@ -70,16 +80,35 @@ class evScriptOptimizer {
 		if (! isset(self::$options['combine-css']) AND !empty(self::$options['combining-css'])) {
 			self::$options['combine-css'] = true;
 		}
+        
+        // Strict ordering temporary disabled 
+        self::$options['strict-ordering-beta'] = false;
+        self::$options['packing-css'] = true;
+        
 				
         // add actions and hooks
 		if (! is_admin()) {
 			if (self::is_on()) {
-				add_action('wp_print_scripts',     array(__CLASS__, 'wp_print_scripts'), 200);
-				if (self::$options['css']) {
-					add_action('wp_print_styles',  array(__CLASS__, 'wp_print_styles'), 200);
-				}
-				add_action('wp_footer',            array(__CLASS__, 'footer'), 20000000);
-				add_action('wp_head',              array(__CLASS__, 'head'), 20000000);
+                global $wp_version;
+                if ( version_compare( $wp_version, '2.8.0', '>' ) ) {          
+                    add_action('wp_print_scripts',         array(__CLASS__, 'wp_print_scripts_action'), 0);
+                    add_action('wp_print_footer_scripts',  array(__CLASS__, 'wp_print_scripts_action'), 0);
+                    
+                    if (self::$options['css']) {
+                        add_action('wp_print_styles',         array(__CLASS__, 'wp_print_styles_action'), -10000);
+                        add_action('wp_print_footer_scripts', array(__CLASS__, 'wp_print_styles_action'), 0);
+                    }
+                }
+                else {
+                    add_action('wp_print_scripts', array(__CLASS__, 'wp_print_scripts_action'), 200);
+                    
+                    if (self::$options['css']) {
+                        add_action('wp_print_styles',  array(__CLASS__, 'wp_print_styles_action'), 200);
+                    }
+                }
+
+				add_action('wp_footer', array(__CLASS__, 'footer'), 20000000);
+				//add_action('wp_head', array(__CLASS__, 'head'), 20000000);
 
 				// Include added scripts
 				if (is_array(self::$options['inc-js'])) {
@@ -109,17 +138,32 @@ class evScriptOptimizer {
             evScriptOptimizerBackend::init();
         }
     }
-	
+    
 	function is_on() {
-        if (! is_writable(self::$cache_directory)) {
-			echo 'Cache directory is not writable: ' . self::$cache_directory;
+        if (! self::check_cache_directory()) {
             return false;
         }        
 		if (! self::$options['enable-plugin']) {
             return false;
+        }		
+        if (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) {
+            return false;
         }
         return true;
 	}
+
+    function check_cache_directory() {
+        if (is_writable(self::$options['cache-dir-path'])) {
+            return true;
+        }
+        else {
+            if (@mkdir(self::$options['cache-dir-path']) 
+                && @chmod(self::$options['cache-dir-path'], 0777)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * Check exclude list
@@ -157,7 +201,9 @@ class evScriptOptimizer {
      *
      * @global $wp_scripts, $auto_compress_scripts
      */
-    function wp_print_scripts() {
+    function wp_print_scripts_action() {
+        /* if ( did_action('wp_print_footer_scripts') ) */
+        
         if (is_admin()) return;
 
         global $wp_scripts, $auto_compress_scripts;
@@ -168,48 +214,81 @@ class evScriptOptimizer {
 
         $queue = $wp_scripts->queue;
         $wp_scripts->all_deps($queue);
-        $to_do = $wp_scripts->to_do;
+        
+        /*
+        echo '<h1>@queue</h1>';  
+        print_r($wp_scripts->queue);
+        
+        echo '<h1>@to_do</h1>';  
+        print_r($wp_scripts->to_do);
+        */
 
-        foreach ($to_do as $key => $handle) {
-            $src = $wp_scripts->registered[$handle]->src;
+		foreach( $wp_scripts->to_do as $key => $handle ) {
+			if ( !in_array($handle, $wp_scripts->done, true) && isset($wp_scripts->registered[$handle]) ) {
 
-            // Check exclude list
-            if (self::exclude_this_js($handle, $src))
-                continue;
+				if ( ! $wp_scripts->registered[$handle]->src ) { // Defines a group.
+					$wp_scripts->done[] = $handle;
+					continue;
+				}
 
-            // Check host
-            if (substr($src, 0, 4) != 'http') {
-                $src = site_url($src);
-                $external = false;
-            }
-            else {
-                $home = get_option('home');		
-                if (substr($src, 0, strlen($home)) == $home) {
-                    $external = false;
+                $src      = self::normalize_url($wp_scripts->registered[$handle]->src);
+                $_exclude = self::exclude_this_js($handle, $src);  // Check exclude list
+                $external = self::is_external_url($src);
+                
+                if ((! $_exclude) AND (! self::$options['only-selfhosted-js'] || ! $external)) {
+                    
+                    $_conditional = isset($wp_scripts->registered[$handle]->extra['conditional']) 
+                                        ? $wp_scripts->registered[$handle]->extra['conditional'] : '';
+                    
+                    // Print scripts those added before
+                    if ( $_conditional ) {
+                        self::print_scripts();
+                    } 
+                
+                    $auto_compress_scripts[$handle] = array(
+                                                        'src'      => $src, 
+                                                        'external' => $external,
+                                                        'ver'      => $wp_scripts->registered[$handle]->ver,
+                                                        'args'     => $wp_scripts->registered[$handle]->args,
+                                                        'extra'    => $wp_scripts->registered[$handle]->extra,
+                                                        'localize' => isset($wp_scripts->registered[$handle]->extra['data']) 
+                                                                        ? $wp_scripts->registered[$handle]->extra['data'] : '',
+                                                    );
+                                                    
+                    // Print script with "conditional"
+                    if ( $_conditional ) {
+                        self::print_scripts( $_conditional );
+                    } 
+                                                    
+                    // Print scripts
+                    if (self::$options['combine-js'] == '0') {
+                        self::print_scripts();
+                    }
+                    
+                    ob_start();
+                    if ( $wp_scripts->do_item( $handle, $group ) ) {
+                        $wp_scripts->done[] = $handle;
+                    }
+                    ob_end_clean();
                 }
-                else $external = true;
-            }
-			
-            if (! self::$options['only-selfhosted-js'] || ! $external) {
-                unset($wp_scripts->to_do[$key]);
-                $auto_compress_scripts[$handle] = array(
-													'src' => $src, 
-													'external' => $external,
-													'ver' => $wp_scripts->registered[$handle]->ver,
-													'args' => $wp_scripts->registered[$handle]->args,
-													'extra' => $wp_scripts->registered[$handle]->extra,
-												);
-            }
-        }
-        foreach ($wp_scripts->queue as $key => $handle) {
-            if (isset($auto_compress_scripts[$handle]))
-                unset($wp_scripts->queue[$key]);
-        }
+                else {
+                    // Print scripts those added before
+                    self::print_scripts();
+                    
+                    // Standard way
+                    if ( $wp_scripts->do_item( $handle, $group ) ) {
+                        $wp_scripts->done[] = $handle;
+                    }
+                }
+
+				unset( $wp_scripts->to_do[$key] );
+			}
+		}
 
         // printing scripts hear or move to the bottom
-        if (! self::$options['combine-js'] || self::$js_printed) {
-            self::print_compressed_scripts();
-        }       
+        if ( self::$options['combine-js'] == 'combine' || self::$js_printed) {
+            self::print_scripts();
+        }        
     }
 
     /**
@@ -217,7 +296,7 @@ class evScriptOptimizer {
      *
      * @global $wp_styles, $auto_compress_styles
      */
-    function wp_print_styles() {
+    function wp_print_styles_action() {
         if (is_admin()) return;
 		
         global $wp_styles, $auto_compress_styles;
@@ -228,76 +307,134 @@ class evScriptOptimizer {
 		
         $queue = $wp_styles->queue;
         $wp_styles->all_deps($queue);
-        $to_do = $wp_styles->to_do;
-        $queue_unset = array();
-		
-        foreach ($to_do as $key => $handle) {
-            $src = $wp_styles->registered[$handle]->src;
 
-            // Check exclude list
-            if (self::exclude_this_css($handle, $src))
-                continue;
+		foreach( $wp_styles->to_do as $key => $handle ) {
 
-            $media = ($wp_styles->registered[$handle]->args ? $wp_styles->registered[$handle]->args : 'screen');
+			if ( !in_array($handle, $wp_styles->done, true) && isset($wp_styles->registered[$handle]) ) {
 
-            if (substr($src, 0, 4) != 'http') {
-                $src = site_url($src);
-                $external = false;
-            }
-            else {
-                $home = get_option('home');
-                if (substr($src, 0, strlen($home)) == $home) {
-                    $external = false;
+				if ( ! $wp_styles->registered[$handle]->src ) { // Defines a group.
+					$wp_styles->done[] = $handle;
+					continue;
+				}
+
+                $src      = self::normalize_url($wp_styles->registered[$handle]->src);
+                $_exclude = self::exclude_this_css($handle, $src);  // Check exclude list
+                $media    = ($wp_styles->registered[$handle]->args ? $wp_styles->registered[$handle]->args : 'all');
+                $external = self::is_external_url($src);
+
+                if ((! $_exclude) AND (! self::$options['only-selfhosted-css'] || ! $external)) {
+                    unset($wp_styles->to_do[$key]);
+                    
+                    $conditional = 'no-conditional';
+                    if (isset($wp_styles->registered[$handle]->extra) 
+                        && isset($wp_styles->registered[$handle]->extra['conditional'])) {
+                        $conditional = $wp_styles->registered[$handle]->extra['conditional'];
+                    }
+                        
+                    $auto_compress_styles[$media][$conditional][$handle] = array(
+                                                                'src'      => $src, 
+                                                                'media'    => $media, 
+                                                                'external' => $external,
+                                                                'ver'      => $wp_styles->registered[$handle]->ver,
+                                                                'args'     => $wp_styles->registered[$handle]->args,
+                                                                'extra'    => $wp_styles->registered[$handle]->extra,
+                                                            );
+                                                            
+                    // printing CSS
+                    if (! self::$options['combine-css']) {
+                        self::print_styles();
+                    }
+
+                    ob_start();
+                    if ( $wp_styles->do_item( $handle, $group ) ) {
+                        $wp_styles->done[] = $handle;
+                    }
+                    ob_end_clean();
                 }
-                else $external = true;
-            }
+                else {
+                    // printing scripts
+                    self::print_styles();
+                    
+                    if ( $wp_styles->do_item( $handle, $group ) ) {
+                        $wp_styles->done[] = $handle;
+                    }
+                }
 
-            if (! self::$options['only-selfhosted-css'] || ! $external) {
-                unset($wp_styles->to_do[$key]);
-                
-                $auto_compress_styles[$media][$handle] = array(
-															'src' => $src, 
-															'external' => $external,
-															'ver' => $wp_styles->registered[$handle]->ver,
-															'args' => $wp_styles->registered[$handle]->args,
-															'extra' => $wp_styles->registered[$handle]->extra,
-														);
-                $queue_unset[$handle] = true;
-            }
-        }
-
-        foreach ($wp_styles->queue as $key => $handle) {
-            if (isset($queue_unset[$handle]))
-                unset($wp_styles->queue[$key]);
-        }
-
+				unset( $wp_styles->to_do[$key] );
+			}
+		}
+        
 		// printing CSS
-		if (self::$css_printed || !self::$options['combine-css']) {
-			self::wp_head_print_styles();
+		if (self::$css_printed || self::$options['combine-css']) {
+			 self::print_styles();
 		}
     }
 	
-	function wp_head_print_styles() {
-		global $auto_compress_styles;
-        foreach ($auto_compress_styles as $media => $scripts) {
-            self::print_compressed_styles($media);
+	private function normalize_url($url) {
+    
+        if (substr($url, 0, 2) == '//') {
+            if (isset($_SERVER['HTTPS']) )
+                $url = 'https:' . $url;
+            else
+                $url = 'http:' . $url;
+        }	    
+        
+        if (substr($url, 0, 1) == '/') {
+            $url = site_url($url);
+        }	
+        
+        return $url;
+    }
+    
+	private function is_external_url($url) {
+        
+        if (substr($url, 0, 4) != 'http') {
+            $url = site_url($url);
+            return false;
         }
-		self::$css_printed = true;
-	}
+        else {
+            $home = get_option('home');
+            if (substr($url, 0, strlen($home)) == $home) {
+                return false;
+            }
+            else return true;
+        }
+    }
 
-    function print_compressed_scripts() {
+	public function save_options() {
+        update_option('spacker-options', self::$options);
+    }
+    
+	function print_styles() {
+		global $auto_compress_styles;
+        
+        // TODO: Check ordering
+        foreach ($auto_compress_styles as $media => $conditionals) {
+            foreach ($conditionals as $conditional => $scripts) {
+                if ($conditional == 'no-conditional') {
+                    $conditional = false;
+                }
+                self::print_styles_by_media($scripts, $media, $conditional);
+            }
+        }
+		//self::$css_printed = true;
+        $auto_compress_styles = array();
+	}
+    
+    function print_scripts( $conditional = false ) {
         global $auto_compress_scripts;
         if (! is_array($auto_compress_scripts) || ! count($auto_compress_scripts))
             return;
 
         $home = get_option('siteurl').'/';
-        if (! is_array(self::$options['cache']))
-            self::$options['cache'] = array();
+        if (! is_array(self::$options['cache-js']))
+            self::$options['cache-js'] = array();
 
         if (self::$options['combine-js']) {
             $handles = array_keys($auto_compress_scripts);
             $handles = implode(', ', $handles);
-			
+			$localize_js = '';
+            
             // Calc "modified tag"
             $fileId = 0;
             foreach ($auto_compress_scripts as $handle => $script) {
@@ -308,48 +445,77 @@ class evScriptOptimizer {
 				else {
 					$fileId += $script['ver'].$script['src'];
 				}
+                
+                if (! empty($script['localize'])) {
+                    $localize_js .= "/* $handle */\n" . $script['localize'] . "\n";
+                }
             }			
 			
             $cache_name = md5(md5($handles).$fileId);
-            $cache_file_path = self::$cache_directory . $cache_name . '.js';
-            $cache_file_url = self::$cache_url . $cache_name . '.js';
-			
-			//if (isset($_GET['debug'])) print_r(self::$options['cache']);
-
-            //echo "$fileId<br>".self::$options['cache'][$cache_name]."<br>$cache_file_path<br>$cache_file_url<br>".is_readable($cache_file_path);
+            $cache_file_path = self::$options['cache-dir-path'] . $cache_name . '.js';
+            $cache_file_url = self::$options['cache-dir-url'] . $cache_name . '.js';
+            // echo "$fileId<br>".self::$options['cache'][$cache_name]."<br>$cache_file_path<br>$cache_file_url<br>".is_readable($cache_file_path);
+            
             // Find a cache
-            if (!empty(self::$options['cache'][$cache_name]) && is_readable($cache_file_path)) {
-                // Include script: ?>
-                <script type="text/javascript" src="<?php echo $cache_file_url; ?>">/*Cache!*/</script>
-                <?php
+            if (self::get_cache($cache_name, $cache_file_path, 'js')) {
+                
+                // Include script 
+                self::print_js_script_tag($cache_file_url, $conditional, true, $localize_js);
+                
                 $auto_compress_scripts = array();
                 return;
             }
 
             // Build cache
-            $scripts = '';
+            $scripts_text = '';
             foreach ($auto_compress_scripts as $handle => $script) {
 				$src = html_entity_decode($script['src']);
-                $scripts .= "/* $handle: ($src) */\n";
-                $contents = @file_get_contents(self::add_url_param($src, 'v', rand(1, 9999999)));
-				
-                if (self::$options['packing-js']) {
-                    require_once self::$plugin_path . '/JavaScriptPacker.php';
-                    $packer = new JavaScriptPacker($contents);
-                    $contents = $packer->pack();
+                $scripts_text .= "/* $handle: ($src) */\n";
+                
+                // Get script contents
+                $_remote_get = wp_remote_get(self::add_url_param($src, 'v', rand(1, 9999999)));
+                if (! is_wp_error($_remote_get) && $_remote_get['response']['code'] == 200) {
+                    $contents = $_remote_get['body'];
+                    /*
+                    [headers][last-modified] => Thu, 15 Nov 2012 02:26:22 GMT
+                    [headers][etag] => "be2599-16dda-4ce7f607fcf80"
+                    */
+                    
+                    if ((self::$options['packing-js']) 
+                       && (strpos($src, '.pack.') === false) 
+                       && (strpos($src, '.min.') === false)) {
+                        require_once self::$plugin_path . '/JavaScriptPacker.php';
+                        /*
+                        $contents = str_replace("\r", "\n", $contents);                        
+                        $pattern = '/([\}]+)(\s*\n+\s*)([a-z]+)/i';                                
+                        $replacement = "$1; $3 ";                        
+                        preg_match_all($pattern, $contents, $matches);
+                        echo '<pre>' . print_r($matches, true) . '</pre>';                        
+                        $contents = preg_replace($pattern, $replacement, $contents);                   
+                        */
+                        $packer = new JavaScriptPacker($contents);
+                        $contents = $packer->pack() . ";\n";
+                        
+                        $contents .= ";\n";
+                    }
+                    else {
+                        $contents = $contents.";\n\n";
+                    }
+                    $scripts_text .= $contents;
                 }
-                $scripts .= $contents . "\n";
+                else {
+                    $scripts_text .= "/*\nError loading script content: $src\n";
+                    $scripts_text .= "HTTP Code: {$_remote_get['response']['code']} ({$_remote_get['response']['message']})\n*/\n\n";
+                }
             }
-            $comment = "/*\nCache: ".$handles."\n*/\n";
-
+            $scripts_text = "/*\nCache: ".$handles."\n*/\n" . $scripts_text;
+            
             // Save cache
-            self::save_script($cache_file_path, $comment . $scripts);
-            self::$options['cache'][$cache_name] = $fileId;
-            update_option('spacker-options', self::$options);
+            self::save_cache($cache_file_path, $scripts_text, $cache_name, $fileId, 'js');
 
-            // Include script: ?>
-            <script type="text/javascript" src="<?php echo $cache_file_url; ?>"></script>
-            <?php
+            // Include script 
+            self::print_js_script_tag($cache_file_url, $conditional, false, $localize_js);
+
             $auto_compress_scripts = array();
             //--------------------------------------------------------------------------------
         }
@@ -365,34 +531,46 @@ class evScriptOptimizer {
 					$fileId += $script['ver'].$script['src'];
 				}
                 $cache_name = md5(md5($handle).$fileId);
-                $cache_file_path = self::$cache_directory . $cache_name . '.js';
-                $cache_file_url = self::$cache_url . $cache_name . '.js';
+                $cache_file_path = self::$options['cache-dir-path'] . $cache_name . '.js';
+                $cache_file_url = self::$options['cache-dir-url'] . $cache_name . '.js';
 
                 // Find a cache
-                if (!empty(self::$options['cache'][$cache_name]) && is_readable($cache_file_path)) {
-                    // Include script: ?>
-                    <script type="text/javascript" src="<?php echo $cache_file_url; ?>">/*Cache!*/</script>
-                    <?php
+                if (self::get_cache($cache_name, $cache_file_path, 'js')) {
+
+                    // Include script 
+                    self::print_js_script_tag($cache_file_url, $conditional, true, $script['localize']);
+
                     continue;
                 }
 
-                //echo "$src ($fileId)<br>";
-                $content = @file_get_contents(self::add_url_param($src, 'v', rand(1, 9999999)));
-                if (self::$options['packing-js']) {
-                    require_once self::$plugin_path . '/JavaScriptPacker.php';
-                    $packer = new JavaScriptPacker($content);
-                    $content = $packer->pack();
-                }
+                // Get script contents
+                $_remote_get = wp_remote_get(self::add_url_param($src, 'v', rand(1, 9999999)));
+                if (! is_wp_error($_remote_get) && $_remote_get['response']['code'] == 200) {
+                    $scripts_text = $_remote_get['body'];
+                    
+                    if ((self::$options['packing-js'])
+                       && (strpos($src, '.pack.') === false) 
+                       && (strpos($src, '.min.') === false)) {
+                        require_once self::$plugin_path . '/JavaScriptPacker.php';
+                        $packer = new JavaScriptPacker($scripts_text);
+                        $scripts_text = $packer->pack();
+                    }
 
-                // Save cache
-                $comment = "/* $handle: ($src) */\n";
-                self::save_script($cache_file_path, $comment . $content);
-                self::$options['cache'][$cache_name] = $fileId;
-                ?>
-                <script type="text/javascript" src="<?php echo $cache_file_url; ?>"></script>
-                <?php
+                    $scripts_text = "/* $handle: ($src) */\n" . $scripts_text;
+                    
+                    // Save cache
+                    self::save_cache($cache_file_path, $scripts_text, $cache_name, $fileId, 'js');
+
+                    // Include script 
+                    self::print_js_script_tag($cache_file_url, $conditional, false, $script['localize']);
+                }
+                else {
+                    // Include script 
+                    $error_message = "/* Error loading script content: $src; HTTP Code: {$_remote_get['response']['code']} ({$_remote_get['response']['message']}) */";
+                    self::print_js_script_tag($src, $conditional, false, $script['localize'], $error_message);
+                } 
             }
-            update_option('spacker-options', self::$options);
+            self::save_options();
             $auto_compress_scripts = array();
         }
     }
@@ -407,9 +585,6 @@ class evScriptOptimizer {
 		
         // url
         $dir = dirname($path).'/';
-		/*if (is_user_logged_in()) {
-			echo "$dir <br/>\n";
-		}*/
 	    $css = preg_replace('|url\(\'?"?([a-zA-Z0-9=\?\&\-_\s\./]*)\'?"?\)|', "url(\"$dir$1\")", $css);
 
         return $css;
@@ -423,77 +598,123 @@ class evScriptOptimizer {
 		}
 		return $path;
 	}
-	
+    
+    private function save_cache($cache_file_path, $cache, $cache_name, $fileId, $type) {
+        self::save_script($cache_file_path, $cache);
+        self::$options['cache-'.$type][$cache_name] = $fileId;
+        self::save_options();
+    }   
+    
+    private function get_cache($cache_name, $cache_file_path, $type) {
+        return (!empty(self::$options['cache-'.$type][$cache_name]) && is_readable($cache_file_path));
+    }
+
+    private function print_js_script_tag($url, $conditional, $is_cache, $localize = '', $error_message = '') {
+        
+        if ($localize) {
+            echo "<script type='text/javascript'>\n/* <![CDATA[ */\n$localize\n/* ]]> */\n</script>\n";
+        }
+            
+        if ($conditional) {
+            echo "<!--[if " . $conditional . "]>\n";        
+        }
+        
+        echo '<script type="text/javascript" src="' . $url . '">' . ($is_cache ? '/*Cache!*/' : '') . $error_message . '</script>' . "\n";
+
+        if ($conditional) {
+            echo "<![endif]-->" . "\n";
+        }
+    }    
+    
+    private function print_css_link_tag($url, $media, $conditional, $is_cache) {
+        if ($conditional)
+            echo "<!--[if " . $conditional . "]>\n";
+              
+        echo '<link rel="stylesheet" href="' . $url . '" type="text/css" media="' . $media . '" />' . (($is_cache && ! $conditional) ? ' <!-- Cache! -->' : '') . "\n";
+        
+        if ($conditional) 
+            echo "<![endif]-->" . (($is_cache && $conditional) ? ' <!-- Cache! -->' : '') . "\n";
+    }
 	
     /*
      * Print CSS
      */
-    function print_compressed_styles($media = 'screen') {
+    function print_styles_by_media($scripts, $media, $conditional) {
         global $auto_compress_styles;
-        if (! is_array($auto_compress_styles[$media]) || ! count($auto_compress_styles[$media]))
-            return;
+        if (! is_array($scripts) || ! count($scripts))
+            return false;
 
         $home = get_option('siteurl').'/';
         if (! is_array(self::$options['cache-css']))
             self::$options['cache-css'] = array();
 
         if (self::$options['combine-css']) {
-            $handles = array_keys($auto_compress_styles[$media]);
+            $handles = array_keys($scripts);
 			$handles = implode(', ', $handles);
 			
             // Calc "modified tag"
             $fileId = 0;
-            foreach ($auto_compress_styles[$media] as $handle => $script) {
+            foreach ($scripts as $handle => $script) {
                 if (! $script['external']) {
                     $path = self::get_path_by_url($script['src'], $home);
                     $fileId += @filemtime($path);
                 }
 				else {
-					$fileId += $script['ver'].$script['src'];
+					$fileId .= '-'.$script['ver'];
 				}
             }
+            if (empty($fileId)) 
+                $fileId = 'nover';
 			
             $cache_name = md5(md5($handles).$fileId);
-            $cache_file_path = self::$cache_directory . $cache_name . '.css';
-            $cache_file_url = self::$cache_url . $cache_name . '.css';
-            // echo "$fileId<br>".self::$options['cache-css'][$cache_name]."<br>$cache_file_path<br>$cache_file_url<br>".is_readable($cache_file_path);
+            $cache_file_path = self::$options['cache-dir-path'] . $cache_name . '.css';
+            $cache_file_url = self::$options['cache-dir-url'] . $cache_name . '.css';
 			
             // Find a cache
-            if (!empty(self::$options['cache-css'][$cache_name]) && is_readable($cache_file_path)) {
-                // Include script: ?>
-                <link rel="stylesheet" href="<?php echo $cache_file_url; ?>" type="text/css" media="<?php echo $media; ?>" /><!-- Cache! -->
-                <?php
-                $auto_compress_styles[$media] = array();
-                return;
+            if (self::get_cache($cache_name, $cache_file_path, 'css')) {
+                
+                // Include script 
+                self::print_css_link_tag($cache_file_url, $media, $conditional, true);
+
+                $scripts = array();
+                return true;
             }
 
             // Build cache
-            $scripts = '';
-            foreach ($auto_compress_styles[$media] as $handle => $script) {
+            $scripts_text = '';
+            foreach ($scripts as $handle => $script) {
                 $src = html_entity_decode($script['src']);
-                $scripts .= "/* $handle: ($src) */\n";
-                $content = @file_get_contents(self::add_url_param($src, 'v', rand(1, 9999999)));
+                $scripts_text .= "/* $handle: ($src) */\n";
 
-                if (self::$options['packing-css']) {
-                    $content = self::compress_css($content, $src);
+                // Get script contents
+                $_remote_get = wp_remote_get(self::add_url_param($src, 'v', rand(1, 9999999)));
+                if (! is_wp_error($_remote_get) && $_remote_get['response']['code'] == 200) {
+                    $content = $_remote_get['body'];
+
+                    if (self::$options['packing-css']) {
+                        $content = self::compress_css($content, $src);
+                    }
+                    $scripts_text .= $content . "\n";                    
                 }
-                $scripts .= $content . "\n";
+                else {
+                    $error_message = "/* Error loading script content: $src; HTTP Code: {$_remote_get['response']['code']} ({$_remote_get['response']['message']}) */";
+                    $scripts_text .= "$error_message\n";
+                    $scripts_text .= "@import url('" . $src . "'); \n\n";
+                }
             }
-            $comment = "/*\nCache: ".$handles."\n*/\n";
+            $scripts_text = "/*\nCache: ".$handles."\n*/\n" . $scripts_text;
 
             // Save cache
-            self::save_script($cache_file_path, $comment . $scripts);
-            self::$options['cache-css'][$cache_name] = $fileId;
-            update_option('spacker-options', self::$options);
+            self::save_cache($cache_file_path, $scripts_text, $cache_name, $fileId, 'css');
+            
+            // Include script 
+            self::print_css_link_tag($cache_file_url, $media, $conditional, false);
 
-            // Include script: ?>
-            <link rel="stylesheet" href="<?php echo $cache_file_url; ?>" type="text/css" media="<?php echo $media; ?>" />
-            <?php
-            $auto_compress_styles[$media] = array();
+            return true;
             //--------------------------------------------------------------------------------
         }
         else {
-            foreach ($auto_compress_styles[$media] as $handle => $script) {
+            foreach ($scripts as $handle => $script) {
                 $src = html_entity_decode($script['src']);
                 $fileId = 0;
                 if (! $script['external']) {
@@ -501,37 +722,49 @@ class evScriptOptimizer {
                     $fileId = @filemtime($path);
                 }
 				else {
-					$fileId += $script['ver'].$script['src'];
+					$fileId = $script['ver'];
 				}
+                if (empty($fileId)) 
+                    $fileId = 'nover';
+                
                 $cache_name = md5(md5($handle).$fileId);
-                $cache_file_path = self::$cache_directory . $cache_name . '.css';
-                $cache_file_url = self::$cache_url . $cache_name . '.css';
+                $cache_file_path = self::$options['cache-dir-path'] . $cache_name . '.css';
+                $cache_file_url = self::$options['cache-dir-url'] . $cache_name . '.css';
 
                 // Find a cache
-                if (!empty(self::$options['cache-css'][$cache_name]) && is_readable($cache_file_path)) {
-                    // Include script: ?>
-                    <link rel="stylesheet" href="<?php echo $cache_file_url; ?>" type="text/css" media="<?php echo $media; ?>" /><!-- Cache! -->
-                    <?php
+                if (self::get_cache($cache_name, $cache_file_path, 'css')) {
+                
+                    // Include script 
+                    self::print_css_link_tag($cache_file_url, $media, $conditional, true);
+                    
                     continue;
                 }
 
-                //echo "$src ($fileId)<br>";
-                $content = @file_get_contents(self::add_url_param($src, 'v', rand(1, 9999999)));
-                if (self::$options['packing-css']) {
-                    $content = self::compress_css($content, $src);
-                }
+                // Get script contents
+                $_remote_get = wp_remote_get(self::add_url_param($src, 'v', rand(1, 9999999)));
+                if (! is_wp_error($_remote_get) && $_remote_get['response']['code'] == 200) {
+                    $scripts_text = $_remote_get['body'];
+                    if (self::$options['packing-css']) {
+                        $scripts_text = self::compress_css($scripts_text, $src);
+                    }
 
-                // Save cache
-                $comment = "/* $handle: ($src) */\n";
-                self::save_script($cache_file_path, $comment . $content);
-                self::$options['cache-css'][$cache_name] = $fileId;
-                ?>
-                <link rel="stylesheet" href="<?php echo $cache_file_url; ?>" type="text/css" media="<?php echo $media; ?>" />
-                <?php
+                    $scripts_text = "/* $handle: ($src) */\n" . $scripts_text;
+
+                    // Save cache                   
+                    self::save_cache($cache_file_path, $scripts_text, $cache_name, $fileId, 'css');
+                    
+                    // Include script 
+                    self::print_css_link_tag($cache_file_url, $media, $conditional, false);
+                }
+                else {
+                    // Include script 
+                    self::print_css_link_tag($src, $media, $conditional, true);                    
+                    echo "<!-- Error loading script content: $src; HTTP Code: {$_remote_get['response']['code']} ({$_remote_get['response']['message']}) -->\n";
+                }
             }
-            update_option('spacker-options', self::$options);
-            $auto_compress_styles[$media] = array();
         }
+        
+        return true;
     }
 	
     function add_url_param($url, $name, $val) {
@@ -542,7 +775,7 @@ class evScriptOptimizer {
     }
 
     function save_script($filename, $content) {
-        if (is_writable(self::$upload_path)) {
+        if (is_writable(self::$options['cache-dir-path'])) {
             $fhandle = @fopen($filename, 'w+');
             if ($fhandle) fwrite($fhandle, $content, strlen($content));
         }
@@ -550,13 +783,13 @@ class evScriptOptimizer {
     }
 
     function head() {
-        if (self::$options['combine-js'] == 'combine') {
-            self::print_compressed_scripts();
+        /*if (self::$options['combine-js'] == 'combine') {
+            self::print_scripts();
         }
 		if (self::$options['combine-css']) {
-			self::wp_head_print_styles();
+			self::print_styles();
 		}
-		
+		*/
 		if (self::$options['strict-ordering-beta']) {
             self::ordering_stop();
         }
@@ -565,13 +798,17 @@ class evScriptOptimizer {
     function footer() {
         if (self::$options['combine-js']) {
             self::$js_printed = true;
-            self::print_compressed_scripts();
+            self::print_scripts();
+        }
+
+        if (self::$options['combine-css']) {
+            self::$css_printed = true;
+            self::print_styles();
         }
     }
 	
     function ordering_start() {
 		self::$ordering_started = true;
-		//echo "<br/>\nordering_start(+)\n<br/>";
 		ob_start();		
 	}	
 	
@@ -583,7 +820,6 @@ class evScriptOptimizer {
 
 		$html = self::order_scripts($html);
 		echo $html;
-		//echo "<br/>\nordering_stop(-)\n<br/>";
 	}
 	
 	function order_scripts($html){
@@ -612,18 +848,21 @@ class evScriptOptimizer {
 		
 		$html .= "\n".$scripts."\n";
 		$html = str_replace('</title>', "</title>\n".$if_scripts, $html);
-		/*
-		$res = array(
-					'html' => $html,
-					'scripts' => $scripts,
-					'if_scripts' => $if_scripts,
-				);
-				
-		//print_r($res); exit;
-		*/
+
 		return $html;
 	}
 }
 
-//evScriptOptimizer::init();
 add_action('init', array('evScriptOptimizer', 'init'));
+
+/*
+function wp_print_styles( $handles = false ) {
+	if ( '' === $handles ) // for wp_head
+		$handles = false;
+
+	if ( ! $handles )  // <-------------------------------  TODO: Write to WP developers
+		do_action( 'wp_print_styles' );
+
+	...
+}
+*/

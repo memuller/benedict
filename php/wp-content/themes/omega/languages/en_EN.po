@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Omega WordPress Theme\n"
-"POT-Creation-Date: 2014-01-26 20:56+0700\n"
-"PO-Revision-Date: 2014-01-26 20:56+0700\n"
+"POT-Creation-Date: 2014-04-11 21:04+0700\n"
+"PO-Revision-Date: 2014-04-11 21:04+0700\n"
 "Last-Translator: Hence Wijaya <hence.wijaya@gmail.com>\n"
 "Language-Team: ThemeHall <hello@themehall.com>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-KeywordsList: _e;__;esc_attr_e;esc_attr__;esc_html_e;esc_html__;_x;"
 "_n;_x:1,2c;_n:1,2;_;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ../\n"
@@ -29,7 +29,7 @@ msgid ""
 "below."
 msgstr ""
 
-#: attachment-image.php:27 lib/hooks.php:254
+#: attachment-image.php:27 lib/hooks.php:252
 msgid "Pages:"
 msgstr ""
 
@@ -39,11 +39,7 @@ msgstr ""
 
 #: comment.php:18
 #, php-format
-msgid "<cite class=\"fn\">%s</cite> <span class=\"says\">%s:</span>"
-msgstr ""
-
-#: comment.php:18
-msgid "says"
+msgid "<cite class=\"fn\">%s</cite>"
 msgstr ""
 
 #: comment.php:21
@@ -55,361 +51,20 @@ msgstr ""
 msgid "(Edit)"
 msgstr ""
 
-#: functions.php:37
+#: functions.php:39
 msgid "Content"
 msgstr ""
 
-#: functions.php:38
+#: functions.php:40
 msgid "Content / Sidebar"
 msgstr ""
 
-#: functions.php:39
+#: functions.php:41
 msgid "Sidebar / Content"
-msgstr ""
-
-#: lib/hooks.php:60
-msgctxt "nav menu location"
-msgid "Primary"
-msgstr ""
-
-#: lib/hooks.php:76
-msgctxt "sidebar"
-msgid "Primary"
-msgstr ""
-
-#: lib/hooks.php:77
-msgid ""
-"The main sidebar. It is displayed on either the left or right side of the "
-"page based on the chosen layout."
-msgstr ""
-
-#: lib/hooks.php:180
-msgid "Copyright &#169; [the-year] [site-link]."
-msgstr ""
-
-#: lib/hooks.php:180
-msgid "Theme by [author-uri]."
-msgstr ""
-
-#: lib/hooks.php:385
-#, php-format
-msgid "Search Results for: %s"
-msgstr ""
-
-#: lib/hooks.php:395
-#, php-format
-msgid "Author: %s"
-msgstr ""
-
-#: lib/hooks.php:403
-#, php-format
-msgid "Day: %s"
-msgstr ""
-
-#: lib/hooks.php:406
-#, php-format
-msgid "Month: %s"
-msgstr ""
-
-#: lib/hooks.php:409
-#, php-format
-msgid "Year: %s"
-msgstr ""
-
-#: lib/hooks.php:412 lib/extensions/breadcrumb-trail.php:177
-#: lib/functions/template-general.php:276
-msgid "Archives"
 msgstr ""
 
 #: lib/admin/meta-box-post-template.php:38
 msgid "Template"
-msgstr ""
-
-#: lib/admin/meta-box-theme-about.php:26 lib/admin/meta-box-theme-about.php:29
-#, php-format
-msgid "About %s"
-msgstr ""
-
-#: lib/admin/meta-box-theme-about.php:56
-msgid "Theme:"
-msgstr ""
-
-#: lib/admin/meta-box-theme-about.php:64
-msgid "Version:"
-msgstr ""
-
-#: lib/admin/meta-box-theme-about.php:72
-msgid "Author:"
-msgstr ""
-
-#: lib/admin/meta-box-theme-about.php:80
-msgid "Description:"
-msgstr ""
-
-#: lib/admin/meta-box-theme-about.php:91
-msgid "Framework:"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:25
-#: lib/admin/meta-box-theme-archives.php:113
-#: lib/admin/meta-box-theme-archives.php:127
-msgid "Content Archives"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:37
-msgid "Select one of the following:"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:43
-msgid "Display full post"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:44
-msgid "Display post excerpts"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:56
-msgid "Prevent page scroll when clicking the More Link"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:62
-#: lib/classes/widget-featured-posts.php:402
-msgid "Limit content to"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:64
-#: lib/classes/widget-featured-posts.php:404
-msgid "characters"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:67
-msgid ""
-"Select \"Display post excerpts\" will limit the text and strip all "
-"formatting from the text displayed. Set 0 characters will display the first "
-"55 words (default)"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:71
-msgid "More Text (if applicable):"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:76
-msgid "Include the Featured Image?"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:80
-msgid "Image Size:"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:90
-msgid "Select Post Navigation Format:"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:92
-msgid "Previous / Next"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:93
-msgid "Numeric"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:96
-msgid ""
-"These options will affect any blog listings page, including archive, author, "
-"blog, category, search, and tag pages."
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:99
-msgid "Disable single post navigation link?"
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:114
-msgid ""
-"You may change the site wide Content Archives options to control what "
-"displays in the site's Archives."
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:115
-msgid ""
-"Archives include any pages using the blog template, category pages, tag "
-"pages, date archive, author archives, and the latest posts if there is no "
-"custom home page."
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:116
-msgid ""
-"The first option allows you to display the full post or the post excerpt. "
-"The Display full post setting will display the entire post including HTML "
-"code up to the <!--more--> tag if used (this is HTML for the comment tag "
-"that is not displayed in the browser)."
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:117
-msgid ""
-"The Display post excerpt setting will display the first 55 words of the post "
-"after also stripping any included HTML or the manual/custom excerpt added in "
-"the post edit screen."
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:118
-msgid ""
-"It may also be coupled with the second field \"Limit content to [___] "
-"characters\" to limit the content to a specific number of letters or spaces."
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:119
-msgid ""
-"The 'Include post image?' setting allows you to show a thumbnail of the "
-"first attached image or currently set featured image."
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:120
-msgid ""
-"This option should not be used with the post content unless the content is "
-"limited to avoid duplicate images."
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:121
-msgid ""
-"The 'Image Size' list is populated by the available image sizes defined in "
-"the theme."
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:122
-msgid ""
-"Post Navigation format allows you to select one of two navigation methods."
-msgstr ""
-
-#: lib/admin/meta-box-theme-archives.php:123
-msgid ""
-"There is also a checkbox to disable previous & next navigation links on "
-"single post"
-msgstr ""
-
-#: lib/admin/meta-box-theme-comments.php:29
-#: lib/admin/meta-box-theme-comments.php:94
-#: lib/admin/meta-box-theme-comments.php:101
-msgid "Comments and Trackbacks"
-msgstr ""
-
-#: lib/admin/meta-box-theme-comments.php:44
-msgid "Enable Comments"
-msgstr ""
-
-#: lib/admin/meta-box-theme-comments.php:46
-#: lib/admin/meta-box-theme-comments.php:55
-msgid "on posts?"
-msgstr ""
-
-#: lib/admin/meta-box-theme-comments.php:49
-#: lib/admin/meta-box-theme-comments.php:58
-msgid "on pages?"
-msgstr ""
-
-#: lib/admin/meta-box-theme-comments.php:53
-msgid "Enable Trackbacks"
-msgstr ""
-
-#: lib/admin/meta-box-theme-comments.php:61
-msgid ""
-"Comments and Trackbacks can also be disabled on a per post/page basis when "
-"creating/editing posts/pages."
-msgstr ""
-
-#: lib/admin/meta-box-theme-comments.php:95
-msgid ""
-"This allows a site wide decision on whether comments and trackbacks "
-"(notifications when someone links to your page) are enabled for posts and "
-"pages."
-msgstr ""
-
-#: lib/admin/meta-box-theme-comments.php:96
-msgid ""
-"If you enable comments or trackbacks here, it can be disabled on an "
-"individual post or page. If you disable here, they cannot be enabled on an "
-"individual post or page."
-msgstr ""
-
-#: lib/admin/meta-box-theme-options.php:38
-#: lib/admin/meta-box-theme-options.php:47 lib/admin/theme-settings.php:39
-#: lib/admin/theme-settings.php:40 lib/admin/theme-settings.php:184
-#: lib/functions/omega-extras.php:87
-msgid "Theme Settings"
-msgstr ""
-
-#: lib/admin/meta-box-theme-options.php:39
-msgid ""
-"Your Theme Settings provides control over how the theme works. You will be "
-"able to control a lot of common and even advanced features from this menu. "
-"Some child themes may add additional menu items to this list. Each of the "
-"boxes can be collapsed by clicking the box header and expanded by doing the "
-"same. They can also be dragged into any order you desire or even hidden by "
-"clicking on \"Screen Options\" in the top right of the screen and "
-"\"unchecking\" the boxes you do not want to see."
-msgstr ""
-
-#: lib/admin/meta-box-theme-options.php:42
-#: lib/admin/meta-box-theme-options.php:52 lib/admin/theme-settings.php:185
-msgid "Customize"
-msgstr ""
-
-#: lib/admin/meta-box-theme-options.php:43
-msgid ""
-"The theme customizer is available for a real time editing environment where "
-"theme options can be tried before being applied to the live site. Click "
-"'Customize' button below to personalize your theme"
-msgstr ""
-
-#: lib/admin/meta-box-theme-options.php:58
-msgid "For more information:"
-msgstr ""
-
-#: lib/admin/meta-box-theme-options.php:59
-msgid "Get Support"
-msgstr ""
-
-#: lib/admin/meta-box-theme-scripts.php:25
-#: lib/admin/meta-box-theme-scripts.php:64
-#: lib/admin/meta-box-theme-scripts.php:69
-msgid "Header and Footer Scripts"
-msgstr ""
-
-#: lib/admin/meta-box-theme-scripts.php:40
-#: lib/admin/meta-box-theme-scripts.php:47
-#, php-format
-msgid "Insert scripts or code before the closing %s tag in the document source"
-msgstr ""
-
-#: lib/admin/meta-box-theme-scripts.php:65
-msgid ""
-"This provides you with two fields that will output to the head section of "
-"your site and just before the closing body tag. These will appear on every "
-"page of the site and are a great way to add analytic code, Google Font and "
-"other scripts. You cannot use PHP in these fields."
-msgstr ""
-
-#: lib/admin/theme-settings.php:159
-msgid "Default setting restored."
-msgstr ""
-
-#: lib/admin/theme-settings.php:220
-msgid "Update Settings"
-msgstr ""
-
-#: lib/admin/theme-settings.php:221
-msgid "Restore Defaults"
-msgstr ""
-
-#: lib/admin/theme-settings.php:221
-msgid "Click OK to reset. Any theme settings will be lost!"
-msgstr ""
-
-#: lib/admin/theme-settings.php:278
-msgid "Documentation"
-msgstr ""
-
-#: lib/admin/theme-settings.php:282
-msgid "Support"
 msgstr ""
 
 #: lib/classes/customize-control-background-image.php:37
@@ -417,96 +72,95 @@ msgctxt "theme customizer tab"
 msgid "Default"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:147 lib/classes/omega-media-meta.php:270
+#: lib/classes/media-meta.php:147 lib/classes/media-meta.php:270
 #: lib/functions/template-media.php:94
 #, php-format
 msgid "%1$s &#215; %2$s"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:148 lib/classes/omega-media-meta.php:270
+#: lib/classes/media-meta.php:148 lib/classes/media-meta.php:270
 msgid "Dimensions"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:154
-#: lib/classes/widget-featured-posts.php:294
+#: lib/classes/media-meta.php:154 lib/classes/widget-featured-posts.php:294
 msgid "Date"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:158
+#: lib/classes/media-meta.php:158
 msgid "Camera"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:162
+#: lib/classes/media-meta.php:162
 msgid "Aperture"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:167
+#: lib/classes/media-meta.php:167
 #, php-format
 msgid "%s mm"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:167
+#: lib/classes/media-meta.php:167
 msgid "Focal Length"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:173
+#: lib/classes/media-meta.php:173
 msgid "International Organization for Standardization"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:173
+#: lib/classes/media-meta.php:173
 msgid "ISO"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:192
+#: lib/classes/media-meta.php:192
 #, php-format
 msgid "%s sec"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:192
+#: lib/classes/media-meta.php:192
 msgid "Shutter Speed"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:211 lib/classes/omega-media-meta.php:265
+#: lib/classes/media-meta.php:211 lib/classes/media-meta.php:265
 msgid "Run Time"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:215
+#: lib/classes/media-meta.php:215
 msgid "Artist"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:219
+#: lib/classes/media-meta.php:219
 msgid "Composer"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:223
+#: lib/classes/media-meta.php:223
 msgid "Album"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:227
+#: lib/classes/media-meta.php:227
 msgid "Track"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:231
+#: lib/classes/media-meta.php:231
 msgid "Year"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:235
+#: lib/classes/media-meta.php:235
 msgid "Genre"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:238 lib/classes/omega-media-meta.php:273
+#: lib/classes/media-meta.php:238 lib/classes/media-meta.php:273
 msgid "File Name"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:242 lib/classes/omega-media-meta.php:277
+#: lib/classes/media-meta.php:242 lib/classes/media-meta.php:277
 msgid "File Size"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:246 lib/classes/omega-media-meta.php:281
+#: lib/classes/media-meta.php:246 lib/classes/media-meta.php:281
 msgid "File Type"
 msgstr ""
 
-#: lib/classes/omega-media-meta.php:250 lib/classes/omega-media-meta.php:285
+#: lib/classes/media-meta.php:250 lib/classes/media-meta.php:285
 msgid "Mime Type"
 msgstr ""
 
@@ -707,6 +361,14 @@ msgstr ""
 msgid "No Content"
 msgstr ""
 
+#: lib/classes/widget-featured-posts.php:402
+msgid "Limit content to"
+msgstr ""
+
+#: lib/classes/widget-featured-posts.php:404
+msgid "characters"
+msgstr ""
+
 #: lib/classes/widget-featured-posts.php:409
 msgid "More Text (if applicable)"
 msgstr ""
@@ -736,6 +398,11 @@ msgstr ""
 #: lib/extensions/breadcrumb-trail.php:176
 #: lib/functions/template-general.php:431
 msgid "404 Not Found"
+msgstr ""
+
+#: lib/extensions/breadcrumb-trail.php:177
+#: lib/functions/template-general.php:276 lib/hooks.php:391
+msgid "Archives"
 msgstr ""
 
 #: lib/extensions/breadcrumb-trail.php:179
@@ -1055,17 +722,17 @@ msgstr ""
 
 #: lib/extensions/omega-child-page.php:10
 #: lib/extensions/omega-child-page.php:11
-#: lib/extensions/omega-child-page.php:58
-#: lib/extensions/omega-child-page.php:113
+#: lib/extensions/omega-child-page.php:61
+#: lib/extensions/omega-child-page.php:116
 msgid "Omega Child Themes"
 msgstr ""
 
-#: lib/extensions/omega-child-page.php:62
+#: lib/extensions/omega-child-page.php:65
 msgid ""
 "Personalize your Omega powered site with one of Omega child themes below"
 msgstr ""
 
-#: lib/extensions/omega-child-page.php:93
+#: lib/extensions/omega-child-page.php:96
 msgid "Child Themes"
 msgstr ""
 
@@ -1123,6 +790,10 @@ msgstr ""
 
 #: lib/functions/media.php:33
 msgid "Post Thumbnail"
+msgstr ""
+
+#: lib/functions/omega-extras.php:87
+msgid "Theme Settings"
 msgstr ""
 
 #: lib/functions/omega-template-tags.php:37
@@ -1225,6 +896,55 @@ msgstr ""
 msgid "(Untitled)"
 msgstr ""
 
+#: lib/hooks.php:58
+msgctxt "nav menu location"
+msgid "Primary"
+msgstr ""
+
+#: lib/hooks.php:74
+msgctxt "sidebar"
+msgid "Primary"
+msgstr ""
+
+#: lib/hooks.php:75
+msgid ""
+"The main sidebar. It is displayed on either the left or right side of the "
+"page based on the chosen layout."
+msgstr ""
+
+#: lib/hooks.php:178
+msgid "Copyright &#169; [the-year] [site-link]."
+msgstr ""
+
+#: lib/hooks.php:178
+msgid "Theme by [author-uri]."
+msgstr ""
+
+#: lib/hooks.php:364
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: lib/hooks.php:374
+#, php-format
+msgid "Author: %s"
+msgstr ""
+
+#: lib/hooks.php:382
+#, php-format
+msgid "Day: %s"
+msgstr ""
+
+#: lib/hooks.php:385
+#, php-format
+msgid "Month: %s"
+msgstr ""
+
+#: lib/hooks.php:388
+#, php-format
+msgid "Year: %s"
+msgstr ""
+
 #: partials/comments-loop-error.php:4
 #, php-format
 msgid ""
@@ -1266,7 +986,7 @@ msgid "on [post_date] [post_comments] [post_edit before=\" | \"]"
 msgstr ""
 
 #: partials/entry-byline.php:12
-msgid "on [post_date]  [post_edit before=\" | \"]"
+msgid "on [post_date] [post_edit before=\" | \"]"
 msgstr ""
 
 #: partials/entry-footer.php:3

@@ -88,7 +88,7 @@
 				mastheadOffset = $( '.header-main' ).offset().top - toolbarOffset;
 
 				_window.on( 'scroll.ridizain', function() {
-					if ( ( window.scrollY > mastheadOffset ) && ( mastheadHeight < 98 ) ) {
+					if ( ( $( window ).scrollTop() > mastheadOffset ) && ( mastheadHeight < 98 ) ){
 						body.addClass( 'masthead-fixed' );
 					} else {
 						body.removeClass( 'masthead-fixed' );

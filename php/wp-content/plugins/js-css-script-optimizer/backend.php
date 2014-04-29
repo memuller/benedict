@@ -1,6 +1,8 @@
 <?php
 class evScriptOptimizerBackend {
 
+    static $saved = false;
+    
     /**
      * init
      */
@@ -10,11 +12,25 @@ class evScriptOptimizerBackend {
         add_action('admin_head',                 array(__CLASS__, 'ajax_javascript'));
         add_action('admin_head',                 array(__CLASS__, 'admin_css'));
         add_action('wp_ajax_spacker_inc_script', array(__CLASS__, 'wp_ajax_spacker_inc_script'));
+        add_action('admin_notices',              array(__CLASS__, 'show_admin_messages'));
+        
+        if (is_admin()) {
+            if (isset($_POST['spacker']) && is_array($_POST['spacker'])) {
+                //evScriptOptimizer::$options = $_POST['spacker'];
+                self::options_join(evScriptOptimizer::$options, $_POST['spacker']);
+                
+                evScriptOptimizer::$options['cache-js'] = array();
+                evScriptOptimizer::$options['cache-css'] = array();
+                //print_r(evScriptOptimizer::$options);
+
+                evScriptOptimizer::save_options();
+                evScriptOptimizer::check_cache_directory();
+                self::$saved = true;
+            }
+        }
     }
 
     function activation_hook() {
-        self::cache_directory();
-        
         if (! is_array(evScriptOptimizer::$options['inc-js'])) {
             evScriptOptimizer::$options['inc-js'] = array(
                                                         'jquery' => array(
@@ -23,28 +39,22 @@ class evScriptOptimizerBackend {
         }
     }
 
-    function cache_directory() {
-        if (is_writable(evScriptOptimizer::$cache_directory)) {
-            evScriptOptimizer::$options['cache_dir_message'] = false;
-            return true;
-        }
-        else {
-            if (is_writable(evScriptOptimizer::$upload_path)) {
-                if (@mkdir(evScriptOptimizer::$cache_directory) && @chmod(evScriptOptimizer::$cache_directory, 0777)) {
-                    evScriptOptimizer::$options['cache_dir_message'] = false;
-                    return true;
-                }
-                else {
-                    evScriptOptimizer::$options['cache_dir_message'] = sprintf(__('Cannot create cache directory "%s". Please create this folder with a permissions to "write" (777)', 'spacker'), evScriptOptimizer::$upload_path);
-                }
-            }
-            else {
-                evScriptOptimizer::$options['cache_dir_message'] = sprintf(__('Uploads directory is not writeable by the web server. Please set permissions to 777 for the "%s"', 'spacker'), evScriptOptimizer::$upload_path);
-            }
-        }
-        return false;
-    }
 
+    function show_admin_messages() {
+        if (! evScriptOptimizer::check_cache_directory()) {
+            // Only show to admins
+            if (current_user_can('manage_options')) {
+               ?>
+               <div id="message" class="error"><p><strong><?php echo self::get_cache_dir_message(); ?></strong></p></div>
+               <?php
+            }
+        }
+    }
+    
+	public function get_cache_dir_message() {
+        return sprintf(__('Cannot create cache directory "%s". Please create this folder with a "write" (777) permissions.', 'spacker'), evScriptOptimizer::$options['cache-dir-path']);
+    }
+    
     /**
      * admin_menu action
      */
@@ -63,19 +73,6 @@ class evScriptOptimizerBackend {
         if (!current_user_can('manage_options')) {
             wp_die( __('You do not have sufficient permissions to access this page.') );
         }
-
-        $saved = false;
-        if (isset($_POST['spacker']) && is_array($_POST['spacker'])) {
-            //evScriptOptimizer::$options = $_POST['spacker'];
-            self::options_join(evScriptOptimizer::$options, $_POST['spacker']);
-			
-            evScriptOptimizer::$options['cache'] = array();
-            evScriptOptimizer::$options['cache-css'] = array();
-            //print_r(evScriptOptimizer::$options);
-
-            update_option('spacker-options', evScriptOptimizer::$options);
-            $saved = true;
-        }
         ?>
         <div class="wrap">
             <div class="icon32" id="icon-tools"><br></div>
@@ -83,31 +80,50 @@ class evScriptOptimizerBackend {
                 <?php _e('JS & CSS Script Optimizer Options', 'spacker') ?>
                 <sup><a href="http://4coder.info/en/projects/wordpress-plugins/js-css-script-optimizer/?wpopt"><?php _e('(i)', 'spacker') ?></a></sup>
 				
-				<div class="spacker-donate">
-					<form target="_blank" method="post" action="https://www.moneybookers.com/app/payment.pl">
-						<fieldset>
-							<legend><?php _e('Donate with Moneybookers:', 'spacker') ?></legend>
+                <div class="spacker-donate">
 
-							<input type="hidden" value="evgennniy@gmail.com" name="pay_to_email">
-							<input type="hidden" value="http://4coder.info/donate-thanks/" name="return_url">
+                    <h4>Support "Script Optimizer"</h4>
+                    
+                    <p>Please <a target="_blank" href="http://wordpress.org/support/view/plugin-reviews/js-css-script-optimizer">write a review</a> to this plugin.</p>
 
-							<input type="text" size="5" value="5.00" name="amount">
+                    <p>Donate using Visa/MasterCard:</p>
+                        
+                    <form action="https://www.liqpay.com/api/pay" accept-charset="utf-8" method="POST" target="_blank">
+                        <input type="hidden" value="i0060075195" name="public_key">
+                        <input type="hidden" value="10" name="amount">
+                        <input type="hidden" value="USD" name="currency">
+                        <input type="hidden" value="4Coder.Info website" name="description">
+                        <input type="hidden" value="donate" name="type">
+                        <input type="hidden" value="en" name="language">
+                        <input type="image" name="btn_text" src="//static.liqpay.com/buttons/d1en.radius.png">
+                    </form>
 
-							<select size="1" name="currency">
-								<option value="USD">$ USD</option>
-								<option value="EUR">&#8364; EUR</option>
-								<option value="GBP">&pound; GBP</option>
-								<option value="JPY">&yen; JPY</option>
-								<option value="CAD">$ CAD</option>
-								<option value="AUD">$ AUD</option>
-							</select>
+                    <p>Donate using Moneybookers:</p>
 
-							<input type="submit" value="Donate!" alt="Click to make a donation" class="button-primary">
-							<input type="hidden" value="EN" name="language">
-							<input type="hidden" value="Donation mission" name="detail1_description">
-							<input type="hidden" value="Donation to evolve 4Coder.info" name="detail1_text">
-						</fieldset>
-					</form> 
+                    <form action="https://www.moneybookers.com/app/payment.pl" method="post" target="_blank">
+                        <fieldset>
+                            <input type="hidden" name="pay_to_email" value="evgennniy@gmail.com">
+                            <input type="hidden" name="return_url" value="http://4coder.info/donate-thanks/">
+
+                            <input type="text" name="amount" value="5.00" size="5">
+
+                            <select name="currency" size="1">
+                                <option value="USD">$ USD</option>
+                                <option value="EUR">€ EUR</option>
+                                <option value="GBP">£ GBP</option>
+                                <option value="JPY">¥ JPY</option>
+                                <option value="CAD">$ CAD</option>
+                                <option value="AUD">$ AUD</option>
+                            </select>
+
+                            <input type="submit" class="button-primary" alt="Click to make a donation" value="Donate!">
+                            <input type="hidden" name="language" value="EN">
+                            <input type="hidden" name="detail1_description" value="Donation mission">
+                            <input type="hidden" name="detail1_text" value="Donation to evolve 4Coder.info">
+                        </fieldset>
+                    </form> 
+                    
+                    <p>Thanks for using!</p>
 				</div>
             </h2>
             <ul class="subsubsub" id="spacker-menu">
@@ -118,15 +134,9 @@ class evScriptOptimizerBackend {
             </ul>
             <br class="clear"/>
 
-            <?php if (! self::cache_directory()) { ?>
-            <div class="error" id="message">
-                <p><?php echo evScriptOptimizer::$options['cache_dir_message']; ?></p>
-            </div>
-            <?php } ?>
-
-            <?php if ($saved) { ?>
+            <?php if (self::$saved) { ?>
             <div class="updated" id="message">
-                <p><strong><?php _e('Options have been saved! Cache clear.', 'spacker'); ?></strong></p>
+                <p><strong><?php _e('Options have been saved! Cache cleared.', 'spacker'); ?></strong></p>
             </div>
             <?php } ?>
             
@@ -152,7 +162,19 @@ class evScriptOptimizerBackend {
                 <td>
 					<input name="spacker[enable-plugin]" type="hidden" value="0" />
                     <input name="spacker[enable-plugin]" type="checkbox" id="enable-plugin" value="1" <?php if (evScriptOptimizer::$options['enable-plugin']) echo 'checked'; ?> />
-                    <label for="enable-plugin"><?php _e('Enable <sup>new</sup>', 'spacker'); ?></label>
+                    <label for="enable-plugin"><?php _e('Enable', 'spacker'); ?></label>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><label for="exclude-js"><?php _e('Cache directory URL', 'spacker'); ?></label></th>
+                <td>
+                    <input type="text" name="spacker[cache-dir-url]" value="<?php echo esc_attr(evScriptOptimizer::$options['cache-dir-url']); ?>" style="width: 500px" /><br/>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><label for="exclude-js"><?php _e('Cache directory path', 'spacker'); ?></label></th>
+                <td>
+                    <input type="text" name="spacker[cache-dir-path]" value="<?php echo esc_attr(evScriptOptimizer::$options['cache-dir-path']); ?>" style="width: 500px" /><br/>
                 </td>
             </tr>
             <tr valign="top">
@@ -160,14 +182,14 @@ class evScriptOptimizerBackend {
                     <h3><?php _e('JavaScript output options'); ?></h3>
                 </td>
             </tr>
-            <tr valign="top">
+            <!--tr valign="top">
                 <th scope="row"><?php _e('Strict ordering', 'spacker'); ?></th>
                 <td>
 					<input name="spacker[strict-ordering-beta]" type="hidden" value="0" />
                     <input name="spacker[strict-ordering-beta]" type="checkbox" id="strict-ordering-beta" value="1" <?php if (evScriptOptimizer::$options['strict-ordering-beta']) echo 'checked'; ?> />
                     <label for="strict-ordering-beta"><?php _e('Better compatibility with other plugins <sup>betta</sup>', 'spacker'); ?></label>
                 </td>
-            </tr>
+            </tr-->
             <tr valign="top">
                 <th scope="row"><?php _e('Ignore external JavaScript', 'spacker'); ?></th>
                 <td>
@@ -219,11 +241,11 @@ class evScriptOptimizerBackend {
                 </td>
             </tr>
             <tr valign="top">
-                <th scope="row"><?php _e('For self-hosted only', 'spacker'); ?></th>
+                <th scope="row"><?php _e('Ignore external CSS', 'spacker'); ?></th>
                 <td>
 					<input name="spacker[only-selfhosted-css]" type="hidden" value="0" />
                     <input name="spacker[only-selfhosted-css]" type="checkbox" id="only-selfhosted-css" value="1" <?php if (evScriptOptimizer::$options['only-selfhosted-css']) echo 'checked'; ?> />
-                    <label for="only-selfhosted-css"><?php _e('Ignore external CSS', 'spacker'); ?></label>
+                    <label for="only-selfhosted-css"><?php _e('For self-hosted only', 'spacker'); ?></label>
                 </td>
             </tr>
             <tr valign="top">
@@ -238,8 +260,8 @@ class evScriptOptimizerBackend {
                 <th scope="row"><?php _e('Style-sheets packing', 'spacker'); ?></th>
                 <td>
 					<input name="spacker[packing-css]" type="hidden" value="0" />
-                    <input name="spacker[packing-css]" type="checkbox" id="packing-css" value="1" <?php if (evScriptOptimizer::$options['packing-css']) echo 'checked'; ?> />
-                    <label for="packing-css"><?php _e('Pack CSS files (remove comments, tabs, spaces, newlines)', 'spacker'); ?></label>
+                    <input disabled="disabled" name="spacker[packing-css]" type="checkbox" id="packing-css" value="1" <?php /* if (evScriptOptimizer::$options['packing-css']) */ echo 'checked'; ?> />
+                    <label for="packing-css"><?php _e('Minify CSS files (remove comments, tabs, spaces, newlines)', 'spacker'); ?></label>
                 </td>
             </tr>
             <tr valign="top">
@@ -260,7 +282,7 @@ class evScriptOptimizerBackend {
 
                     document.getElementById('only-selfhosted-css').disabled = ! ch;
                     document.getElementById('combine-css').disabled = ! ch;
-                    document.getElementById('packing-css').disabled = ! ch;
+                    //document.getElementById('packing-css').disabled = ! ch;
                     document.getElementById('exclude-css').disabled = ! ch;
                 }
                 spacker_enable_css_options();
@@ -344,7 +366,6 @@ class evScriptOptimizerBackend {
 			<?php _e("Include next JavaScript", 'spacker'); ?>
 			<span id="spacker-ajax-status"><?php _e('Loading...', 'spacker'); ?></span>
 		</h3>
-		<p><?php _e('You can delete the hardcoded JavaScript inclluding from the theme files and to include the JavaScript files here.', 'spacker'); ?></p>
         <div id="spacker_inc_js_table">
             <?php self::get_spacker_inc_js_table(); ?>
         </div>
@@ -365,7 +386,6 @@ class evScriptOptimizerBackend {
 			<?php _e('Include next StyleSheet', 'spacker'); ?>
 			<span id="spacker-ajax-status"><?php _e('Loading...', 'spacker'); ?></span>
 		</h3>
-		<p><?php _e('You can delete the hardcoded CSS inclluding from the theme files and to include the CSS files here.', 'spacker'); ?></p>
         <div id="spacker_inc_css_table">
             <?php self::get_spacker_inc_css_table(); ?>
         </div>
@@ -401,7 +421,7 @@ class evScriptOptimizerBackend {
                 <li>Pack scripts using Dean Edwards's JavaScript Packer</li>
                 <li>You can move all JavaScripts to the bottom</li>
                 <li>Combine all CSS scripts into the single files (with grouping by "media")</li>
-                <li>Pack CSS files (remove comments, tabs, spaces, newlines)</li>
+                <li>Minify CSS files (remove comments, tabs, spaces, newlines)</li>
                 <li>Ability to include JavaScript and CSS files (new)</li>
                 <li>If any script fails and shows error you can add it to exclude list</li>
             </ul>
@@ -450,7 +470,7 @@ class evScriptOptimizerBackend {
             else {
                 // Add script
                 evScriptOptimizer::$options['inc-js'][$name] = array('name'=> $name, 'url' => $url);
-                update_option('spacker-options', evScriptOptimizer::$options);
+                evScriptOptimizer::save_options();
             }
 
             // Output
@@ -478,7 +498,7 @@ class evScriptOptimizerBackend {
             else {
                 // Delete script
                 unset(evScriptOptimizer::$options['inc-js'][$name]);
-                update_option('spacker-options', evScriptOptimizer::$options);
+                evScriptOptimizer::save_options();
             }
 
             // Output
@@ -517,7 +537,7 @@ class evScriptOptimizerBackend {
             else {
                 // Add script
 				evScriptOptimizer::$options['inc-css'][$name] = array('name'=> $name, 'url' => $url, 'media' => $media, 'loggedIn' => $loggedIn);
-                update_option('spacker-options', evScriptOptimizer::$options);
+                evScriptOptimizer::save_options();
             }
 
             // Output
@@ -545,7 +565,7 @@ class evScriptOptimizerBackend {
             else {
                 // Delete script
                 unset(evScriptOptimizer::$options['inc-css'][$name]);
-                update_option('spacker-options', evScriptOptimizer::$options);
+                evScriptOptimizer::save_options();
             }
 
             // Output

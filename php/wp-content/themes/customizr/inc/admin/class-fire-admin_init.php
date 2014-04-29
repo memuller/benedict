@@ -20,35 +20,25 @@ class TC_admin_init {
     function __construct () {
 
       self::$instance =& $this;
-
-       global $wp_version;
+      global $wp_version;
         //check WP version to include customizer functions, must be >= 3.4
-       if (version_compare( $wp_version, '3.4' , '>=' ) ) {
-
+      if (version_compare( $wp_version, '3.4' , '>=' ) ) {
           //require_once( TC_BASE.'inc/admin/tc_customize.php' );
           TC___::$instance -> tc__( array ('admin' => array( array( 'inc/admin' , 'customize'))) );
 
-        }
-
-        else {
+      }
+      else {
             //adds an information page if version < 3.4
             add_action ( 'admin_menu'                      , array( $this , 'tc_add_fallback_page' ));
-        }
-        
-       //load the meta boxes
-        add_action ( 'admin_init'                          , array( $this , 'tc_load_meta_boxes' ));
-
-        //add welcome page in menu
-        add_action ( 'admin_menu'                          , array( $this , 'tc_add_welcome_page' ));
-
-        //add help button to admin bar
-        add_action ( 'wp_before_admin_bar_render'          , array( $this , 'tc_add_help_button' ));
-
-        //enqueue additional styling for admin screens
-        add_action ( 'admin_init'                          , array( $this , 'tc_admin_style' ));
-
-        //changelog
-        add_action ( 'changelog'                           , array( $this , 'tc_extract_changelog' ));
+      }
+      //load the meta boxes
+      add_action ( 'admin_init'                          , array( $this , 'tc_load_meta_boxes' ));
+      //add welcome page in menu
+      add_action ( 'admin_menu'                          , array( $this , 'tc_add_welcome_page' ));
+      //enqueue additional styling for admin screens
+      add_action ( 'admin_init'                          , array( $this , 'tc_admin_style' ));
+      //changelog
+      add_action ( 'changelog'                           , array( $this , 'tc_extract_changelog' ));
     }
 
 
@@ -121,28 +111,6 @@ class TC_admin_init {
             'welcome.php' ,             // Menu slug, used to uniquely identify the page
             array( $this , 'tc_welcome_panel' )         //function to be called to output the content of this page
         );
-    }
-
-
-
-    /**
-     * Add help button
-     * @package Customizr
-     * @since Customizr 1.0 
-     */
-    function tc_add_help_button() {
-       if ( current_user_can( 'edit_theme_options' ) ) {
-         global $wp_admin_bar;
-         $wp_admin_bar->add_menu( array(
-           'parent' => 'top-secondary', // Off on the right side
-           'id' => 'tc-customizr-help' ,
-           'title' =>  __( 'Help' , 'customizr' ),
-           'href' => admin_url( 'themes.php?page=welcome.php&help=true' ),
-           'meta'   => array(
-              'title'  => __( 'Need help with Customizr? Click here!', 'customizr' ),
-            ),
-         ));
-       }
     }
 
 

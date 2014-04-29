@@ -67,3 +67,93 @@ ul.dropdown ul ul {
 ul.dropdown li:hover > ul {
  visibility: visible;
 }
+
+/*----------*/
+/* -- Base drop-down styling -- */
+
+ul.dropdown {
+}
+
+	ul.dropdown li {
+	 padding: 7px 10px;
+	 color: #ffffff;
+	}
+
+	ul.dropdown li.hover,
+	ul.dropdown li:hover,
+	ul.dropdown li.on {
+	 background-color: #0F5476;
+	}
+
+	ul.dropdown a:link,
+	ul.dropdown a:visited	{ color: #ffffff; text-decoration: none; }
+	ul.dropdown a:hover		{ color: #ffffff; }
+	ul.dropdown a:active	{ color: #ffffff; }
+
+	ul.dropdown li ul li {
+	 background-color: #0F5476;
+	 margin:0 !important;
+	}
+
+	ul.dropdown li ul li.hover,
+	ul.dropdown li ul li:hover,
+	ul.dropdown li ul li.on {
+	 background-color: #0F5476;
+	}
+	
+	/* -- level mark -- */
+
+	ul.dropdown ul {
+	 width: 150px;
+	}
+
+		ul.dropdown ul li {
+		 font-weight: normal;
+		}
+
+
+/* -- Supporting class `dir` -- */
+
+ul.dropdown *.dir {
+ padding-right: 20px;
+}
+
+
+/* -- Components override -- */
+
+ul.dropdown-horizontal ul *.dir {
+ padding-right: 15px;
+}
+
+ul.dropdown-vertical-rtl *.dir,
+ul.dropdown-horizontal > li.dropdown-vertical-rtl ul *.dir {
+ padding-right: 10px;
+ padding-left: 15px;
+}
+/*----------*/
+
+/* -- Base style extension -- */
+
+ul.dropdown li a {
+ display: block;
+ padding: 7px 10px;
+ color:#ffffff;
+}
+
+
+/* -- Base style override -- */
+
+ul.dropdown li {
+ padding: 0;
+}
+
+
+/* -- Base style reinitiate: post-override activities -- */
+
+ul.dropdown li.dir {
+ padding: 7px 20px 7px 10px;
+}
+
+ul.dropdown ul li.dir {
+ padding-right: 15px;
+}

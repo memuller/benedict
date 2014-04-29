@@ -50,7 +50,7 @@ class TC_post_metas {
             <?php
             if ( 'attachment' == $post -> post_type ) {
                 $metadata       = wp_get_attachment_metadata();
-                printf( '%1$s <span class="entry-date"><time class="entry-date" datetime="%2$s">%3$s</time></span> %4$s %5$s',
+                printf( '%1$s <span class="entry-date"><time class="entry-date updated" datetime="%2$s">%3$s</time></span> %4$s %5$s',
                     '<span class="meta-prep meta-prep-entry-date">'.__('Published' , 'customizr').'</span>',
                     esc_attr( get_the_date( 'c' ) ),
                     esc_html( get_the_date() ),
@@ -66,7 +66,7 @@ class TC_post_metas {
                 $tag_list           = $this -> tc_tag_list();
 
                 $date               = apply_filters( 'tc_date_meta',
-                                    sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a>' ,
+                                    sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date updated" datetime="%3$s">%4$s</time></a>' ,
                                         esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ),
                                         esc_attr( get_the_time() ),
                                         esc_attr( get_the_date( 'c' ) ),

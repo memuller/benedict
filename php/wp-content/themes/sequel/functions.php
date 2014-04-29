@@ -22,180 +22,71 @@ function sequel_setup() {
 endif; // twentyfourteen_setup
 add_action( 'after_setup_theme', 'sequel_setup' );
 
+// Custom query for the post feed grid
+/**
+ * Ignore and exclude grid posts on the home page.
+ */
+if ( get_theme_mod( 'sequel_top_grid_visibility' ) != 1 ) {
+function sequel_pre_get_posts( $query ) {
+	if ( ! $query->is_main_query() || is_admin() )
+		return;
 
-function sequel_customize_register( $wp_customize ) {
-    $wp_customize->add_section( 'sequel_home_options' , array(
-       'title'      => __('TwentyFourteen Home Options','sequel'),
-	   'description' => sprintf( __( 'Use the following settings to set home options. A screen refresh may be required to see some of the changes in the customizer!', 'fourteenxt' )),
-       'priority'   => 32,
-    ) );
-	
-	// Add support for Fourteen Extended options - this section is only visible if fourteen Extended is active.
-	// Option changes the site header image height on Appearance >> Header and on output at front end.
-	// Requires image re-upload for new values to take place - new cropping of image.
-	$wp_customize->add_setting(
-       'sequel_maximum_header_height',
-    array(
-        'default' => '240',
-		'sanitize_callback' => 'absint'
-    ));
-	
-	$wp_customize->add_control(
-       'sequel_maximum_header_height',
-    array(
-        'label' => __('Set Overall Header max-height (numbers only!) - Default is 240.','sequel'),
-        'section' => 'fourteenxt_general_options',
-		'priority' => 3,
-        'type' => 'text',
-    ));
-	
-	//  Logo Image Upload
-    $wp_customize->add_setting('sequel_logo_image', array(
-        'default-image'  => ''
-    ));
- 
-    $wp_customize->add_control(
-        new WP_Customize_Image_Control(
-            $wp_customize,
-            'sequel_logo',
-            array(
-               'label'    => __( 'Upload a logo', 'sequel' ),
-               'section'  => 'title_tagline',
-			   'priority' => 11,
-               'settings' => 'sequel_logo_image',
-            )
-        )
-    );
-	
-	$wp_customize->add_setting(
-        'sequel_logo_alt_text', array (
-		'sanitize_callback' => 'sanitize_text_field',
-    ));
-	
-	$wp_customize->add_control(
-    'sequel_logo_alt_text',
-    array(
-        'type' => 'text',
-		'default' => '',
-        'label' => __('Enter Logo Alt Text Here', 'sequel'),
-        'section' => 'title_tagline',
-		'priority' => 12,
-        )
-    );
-	
-	// Extend on the Featured Section
-	$wp_customize->add_setting( 'featured_content_location', array(
-		'default'           => 'default',
-		'sanitize_callback' => 'sequel_sanitize_location',
-	) );
+	if ( $query->is_home() ) { // condition should be (almost) the same as in index.php
+		$query->set( 'ignore_sticky_posts', true );
 
-	$wp_customize->add_control( 'featured_content_location', array(
-		'label'   => __( 'Featured Location', 'sequel' ),
-		'section' => 'featured_content',
-		'priority' => 1,
-		'type'    => 'select',
-		'choices' => array(
-			'default'   => __( 'Default - Above Content/Sidebar',   'sequel' ),
-			'fullwidth' => __( 'Below Menu - Fullwidth', 'sequel' ),
-		),
-	) );
-	
-	$wp_customize->add_setting( 'sequel_blog_feed_layout', array(
-		'default'           => 'standard',
-		'sanitize_callback' => 'sequel_sanitize_home_layout',
-	) );
+		$exclude_ids = array();
+		$grid_posts = sequel_get_grid_posts();
 
-	$wp_customize->add_control( 'sequel_blog_feed_layout', array(
-		'label'   => __( 'Blog Feed Layout', 'sequel' ),
-		'section' => 'sequel_home_options',
-		'priority' => 1,
-		'type'    => 'radio',
-		'choices' => array(
-			'standard'   => __( 'Default Layout',   'sequel' ),
-			'home-grid' => __( 'Grid Layout', 'sequel' ),
-		),
-	) );
-	
-	$wp_customize->add_setting(
-        'sequel_home_grid_columns', array (
-			'sanitize_callback' => 'sequel_sanitize_checkbox',
-		)
-    );
+		if ( $grid_posts->have_posts() )
+			foreach ( $grid_posts->posts as $post )
+				$exclude_ids[] = $post->ID;
 
-    $wp_customize->add_control(
-        'sequel_home_grid_columns',
-        array(
-            'type'     => 'checkbox',
-            'label'    => __('Switch Home Grid Columns to 4?', 'sequel'),
-            'section'  => 'sequel_home_options',
-	        'priority' => 2,
-        )
-    );
-	
-	$wp_customize->add_setting(
-        'sequel_home_excerpts', array (
-			'sanitize_callback' => 'sequel_sanitize_checkbox',
-		)
-    );
-
-    $wp_customize->add_control(
-        'sequel_home_excerpts',
-        array(
-            'type'     => 'checkbox',
-            'label'    => __('Switch Child theme home feed to excerpts?', 'sequel'),
-            'section'  => 'sequel_home_options',
-	        'priority' => 3,
-        )
-    );
-	
-	$wp_customize->add_setting(
-    'sequel_excerpt_length',
-    array(
-        'default' => 55,
-		'sanitize_callback' => 'absint'
-    ));
-	
-	$wp_customize->add_control(
-    'sequel_excerpt_length',
-    array(
-        'label' => __('Enter desired home excerpt length for this child theme (numbers only!). - default is 55.','sequel'),
-        'section' => 'sequel_home_options',
-		'priority' => 4,
-        'type' => 'text',
-    ));
-		
-}
-add_action( 'customize_register', 'sequel_customize_register' );
-
-function sequel_sanitize_location( $location ) {
-	if ( ! in_array( $location, array( 'default', 'fullwidth' ) ) ) {
-		$location = 'default';
+		$query->set( 'post__not_in', $exclude_ids );
 	}
-	return $location;
 }
+add_action( 'pre_get_posts', 'sequel_pre_get_posts' );
+}
+/**
+ * Returns a new WP_Query with grid posts.
+ */
+function sequel_get_grid_posts() {
+	global $wp_query;
 
-function sequel_sanitize_home_layout( $home_layout ) {
-	if ( ! in_array( $home_layout, array( 'standard', 'home-grid' ) ) ) {
-		$home_layout = 'standard';
+	// Jetpack Featured Content support
+	$sticky = apply_filters( 'sequel_get_grid_posts', array() );
+	if ( ! empty( $sticky ) )
+		$sticky = wp_list_pluck( $sticky, 'ID' );
+
+	if ( empty( $sticky ) )
+		$sticky = (array) get_option( 'sticky_posts', array() );
+
+	if ( empty( $sticky ) ) {
+		return new WP_Query( array(
+			'posts_per_page' => get_theme_mod( 'sequel_grid_number' ),
+			'ignore_sticky_posts' => true,
+		) );
 	}
-	return $home_layout;
+
+	$args = array(
+		'posts_per_page' => get_theme_mod( 'sequel_grid_number' ),
+		'post__in' => $sticky,
+		'ignore_sticky_posts' => true,
+	);
+
+	return new WP_Query( $args );
 }
 
 /**
- * Sanitize checkbox
+ * Customizer additions.
  */
-if ( ! function_exists( 'sequel_sanitize_checkbox' ) ) :
-	function sequel_sanitize_checkbox( $input ) {
-		if ( $input == 1 ) {
-			return 1;
-		} else {
-			return 0;
-		}
-	}
-endif;
+require get_stylesheet_directory() . '/inc/sequel-customizer.php';
 
 function sequel_body_classes( $classes ) {
-    if ( is_home() && 'home-grid' == get_theme_mod( 'sequel_blog_feed_layout' ) ) {
+    if ( is_home() && get_theme_mod( 'sequel_home_top_grid' ) !=1 ) {
+		$classes[] = 'home-grid';
+	}
+	
+	if ( is_home() && 'home-grid' == get_theme_mod( 'sequel_blog_feed_layout' ) ) {
 		$classes[] = 'home-grid';
 	}
 	return $classes;
@@ -352,3 +243,11 @@ if ( get_theme_mod( 'sequel_home_grid_columns' ) ) {
 
 }
 add_action( 'wp_head', 'sequel_featured_css', 210 );
+
+function sequel_rtl_stylesheet() {
+
+	if ( is_rtl() && is_child_theme() && file_exists( get_template_directory() . '/rtl.css' ) && ! file_exists( get_stylesheet_directory() . '/rtl.css' ) ) {
+		wp_enqueue_style( 'parent-theme-rtl', get_template_directory_uri() . '/rtl.css' );
+	}
+}
+add_action('wp_print_styles', 'sequel_rtl_stylesheet');

@@ -1,4 +1,24 @@
 
+Version: 2.8.44
+----------------
+CSS modifications.
+
+Version: 2.8.43
+----------------
+Deleted some unused code.
+
+Version: 2.8.42
+----------------
+Deleted some unused code.
+
+Version: 2.8.41
+----------------
+De enqueued jquery.
+
+Version: 2.8.40
+----------------
+Relocated some code.
+
 Version: 2.8.39
 ----------------
 Deleted some unused code.

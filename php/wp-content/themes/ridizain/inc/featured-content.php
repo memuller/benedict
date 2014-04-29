@@ -128,9 +128,13 @@ class Featured_Content {
 			return array();
 		}
 
+		$orderby = get_theme_mod( 'ridizain_featured_orderby' );
+		$order = get_theme_mod( 'ridizain_featured_order' );
 		$featured_posts = get_posts( array(
 			'include'        => $post_ids,
 			'posts_per_page' => count( $post_ids ),
+			'orderby' => $orderby,
+			'order' => $order,
 		) );
 
 		return $featured_posts;
@@ -160,7 +164,7 @@ class Featured_Content {
 		$settings = self::get_setting();
 
 		// Return sticky post ids if no tag name is set.
-		$term = get_term_by( 'name', $settings['tag-name'], 'post_tag' );
+		$term = get_term_by( 'name', $settings['tag-name'], 'post_tag', 'product_tag' );
 		if ( $term ) {
 			$tag = $term->term_id;
 		} else {
@@ -369,6 +373,10 @@ class Featured_Content {
 		if ( 'post_tag' != $taxonomy ) {
 			return $terms;
 		}
+		
+		if ( 'product_tag' != $taxonomy ) {
+			return $terms;
+		}
 
 		// No terms? Return early!
 		if ( empty( $terms ) ) {
@@ -511,7 +519,7 @@ class Featured_Content {
 		if ( empty( $input['tag-name'] ) ) {
 			$output['tag-id'] = 0;
 		} else {
-			$term = get_term_by( 'name', $input['tag-name'], 'post_tag' );
+			$term = get_term_by( 'name', $input['tag-name'], 'post_tag','product_tag' );
 
 			if ( $term ) {
 				$output['tag-id'] = $term->term_id;

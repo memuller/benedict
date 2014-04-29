@@ -157,6 +157,7 @@ class Ridizain_Ephemera_Widget extends WP_Widget {
 							else :
 								the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'ridizain' ) );
 							endif;
+							
 						?>
 					</div><!-- .entry-content -->
 

@@ -38,9 +38,25 @@ Copyright: @afarkas @jdalton @jon_neal @rem
 
 Changelog
 ---------
+
+0.9.9
+- fix pagination style css
+- bring back the Layout Options
+- Add compatibility with WordPress 3.9
+
+0.9.8
+- fix featured image issue from 0.9.6 update
+
+0.9.7
+- fix featured image issue from 0.9.6 update
+
+0.9.6
+- Replace layout meta box with templates
+- move theme options to omega options plugin
+
 0.9.5
 - add validation to theme option
-- replace do_atomic with do_action
+- replace do_atomic with do_action (back to basic)
 
 0.9.4
 - remove if class_exists( 'Omega' )
@@ -51,8 +67,7 @@ Changelog
 0.9.3
 - Removed HTML Allowed Tags in WordPress Comment Section (done)
 - fix theme setting issue 
-- add do_action( 'omega_content' ); // omega_content 
-
+- add do_action( 'omega_content' ); // omega_content
 
 0.9.2
 - fixed duplicate tag

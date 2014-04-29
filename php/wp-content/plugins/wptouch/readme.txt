@@ -2,7 +2,7 @@
 Contributors: bravenewcode, duanestorey, dalemugford
 Tags: wptouch, iphone, ipod, bravenewcode, mobile, android, blackberry, smartphone, responsive, design, mobile plugin, ios, mobile theme
 Requires at least: 3.6
-Stable tag: 3.1.9
+Stable tag: 3.2.4
 Tested up to: 3.8.1
 License: GPLv2
 
@@ -20,7 +20,7 @@ The theme also includes the ability for visitors to switch between the theme on 
 
 With 4 themes and 3 new extensions installed & updated right from our new BraveNewCloud service, it's the best WPtouch yet!
 
-For more information visit the [WPtouch Pro 3 Product Page](http://www.bravenewcode.com/wptouch/?utm_campaign=wptouch-front-readme&utm_medium=web&utm_source=wordpressdotorg "WPtouch Pro 3 Product Page").
+For more information visit [WPtouch.com](http://www.wptouch.com/?utm_campaign=wptouch-front-readme&utm_medium=web&utm_source=wordpressdotorg "WPtouch.com").
 
 'WPtouch' & ’WPtouch Pro' are trademarks of BraveNewCode Inc.
 
@@ -40,11 +40,30 @@ For more information visit the [WPtouch Pro 3 Product Page](http://www.bravenewc
 
 == Changelog ==
 
-= Version 3.1.9 (March 8th, 2014) =
+= Version 3.2.4 (April 23nd, 2014) =
 
-* Changed: Updated footer link code
+* Added: Support for Windows Phone 8.1
+* Updated: product links from bravenewcode.com to wptouch.com
 
-= Version 3.1.8 (Feb 28th, 2014) =
+= Version 3.2.3 (April 20nd, 2014) =
+
+* Intentionally skipped
+
+= Version 3.2.2 (April 9th, 2014) =
+
+* Fixed: Only show WPML switcher when WPML is installed and active
+* Changed: Featured content slider now uses slugs for category/tag filtering
+
+= Version 3.2.1 (March 19th, 2014) =
+
+* Added: Ability to enable/disable WPML language switcher in theme
+* Added: WPML support in all themes
+* Fixed: Problem with WPtouch Pro update notification not showing
+* Fixed: Link to network plugins page for updating WPtouch Pro on multisite
+* Changed: Spanish translation renamed to es_ES.mo/po - please verify selection in admin menu
+* Updated: Translations
+
+= Version 3.1.8 (Feb 28th, 2013) =
 
 * Changed: Added caching to API requests to minimize external HTTP queries
 * Added: Firefox OS mobile support

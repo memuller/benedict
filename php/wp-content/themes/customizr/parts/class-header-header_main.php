@@ -80,9 +80,20 @@ class TC_header_main {
       * @since Customizr 3.0 
      */
       function tc_favicon_display() {
-      	
+       	$saved_path 			= esc_url ( tc__f( '__get_option' , 'tc_fav_upload') );
+       	if ( !$saved_path || is_null($saved_path) )
+       		return;
 
-        $url = esc_url( tc__f( '__get_option' , 'tc_fav_upload' ) );
+       	//rebuild the path : check if the full path is already saved in DB. If not, then rebuild it.
+       	$upload_dir 			= wp_upload_dir();
+       	
+       	if ( false !== strpos( $saved_path , '/wp-content/' ) ) {
+       		$url    			= $saved_path ;
+       	} else {
+       		$url 				= $upload_dir['baseurl'] . $saved_path;
+       	}
+       	$url    				= apply_filters( 'tc_fav_src' , $url );
+
         if( $url != null)   {
           $type = "image/x-icon";
           if(strpos( $url, '.png' )) $type = "image/png";
@@ -106,9 +117,16 @@ class TC_header_main {
 	 * @since Customizr 3.0
 	 */
 	function tc_logo_title_display() {
-		
-		//declare useful vars
-       	$logo_src    			= apply_filters( 'tc_logo_src' , esc_url ( tc__f( '__get_option' , 'tc_logo_upload') ) ) ;
+       	//rebuild the logo path : check if the full path is already saved in DB. If not, then rebuild it.
+       	$upload_dir 			= wp_upload_dir();
+       	$saved_path 			= esc_url ( tc__f( '__get_option' , 'tc_logo_upload') );
+       	if ( false !== strpos( $saved_path , '/wp-content/' ) ) {
+       		$logo_src    		= $saved_path ;
+       	} else {
+       		$logo_src 			= $upload_dir['baseurl'] . $saved_path;
+       	}
+       	$logo_src    			= apply_filters( 'tc_logo_src' , $logo_src ) ;
+       	
        	$logo_resize 			= esc_attr( tc__f( '__get_option' , 'tc_logo_resize') );
       	$accepted_formats		= array('jpg', 'jpeg', 'png' ,'gif');
        	$filetype 				= wp_check_filetype ($logo_src);
@@ -143,8 +161,8 @@ class TC_header_main {
 
 	          	printf( '<a class="site-logo" href="%1$s" title="%2$s | %3$s"><img src="%4$s" alt="%5$s" width="%6$s" height="%7$s" %8$s /></a>',
 	          		apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ) ) ,
-	          		apply_filters( 'tc_site_name_text ', __( esc_attr( get_bloginfo( 'name' ) ) ) ),
-	          		apply_filters( 'tc_tagline_text ', __( esc_attr( get_bloginfo( 'description' ) ) ) ),
+	          		apply_filters( 'tc_site_name_text', __( esc_attr( get_bloginfo( 'name' ) ) ) ),
+	          		apply_filters( 'tc_tagline_text', __( esc_attr( get_bloginfo( 'description' ) ) ) ),
 	          		$logo_src,	
 	          		__( 'Back Home' , 'customizr' ),
 					$width,
@@ -176,8 +194,6 @@ class TC_header_main {
 	        	<?php
 	        	do_action( '__before_logo' );
 
-	          	
-	            
 		          	printf('<%1$s><a class="site-title" href="%2$s" title="%3$s | %4$s">%3$s</a></%1$s>',
 		          		apply_filters( 'tc_site_title_tag', 'h1' ) ,
 		          		apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ) ) ,

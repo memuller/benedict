@@ -31,12 +31,12 @@ body {
 /* Links
 ------------------------------------------------- */
 a {
-  color: #865e18;
+  color: #8a6119;
 }
 a:hover,
 a:focus,
 a:active {
-  color: #6e5730;
+  color: #715a32;
 }
 /* HEADER 
 --------------------------------------------------*/
@@ -112,11 +112,11 @@ _______________________________________________*/
   text-align: left;
 }
 .main-navigation a {
-  color: #5e5340;
+  color: #615642;
   padding: 25px 15px;
 }
 .main-navigation a:hover {
-  color: #7a5a24;
+  color: #7e5d26;
 }
 .main-navigation ul ul {
   background: #170d03;
@@ -126,15 +126,15 @@ _______________________________________________*/
   padding: 5px 10px;
 }
 .main-navigation ul ul a:hover {
-  background: #5e5340;
+  background: #615642;
   color: #100d0a;
 }
 .main-navigation li:hover > a {
-  color: #7a5a24;
+  color: #7e5d26;
   background: #100d0a;
 }
 .main-navigation ul ul :hover > a {
-  background: #5e5340;
+  background: #615642;
   color: #100d0a;
 }
 /* Slider Styles
@@ -145,8 +145,8 @@ _______________________________________________*/
 }
 .slider-wrapper {
   width: 1100px;
-  border-top: solid 4px #5e5340;
-  border-bottom: solid 4px #5e5340;
+  border-top: solid 4px #615642;
+  border-bottom: solid 4px #615642;
   margin-bottom: -40px;
   background: #111;
   box-shadow: 1px 1px 5px #4a4a4a;
@@ -232,7 +232,7 @@ h2#page-title:first-letter,
 .homepage-article h1.entry-title {
   padding-top: 4px;
   text-align: center;
-  border-top: solid 1px #4f4f4f;
+  border-top: solid 1px #525252;
 }
 .homepage-article h1.entry-title a {
   font-family: Calibri, Arial, Helvetica, sans-serif;
@@ -275,7 +275,7 @@ h2#page-title:first-letter,
   -ms-word-wrap: break-word;
 }
 .single-post {
-  border-bottom: 1px dotted #6e5730;
+  border-bottom: 1px dotted #715a32;
   padding-bottom: 20px;
 }
 .single-post h1.entry-title {
@@ -300,7 +300,7 @@ h2#page-title:first-letter,
   font-weight: lighter;
 }
 .entry-meta a {
-  color: #6e5730;
+  color: #715a32;
   text-decoration: none;
 }
 .entry-meta a:hover {
@@ -314,17 +314,17 @@ h2#page-title:first-letter,
 -------------------------------------------------------*/
 #secondary a,
 #footer-sidebar a {
-  color: #665538;
+  color: #69583a;
   text-decoration: none;
 }
 #secondary a:hover,
 #footer-sidebar a:hover {
-  color: #9e6400;
+  color: #a36700;
 }
 #secondary .widget-title,
 #footer-sidebar .widget-title {
   background: #100d0a;
-  color: #7e5b20;
+  color: #825e21;
   padding: 10px;
   font-size: 18px;
   margin-bottom: 10px;
@@ -332,8 +332,8 @@ h2#page-title:first-letter,
 #secondary .widget_tag_cloud a,
 #footer-sidebar .widget_tag_cloud a {
   font-size: 14px !important;
-  background: #5e5340;
-  color: #d5be95;
+  background: #615642;
+  color: #dac195;
   padding: 4px 8px;
   text-decoration: none;
   margin-top: 4px;
@@ -341,7 +341,7 @@ h2#page-title:first-letter,
 }
 #secondary .widget_tag_cloud a:hover,
 #footer-sidebar .widget_tag_cloud a:hover {
-  background-color: #6e5730;
+  background-color: #715a32;
 }
 #secondary ul,
 #footer-sidebar ul {
@@ -351,7 +351,7 @@ h2#page-title:first-letter,
 #secondary ul > li,
 #footer-sidebar ul > li {
   padding-bottom: 5px;
-  border-bottom: dotted 1px #5e5340;
+  border-bottom: dotted 1px #615642;
 }
 #secondary ul > li ul,
 #footer-sidebar ul > li ul {
@@ -374,7 +374,7 @@ h2#page-title:first-letter,
 }
 .widget_search input[type=submit] {
   display: inline;
-  background: #4f4f4f;
+  background: #525252;
   color: white;
   box-shadow: none;
   text-shadow: none;
@@ -428,12 +428,12 @@ h2#page-title:first-letter,
 /* Colophon */
 #colophon {
   background: #100d0a;
-  color: #565148;
+  color: #59544a;
   padding: 10px;
 }
 #colophon a {
   text-decoration: none;
-  color: #7e5b20;
+  color: #825e21;
 }
 #colophon .site-info {
   float: left;
@@ -481,7 +481,7 @@ h2#page-title:first-letter,
   display: block;
   margin: auto;
   max-width: 50%;
-  border-bottom: solid 4px #865e18;
+  border-bottom: solid 4px #8a6119;
   box-shadow: 0px -1px 9px #666666;
 }
 .search .page-title {
@@ -535,11 +535,11 @@ h2#page-title:first-letter,
   display: inline;
 }
 .pagination ul > li > a {
-  color: #6a5634;
+  color: #6d5936;
   transition: all 0.4s ease;
 }
 .pagination ul > li > a:hover {
-  color: #5e5340;
+  color: #615642;
   background: #fdf1ad;
 }
 .pagination .current {
@@ -556,7 +556,7 @@ h2#page-title:first-letter,
 
   border-left-width: 0;
   display: inline-block;
-  color: #665538;
+  color: #69583a;
 }
 .pagination ul  > li:first-child  > a,
 .pagination ul  > li:first-child  > span {
@@ -772,7 +772,7 @@ h2#page-title:first-letter,
   .menu-toggle,
   .main-navigation.toggled .nav-menu {
     display: block;
-    color: #5e5340;
+    color: #615642;
     font-weight: bold;
     text-transform: uppercase;
     padding: 10px;

@@ -24,6 +24,13 @@ if ( get_theme_mod( 'featured_content_location' ) == 'default' ) {
 		get_template_part( 'featured-content' );
 	}
 }
+
+if ( get_theme_mod( 'sequel_top_grid_visibility' ) != 1 ) {
+   if ( is_front_page() || is_home() ) {
+		// Include the featured content template.
+		get_template_part( 'content', 'top' );
+	}
+}
  
     if ( get_theme_mod( 'sequel_blog_feed_layout' ) == 'home-grid' ) {
 	    get_template_part( 'content', 'grid' );

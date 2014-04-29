@@ -52,11 +52,11 @@ function omega_admin_register_styles() {
 	/* Use the .min stylesheet if SCRIPT_DEBUG is turned off. */
 	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-	wp_register_style( 'omega-admin', trailingslashit( OMEGA_CSS ) . "omega-admin.css" );
+	wp_register_style( 'omega-admin', trailingslashit( OMEGA_CSS ) . "admin.css" );
 
 	wp_register_style( 'omega-admin-widgets', trailingslashit( OMEGA_CSS ) . "admin-widgets{$suffix}.css" );
 
-	wp_register_script( 'omega-admin', esc_url( trailingslashit( OMEGA_JS ) . "omega-admin.js" ), array( 'jquery' ), '20130528', true );
+	wp_register_script( 'omega-admin', esc_url( trailingslashit( OMEGA_JS ) . "admin.js" ), array( 'jquery' ), '20130528', true );
 }
 
 /**
@@ -71,11 +71,7 @@ function omega_admin_enqueue_styles( $hook_suffix ) {
 	wp_enqueue_style( 'omega-admin' );
 
 	if ( current_theme_supports( 'omega-widgets' ) && 'widgets.php' == $hook_suffix )
-		wp_enqueue_style( 'omega-admin-widgets' );
-	
-    if ( omega_get_settings_page_name() == $hook_suffix ) {
-    	wp_enqueue_script( 'omega-admin' );
-    }
+		wp_enqueue_style( 'omega-admin-widgets' );	   
     
 }
 
