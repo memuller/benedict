@@ -6,7 +6,7 @@ class evScriptOptimizerBackend {
     /**
      * init
      */
-    function init() {
+    static function init() {
 		register_activation_hook(__FILE__,       array(__CLASS__, 'activation_hook'));
 		add_action('admin_menu',                 array(__CLASS__, 'admin_menu'));
         add_action('admin_head',                 array(__CLASS__, 'ajax_javascript'));
@@ -30,7 +30,7 @@ class evScriptOptimizerBackend {
         }
     }
 
-    function activation_hook() {
+    static function activation_hook() {
         if (! is_array(evScriptOptimizer::$options['inc-js'])) {
             evScriptOptimizer::$options['inc-js'] = array(
                                                         'jquery' => array(
@@ -40,7 +40,7 @@ class evScriptOptimizerBackend {
     }
 
 
-    function show_admin_messages() {
+    static function show_admin_messages() {
         if (! evScriptOptimizer::check_cache_directory()) {
             // Only show to admins
             if (current_user_can('manage_options')) {
@@ -51,25 +51,25 @@ class evScriptOptimizerBackend {
         }
     }
     
-	public function get_cache_dir_message() {
+	static public function get_cache_dir_message() {
         return sprintf(__('Cannot create cache directory "%s". Please create this folder with a "write" (777) permissions.', 'spacker'), evScriptOptimizer::$options['cache-dir-path']);
     }
     
     /**
      * admin_menu action
      */
-    function admin_menu() {	
+    static function admin_menu() {	
         add_options_page(__('JS & CSS Script Optimizer Options', 'spacker'), __('Script Optimizer', 'spacker'), 'manage_options', 'script-optimizer', array(__CLASS__, 'settings_section'));
     }
 
-    function is_option_tab($tab_name) {
+    static function is_option_tab($tab_name) {
         if (($tab_name == 'basic') && (!isset($_GET['tab']) || ($_GET['tab'] == 'basic')))
             return true;
 
         return (isset($_GET['tab']) && $_GET['tab'] == $tab_name);
     }
 
-    function settings_section() {
+    static function settings_section() {
         if (!current_user_can('manage_options')) {
             wp_die( __('You do not have sufficient permissions to access this page.') );
         }
@@ -155,7 +155,7 @@ class evScriptOptimizerBackend {
 	
 	// --- Admin Tabs: ---
 	
-    function options_tab_basic() { ?>
+    static function options_tab_basic() { ?>
         <table class="form-table">
             <tr valign="top">
                 <th scope="row"><?php _e('Enable plugin', 'spacker'); ?></th>
@@ -291,7 +291,7 @@ class evScriptOptimizerBackend {
         <?php
     }
 
-    function get_spacker_inc_js_table() { ?>
+    static function get_spacker_inc_js_table() { ?>
         <table cellspacing="0" class="widefat post fixed" style="width: 100%">
             <thead>
                 <tr>
@@ -323,7 +323,7 @@ class evScriptOptimizerBackend {
         <?php
     }
 
-    function get_spacker_inc_css_table() { ?>
+    static function get_spacker_inc_css_table() { ?>
         <table cellspacing="0" class="widefat post fixed" style="width: 100%">
             <thead>
                 <tr>
@@ -361,7 +361,7 @@ class evScriptOptimizerBackend {
         <?php
     }
 
-    function options_tab_inc_js() { ?>
+    static function options_tab_inc_js() { ?>
         <h3>
 			<?php _e("Include next JavaScript", 'spacker'); ?>
 			<span id="spacker-ajax-status"><?php _e('Loading...', 'spacker'); ?></span>
@@ -381,7 +381,7 @@ class evScriptOptimizerBackend {
         <?php
     }
 
-    function options_tab_inc_css() { ?>
+    static function options_tab_inc_css() { ?>
         <h3>
 			<?php _e('Include next StyleSheet', 'spacker'); ?>
 			<span id="spacker-ajax-status"><?php _e('Loading...', 'spacker'); ?></span>
@@ -412,7 +412,7 @@ class evScriptOptimizerBackend {
         <?php
     }
 	
-    function options_tab_help() { ?>
+    static function options_tab_help() { ?>
         <div class="block-content">
             <h3>Plugin Features</h3>
             <ul>
@@ -449,7 +449,7 @@ class evScriptOptimizerBackend {
 	
 	
 
-    function wp_ajax_spacker_inc_script() {
+    static function wp_ajax_spacker_inc_script() {
 		// ----------------------------- Add JS --------------------------------
         if ($_POST['mode'] == 'add-js') { 
             if (! is_array(evScriptOptimizer::$options['inc-js'])) {
@@ -586,7 +586,7 @@ class evScriptOptimizerBackend {
         die();
     }
     
-    function ajax_javascript() {
+    static function ajax_javascript() {
         if (isset($_GET['page']) && ($_GET['page'] === 'script-optimizer')) { ?>
         <script type="text/javascript">
             function spacker_save_js(data){
@@ -665,7 +665,7 @@ class evScriptOptimizerBackend {
         }
     }
 
-    function admin_css() {
+    static function admin_css() {
         if (isset($_GET['page']) && ($_GET['page'] === 'script-optimizer')) { ?>
         <style type="text/css">
             #spacker_add_js_form {
@@ -758,7 +758,7 @@ class evScriptOptimizerBackend {
         }
     }
 
-    function options_join(&$options, &$merge) {
+    static function options_join(&$options, &$merge) {
         foreach ($merge as $key => $m_val) {
             if (!is_array($m_val)){
                 $options[$key] = $m_val;

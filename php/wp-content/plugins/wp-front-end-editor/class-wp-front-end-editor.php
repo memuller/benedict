@@ -2,7 +2,7 @@
 
 class WP_Front_End_Editor {
 
-	const VERSION = '0.9.1';
+	const VERSION = '0.10';
 	const PLUGIN = 'wp-front-end-editor/wp-front-end-editor.php';
 
 	private static $instance;
@@ -136,6 +136,14 @@ class WP_Front_End_Editor {
 
 		global $wp_post_statuses;
 
+		if ( ! is_admin() && ! empty( $_GET['trashed'] ) && $_GET['trashed'] === '1' && ! empty( $_GET['ids'] ) ) {
+
+			wp_redirect( admin_url( 'edit.php?post_type=' . get_post_type( $_GET['ids'] ) . '&trashed=1&ids=' . $_GET['ids'] ) );
+
+			die;
+
+		}
+
 		// Lets auto-drafts pass as drafts by WP_Query.
 		$wp_post_statuses['auto-draft']->protected = true;
 
@@ -222,9 +230,13 @@ class WP_Front_End_Editor {
 
 			wp_die( __( 'You are not allowed to edit this item.' ) );
 
-		if ( $post->post_status === 'auto-draft' )
+		if ( $post->post_status === 'auto-draft' ) {
 
 			$post->post_title = '';
+			$post->comment_status = get_option( 'default_comment_status' );
+			$post->ping_status = get_option( 'default_ping_status' );
+
+		}
 
 		$post_type = $post->post_type;
 		$post_type_object = get_post_type_object( $post_type );
@@ -516,6 +528,8 @@ class WP_Front_End_Editor {
 
 			wp_enqueue_style( 'wp-fee' , $this->url( '/css/wp-fee.css' ), false, self::VERSION, 'screen' );
 
+			wp_enqueue_style( 'dashicons' );
+
 		} elseif ( is_user_logged_in() ) {
 
 			wp_enqueue_style( 'wp-fee-adminbar' , $this->url( '/css/wp-fee-adminbar.css' ), false, self::VERSION, 'screen' );
@@ -597,6 +611,21 @@ class WP_Front_End_Editor {
 			),
 			'fee' => true
 		) );
+
+		if ( current_user_can( 'delete_post', $post->ID ) ) {
+
+			$wp_admin_bar->add_node( array(
+				'id' => 'wp-fee-delete',
+				'href' => get_delete_post_link( $post->ID ),
+				'parent' => 'top-secondary',
+				'title' => '<span class="ab-icon dashicons dashicons-trash"></span>',
+				'meta' => array(
+					'title' => EMPTY_TRASH_DAYS ? __( 'Move to Trash' ) : __( 'Delete Permanently' )
+				),
+				'fee' => true
+			) );
+
+		}
 
 		$wp_admin_bar->add_node( array(
 			'id' => 'wp-fee-meta',
@@ -1087,11 +1116,11 @@ class WP_Front_End_Editor {
 			 5 => isset($_GET['revision']) ? sprintf( __('Post restored to revision from %s'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
 			 6 => sprintf( __('Post published. <a href="%s">View post</a>'), esc_url( get_permalink($post_ID) ) ),
 			 7 => __('Post saved.'),
-			 8 => sprintf( __('Post submitted. <a target="_blank" href="%s">Preview post</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
-			 9 => sprintf( __('Post scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview post</a>'),
+			 8 => __('Post submitted.'),
+			 9 => sprintf( __('Post scheduled for: <strong>%1$s</strong>.'),
 				// translators: Publish box date format, see http://php.net/date
-				date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post_ID) ) ),
-			10 => sprintf( __('Post draft updated. <a target="_blank" href="%s">Preview post</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
+				date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) ),
+			10 => __('Post draft updated.')
 		);
 		$messages['page'] = array(
 			 0 => '', // Unused. Messages start at index 1.
@@ -1102,9 +1131,9 @@ class WP_Front_End_Editor {
 			 5 => isset($_GET['revision']) ? sprintf( __('Page restored to revision from %s'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
 			 6 => sprintf( __('Page published. <a href="%s">View page</a>'), esc_url( get_permalink($post_ID) ) ),
 			 7 => __('Page saved.'),
-			 8 => sprintf( __('Page submitted. <a target="_blank" href="%s">Preview page</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
-			 9 => sprintf( __('Page scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview page</a>'), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post_ID) ) ),
-			10 => sprintf( __('Page draft updated. <a target="_blank" href="%s">Preview page</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
+			 8 => __('Page submitted.' ),
+			 9 => sprintf( __('Page scheduled for: <strong>%1$s</strong>.'), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) ),
+			10 => __('Page draft updated.')
 		);
 		$messages['attachment'] = array_fill( 1, 10, __( 'Media attachment updated.' ) ); // Hack, for now.
 
@@ -1122,8 +1151,6 @@ class WP_Front_End_Editor {
 		$notice = false;
 		$form_extra = '';
 		if ( 'auto-draft' == $post->post_status ) {
-			if ( 'edit' == $action )
-				$post->post_title = '';
 			$autosave = false;
 			$form_extra .= "<input type='hidden' id='auto_draft' name='auto_draft' value='1' />";
 		} else {

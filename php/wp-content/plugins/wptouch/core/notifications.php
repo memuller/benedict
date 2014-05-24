@@ -10,7 +10,7 @@ function wptouch_get_notification_count() {
 	$warnings = apply_filters( 'wptouch_notifications', $wptouch_pro->notifications );
 
 	$new_notifications = array();
-	if ( is_array( $warnings ) && count( $warnings	 ) ) {
+	if ( is_array( $warnings ) && count( $warnings ) ) {
 		foreach( $warnings as $key => $value ) {
 			if ( !in_array( $key, $settings->dismissed_notifications ) ) {
 				$new_notifications[ $key ] = $value;

@@ -267,6 +267,10 @@
 		.on( 'click', '.wp-fee-content a', function( event ) {
 			event.preventDefault();
 		} )
+		.on( 'click', '.error .dashicons-dismiss, .updated .dashicons-dismiss', function( event ) {
+			event.preventDefault();
+			$( this ).parent().fadeOut( 'slow' );
+		} )
 		.ready( function() {
 			var postBody = $( '.wp-fee-post' ),
 				title = false,
@@ -375,6 +379,8 @@
 					$( '#wp-fee-meta-modal' ).show();
 					wp.fee.recalcBoxPos();
 				} );
+			$( '#wp-admin-bar-wp-fee-delete a' )
+				.tipsy( { className: 'tipsy-bar' } );
 			$( '#wp-admin-bar-wp-fee-cats a' )
 				.tipsy( { className: 'tipsy-bar' } );
 			$( '#wp-admin-bar-wp-fee-cats a, a[rel~="category"]' )

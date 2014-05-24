@@ -34,7 +34,7 @@
 			WPtouch Updates:
 			<a href="https://www.google.com/+BraveNewCode" target="_blank"><i class="icon-google-plus-sign"></i></a>
 			<a href="//www.facebook.com/bravenewcode" target="_blank"><i class="icon-facebook-sign"></i></a>
-			<a href="//www.twitter.com/bravenewcode" target="_blank"><i class="icon-twitter-sign"></i></a>
+			<a href="//www.twitter.com/wptouch" target="_blank"><i class="icon-twitter-sign"></i></a>
 		</h3>
 	</div><!-- touchboard-news -->
 </div><!-- over-right-side -->

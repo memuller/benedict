@@ -56,7 +56,7 @@ function wptouchHandleLicensePanel() {
 		if ( bncHasLicense == 0 ) {
 			jQuery( activate ).show();
 
-			jQuery( activate ).on( 'click', 'a', function( e ) {
+			jQuery( activate ).on( 'click', 'a.activate', function( e ) {
 				jQuery( progress ).fadeIn();
 				wptouchProgressBarStart( progressBar );
 				jQuery( rejected ).fadeOut();
@@ -563,12 +563,16 @@ function WPtouchUpdateNotificationArea( jsonData ) {
 	// Update notification count
 	if ( result.count > 0 ) {
 		jQuery( countDiv ).html( result.count ).show();
+
+		jQuery( '.wptouch.update-plugins .update-count' ).html( result.count );
+		jQuery( '.wptouch.update-plugins' ).show();		
 	} else {
 		jQuery( countDiv ).html( '0' );
 	}
 }
 
 function wptouchSetupNotifications() {
+
 
 	var notificationDiv = jQuery( '#ajax-notifications' );
 	if ( notificationDiv.length ) {

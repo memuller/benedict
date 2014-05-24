@@ -1,4 +1,13 @@
-<?php if ( wptouch_should_show_license_nag() ) { ?>
+<?php if ( wptouch_show_renewal_notice() ) { ?>
+</tr>
+<tr class="plugin-update-tr">
+	<td colspan="5" class="plugin-update">
+		<div class="update-message">
+			<?php echo sprintf( __( 'Your product license has expired. %sRenew now%s to continue to receive feature and security updates.', 'wptouch-pro' ), '<a href="http://www.wptouch.com/renew/?utm_campaign=renew-plugin-page&utm_medium=web&utm_source=wptouch">', '</a>' ); ?>
+		</div>
+	</td>
+</tr>
+<?php } else if ( wptouch_should_show_license_nag() ) { ?>
 </tr>
 <tr class="plugin-update-tr">
 	<td colspan="5" class="plugin-update">

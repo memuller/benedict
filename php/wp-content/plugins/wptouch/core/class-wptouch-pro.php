@@ -221,10 +221,8 @@ class WPtouchProThree {
 		if ( $this->is_showing_mobile_theme_on_mobile_device() ) {
 			$this->setup_mobile_theme_for_viewing();
 
-			/*
-			For Google Best Practices, leaving off for now due to reports of slowing down
+			// For Google Best Practices
 			header( 'Vary: User-Agent' );
-			*/
 		} else {
 			add_action( 'wp_footer', array( &$this, 'handle_desktop_footer' ) );
 		}
@@ -233,6 +231,23 @@ class WPtouchProThree {
 		add_action( 'init', array( &$this, 'setup_desktop_nonce') );
 
 		$this->check_for_critical_notifications();
+
+		if ( is_admin() ) {
+			add_action( 'admin_menu', array( &$this, 'add_notification_icon' ) );
+		}
+	}
+
+	function add_notification_icon() {
+  	  	global $menu;
+
+  	  	require_once( WPTOUCH_DIR . '/core/notifications.php' );
+
+  	  	foreach( $menu as $number => $content ) {
+			if ( $content[0] == 'WPtouch Pro' ) {
+				$content[ 0 ] = $content[ 0 ] . " <span class='wptouch update-plugins count-1' style='display: none;'><span class='update-count'></span></span>";
+				$menu[ $number ] = $content;
+			}
+  	  	}
 	}
 
 	function handle_free_migration( $defaults, $domain ) {
@@ -587,10 +602,31 @@ class WPtouchProThree {
 				'wptouch-pro-admin',
 				WPTOUCH_URL . '/admin/js/wptouch-admin-3.js',
 				array( 'jquery-plugins', 'wptouch-pro-ajax', 'jquery', 'jquery-ui-draggable', 'jquery-ui-droppable' )
-			);
+			);			
 
 			// Set up AJAX requests here
 			wp_localize_script( 'jquery-plugins', 'WPtouchCustom', $localize_params );
+		} else {
+			$localize_params = 	array(
+				'admin_url' => get_bloginfo('wpurl') . '/wp-admin',
+				'admin_nonce' => wp_create_nonce( 'wptouch_admin' )
+			);
+
+			wp_enqueue_script( 'wptouch-pro-ajax', WPTOUCH_URL . '/admin/js/wptouch-ajax.js', array( 'jquery' ) );
+			
+			$ajax_params = array(
+				'admin_ajax_nonce' => wp_create_nonce( 'wptouch_admin_ajax' )
+			);
+			wp_localize_script( 'wptouch-pro-ajax', 'WPtouchAjax', $ajax_params );			
+
+			wp_enqueue_script(
+				'wptouch-pro-other-admin',
+				WPTOUCH_URL . '/admin/js/wptouch-other-admin.js',
+				array( 'wptouch-pro-ajax' )
+			);		
+
+			// Set up AJAX requests here
+			wp_localize_script( 'wptouch-pro-other-admin', 'WPtouchCustom', $localize_params );				
 		}
 
 		$this->setup_wptouch_admin_ajax();

@@ -1,7 +1,7 @@
 <?php
 
-define( 'BNC_API_VERSION', '3.6' );
-define( 'BNC_API_URL', 'http://api.bravenewcode.com/v/' . BNC_API_VERSION );
+define( 'BNC_API_VERSION', '3.7' );
+define( 'BNC_API_URL', 'http://api.wptouch.com/v/' . BNC_API_VERSION );
 define( 'BNC_API_TIMEOUT', 10 );
 
 class BNCAPI {
@@ -52,12 +52,6 @@ class BNCAPI {
 
 		// Always use the PHP serialization method for data
 		$params[ 'format' ] = 'php';
-
-		/*
-		if ( !$this->bncid || !$this->license_key ) {
-			return false;
-		}
-		*/
 
 		if ( $do_auth && $this->might_have_license ) {
 			// Add the timestamp into the request, offseting it by the difference between this server's time and the BNC server's time
@@ -116,7 +110,17 @@ class BNCAPI {
 	}
 
 	function get_proper_server_name() {
-		$server_name = $_SERVER['HTTP_HOST'];
+		$server_name = false;
+		
+		if ( is_plugin_active_for_network( WPTOUCH_PLUGIN_SLUG ) ) {
+			$main_site_url = str_replace( array( 'http://', 'https://' ), array( '', '' ), get_site_option( 'siteurl' ) );
+			$site_info = explode( '/', $main_site_url );
+
+			$server_name = $site_info[0];
+		} else {
+			$server_name = $_SERVER['HTTP_HOST'];	
+		}
+		
 		if ( strpos( $server_name, ':' ) !== false ) {
 			$server_params = explode( ':', $server_name );
 
@@ -156,7 +160,7 @@ class BNCAPI {
 		);
 
 		$result = $this->do_api_request( 'check', 'api', $params, false );
-
+		
 		if ( $result and $result['status'] == 'ok' ) {
 			if ( isset( $result[ 'result' ] ) ) {
 				return $result[ 'result' ];

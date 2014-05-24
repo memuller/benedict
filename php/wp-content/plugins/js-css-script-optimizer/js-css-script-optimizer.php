@@ -2,7 +2,7 @@
 /*
   Plugin Name: JS & CSS Script Optimizer
   Plugin URI: http://4coder.info/en/code/wordpress-plugins/js-css-script-optimizer/
-  Version: 0.2.8
+  Version: 0.2.9
   Author: Yevhen Kotelnytskyi
   Author URI: http://4coder.info/en/
   Description: Features: Combine all scripts into the single file, Pack scripts using <a href="http://joliclic.free.fr/php/javascript-packer/en/">PHP version of the Dean Edwards's JavaScript Packer</a>, Move all JavaScripts to the bottom, Combine all CSS scripts into the single file, Minify CSS files (remove comments, tabs, spaces, newlines).
@@ -22,7 +22,7 @@ class evScriptOptimizer {
     /**
      * init
      */
-    function init() {
+    static function init() {
         $is_logged_in = is_user_logged_in();
 
         // init some constants
@@ -139,7 +139,7 @@ class evScriptOptimizer {
         }
     }
     
-	function is_on() {
+	static function is_on() {
         if (! self::check_cache_directory()) {
             return false;
         }        
@@ -152,7 +152,7 @@ class evScriptOptimizer {
         return true;
 	}
 
-    function check_cache_directory() {
+    static function check_cache_directory() {
         if (is_writable(self::$options['cache-dir-path'])) {
             return true;
         }
@@ -168,7 +168,7 @@ class evScriptOptimizer {
     /**
      * Check exclude list
      */
-    function exclude_this_js($handle, $src) {
+    static function exclude_this_js($handle, $src) {
         static $exclude_js = false;
         if ($exclude_js === false) {
             $exclude_js = explode(',', self::$options['exclude-js']);
@@ -184,7 +184,7 @@ class evScriptOptimizer {
     /**
      * Check exclude list for css
      */
-    function exclude_this_css($handle, $src) {
+    static function exclude_this_css($handle, $src) {
         static $exclude_css = false;
         if ($exclude_css === false) {
             $exclude_css = explode(',', self::$options['exclude-css']);
@@ -201,7 +201,7 @@ class evScriptOptimizer {
      *
      * @global $wp_scripts, $auto_compress_scripts
      */
-    function wp_print_scripts_action() {
+    static function wp_print_scripts_action() {
         /* if ( did_action('wp_print_footer_scripts') ) */
         
         if (is_admin()) return;
@@ -296,7 +296,7 @@ class evScriptOptimizer {
      *
      * @global $wp_styles, $auto_compress_styles
      */
-    function wp_print_styles_action() {
+    static function wp_print_styles_action() {
         if (is_admin()) return;
 		
         global $wp_styles, $auto_compress_styles;
@@ -370,7 +370,7 @@ class evScriptOptimizer {
 		}
     }
 	
-	private function normalize_url($url) {
+	static private function normalize_url($url) {
     
         if (substr($url, 0, 2) == '//') {
             if (isset($_SERVER['HTTPS']) )
@@ -386,7 +386,7 @@ class evScriptOptimizer {
         return $url;
     }
     
-	private function is_external_url($url) {
+	static private function is_external_url($url) {
         
         if (substr($url, 0, 4) != 'http') {
             $url = site_url($url);
@@ -401,11 +401,11 @@ class evScriptOptimizer {
         }
     }
 
-	public function save_options() {
+	static public function save_options() {
         update_option('spacker-options', self::$options);
     }
     
-	function print_styles() {
+	static function print_styles() {
 		global $auto_compress_styles;
         
         // TODO: Check ordering
@@ -421,7 +421,7 @@ class evScriptOptimizer {
         $auto_compress_styles = array();
 	}
     
-    function print_scripts( $conditional = false ) {
+    static function print_scripts( $conditional = false ) {
         global $auto_compress_scripts;
         if (! is_array($auto_compress_scripts) || ! count($auto_compress_scripts))
             return;
@@ -505,7 +505,8 @@ class evScriptOptimizer {
                 }
                 else {
                     $scripts_text .= "/*\nError loading script content: $src\n";
-                    $scripts_text .= "HTTP Code: {$_remote_get['response']['code']} ({$_remote_get['response']['message']})\n*/\n\n";
+                    if (! is_wp_error($_remote_get)) 
+                        $scripts_text .= "HTTP Code: {$_remote_get['response']['code']} ({$_remote_get['response']['message']})\n*/\n\n"; ///************************
                 }
             }
             $scripts_text = "/*\nCache: ".$handles."\n*/\n" . $scripts_text;
@@ -566,7 +567,11 @@ class evScriptOptimizer {
                 }
                 else {
                     // Include script 
-                    $error_message = "/* Error loading script content: $src; HTTP Code: {$_remote_get['response']['code']} ({$_remote_get['response']['message']}) */";
+                    if (! is_wp_error($_remote_get)) 
+                        $error_message = "/* Error loading script content: $src; HTTP Code: {$_remote_get['response']['code']} ({$_remote_get['response']['message']}) */";
+                    else
+                        $error_message = "/* Error loading script content: $src */";
+                    
                     self::print_js_script_tag($src, $conditional, false, $script['localize'], $error_message);
                 } 
             }
@@ -575,7 +580,7 @@ class evScriptOptimizer {
         }
     }
 		
-    function compress_css($css, $path) {
+    static function compress_css($css, $path) {
         // remove comments, tabs, spaces, newlines, etc.
         $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', ' ', $css);
         $css = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), ' ', $css);
@@ -590,7 +595,7 @@ class evScriptOptimizer {
         return $css;
     }
 	
-	function get_path_by_url($url, $home) {
+	static function get_path_by_url($url, $home) {
 		$path = ABSPATH . str_replace($home, '', $url);
 		$_p = strpos($path, '?');
 		if ($_p !== false) {
@@ -599,17 +604,17 @@ class evScriptOptimizer {
 		return $path;
 	}
     
-    private function save_cache($cache_file_path, $cache, $cache_name, $fileId, $type) {
+    static private function save_cache($cache_file_path, $cache, $cache_name, $fileId, $type) {
         self::save_script($cache_file_path, $cache);
         self::$options['cache-'.$type][$cache_name] = $fileId;
         self::save_options();
     }   
     
-    private function get_cache($cache_name, $cache_file_path, $type) {
+    static private function get_cache($cache_name, $cache_file_path, $type) {
         return (!empty(self::$options['cache-'.$type][$cache_name]) && is_readable($cache_file_path));
     }
 
-    private function print_js_script_tag($url, $conditional, $is_cache, $localize = '', $error_message = '') {
+    static private function print_js_script_tag($url, $conditional, $is_cache, $localize = '', $error_message = '') {
         
         if ($localize) {
             echo "<script type='text/javascript'>\n/* <![CDATA[ */\n$localize\n/* ]]> */\n</script>\n";
@@ -626,7 +631,7 @@ class evScriptOptimizer {
         }
     }    
     
-    private function print_css_link_tag($url, $media, $conditional, $is_cache) {
+    static private function print_css_link_tag($url, $media, $conditional, $is_cache) {
         if ($conditional)
             echo "<!--[if " . $conditional . "]>\n";
               
@@ -639,7 +644,7 @@ class evScriptOptimizer {
     /*
      * Print CSS
      */
-    function print_styles_by_media($scripts, $media, $conditional) {
+    static function print_styles_by_media($scripts, $media, $conditional) {
         global $auto_compress_styles;
         if (! is_array($scripts) || ! count($scripts))
             return false;
@@ -697,7 +702,11 @@ class evScriptOptimizer {
                     $scripts_text .= $content . "\n";                    
                 }
                 else {
-                    $error_message = "/* Error loading script content: $src; HTTP Code: {$_remote_get['response']['code']} ({$_remote_get['response']['message']}) */";
+                    if (! is_wp_error($_remote_get)) 
+                        $error_message = "/* Error loading script content: $src; HTTP Code: {$_remote_get['response']['code']} ({$_remote_get['response']['message']}) */";
+                    else
+                        $error_message = "/* Error loading script content: $src */";
+                        
                     $scripts_text .= "$error_message\n";
                     $scripts_text .= "@import url('" . $src . "'); \n\n";
                 }
@@ -758,8 +767,11 @@ class evScriptOptimizer {
                 }
                 else {
                     // Include script 
-                    self::print_css_link_tag($src, $media, $conditional, true);                    
-                    echo "<!-- Error loading script content: $src; HTTP Code: {$_remote_get['response']['code']} ({$_remote_get['response']['message']}) -->\n";
+                    self::print_css_link_tag($src, $media, $conditional, true);      
+                    if (! is_wp_error($_remote_get)) 
+                        echo "<!-- Error loading script content: $src; HTTP Code: {$_remote_get['response']['code']} ({$_remote_get['response']['message']}) -->\n";
+                    else
+                        echo "<!-- Error loading script content: $src -->\n";
                 }
             }
         }
@@ -767,14 +779,14 @@ class evScriptOptimizer {
         return true;
     }
 	
-    function add_url_param($url, $name, $val) {
+    static function add_url_param($url, $name, $val) {
         if (strpos($url, '?') === false)
 			return $url."?$name=$val";
 			
 		return $url."&$name=$val";
     }
 
-    function save_script($filename, $content) {
+    static function save_script($filename, $content) {
         if (is_writable(self::$options['cache-dir-path'])) {
             $fhandle = @fopen($filename, 'w+');
             if ($fhandle) fwrite($fhandle, $content, strlen($content));
@@ -782,7 +794,7 @@ class evScriptOptimizer {
         return false;
     }
 
-    function head() {
+    static function head() {
         /*if (self::$options['combine-js'] == 'combine') {
             self::print_scripts();
         }
@@ -795,7 +807,7 @@ class evScriptOptimizer {
         }
     }
 
-    function footer() {
+    static function footer() {
         if (self::$options['combine-js']) {
             self::$js_printed = true;
             self::print_scripts();
@@ -807,12 +819,12 @@ class evScriptOptimizer {
         }
     }
 	
-    function ordering_start() {
+    static function ordering_start() {
 		self::$ordering_started = true;
 		ob_start();		
 	}	
 	
-    function ordering_stop() {
+    static function ordering_stop() {
 		if (! self::$ordering_started) return;
 		self::$ordering_started = false;		
 		$html = ob_get_contents();
@@ -822,7 +834,7 @@ class evScriptOptimizer {
 		echo $html;
 	}
 	
-	function order_scripts($html){
+	static function order_scripts($html){
 		$count = preg_match_all('/<!--\[if[^<]*<script.*>.*<\/script>.*if\]-->/imxsU', $html, $matches);
 		$if_scripts = '';
 		if ($count) {

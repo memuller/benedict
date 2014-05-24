@@ -181,9 +181,9 @@ function wptouch_get_the_post_thumbnail( $param = false ) {
 				$thumbnail = get_the_post_thumbnail( $post->ID, 'thumbnail' );
 				if ( preg_match( '#src=\"(.*)\"#iU', $thumbnail, $matches ) ) {
 					$thumbnail = $matches[1];
-				}	
+				}
 			}
-		}	
+		}
 	}
 
 	return apply_filters( 'wptouch_the_post_thumbnail', $thumbnail, $param );
@@ -395,7 +395,7 @@ function wptouch_use_jquery_2() {
 	$settings = wptouch_get_settings();
 	if ( $settings->use_jquery_2 == true && !is_admin() ) {
 		wp_deregister_script( 'jquery' );
-		wp_register_script( 'jquery', 'http://code.jquery.com/jquery-2.0.3.min.js', false, '2.0.3', 1 );
+		wp_register_script( 'jquery', 'http://code.jquery.com/jquery-2.1.1.min.js', false, '2.1.1', 1 );
 		wp_enqueue_script( 'jquery' );
 	}
 }

@@ -13,6 +13,7 @@ add_action( 'admin_enqueue_scripts', 'bauhaus_enqueue_admin_scripts' );
 // Bauhaus filters
 add_filter( 'wptouch_registered_setting_domains', 'bauhaus_setting_domain' );
 add_filter( 'wptouch_setting_defaults_bauhaus', 'bauhaus_setting_defaults' );
+add_filter( 'wptouch_setting_defaults_foundation', 'bauhaus_foundation_setting_defaults' );
 
 add_filter( 'wptouch_body_classes', 'bauhaus_body_classes' );
 add_filter( 'wptouch_post_classes', 'bauhaus_post_classes' );
@@ -77,6 +78,11 @@ function bauhaus_setting_defaults( $settings ) {
 	return $settings;
 }
 
+function bauhaus_foundation_setting_defaults( $settings ) {
+	$settings->typography_sets = 'lato_roboto';
+	return $settings;
+}
+
 function bauhaus_theme_init() {
 
 	// Foundation modules this theme should load
@@ -112,12 +118,12 @@ function bauhaus_theme_init() {
 	// Example of how to register a theme menu
 	wptouch_register_theme_menu(
 		array(
-			'name' => 'primary_menu',	// this is the name of the setting
-			'friendly_name' => __( 'Header Menu', 'wptouch-pro' ),	// the friendly name, shows as a section heading
-			'settings_domain' => BAUHAUS_SETTING_DOMAIN,	// the setting domain (should be the same for the whole theme)
-			'description' => __( 'Choose a menu', 'wptouch-pro' ),	 	// the description
-			'tooltip' => __( 'Main menu selection', 'wptouch-pro' ), // Extra help info about this menu, perhaps?
-			'can_be_disabled' => false
+			'name' => 'primary_menu',									// this is the name of the setting
+			'friendly_name' => __( 'Header Menu', 'wptouch-pro' ),		// the friendly name, shows as a section heading
+			'settings_domain' => BAUHAUS_SETTING_DOMAIN,				// the setting domain (should be the same for the whole theme)
+			'description' => __( 'Choose a menu', 'wptouch-pro' ),		// the description
+			'tooltip' => __( 'Main menu selection', 'wptouch-pro' ),	// Extra help info about this menu, perhaps?
+			'can_be_disabled' => false									// Typically this is always false
 		)
 	);
 

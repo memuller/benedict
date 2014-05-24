@@ -229,6 +229,10 @@ if ( defined( 'WPTOUCH_IS_FREE' ) ) {
 	function wptouch_should_show_license_nag() {
 		return false;
 	}
+
+	function wptouch_show_renewal_notice() {
+		return false;
+	}
 }
 
 function wptouch_admin_url( $url ) {

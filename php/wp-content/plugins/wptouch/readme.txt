@@ -2,8 +2,8 @@
 Contributors: bravenewcode, duanestorey, dalemugford
 Tags: wptouch, iphone, ipod, bravenewcode, mobile, android, blackberry, smartphone, responsive, design, mobile plugin, ios, mobile theme
 Requires at least: 3.6
-Stable tag: 3.2.4
-Tested up to: 3.8.1
+Stable tag: 3.3.1
+Tested up to: 3.9.1
 License: GPLv2
 
 Create a slick mobile WordPress website with just a few clicks.
@@ -39,6 +39,21 @@ For more information visit [WPtouch.com](http://www.wptouch.com/?utm_campaign=wp
 11. WPtouch admin - Menu Setup
 
 == Changelog ==
+
+= Version 3.3.1 (May 22nd, 2014) =
+
+* Updated: Product compatibility
+
+= Version 3.3 (May 15th, 2014) =
+
+* Fixed: Issue where page icons configured for WPtouch no longer showed in WPtouch Pro when WPtouch was removed
+* Fixed: Menu items for custom taxonomy terms now link to the correct term archive URL
+* Fixed: Issue where single-file plugins could not be disabled the Compatibility screen
+* Fixed: Issue where WooRank wouldn’t properly detect WPtouch
+* Fixed: Issue where links extension info did not correctly target the extension in the browser
+* Fixed: Issue where some JavaScript was loaded over HTTP when the page was loaded via HTTPS
+* Changed: Use jQuery 2.x setting now includes jQuery 2.1.1 (latest)
+* Changed: Related Posts first finds posts with at least two matching tags; if not enough are found, finds posts with at least one matching category
 
 = Version 3.2.4 (April 23nd, 2014) =
 

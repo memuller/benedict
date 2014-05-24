@@ -3,27 +3,28 @@ Contributors: evgenniy
 Donate link: http://4coder.info/en/
 Tags: performance, javascript, css, script, js, compress, pack, combine, optimization
 Requires at least: 2.8
-Tested up to: 3.9.0
+Tested up to: 3.9.1
 Stable tag: trunk
 
 Make your Website faster by packing and grouping JavaScript and CSS files. Also it provides an opportunity to add CSS & JS via admin panel.
 
 == Description ==
 = Features =
+- Grouping several scripts into single file (to minimize http requests count)
+- Combine several CSS files into single files (with grouping by "media")
 - Pack scripts using Dean Edwards's JavaScript Packer
-- Combine several scripts into the single file (to minimize http requests)
-- You can move all JavaScripts to the bottom
-- Combine all CSS scripts into the single files (with grouping by "media")
-- Pack CSS files (remove comments, tabs, spaces, newlines)
-- Ability to include JavaScript and CSS files (new)
+- Minify CSS files (remove comments, tabs, spaces, newlines)
+- Support conditional JS and CSS (html5.js, IE CSS, <!--[if lt IE 9]>)
+- Support JavaScript L10n (wp_localize_script)
+- Put JavaScript at bottom
+- Ability to include JavaScript and CSS files
 - Network / WPMU support
 
 = Recommendations =
-- This Plugin processes only those scripts that are included properly (using "wp_enqueue_script" or "wp_enqueue_style" function)
-- Uploads directory should be writable
+- This Plugin processing only those scripts that are included properly (using "wp_enqueue_script" or "wp_enqueue_style" function)
+- Cache directory `/wp-content/cache/` should be writable
 - Read <a title="Permanent Link to How to properly add CSS in WordPress" rel="bookmark" href="http://4coder.info/en/blog/2010/how-to-properly-add-css-in-wordpress/">How to properly add CSS in WordPress</a>
-- If any script fails and shows error you can add it to exclude list
-- Check "Strict ordering" option for better compatibility with other plugins <sup>betta</sup>
+- If any script fails and web-browser console shows errors you can add this JS to exclude list
 
 For more info visit <a title="This WordPress plugin home page" href="http://4coder.info/en/code/wordpress-plugins/js-css-script-optimizer/">http://4coder.info/en/code/wordpress-plugins/js-css-script-optimizer/</a>.
 
@@ -41,6 +42,9 @@ For more info visit <a title="This WordPress plugin home page" href="http://4cod
 1. YSlow speed test after installation
 
 == Changelog ==
+= 0.2.9 =
+* "wp_remote_get" methods exception was handled
+* Notices in WP_DEBUG mode are eliminated
 = 0.2.8 =
 * Support JavaScript L10n (wp_localize_script)
 * Support conditional JS (html5.js, <!--[if lt IE 9]>)

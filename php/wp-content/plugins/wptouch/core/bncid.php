@@ -3,6 +3,8 @@
 define( 'WPTOUCH_PRO_BNCAPI_PRODUCT_NAME', 'wptouch-pro-3' );
 define( 'WPTOUCH_BNCID_CACHE_TIME', 3600 );
 
+define( 'WPTOUCH_BNCID_DONT_CACHE', 1 );
+
 function wptouch_has_license() {
 	global $wptouch_pro;
 	$wptouch_pro->setup_bncapi();
@@ -47,9 +49,10 @@ function wptouch_check_api() {
 	WPTOUCH_DEBUG( WPTOUCH_INFO, 'Checking BNC API to make sure it is working properly' );
 
 	$now = time();
-	if ( $now > $bnc_settings->next_update_check_time ) {
+	if ( ( $now > $bnc_settings->next_update_check_time ) || WPTOUCH_BNCID_DONT_CACHE ) {
 		WPTOUCH_DEBUG( WPTOUCH_INFO, '...performing update' );
 		$result = $wptouch_pro->bnc_api->check_api();
+
 		if ( isset( $result['has_valid_license'] ) ) {
 			if ( !$result['has_valid_license'] ) {
 				WPTOUCH_DEBUG( WPTOUCH_INFO, '...DOES NOT appear to have a valid license' );
@@ -61,11 +64,19 @@ function wptouch_check_api() {
 					if ( $bnc_settings->failures >= WPTOUCH_API_CHECK_FAILURES ) {
 						$bnc_settings->failures = 0;
 
-						$bnc_settings->license_accepted = false;
+						$bnc_settings->license_accepted = 0;
 						$bnc_settings->license_accepted_time = 0;
-						$bnc_settings->referral_user_id = false;
+						$bnc_settings->referral_user_id = 0;
+
+						if ( isset( $result[ 'license_expired' ] ) ) {
+							$bnc_settings->license_expired = $result[ 'license_expired' ];
+						}
 
 						$bnc_settings->save();
+					}
+				} else {
+					if ( isset( $result[ 'license_expired' ] ) ) {
+						$bnc_settings->license_expired = $result[ 'license_expired' ];
 					}
 				}
 			} else {
@@ -73,6 +84,11 @@ function wptouch_check_api() {
 				$bnc_settings->failures = 0;
 				$bnc_settings->license_accepted = true;
 				$bnc_settings->license_accepted_time = $now;
+				$bnc_settings->license_expired = 0;
+
+				if ( $result[ 'license_expiry_date'] ) {
+					$bnc_settings->license_expiry_date = $result[ 'license_expiry_date'];
+				}
 
 				if ( isset( $result[ 'user_id'] ) ) {
 					$bnc_settings->referral_user_id = $result[ 'user_id' ];
