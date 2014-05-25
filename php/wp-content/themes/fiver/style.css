@@ -9,7 +9,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 header,footer,section,aside,nav,article {
- display: block; 
+ display: block;
 }
 
 body {
@@ -35,7 +35,7 @@ header h1 {
 }
 
 .has_sidebar header h1 {
- 	margin-left: 200px; 
+ 	margin-left: 200px;
 }
 
 header h1 a {
@@ -57,7 +57,7 @@ blockquote {
 }
 
 blockquote cite {
- font-weight: bold; 
+ font-weight: bold;
 }
 
 blockquote:before {
@@ -80,7 +80,7 @@ blockquote:after {
 
 table {
  width: 100%;
- border: 1px solid #ccc; 
+ border: 1px solid #ccc;
  font-size: 1em;
  margin-bottom: 20px;
 }
@@ -88,37 +88,37 @@ table {
 th {
  background-color: #666;
  color: #fff;
- text-align: left; 
+ text-align: left;
 }
 
 th, td {
- padding: 5px; 
+ padding: 5px;
 }
 
 
 
 dt {
- font-weight: bold; 
+ font-weight: bold;
 }
 
 dd {
  margin-bottom: 5px;
- margin-left: 10px; 
+ margin-left: 10px;
 }
 
 
 acronym {
- border-bottom: 1px dashed #ccc; 
+ border-bottom: 1px dashed #ccc;
 }
 
 s, strike, del {
-  text-decoration: line-through; 
+  text-decoration: line-through;
 }
 
 .size-full {
  max-width: 550px;
  height: auto;
- overflow: hidden; 
+ overflow: hidden;
 }
 
 
@@ -228,7 +228,7 @@ nav h3 {
 	padding: 0;
 	margin: 0 0 15px 0;
 	text-shadow: 3px 3px 2px rgba(0,0,0,0.2);
-	
+
 }
 
 nav a {
@@ -254,7 +254,7 @@ header a img, nav a img {
 /* comments */
 
 #comments, .nocomments {
- clear: both; 
+ clear: both;
 }
 
 .commentlist {
@@ -264,7 +264,7 @@ header a img, nav a img {
 }
 
 .children {
- list-style: none; 
+ list-style: none;
 }
 
 .comment {
@@ -276,7 +276,7 @@ header a img, nav a img {
 }
 
 .comment-body {
- padding-left: 80px; 
+ padding-left: 80px;
 }
 
 h3#comments, #respond h3 {
@@ -287,7 +287,7 @@ h3#comments, #respond h3 {
 	padding: 0;
 	margin: 0 0 15px 0;
 	text-shadow: 3px 3px 2px rgba(0,0,0,0.2);
-	
+
 }
 
 .comment p {
@@ -345,7 +345,7 @@ h3#comments, #respond h3 {
 
 .pingback a, .trackback a {
 	color: #ccc;
-	text-decoration: none;	
+	text-decoration: none;
 }
 
 .pingback a:hover, .trackback a:hover {
@@ -354,11 +354,11 @@ h3#comments, #respond h3 {
 
 div.reply {
  padding-bottom: 10px;
- clear: both; 
+ clear: both;
 }
 
 a.comment-reply-link {
- font-weight: bold; 
+ font-weight: bold;
 }
 
 
@@ -368,7 +368,7 @@ a.comment-reply-link {
 /* comment form */
 
 #respond {
- clear: both; 
+ clear: both;
 }
 
 #commentform p {
@@ -383,11 +383,11 @@ a.comment-reply-link {
 p.form-allowed-tags {
  clear: both;
  padding-top: 20px;
- color: #999; 
+ color: #999;
 }
 
 p.form-submit input {
- width: auto !important; 
+ width: auto !important;
 }
 
 /* archive thumbnail thingy */
@@ -491,7 +491,7 @@ img.aligncenter {
 .sticky {
  border: 1px solid rgba(0,0,0,0.3);
  padding: 10px;
- background-color: #f9f9f9; 
+ background-color: #f9f9f9;
  background-color: rgba(0,0,0,0.05);
 }
 
@@ -502,7 +502,7 @@ img.aligncenter {
 
 hr.clearfix {
  clear: both;
- visibility: hidden; 
+ visibility: hidden;
 }
 
 
@@ -510,7 +510,7 @@ hr.clearfix {
 
 
 .widget_rss ul a {
- display: block; 
+ display: block;
  font-weight: bold;
  color: #000;
 }
@@ -529,7 +529,7 @@ hr.clearfix {
 
 .widget_rss .rssSummary {
   font-size: 0.9em;
-  line-height: 1.1em;   
+  line-height: 1.1em;
 }
 
 
@@ -541,7 +541,7 @@ hr.clearfix {
 
 #wp-calendar {
  font-size: 0.8em;
- width: 140px; 
+ width: 140px;
  border-collapse: collapse;
 }
 
@@ -552,7 +552,7 @@ hr.clearfix {
 }
 
 #wp-calendar td {
- color: #999; 
+ color: #999;
 }
 
 #wp-calendar td a {
@@ -561,5 +561,5 @@ hr.clearfix {
 }
 
 #wp-calendar caption {
- font-weight: bold; 
+ font-weight: bold;
 }
