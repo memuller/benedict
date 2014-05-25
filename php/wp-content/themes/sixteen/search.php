@@ -23,7 +23,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php sixteen_content_nav( 'nav-below' ); ?>
+			<?php sixteen_pagination(); ?>
 
 		<?php else : ?>
 

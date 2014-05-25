@@ -85,7 +85,7 @@ function radiate_scripts() {
 	// Load our main stylesheet.
 	wp_enqueue_style( 'radiate-style', get_stylesheet_uri() );
 
-	wp_enqueue_style( 'radiate-google-fonts', 'http://fonts.googleapis.com/css?family=Roboto|Merriweather:400,300' ); 
+	wp_enqueue_style( 'radiate-google-fonts', '//fonts.googleapis.com/css?family=Roboto|Merriweather:400,300' ); 
 
 	wp_enqueue_script( 'radiate-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 

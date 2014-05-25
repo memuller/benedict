@@ -95,7 +95,8 @@ function radiate_internal_css() {
 	if ( get_header_image() ) : 
 		$header_image_height = get_custom_header()->height;
 		if ( is_user_logged_in() ) { $height = $header_image_height - 32; }
-		else { $height = $header_image_height; }	
+		else { $height = $header_image_height; }
+		$heightsmall = $height - 68;
 
 		$header = get_header_image();
 
@@ -107,6 +108,7 @@ function radiate_internal_css() {
 		?>
 		<style type="text/css" id="custom-header-css">
 		#parallax-bg { <?php echo trim( $header_image_style ); ?> } #masthead { margin-bottom: <?php echo $height; ?>px; } 
+		@media only screen and (max-width: 600px) { #masthead { margin-bottom: <?php echo $heightsmall; ?>px; }  }
 		</style>
 		<?php
 	endif;

@@ -49,6 +49,18 @@ function omega_widget_classes($params) {
 add_filter('dynamic_sidebar_params','omega_widget_classes');
 
 /**
+ * Add the First and Last Class to WordPress Navigation Menu Items
+ *  
+ * @since Omega 1.0
+ */
+function omega_first_and_last_menu_class($items) {
+    $items[1]->classes[] = 'first';
+    $items[count($items)]->classes[] = 'last';
+    return $items;
+}
+add_filter('wp_nav_menu_objects', 'omega_first_and_last_menu_class');
+
+/**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
  */
 function omega_page_menu_args( $args ) {
@@ -215,7 +227,7 @@ function the_content_limit( $max_characters, $more_link_text = '(more...)', $str
 
 }
 
-if ( omega_get_setting( 'more_link_scroll' )) {
+if ( !get_theme_mod( 'more_scroll' )) {
 	add_filter( 'the_content_more_link', 'omega_remove_more_link_scroll' );
 }
 

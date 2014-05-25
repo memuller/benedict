@@ -12,7 +12,9 @@
 .about-wrap h3 {
 	line-height: 26px;
 }
-
+.about-wrap .feature-section {
+		margin-top: 0px;
+}
 .about-wrap .feature-section div {
 	text-align: center;
 }

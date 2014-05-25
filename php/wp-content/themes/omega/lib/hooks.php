@@ -68,11 +68,7 @@ function omega_register_sidebars() {
 		array(
 			'id'          => 'primary',
 			'name'        => _x( 'Primary', 'sidebar', 'omega' ),
-			'description' => __( 'The main sidebar. It is displayed on either the left or right side of the page based on the chosen layout.', 'omega' ),
-			'before_widget' => '<li id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</li>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>'
+			'description' => __( 'The main sidebar. It is displayed on either the left or right side of the page based on the chosen layout.', 'omega' )
 		)
 	);
 }
@@ -89,20 +85,13 @@ function omega_register_sidebars() {
 function omega_set_default_theme_settings( $settings ) {
 
 	$settings = array(
-		'comments_pages'            => 1,
-		'comments_posts'            => 1,
-		'trackbacks_pages'          => 1,
-		'trackbacks_posts'          => 1,
+		'comments_pages'            => 0,
 		'content_archive'           => 'full',
 		'content_archive_limit'		=> 0,
 		'content_archive_thumbnail' => 1,
-		'content_archive_more'      => '[Read more...]',
-		'more_link_scroll'			=> 0,
-		'image_size'                => 'large',
-		'posts_nav'                 => 'numeric',
-		'single_nav'                 => 0,
-		'header_scripts'            => '',
-		'footer_scripts'            => '',
+		'more_text'      		=> '[Read more...]',
+		'no_more_scroll'		=> 1,
+		'image_size'           	=> 'large',
 	);
 
 	return $settings;
@@ -132,15 +121,14 @@ function omega_footer_markup_close() {
  * Dynamic element to wrap the site title and site description. 
  */
 function omega_branding() {
-
 	echo '<div class="' . omega_apply_atomic( 'title_area_class', 'title-area') .'">';
 
 	/* Get the site title.  If it's not empty, wrap it with the appropriate HTML. */	
 	if ( $title = get_bloginfo( 'name' ) ) {		
 		if ( $logo = get_theme_mod( 'custom_logo' ) )
-			$title = sprintf( '<h1 class="site-title"><a href="%1$s" title="%2$s" rel="home"><span><img src="%3$s"/></span></a></h1>', home_url(), esc_attr( $title ), $logo );		
+			$title = sprintf( '<div itemscope itemtype="http://schema.org/Organization" class="site-title"><a itemprop="url" href="%1$s" title="%2$s" rel="home"><img itemprop="logo" src="%3$s"/></a></div>', home_url(), esc_attr( $title ), $logo );		
 		else
-			$title = sprintf( '<h1 class="site-title"><a href="%1$s" title="%2$s" rel="home"><span>%3$s</span></a></h1>', home_url(), esc_attr( $title ), $title );		
+			$title = sprintf( '<h2 class="site-title" itemprop="headline"><a href="%1$s" title="%2$s" rel="home">%3$s</a></h2>', home_url(), esc_attr( $title ), $title );		
 	}
 
 	/* Display the site title and apply filters for developers to overwrite. */
@@ -148,7 +136,7 @@ function omega_branding() {
 
 	/* Get the site description.  If it's not empty, wrap it with the appropriate HTML. */
 	if ( $desc = get_bloginfo( 'description' ) )
-		$desc = sprintf( '<h2 class="site-description"><span>%1$s</span></h2>', $desc );
+		$desc = sprintf( '<h3 class="site-description"><span>%1$s</span></h3>', $desc );
 
 	/* Display the site description and apply filters for developers to overwrite. */
 	echo omega_apply_atomic( 'site_description', $desc );
@@ -219,19 +207,19 @@ function omega_entry_header() {
 function omega_entry() {
 
 	if ( is_home() || is_archive() || is_search() ) {
-		if(omega_get_setting( 'content_archive_thumbnail' )) {
-			get_the_image( array('attachment' => false, 'meta_key' => 'Thumbnail', 'default_size' => omega_get_setting( 'image_size' ) ) ); 
+		
+		if(get_theme_mod( 'post_thumbnail' )) {
+			get_the_image( array('attachment' => false, 'meta_key' => 'Thumbnail', 'default_size' => get_theme_mod( 'image_size' ) ) ); 
 		}
-	
 
-		if ( 'excerpts' === omega_get_setting( 'content_archive' ) ) {
-			if ( omega_get_setting( 'content_archive_limit' ) )
-				the_content_limit( (int) omega_get_setting( 'content_archive_limit' ), omega_get_setting( 'content_archive_more' ) );
+		if ( 'excerpts' === get_theme_mod( 'post_excerpt' ) ) {
+			if ( get_theme_mod( 'excerpt_chars_limit' ) )
+				the_content_limit( (int) get_theme_mod( 'excerpt_chars_limit' ), get_theme_mod( 'more_text' ) );
 			else
 				the_excerpt();
 		}
 		else {
-			the_content( omega_get_setting( 'content_archive_more' ) );
+			the_content( get_theme_mod( 'more_text' ) );
 		}
 	} else {
 

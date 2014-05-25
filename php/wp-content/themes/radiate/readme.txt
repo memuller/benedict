@@ -65,6 +65,10 @@ and we will include it within the theme from next version update.
 
 == CHANGE LOG == 
 
+= Version 1.0.5 =
+* Fix Google font path to avoid issues with SSL sites.
+* Extra gap appearing below the header image in small devices issue fised.
+
 = Version 1.0.4 = 
 * Author name to appear for post in archive view.
 * French language file updated.

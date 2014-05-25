@@ -167,14 +167,15 @@ class TC_utils {
     * @package Customizr
     * @since Customizr 1.0
     */
-    function tc_get_option( $option_name , $option_group = null ) {
+     function tc_get_option( $option_name , $option_group = null ) {
         //do we have to look in a specific group of option (plugin?)
         $option_group       = is_null($option_group) ? 'tc_theme_options' : $option_group;
         $saved              = (array) get_option( $option_group );
         $defaults           = $this -> default_options;
         $__options          = wp_parse_args( $saved, $defaults );
         //$options            = array_intersect_key( $saved , $defaults);
-      return apply_filters( 'tc_get_option' , $__options[$option_name] , $option_name , $option_group );
+        $returned_option    = isset($__options[$option_name]) ? $__options[$option_name] : false;
+      return apply_filters( 'tc_get_option' , $returned_option , $option_name , $option_group );
     }
 
 
@@ -927,7 +928,7 @@ class TC_utils {
                               'priority'      => 1,
                               'choices'     => array(
                                       'nothing'   => __( 'Don\'t show any posts or page' , 'customizr'),
-                                      'posts'   => __( 'Your latest posts' , 'customizr'  ),
+                                      'posts'   => __( 'Your latest posts' , 'customizr'),
                                       'page'    => __( 'A static page' , 'customizr'  ),
                               ),
             ),

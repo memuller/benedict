@@ -452,7 +452,7 @@ if( !function_exists( 'cyberchimps_posted_on' ) ) {
 		$date       = esc_html( get_the_date() );
 
 		// Set the HTML for date link.
-		$posted_on = printf(
+		$posted_on = sprintf(
 						__( 'Posted on %s', 'cyberchimps_core' ),
 						'<a href="' . $date_url . '" title="' . $date_title . '" rel="bookmark">
 							<time class="entry-date updated" datetime="' . $date_time . '">' . $date . '</time>
@@ -489,7 +489,7 @@ if( !function_exists( 'cyberchimps_posted_by' ) ) {
 		$auther_link_title = esc_attr( sprintf( __( 'View all posts by %s', 'cyberchimps_core' ), get_the_author() ) );
 
 		// Set the HTML for author link.
-		$posted_by = printf(
+		$posted_by = sprintf(
 						'<span class="byline"> ' . __( 'by %s', 'cyberchimps_core' ),
 							'<span class="author vcard">
 								<a class="url fn n" href="' . $auther_posts_url . '" title="' . $auther_link_title . '" rel="author">' . esc_html( get_the_author() ) . '</a>
@@ -1106,7 +1106,7 @@ function cyberchimps_options_help_text() {
 						</div>
 						<div class="clear"></div>';
 		$text .= sprintf(
-			'<p>' . __( 'If you want even more amazing new features upgrade to %1$s which includes a Custom Features Slider, Image Carousel, Widgetized Boxes, Callout Section, expanded typography including Google Fonts, more color skins, and many more powerful new features. Please visit %2$s to learn more!', 'cyberchimps_core' ) . '</p>',
+			'<p>' . __( 'For even more amazing new features, upgrade to %1$s which includes a slider with customizable features, an image carousel, widgetized boxes, a callout section, expanded typography (including Google Fonts), additional color skins, and many more powerful new features. Visit %2$s to learn more!', 'cyberchimps_core' ) . '</p>',
 			'<a href="' . $upgrade_link . ' title="' . $pro_title . '">' . $pro_title . '</a>',
 			'<a href="cyberchimps.com" title="CyberChimps">CyberChimps.com</a>'
 		);
@@ -1445,8 +1445,14 @@ function cyberchimps_add_responsive_class( $classes ) {
 }
 
 if ( 'mp6' === get_user_option( 'admin_color' ) || version_compare( $GLOBALS['wp_version'], '3.8-alpha', '>' ) ) {
-	function load_custom_admin_styles() {
+	function cyberchimps_load_custom_admin_styles() {
 		wp_enqueue_style( 'cc-admin', get_template_directory_uri() . '/cyberchimps/options/lib/css/custom-post-icons.css', false, '1.0.0' );
 	}
-	add_action( 'admin_enqueue_scripts', 'load_custom_admin_styles' );
+	add_action( 'admin_enqueue_scripts', 'cyberchimps_load_custom_admin_styles' );
+}
+
+// FOR IE compatiblilty mode.
+add_action( 'send_headers', 'cyberchimps_add_header_xua' );
+function cyberchimps_add_header_xua() {
+	header( 'X-UA-Compatible: IE=edge,chrome=1' );
 }

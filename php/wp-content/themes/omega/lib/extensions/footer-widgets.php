@@ -7,7 +7,7 @@ add_action( 'widgets_init', 'omega_register_footer_widget_areas', 20 );
  *
  * @since 0.3.4
  *
- * @uses register_sidebar() Register footer widget areas.
+ * @uses omega_register_sidebar() Register footer widget areas.
  *
  * @return null Return early if there's no theme support.
  */
@@ -28,14 +28,10 @@ function omega_register_footer_widget_areas() {
 		$defaults = array(
 			'id'            => sprintf( 'footer-%d', $counter ),
 			'name'          => sprintf( __( 'Footer %d', 'omega' ), $counter ),
-			'description'   => sprintf( __( 'Footer %d widget area.', 'omega' ), $counter ),
-			'before_widget' => '<li id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</li>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>'
+			'description'   => sprintf( __( 'Footer %d widget area.', 'omega' ), $counter )
 		);
 
-		register_sidebar( $defaults );
+		omega_register_sidebar( $defaults );
 
 		$counter++;
 	}

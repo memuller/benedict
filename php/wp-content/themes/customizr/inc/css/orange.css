@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.1.11
+ * Customizr v3.1.14
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -6137,7 +6137,7 @@ article.format-link .format-icon:before {
   content: "\1F517";
   top: -12px;
 }
-/* hack for safari, uses the browser body.class added with a script */
+/* hack for safari + chrome, uses the browser body.class added with a script */
 
 .safari article.format-link .format-icon:before,
 .chrome article.format-link .format-icon:before {
@@ -6167,9 +6167,12 @@ article.format-link .format-icon:before {
   font-size: 2em;
   content: "\1F4C1";
 }
-.safari .archive.category .archive-header .format-icon:before {
+/* hack for safari + chrome, uses the browser body.class added with a script */
+
+.safari.archive.category .archive-header .format-icon:before,
+.chrome.archive.category .archive-header .format-icon:before {
   font-family: 'genericons';
-  top: 8px;
+  top: 10px;
   font-size: 1.5em;
   content: '\f301';
 }

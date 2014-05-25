@@ -96,6 +96,11 @@ function cyberchimps_install_plugins() {
 			'name'     => 'Clef', // The plugin name
 			'slug'     => 'wpclef', // The plugin slug (typically the folder name)
 			'required' => false
+		),
+		array(
+			'name'     => 'FooBox Image Lightbox', // The plugin name
+			'slug'     => 'foobox-image-lightbox', // The plugin slug (typically the folder name)
+			'required' => false
 		)
 	);
 

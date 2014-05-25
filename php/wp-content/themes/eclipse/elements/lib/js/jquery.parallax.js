@@ -33,15 +33,6 @@
 
 		});
 
-		getBgHeight = function (el) {
-			var img = new Image;
-			img.src = el.css('background-image').replace(/url\(|\)$/ig, "");
-
-			var bgHeight = img.height;
-
-			return bgHeight;
-		}
-
 		if (outerHeight) {
 			getHeight = function (jqo) {
 				return jqo.outerHeight(true);
@@ -64,8 +55,7 @@
 			$this.each(function (e) {
 				var $element = $(this);
 				var top = $element.offset().top;
-				var height = getHeight($element);
-				var bgHeight = getBgHeight($element);
+				var height = getHeight($element); 
 
 				// Check if totally above or totally below viewport
 				if (top + height < pos || top > pos + windowHeight) {

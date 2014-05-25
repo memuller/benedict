@@ -7,21 +7,21 @@
 /**
  * Textarea customize control class.
  *
- * @since 1.4.0
+ * @since 0.9.11
  */
 class Omega_Customize_Control_Textarea extends WP_Customize_Control {
 
 	/**
 	 * The type of customize control being rendered.
 	 *
-	 * @since 1.4.0
+	 * @since 0.9.11
 	 */
 	public $type = 'textarea';
 
 	/**
 	 * Displays the textarea on the customize screen.
 	 *
-	 * @since 1.4.0
+	 * @since 0.9.11
 	 */
 	public function render_content() { ?>
 		<label>

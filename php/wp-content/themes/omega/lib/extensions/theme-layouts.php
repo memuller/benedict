@@ -693,8 +693,8 @@ function theme_layouts_customize_preview_script() { ?>
 		function( value ) {
 			value.bind( 
 				function( to ) {
-					var classes = jQuery( 'body' ).attr( 'class' ).replace( /c-layout-[a-zA-Z0-9_-]*/g, '' );
-					jQuery( 'body' ).attr( 'class', classes ).addClass( 'c-layout-' + to );
+					var classes = jQuery( 'body' ).attr( 'class' ).replace( /layout-[a-zA-Z0-9_-]*/g, '' );
+					jQuery( 'body' ).attr( 'class', classes ).addClass( 'layout-' + to );
 				} 
 			);
 		}

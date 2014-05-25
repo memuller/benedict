@@ -8,11 +8,11 @@
 						<?php if(!of_get_option('show_magpro_slider_page') || of_get_option('show_magpro_slider_page') == 'true') : ?>  
                             <?php 
 								if ( of_get_option('magpro_slider') ) {
-									$dslider = of_get_option('magpro_slider');
+									$destro_dslider = of_get_option('magpro_slider');
 								} else {
-									$dslider = 'cheader';
+									$destro_dslider = 'cheader';
 								}
-								get_template_part( 'slider', $dslider ); 
+								get_template_part( 'slider', $destro_dslider ); 
 							?>                
                         <?php endif; ?>                                               
                         
@@ -22,7 +22,7 @@
                 
 
 										<?php if (have_posts()) : ?>
-											<?php $count = 0; while (have_posts()) : the_post(); $count++; ?>
+											<?php while (have_posts()) : the_post(); ?>
 												<!-- Actual Post starts here -->
 												<div <?php post_class('actual_post') ?> id="post-<?php the_ID(); ?>">
                                                 	<div class="ta_meta_container">

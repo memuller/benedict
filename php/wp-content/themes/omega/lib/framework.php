@@ -390,6 +390,12 @@ class Omega {
 		/* Load custom logo extension if supported. */
 		require_if_theme_supports( 'omega-custom-logo', trailingslashit( OMEGA_EXTENSIONS ) . '/custom-logo.php' );
 
+		/* Load custom comment extension. */
+		require_once( trailingslashit( OMEGA_EXTENSIONS ) . '/custom-comment.php' );
+
+		/* Load custom post extension. */
+		require_once( trailingslashit( OMEGA_EXTENSIONS ) . '/custom-post.php' );
+
 		/* Load  footer widgets extension if supported. */
 		require_if_theme_supports( 'omega-footer-widgets', trailingslashit( OMEGA_EXTENSIONS ) . '/footer-widgets.php' );
 

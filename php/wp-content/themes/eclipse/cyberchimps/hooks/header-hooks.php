@@ -161,7 +161,7 @@ function cyberchimps_header_logo() {
 		$logo = cyberchimps_get_option( 'custom_logo_uploader' );
 		?>
 		<div id="logo">
-			<a href="<?php echo $url; ?>" title="<?php echo get_bloginfo( 'name' ); ?>"><img src="<?php echo stripslashes( $logo ); ?>" alt="logo"></a>
+			<a href="<?php echo $url; ?>" title="<?php echo get_bloginfo( 'name' ); ?>"><img src="<?php echo stripslashes( $logo ); ?>" alt="<?php echo get_bloginfo( 'name' ); ?>"></a>
 		</div>
 	<?php
 	} else {
@@ -234,8 +234,8 @@ function cyberchimps_header_social_icons() {
 			$title = ( isset( $social[$key]['title'] ) ) ? $social[$key]['title'] : $key;
 
 			// Create the output
-			$output .= '<a href="' . esc_url( $social[$key]['url'] ) . '"' . ( "email" != $key ? 'target="_blank"' : '' )
-				. 'title="' . esc_attr( $link_title . ' ' . ucwords( $title ) ) . '" class="symbol ' . $key . '"></a>';
+			$output .= '<a href="' . esc_url( $social[$key]['url'] ) . '"' . ( "email" != $key ? ' target="_blank"' : '' )
+				. ' title="' . esc_attr( $link_title . ' ' . ucwords( $title ) ) . '" class="symbol ' . $key . '"></a>';
 		}
 
 	}

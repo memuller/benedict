@@ -1,4 +1,16 @@
 
+Version: 2.8.47
+----------------
+Moved $content_width into setup function.
+
+Version: 2.8.46
+----------------
+Deleted some unused code and Prefixed some variables.
+
+Version: 2.8.45
+----------------
+Prefixed some variables.
+
 Version: 2.8.44
 ----------------
 CSS modifications.

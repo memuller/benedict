@@ -117,4 +117,13 @@ Version 1.2.1.5
 Version 1.2.1.6
 
 	i) Relocated Code for Social Icons.
+	
+Version 1.2.1.7
+
+	i) Added Developer Reference for Nivo Slider
+	ii) Added Numbered Page Navigation for Search Results	
+	
+Version 1.2.1.8
+
+	i) Removed image.php to Make Image Attachments render using default template.	
 		

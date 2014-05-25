@@ -190,7 +190,7 @@ if ( !function_exists( 'responsive_setup' ) ):
 
 		add_theme_support( 'custom-header', array(
 			// Header image default
-			'default-image'       => '',
+			'default-image'       => get_template_directory_uri() . '/core/images/default-logo.png',
 			// Header text display default
 			'header-text'         => false,
 			// Header image flex width
@@ -860,6 +860,11 @@ function responsive_install_plugins() {
 		array(
 			'name'     => 'Clef', // The plugin name
 			'slug'     => 'wpclef', // The plugin slug (typically the folder name)
+			'required' => false
+		),
+		array(
+			'name'     => 'FooBox Image Lightbox', // The plugin name
+			'slug'     => 'foobox-image-lightbox', // The plugin slug (typically the folder name)
 			'required' => false
 		)
 	);

@@ -56,7 +56,6 @@ class TC_controls extends WP_Customize_Control	{
         	case 'select':
 				if ( empty( $this->choices ) )
 					return;
-
 				?>
 				<?php if (isset( $this->title)) : ?>
 					<h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>

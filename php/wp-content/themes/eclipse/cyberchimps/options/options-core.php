@@ -380,7 +380,7 @@ function cyberchimps_add_core_fields( $fields_list ) {
 	/*************************** HELP *****************************************************/
 
 	$fields_list[] = array(
-		'name'    => apply_filters( 'cyberchimps_help_sub_heading', __( 'Cyberchimps Help', 'cyberchimps_core' ) ),
+		'name'    => apply_filters( 'cyberchimps_help_sub_heading', __( 'CyberChimps Help', 'cyberchimps_core' ) ),
 		'id'      => 'help_info_display',
 		'type'    => 'welcome',
 		'section' => 'cyberchimps_help_section',
@@ -1729,7 +1729,7 @@ function cyberchimps_add_core_fields( $fields_list ) {
 		$fields_list[] = array(
 			'name'    => __( 'Callout Title', 'cyberchimps_core' ),
 			'id'      => 'callout_title',
-			'std'     => sprintf( __( '%1$s\'s Call Out Element', 'cyberchimps_core' ), apply_filters( 'cyberchimps_current_theme_name', 'Cyberchimps' ) ),
+			'std'     => sprintf( __( '%1$s\'s Call Out Element', 'cyberchimps_core' ), apply_filters( 'cyberchimps_current_theme_name', 'CyberChimps' ) ),
 			'type'    => 'text',
 			'section' => 'cyberchimps_callout_section',
 			'heading' => 'cyberchimps_blog_heading'
@@ -1738,7 +1738,7 @@ function cyberchimps_add_core_fields( $fields_list ) {
 		$fields_list[] = array(
 			'name'    => __( 'Callout Text', 'cyberchimps_core' ),
 			'id'      => 'callout_text',
-			'std'     => sprintf( __( 'Use %1$s\'s Call Out section on any page where you want to deliver an important message to your customer or client.', 'cyberchimps_core' ), apply_filters( 'cyberchimps_current_theme_name', 'Cyberchimps' ) ),
+			'std'     => sprintf( __( 'Use %1$s\'s Call Out section on any page where you want to deliver an important message to your customer or client.', 'cyberchimps_core' ), apply_filters( 'cyberchimps_current_theme_name', 'CyberChimps' ) ),
 			'type'    => 'editor',
 			'section' => 'cyberchimps_callout_section',
 			'heading' => 'cyberchimps_blog_heading'
@@ -1783,7 +1783,7 @@ function cyberchimps_add_core_fields( $fields_list ) {
 		);
 
 		$fields_list[] = array(
-			'name'    => __( 'Custom Callout Button', 'cyberchimps_core' ),
+			'name'    => __( 'Button', 'cyberchimps_core' ),
 			'id'      => 'custom_callout_button',
 			'class'   => 'custom_callout_options_toggle',
 			'std'     => '',
@@ -1793,7 +1793,7 @@ function cyberchimps_add_core_fields( $fields_list ) {
 		);
 
 		$fields_list[] = array(
-			'name'    => __( 'Custom Callout Background Color', 'cyberchimps_core' ),
+			'name'    => __( 'Background Color', 'cyberchimps_core' ),
 			'id'      => 'custom_callout_background_color',
 			'class'   => 'custom_callout_options_toggle',
 			'std'     => '',
@@ -1803,7 +1803,7 @@ function cyberchimps_add_core_fields( $fields_list ) {
 		);
 
 		$fields_list[] = array(
-			'name'    => __( 'Custom Callout Title Color', 'cyberchimps_core' ),
+			'name'    => __( 'Title Color', 'cyberchimps_core' ),
 			'id'      => 'custom_callout_title_color',
 			'class'   => 'custom_callout_options_toggle',
 			'std'     => '',
@@ -1813,7 +1813,7 @@ function cyberchimps_add_core_fields( $fields_list ) {
 		);
 
 		$fields_list[] = array(
-			'name'    => __( 'Custom Callout Text Color', 'cyberchimps_core' ),
+			'name'    => __( 'Text Color', 'cyberchimps_core' ),
 			'id'      => 'custom_callout_text_color',
 			'class'   => 'custom_callout_options_toggle',
 			'std'     => '',
@@ -1823,7 +1823,7 @@ function cyberchimps_add_core_fields( $fields_list ) {
 		);
 
 		$fields_list[] = array(
-			'name'    => __( 'Custom Callout Button Color', 'cyberchimps_core' ),
+			'name'    => __( 'Button Color', 'cyberchimps_core' ),
 			'id'      => 'custom_callout_button_color',
 			'class'   => 'custom_callout_options_toggle',
 			'std'     => '',
@@ -1833,7 +1833,7 @@ function cyberchimps_add_core_fields( $fields_list ) {
 		);
 
 		$fields_list[] = array(
-			'name'    => __( 'Custom Callout Button Text Color', 'cyberchimps_core' ),
+			'name'    => __( 'Button Text Color', 'cyberchimps_core' ),
 			'id'      => 'custom_callout_button_text_color',
 			'class'   => 'custom_callout_options_toggle',
 			'std'     => '',

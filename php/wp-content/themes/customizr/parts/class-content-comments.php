@@ -137,17 +137,22 @@ class TC_comments {
 
             printf('<article class="comment"><div class="%1$s"><div class="%2$s">%3$s</div><div class="%4$s">%5$s %6$s %7$s %8$s</div></div></article>',
                 apply_filters( 'tc_comment_wrapper_class', 'row-fluid' ),
-
                 apply_filters( 'tc_comment_avatar_class', 'comment-avatar span2' ),
-
                 get_avatar( $comment, apply_filters( 'tc_comment_avatar_size', 80 ) ),
-
                 apply_filters( 'tc_comment_content_class', 'span10' ),
 
                 $tc_show_comment_content ? sprintf('<div class="%1$s">%2$s</div>',
                                           apply_filters( 'tc_comment_reply_btn_class', 'reply btn btn-small' ),
-                                          get_comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply' , 'customizr' ).' <span>&darr;</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) )
-                                          ) : '',
+                                          get_comment_reply_link( array_merge( 
+                                                                      $args, 
+                                                                      array(  'reply_text' => __( 'Reply' , 'customizr' ).' <span>&darr;</span>', 
+                                                                              'depth' => $depth, 
+                                                                              'max_depth' => $args['max_depth'] ,
+                                                                              'add_below' => apply_filters( 'tc_comment_reply_below' , 'li-comment' )
+                                                                            ) 
+                                                                ) 
+                                          )
+                ) : '',
 
                 sprintf('<header class="comment-meta comment-author vcard">%1$s %2$s</header>',
                       sprintf( '<cite class="fn">%1$s %2$s %3$s</cite>' ,

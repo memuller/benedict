@@ -1,8 +1,11 @@
 <?php
-if ( ! isset( $content_width ) )
-	$content_width = 520;
 
 function Destro_setup(){
+  
+  global $content_width;	
+  if ( ! isset( $content_width ) )
+  $content_width = 520;	
+  
   // This theme uses wp_nav_menu() in one location.
   register_nav_menus( array(
     'mainmenu' => __( 'Main Navigation', 'Destro' )

@@ -1,7 +1,7 @@
 <?php
 if ( is_home() || is_archive() || is_search() ) {
 ?>
-	<h1 class="entry-title" itemprop="headline"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+	<h2 class="entry-title" itemprop="headline"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 <?php		
 } else {
 ?>

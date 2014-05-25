@@ -324,7 +324,7 @@ class TC_init {
       add_action ( 'wp_before_admin_bar_render'          , array( $this , 'tc_add_help_button' ));
       
       //add options link to admin bar
-      add_action ( 'wp_before_admin_bar_render'   , array( $this , 'tc_add_admin_bar_options_menu' ));
+      //add_action ( 'wp_before_admin_bar_render'   , array( $this , 'tc_add_admin_bar_options_menu' ));
     }
 
 
@@ -561,10 +561,10 @@ class TC_init {
    * @since Customizr 3.0.15
    * @credits http://wp.tutsplus.com/author/chrisbavota/
    */
-    function tc_add_retina_support($metadata, $attachment_id) {
+    function tc_add_retina_support( $metadata, $attachment_id ) {
       //checks if retina is enabled in options
       if ( 0 == tc__f( '__get_option' , 'tc_retina_support' ) )
-        return;
+        return $metadata;
      
       foreach ( $metadata as $key => $value ) {
           if ( is_array( $value ) ) {

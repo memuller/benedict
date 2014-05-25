@@ -21,6 +21,12 @@ function omega_load_customize_controls() {
 
 	/* Loads the background image customize control class. */
 	require_once( trailingslashit( OMEGA_CLASSES ) . 'customize-control-background-image.php' );
+
+	/* Loads the checkbox customize control class. */
+	require_once( trailingslashit( OMEGA_CLASSES ) . 'customize-control-checkbox.php' );
+
+	/* Loads the text customize control class. */
+	require_once( trailingslashit( OMEGA_CLASSES ) . 'customize-control-char.php' );
 }
 /* Load custom control classes. */
 add_action( 'customize_register', 'omega_load_customize_controls', 1 );

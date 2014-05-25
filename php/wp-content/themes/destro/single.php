@@ -8,11 +8,11 @@
 						<?php if(!of_get_option('show_magpro_slider_single') || of_get_option('show_magpro_slider_single') == 'true') : ?>  
                             <?php 
 								if ( of_get_option('magpro_slider') ) {
-									$dslider = of_get_option('magpro_slider');
+									$destro_dslider = of_get_option('magpro_slider');
 								} else {
-									$dslider = 'cheader';
+									$destro_dslider = 'cheader';
 								}
-								get_template_part( 'slider', $dslider ); 
+								get_template_part( 'slider', $destro_dslider ); 
 							?>                
                         <?php endif; ?>                                              
                         
@@ -22,7 +22,7 @@
                 
 
 										<?php if (have_posts()) : ?>
-											<?php $count = 0; while (have_posts()) : the_post(); $count++; ?>
+											<?php while (have_posts()) : the_post(); ?>
 												<!-- Actual Post starts here -->
 												<div <?php post_class('actual_post') ?> id="post-<?php the_ID(); ?>">
 													<div class="ta_meta_container">
@@ -114,52 +114,52 @@
                                                         
                                                         	
                                                             	<?php 
-																	$authorswebsitelink =  destro_get_custom_field('authors_website', get_the_ID(), true);
+																	$destro_authorswebsitelink =  destro_get_custom_field('authors_website', get_the_ID(), true);
 																	
-																	if( !empty($authorswebsitelink) ) {
-																		$authorswebsite =  $authorswebsitelink;
+																	if( !empty($destro_authorswebsitelink) ) {
+																		$destro_authorswebsite =  $destro_authorswebsitelink;
 																			}else {
-																				$authorswebsite =  get_the_author_meta('user_url');
+																				$destro_authorswebsite =  get_the_author_meta('user_url');
 																			}
 																?>
-                                                                <?php if(!empty($authorswebsite)) : ?>
+                                                                <?php if(!empty($destro_authorswebsite)) : ?>
                                                                 <div class="authors_website">
                                                                 
-                                                                	<p><a href="<?php echo $authorswebsite; ?>"><?php _e("Visit Author's Website",'destro'); ?></a></p>
+                                                                	<p><a href="<?php echo $destro_authorswebsite; ?>"><?php _e("Visit Author's Website",'destro'); ?></a></p>
                                                             	</div>
                                                                 <?php endif; ?>
                                                             
                                                         	
                                                             	<?php 
-																	$authorstwitterlink =  destro_get_custom_field('authors_twitter', get_the_ID(), true);
+																	$destro_authorstwitterlink =  destro_get_custom_field('authors_twitter', get_the_ID(), true);
 																	
-																	if( !empty($authorstwitterlink) ) {
-																		$authorstwitter =  $authorstwitterlink;
+																	if( !empty($destro_authorstwitterlink) ) {
+																		$destro_authorstwitter =  $destro_authorstwitterlink;
 																			}else {
-																				$authorstwitter =  of_get_option('twitter_id');
+																				$destro_authorstwitter =  of_get_option('twitter_id');
 																			}
 																?> 
-                                                                <?php if(!empty($authorstwitter)) : ?>
+                                                                <?php if(!empty($destro_authorstwitter)) : ?>
                                                                 <div class="authors_twitter">                                                           
-                                                            		<p><a href="https://www.twitter.com/<?php echo $authorstwitter; ?>"><?php _e("Follow On Twitter",'destro'); ?></a></p>
+                                                            		<p><a href="https://www.twitter.com/<?php echo $destro_authorstwitter; ?>"><?php _e("Follow On Twitter",'destro'); ?></a></p>
                                                             	</div>  
                                                             	<?php endif; ?>
                                                                 
                                                                 
                                                         	
                                                             	<?php 
-																	$authorsfacebooklink =  destro_get_custom_field('authors_facebook', get_the_ID(), true);
+																	$destro_authorsfacebooklink =  destro_get_custom_field('authors_facebook', get_the_ID(), true);
 																	
-																	if( !empty($authorsfacebooklink) ) {
-																		$authorsfacebook =  $authorsfacebooklink;
+																	if( !empty($destro_authorsfacebooklink) ) {
+																		$destro_authorsfacebook =  $destro_authorsfacebooklink;
 																			}else {
-																				$authorsfacebook =  of_get_option('facebook_id');
+																				$destro_authorsfacebook =  of_get_option('facebook_id');
 																			}
 																?>   
                                                                 
-                                                                <?php if(!empty($authorsfacebook)) : ?>
+                                                                <?php if(!empty($destro_authorsfacebook)) : ?>
                                                                 <div class="authors_facebook">                                                           
-                                                            		<p><a href="<?php echo $authorsfacebook; ?>"><?php _e("Like On Facebook",'destro'); ?></a></p>
+                                                            		<p><a href="<?php echo $destro_authorsfacebook; ?>"><?php _e("Like On Facebook",'destro'); ?></a></p>
                                                             	</div>
 																<?php endif; ?>                                                                                                                      
                                                         

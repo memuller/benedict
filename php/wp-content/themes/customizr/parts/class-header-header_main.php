@@ -275,11 +275,9 @@ class TC_header_main {
 	 * @since Customizr 3.0.10
 	 */
     function tc_social_in_header($resp = null) {
-      	
-
         //class added if not resp
-        $social_header_block_class	=	apply_filters( 'tc_social_header_block_class', 'span5', $resp );
-        $social_header_block_class 	=  ('resp' == $resp) ? '': $social_header_block_class ; 
+        $social_header_block_class 	=  ('resp' == $resp) ? '' : 'span5';
+        $social_header_block_class	=	apply_filters( 'tc_social_header_block_class', $social_header_block_class , $resp );
         
         $html = sprintf('<div class="social-block %1$s">%2$s</div>',
         		$social_header_block_class,

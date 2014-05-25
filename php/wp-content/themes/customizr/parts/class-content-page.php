@@ -34,31 +34,29 @@ class TC_page {
     function tc_page_content() {
         if ( 'page' != tc__f('__post_type') || !is_singular() || tc__f( '__is_home_empty') )
             return;
-        
-        
-        
+    
 
         ob_start();
 
-        do_action( '__before_content' );
-        ?>
-        
-        <div class="entry-content">
-            <?php 
-                the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
-                wp_link_pages( array( 
-                    'before'        => '<div class="btn-toolbar page-links"><div class="btn-group">' . __( 'Pages:' , 'customizr' ), 
-                    'after'         => '</div></div>',
-                    'link_before'   => '<button class="btn btn-small">',
-                    'link_after'    => '</button>',
-                    'separator'     => '',
-                    ) 
-                );
+            do_action( '__before_content' );
             ?>
-        </div>
+            
+            <div class="entry-content">
+                <?php 
+                    the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
+                    wp_link_pages( array( 
+                        'before'        => '<div class="btn-toolbar page-links"><div class="btn-group">' . __( 'Pages:' , 'customizr' ), 
+                        'after'         => '</div></div>',
+                        'link_before'   => '<button class="btn btn-small">',
+                        'link_after'    => '</button>',
+                        'separator'     => '',
+                        ) 
+                    );
+                ?>
+            </div>
 
-        <?php 
-        do_action( '__after_content' );
+            <?php 
+            do_action( '__after_content' );
 
         $html = ob_get_contents();
         if ($html) ob_end_clean();

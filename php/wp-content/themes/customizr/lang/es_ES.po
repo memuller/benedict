@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.1.11\n"
-"POT-Creation-Date: 2014-04-21 13:44+0100\n"
-"PO-Revision-Date: 2014-04-21 13:45+0100\n"
+"POT-Creation-Date: 2014-05-04 18:20+0100\n"
+"PO-Revision-Date: 2014-05-04 18:20+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: María <web.esdemay@gmail.com>\n"
 "Language: Español\n"
@@ -287,46 +287,46 @@ msgstr "Ayuda"
 msgid "Need help with Customizr? Click here!"
 msgstr "&iquest;Necesita ayuda con Customizr? ¡Pulse aqu&iacute;!"
 
-#: ../inc/class-fire-utils.php:335
+#: ../inc/class-fire-utils.php:336
 #, php-format
 msgid "Page %s"
 msgstr "P&aacute;gina %s"
 
-#: ../inc/class-fire-utils.php:532
+#: ../inc/class-fire-utils.php:533
 msgid "Home featured page one"
 msgstr "Mostrar en inicio como p&aacute;gina uno"
 
-#: ../inc/class-fire-utils.php:533
+#: ../inc/class-fire-utils.php:534
 msgid "Home featured page two"
 msgstr "Mostrar en inicio como p&aacute;gina dos"
 
-#: ../inc/class-fire-utils.php:534
+#: ../inc/class-fire-utils.php:535
 msgid "Home featured page three"
 msgstr "Mostrar en inicio como p&aacute;gina tres"
 
-#: ../inc/class-fire-utils.php:537
+#: ../inc/class-fire-utils.php:538
 msgid "Featured text one (200 car. max)"
 msgstr "Texto destacado campo uno (200 car. max):"
 
-#: ../inc/class-fire-utils.php:538
+#: ../inc/class-fire-utils.php:539
 msgid "Featured text two (200 car. max)"
 msgstr "Texto destacado campo dos (200 car. max):"
 
-#: ../inc/class-fire-utils.php:539
+#: ../inc/class-fire-utils.php:540
 msgid "Featured text three (200 car. max)"
 msgstr "Texto destacado campo tres (200 car. max):"
 
-#: ../inc/class-fire-utils.php:555
+#: ../inc/class-fire-utils.php:556
 #, php-format
 msgid "Custom featured page %1$s"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:571
+#: ../inc/class-fire-utils.php:572
 #, php-format
 msgid "Featured text %1$s (200 car. max)"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:574
+#: ../inc/class-fire-utils.php:575
 msgid ""
 "You need to select a page first. Leave this field empty if you want to use "
 "the page excerpt."
@@ -334,219 +334,219 @@ msgstr ""
 "Debes seleccionar una p&aacute;gina primero. Dejar este campo vac&iacute;o "
 "si se desea utilizar el extracto de la p&aacute;gina."
 
-#: ../inc/class-fire-utils.php:668
+#: ../inc/class-fire-utils.php:673
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; Ning&uacute;n slider &mdash;"
 
-#: ../inc/class-fire-utils.php:669
+#: ../inc/class-fire-utils.php:674
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; Demo Slider &mdash;"
 
-#: ../inc/class-fire-utils.php:722
+#: ../inc/class-fire-utils.php:727
 msgid "Skin"
 msgstr "Estilo"
 
-#: ../inc/class-fire-utils.php:724
+#: ../inc/class-fire-utils.php:729
 msgid "Select a skin for Customizr"
 msgstr "Seleccionar un estilo para Customizr"
 
-#: ../inc/class-fire-utils.php:728
+#: ../inc/class-fire-utils.php:733
 msgid "Logo &amp; Favicon"
 msgstr "Logo &amp; Favicon"
 
-#: ../inc/class-fire-utils.php:730
+#: ../inc/class-fire-utils.php:735
 msgid "Set up logo and favicon options"
 msgstr "Opciones configuraci&oacute;n logo y favicon"
 
-#: ../inc/class-fire-utils.php:734
+#: ../inc/class-fire-utils.php:739
 msgid "Front Page"
 msgstr "P&aacute;gina Principal"
 
-#: ../inc/class-fire-utils.php:736
+#: ../inc/class-fire-utils.php:741
 msgid "Set up front page options"
 msgstr "Establezca las opciones de la p&aacute;gina de inicio"
 
-#: ../inc/class-fire-utils.php:740
+#: ../inc/class-fire-utils.php:745
 msgid "Pages &amp; Posts Layout"
 msgstr "Dise&ntilde;o de p&aacute;ginas y entradas"
 
-#: ../inc/class-fire-utils.php:742
+#: ../inc/class-fire-utils.php:747
 msgid "Set up layout options"
 msgstr "Seleccione las opciones de dise&ntilde;o"
 
-#: ../inc/class-fire-utils.php:746
+#: ../inc/class-fire-utils.php:751
 msgid "Comments"
 msgstr "Comentarios"
 
-#: ../inc/class-fire-utils.php:748
+#: ../inc/class-fire-utils.php:753
 msgid "Set up comments options"
 msgstr "Configurar opciones de comentarios"
 
-#: ../inc/class-fire-utils.php:752 ../parts/class-content-sidebar.php:112
+#: ../inc/class-fire-utils.php:757 ../parts/class-content-sidebar.php:112
 msgid "Social links"
 msgstr "Redes Sociales"
 
-#: ../inc/class-fire-utils.php:754
+#: ../inc/class-fire-utils.php:759
 msgid "Set up your social links"
 msgstr "Configuraci&oacute;n de enlaces a las redes sociales"
 
-#: ../inc/class-fire-utils.php:758
+#: ../inc/class-fire-utils.php:763
 msgid "Images"
 msgstr "Im&aacute;genes"
 
-#: ../inc/class-fire-utils.php:760
+#: ../inc/class-fire-utils.php:765
 msgid "Various images settings"
 msgstr "Ajustes im&aacute;genes"
 
-#: ../inc/class-fire-utils.php:764
+#: ../inc/class-fire-utils.php:769
 msgid "Links"
 msgstr "Enlaces"
 
-#: ../inc/class-fire-utils.php:766
+#: ../inc/class-fire-utils.php:771
 msgid "Various links settings"
 msgstr "Ajustes varios enlaces"
 
-#: ../inc/class-fire-utils.php:770
+#: ../inc/class-fire-utils.php:775
 msgid "Custom CSS"
 msgstr "Personalizar CSS"
 
-#: ../inc/class-fire-utils.php:772
+#: ../inc/class-fire-utils.php:777
 msgid "Add your own CSS"
 msgstr "A&ntilde;ada su CSS"
 
-#: ../inc/class-fire-utils.php:776
+#: ../inc/class-fire-utils.php:781
 msgid "Responsive settings"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:778
+#: ../inc/class-fire-utils.php:783
 msgid "Various settings for responsive display"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:810
+#: ../inc/class-fire-utils.php:815
 msgid "Manage menus"
 msgstr "Gesti&oacute;n de men&uacute;s"
 
-#: ../inc/class-fire-utils.php:816
+#: ../inc/class-fire-utils.php:821
 msgid "Select a submenu expansion option"
 msgstr "Seleccionar opci&oacute;n para extender submen&uacute;"
 
-#: ../inc/class-fire-utils.php:820
+#: ../inc/class-fire-utils.php:825
 msgid "Expand submenus on click"
 msgstr "Extender submen&uacute;s al hacer clic"
 
-#: ../inc/class-fire-utils.php:821
+#: ../inc/class-fire-utils.php:826
 msgid "Expand submenus on hover"
 msgstr "Extender submen&uacute;s al posicionarse sobre &eacute;l "
 
-#: ../inc/class-fire-utils.php:836
+#: ../inc/class-fire-utils.php:841
 msgid "Choose a predefined skin"
 msgstr "Elegir estilo predefinido"
 
-#: ../inc/class-fire-utils.php:845
+#: ../inc/class-fire-utils.php:850
 msgid "Performance : use the minified CSS stylesheet"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:848
+#: ../inc/class-fire-utils.php:853
 msgid ""
 "Using the minified version of the skin stylesheet will speed up your webpage "
 "load time."
 msgstr ""
 
-#: ../inc/class-fire-utils.php:854
+#: ../inc/class-fire-utils.php:859
 msgid "Display top border"
 msgstr "Mostrar l&iacute;nea borde de la parte superior"
 
-#: ../inc/class-fire-utils.php:858
+#: ../inc/class-fire-utils.php:863
 msgid "Uncheck this option to remove the colored top border."
 msgstr ""
 "Desactive esta opci&oacute;n para quitar el borde de color en la parte "
 "superior de la p&aacute;gina"
 
-#: ../inc/class-fire-utils.php:871
+#: ../inc/class-fire-utils.php:876
 msgid "Logo Upload (supported formats : .jpg, .png, .gif)"
 msgstr "Subir Logo (formatos: .jpg, .png, .gif)"
 
-#: ../inc/class-fire-utils.php:879
+#: ../inc/class-fire-utils.php:884
 msgid "Force logo dimensions to max-width:250px and max-height:100px"
 msgstr "Forzar dimensiones del logo a max-width:250px y max-height:100px"
 
-#: ../inc/class-fire-utils.php:895
+#: ../inc/class-fire-utils.php:900
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "Subir Favicon (formatos: .ico, .png, .gif)"
 
-#: ../inc/class-fire-utils.php:912
+#: ../inc/class-fire-utils.php:917
 msgid "Choose content and layout"
 msgstr "Seleccionar el contenido y el dise&ntilde;o"
 
-#: ../inc/class-fire-utils.php:920
+#: ../inc/class-fire-utils.php:925
 msgid "Front page displays"
 msgstr "Mostrar p&aacute;gina de inicio como"
 
-#: ../inc/class-fire-utils.php:925
+#: ../inc/class-fire-utils.php:930
 msgid "Don't show any posts or page"
 msgstr "No mostrar ning&uacute;n mensaje o p&aacute;gina"
 
-#: ../inc/class-fire-utils.php:926
+#: ../inc/class-fire-utils.php:931
 msgid "Your latest posts"
 msgstr "Tus &uacute;ltimas entradas"
 
-#: ../inc/class-fire-utils.php:927
+#: ../inc/class-fire-utils.php:932
 msgid "A static page"
 msgstr "Una p&aacute;gina est&aacute;tica"
 
-#: ../inc/class-fire-utils.php:933
+#: ../inc/class-fire-utils.php:938
 msgid "Front page"
 msgstr "P&aacute;gina Principal"
 
-#: ../inc/class-fire-utils.php:941
+#: ../inc/class-fire-utils.php:946
 msgid "Posts page"
 msgstr "P&aacute;gina entrada"
 
-#: ../inc/class-fire-utils.php:950
+#: ../inc/class-fire-utils.php:955
 msgid "Set up the front page layout"
 msgstr "Seleccione el dise&ntilde;o de la p&aacute;gina de inicio"
 
-#: ../inc/class-fire-utils.php:961
+#: ../inc/class-fire-utils.php:966
 msgid "Slider options"
 msgstr "Opciones de slider"
 
-#: ../inc/class-fire-utils.php:962
+#: ../inc/class-fire-utils.php:967
 msgid "Select front page slider"
 msgstr "Seleccione un slider para la p&aacute;gina de inicio"
 
-#: ../inc/class-fire-utils.php:974
+#: ../inc/class-fire-utils.php:979
 msgid "Full width slider"
 msgstr "Slider de ancho total"
 
-#: ../inc/class-fire-utils.php:993
+#: ../inc/class-fire-utils.php:998
 msgid "Delay between each slides"
 msgstr "Retraso entre cada imagen del slider"
 
-#: ../inc/class-fire-utils.php:998
+#: ../inc/class-fire-utils.php:1003
 msgid "in ms : 1000ms = 1s"
 msgstr "en ms : 1000ms = 1s"
 
-#: ../inc/class-fire-utils.php:1006
+#: ../inc/class-fire-utils.php:1011
 msgid "Featured pages options"
 msgstr "Opciones destacados en  p&aacute;gina principal"
 
-#: ../inc/class-fire-utils.php:1007
+#: ../inc/class-fire-utils.php:1012
 msgid "Display home featured pages area"
 msgstr "Destacar p&aacute;ginas en &aacute;reas de p&aacute;gina principal"
 
-#: ../inc/class-fire-utils.php:1011
+#: ../inc/class-fire-utils.php:1016
 msgid "Enable"
 msgstr "Activar"
 
-#: ../inc/class-fire-utils.php:1012
+#: ../inc/class-fire-utils.php:1017
 msgid "Disable"
 msgstr "Desactivar"
 
-#: ../inc/class-fire-utils.php:1021
+#: ../inc/class-fire-utils.php:1026
 msgid "Show images"
 msgstr "Mostrar im&aacute;genes"
 
-#: ../inc/class-fire-utils.php:1024
+#: ../inc/class-fire-utils.php:1029
 msgid ""
 "The images are set with the \"featured image\" of each pages (in the page "
 "edit screen). Uncheck the option above to disable the featured page images."
@@ -556,27 +556,27 @@ msgstr ""
 "la \"opci&oacute;n anterior para desactivar las im&aacute;genes destacada "
 "que se muestran en la zona de la p&aacute;gina prinicpal"
 
-#: ../inc/class-fire-utils.php:1030
+#: ../inc/class-fire-utils.php:1035
 msgid "Read more &raquo;"
 msgstr "Leer m&aacute;s &raquo;"
 
-#: ../inc/class-fire-utils.php:1032
+#: ../inc/class-fire-utils.php:1037
 msgid "Button text"
 msgstr "Texto del bot&oacute;n"
 
-#: ../inc/class-fire-utils.php:1053
+#: ../inc/class-fire-utils.php:1058
 msgid "Display Breadcrumb"
 msgstr "Mostrar ruta exploraci&oacute;n (migas de pan)"
 
-#: ../inc/class-fire-utils.php:1063
+#: ../inc/class-fire-utils.php:1068
 msgid "Choose the global default layout"
 msgstr "Seleccione dise&ntilde;o por defecto para el sitio web"
 
-#: ../inc/class-fire-utils.php:1074
+#: ../inc/class-fire-utils.php:1079
 msgid "Force default layout everywhere"
 msgstr "Forzar  dise&ntilde;o por defecto en todo el sitio"
 
-#: ../inc/class-fire-utils.php:1077
+#: ../inc/class-fire-utils.php:1082
 msgid ""
 "This option will override the specific layouts on all posts/pages, including "
 "the front page."
@@ -584,37 +584,37 @@ msgstr ""
 "Esta opci&oacute;n anula la configuraci&oacute;n de las estructuras en las "
 "p&aacute;ginas / entradas,  incluida p&aacute;gina inicio."
 
-#: ../inc/class-fire-utils.php:1084
+#: ../inc/class-fire-utils.php:1089
 msgid "Choose the posts default layout"
 msgstr "Seleccione dise&ntilde;o por defecto de las entradas"
 
-#: ../inc/class-fire-utils.php:1096
+#: ../inc/class-fire-utils.php:1101
 msgid "Maximum number of posts per page"
 msgstr "N&uacute;mero de entradas por p&aacute;gina"
 
-#: ../inc/class-fire-utils.php:1107
+#: ../inc/class-fire-utils.php:1112
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr ""
 "Seleccione la longitud de las publicaciones (inicio, b&uacute;squeda, "
 "archivos,...)"
 
-#: ../inc/class-fire-utils.php:1111
+#: ../inc/class-fire-utils.php:1116
 msgid "Display the excerpt"
 msgstr "Mostrar un fragmento"
 
-#: ../inc/class-fire-utils.php:1112
+#: ../inc/class-fire-utils.php:1117
 msgid "Display the full content"
 msgstr "Mostrar contenido completo."
 
-#: ../inc/class-fire-utils.php:1120
+#: ../inc/class-fire-utils.php:1125
 msgid "Choose the pages default layout"
 msgstr "Seleccione dise&ntilde;o por defecto para p&aacute;ginas"
 
-#: ../inc/class-fire-utils.php:1140
+#: ../inc/class-fire-utils.php:1145
 msgid "Enable comments on pages"
 msgstr "Permitir comentarios en las p&aacute;ginas"
 
-#: ../inc/class-fire-utils.php:1143
+#: ../inc/class-fire-utils.php:1148
 msgid ""
 "This option will enable comments on pages. You can disable comments for a "
 "single page in the quick edit mode of the page list screen."
@@ -624,27 +624,27 @@ msgstr ""
 "edici&oacute;n r&aacute;pida de la pantalla de lista de la p&aacute;gina, o "
 "bien individualmente en cada entrada / p&aacute;gina."
 
-#: ../inc/class-fire-utils.php:1157
+#: ../inc/class-fire-utils.php:1162
 msgid "Social links in header"
 msgstr "Redes sociales en cabecera"
 
-#: ../inc/class-fire-utils.php:1166
+#: ../inc/class-fire-utils.php:1171
 msgid "Social links in left sidebar"
 msgstr "Redes sociales en barra lateral izquierda"
 
-#: ../inc/class-fire-utils.php:1175
+#: ../inc/class-fire-utils.php:1180
 msgid "Social links in right sidebar"
 msgstr "Redes sociales en barra lateral derecha"
 
-#: ../inc/class-fire-utils.php:1184
+#: ../inc/class-fire-utils.php:1189
 msgid "Social links in footer"
 msgstr "Redes sociales en pie de p&aacute;gina"
 
-#: ../inc/class-fire-utils.php:1205
+#: ../inc/class-fire-utils.php:1210
 msgid "Enable/disable lightbox effect on images"
 msgstr "Activar / desactivar el efecto lightbox en las im&aacute;genes"
 
-#: ../inc/class-fire-utils.php:1208
+#: ../inc/class-fire-utils.php:1213
 msgid ""
 "If enabled, this option activate a popin window whith a zoom effect when an "
 "image is clicked. This will not apply to image gallery."
@@ -653,33 +653,33 @@ msgstr ""
 "zoom cuando se cliclea en la  imagen. Esto no se aplica a las galer&iacute;"
 "as."
 
-#: ../inc/class-fire-utils.php:1214
+#: ../inc/class-fire-utils.php:1219
 msgid "Autoscale images on zoom"
 msgstr "Im&aacute;genes a escala con zoom"
 
-#: ../inc/class-fire-utils.php:1217
+#: ../inc/class-fire-utils.php:1222
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr ""
 "Si la opci&oacute;n est&aacute; activada,  forzar&aacute; la imagen para "
 "ajustarse a la pantalla de lightbox zoom."
 
-#: ../inc/class-fire-utils.php:1223
+#: ../inc/class-fire-utils.php:1228
 msgid "Enable/disable retina support"
 msgstr "Activar / Desactivar  Soporte retina"
 
-#: ../inc/class-fire-utils.php:1226
+#: ../inc/class-fire-utils.php:1231
 msgid ""
 "If enabled, your website will include support for high resolution devices."
 msgstr ""
 "Activado, el sitio web incluir&aacute; soporte para dispositivos de alta "
 "resoluci&oacute;n."
 
-#: ../inc/class-fire-utils.php:1239
+#: ../inc/class-fire-utils.php:1244
 msgid "Enable/disable smooth scroll on click"
 msgstr "Activar / Desactivar  desplazamiento suave al clicar"
 
-#: ../inc/class-fire-utils.php:1242
+#: ../inc/class-fire-utils.php:1247
 msgid ""
 "If enabled, this option activates a smooth page scroll when clicking on a "
 "link to an anchor of the same page."
@@ -688,33 +688,33 @@ msgstr ""
 "la p&aacute;gina al hacer clic en un enlace \"ancla\" dentro de la misma p"
 "%aacute;gina."
 
-#: ../inc/class-fire-utils.php:1255
+#: ../inc/class-fire-utils.php:1260
 msgid "Enable/disable blocks reordering on small devices"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:1258
+#: ../inc/class-fire-utils.php:1263
 msgid ""
 "On responsive mode, for smartphone viewport, the sidebars are moved after "
 "the main content block."
 msgstr ""
 
-#: ../inc/class-fire-utils.php:1264
+#: ../inc/class-fire-utils.php:1269
 msgid "Enable/disable slider's slides centering on any devices"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:1267
+#: ../inc/class-fire-utils.php:1272
 msgid ""
 "This option centers your slider (carousel) pictures vertically and "
 "horizontally on any devices when displayed in full width mode"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:1281
+#: ../inc/class-fire-utils.php:1286
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "A&ntilde;ada sus CSS aqu&iacute; para un dise&ntilde;o en vivo (usuarios "
 "avanzados)"
 
-#: ../inc/class-fire-utils.php:1284
+#: ../inc/class-fire-utils.php:1289
 msgid ""
 "Always use this field to add your custom css instead of editing directly the "
 "style.css file : it will not be deleted during theme updates. You can also "
@@ -846,7 +846,7 @@ msgid "Delete slider"
 msgstr "Eliminar slider"
 
 #: ../inc/admin/class-admin-meta_boxes.php:350
-#: ../inc/admin/class-controls.php:137
+#: ../inc/admin/class-controls.php:136
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -931,11 +931,11 @@ msgid "Button Link"
 msgstr "Texto bot&oacute;n de enlace"
 
 #: ../inc/admin/class-admin-meta_boxes.php:860
-#: ../parts/class-content-breadcrumb.php:595
-#: ../parts/class-content-breadcrumb.php:628
-#: ../parts/class-content-breadcrumb.php:643
-#: ../parts/class-content-breadcrumb.php:671
-#: ../parts/class-content-comments.php:157
+#: ../parts/class-content-breadcrumb.php:615
+#: ../parts/class-content-breadcrumb.php:648
+#: ../parts/class-content-breadcrumb.php:663
+#: ../parts/class-content-breadcrumb.php:691
+#: ../parts/class-content-comments.php:162
 #: ../parts/class-content-headings.php:247
 #: ../parts/class-content-slider.php:243
 msgid "Edit"
@@ -953,7 +953,7 @@ msgstr "Editar este slide"
 msgid "Current slide"
 msgstr "Slide actual"
 
-#: ../inc/admin/class-controls.php:137
+#: ../inc/admin/class-controls.php:136
 msgid "Create a slider"
 msgstr "Crear un slider"
 
@@ -1174,72 +1174,72 @@ msgstr "Inicio"
 msgid "Browse:"
 msgstr "Navegar por:"
 
-#: ../parts/class-content-breadcrumb.php:479
+#: ../parts/class-content-breadcrumb.php:494
 msgid "g:i a"
 msgstr "g:i a"
 
-#: ../parts/class-content-breadcrumb.php:482
+#: ../parts/class-content-breadcrumb.php:497
 #, php-format
 msgid "Minute %1$s"
 msgstr "Minuto %1$s"
 
-#: ../parts/class-content-breadcrumb.php:482
+#: ../parts/class-content-breadcrumb.php:497
 msgid "i"
 msgstr "i"
 
-#: ../parts/class-content-breadcrumb.php:485
+#: ../parts/class-content-breadcrumb.php:500
 msgid "g a"
 msgstr "g a"
 
-#: ../parts/class-content-breadcrumb.php:496
-#: ../parts/class-content-breadcrumb.php:506
-#: ../parts/class-content-breadcrumb.php:515
+#: ../parts/class-content-breadcrumb.php:516
 #: ../parts/class-content-breadcrumb.php:526
-#: ../parts/class-content-breadcrumb.php:528
-#: ../parts/class-content-breadcrumb.php:727
+#: ../parts/class-content-breadcrumb.php:535
+#: ../parts/class-content-breadcrumb.php:546
+#: ../parts/class-content-breadcrumb.php:548
+#: ../parts/class-content-breadcrumb.php:747
 msgid "Y"
 msgstr "Y"
 
-#: ../parts/class-content-breadcrumb.php:497
-#: ../parts/class-content-breadcrumb.php:518
-#: ../parts/class-content-breadcrumb.php:520
-#: ../parts/class-content-breadcrumb.php:731
+#: ../parts/class-content-breadcrumb.php:517
+#: ../parts/class-content-breadcrumb.php:538
+#: ../parts/class-content-breadcrumb.php:540
+#: ../parts/class-content-breadcrumb.php:751
 msgid "F"
 msgstr "F"
 
-#: ../parts/class-content-breadcrumb.php:500
-#: ../parts/class-content-breadcrumb.php:502
-#: ../parts/class-content-breadcrumb.php:735
+#: ../parts/class-content-breadcrumb.php:520
+#: ../parts/class-content-breadcrumb.php:522
+#: ../parts/class-content-breadcrumb.php:755
 msgid "d"
 msgstr "D"
 
-#: ../parts/class-content-breadcrumb.php:509
-#: ../parts/class-content-breadcrumb.php:511
+#: ../parts/class-content-breadcrumb.php:529
+#: ../parts/class-content-breadcrumb.php:531
 #, php-format
 msgid "Week %1$s"
 msgstr "Semana %1$s"
 
-#: ../parts/class-content-breadcrumb.php:537
-#: ../parts/class-content-breadcrumb.php:539
+#: ../parts/class-content-breadcrumb.php:557
+#: ../parts/class-content-breadcrumb.php:559
 #, php-format
 msgid "Search results for &quot;%1$s&quot;"
 msgstr "Resultados de la b&uacute;squeda para &quot;%1$s&quot;"
 
-#: ../parts/class-content-breadcrumb.php:544
+#: ../parts/class-content-breadcrumb.php:564
 msgid "404 Not Found"
 msgstr "Error 404 - P&aacute;gina no encontrada"
 
-#: ../parts/class-content-breadcrumb.php:549
-#: ../parts/class-content-breadcrumb.php:551
+#: ../parts/class-content-breadcrumb.php:569
+#: ../parts/class-content-breadcrumb.php:571
 #, php-format
 msgid "Page %d"
 msgstr "P&aacute;gina %d"
 
-#: ../parts/class-content-breadcrumb.php:620
+#: ../parts/class-content-breadcrumb.php:640
 msgid "Split"
 msgstr "Dividir"
 
-#: ../parts/class-content-breadcrumb.php:624
+#: ../parts/class-content-breadcrumb.php:644
 msgid "Merge"
 msgstr "Unir"
 
@@ -1256,36 +1256,36 @@ msgstr "Pingback:"
 msgid "(Edit)"
 msgstr "(Editar)"
 
-#: ../parts/class-content-comments.php:149
+#: ../parts/class-content-comments.php:148
 msgid "Reply"
 msgstr "Respuesta"
 
-#: ../parts/class-content-comments.php:156
+#: ../parts/class-content-comments.php:161
 msgid "Post author"
 msgstr "Autor"
 
-#: ../parts/class-content-comments.php:163
+#: ../parts/class-content-comments.php:168
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s a las %2$s"
 
-#: ../parts/class-content-comments.php:168
+#: ../parts/class-content-comments.php:173
 msgid "Your comment is awaiting moderation."
 msgstr "Tu comentario est&aacute; pendiente de moderaci&oacute;n."
 
-#: ../parts/class-content-comments.php:202
+#: ../parts/class-content-comments.php:207
 msgid "Comment navigation"
 msgstr "Navegador de comentarios"
 
-#: ../parts/class-content-comments.php:208
+#: ../parts/class-content-comments.php:213
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr "<span class=\"meta-nav\">&larr;</span> Comentarios m&aacute;s antiguos"
 
-#: ../parts/class-content-comments.php:216
+#: ../parts/class-content-comments.php:221
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Comentarios m&aacute;s recientes <span class=\"meta-nav\">&rarr;</span"
 
-#: ../parts/class-content-comments.php:248
+#: ../parts/class-content-comments.php:253
 msgid "Comments are closed."
 msgstr "Comentarios cerrados"
 
@@ -1325,7 +1325,7 @@ msgstr "Sin"
 
 #: ../parts/class-content-headings.php:58
 msgid "Search Results for :"
-msgstr "%1sResultados de la b&uacute;squeda: %2s"
+msgstr "Resultados de la b&uacute;squeda:"
 
 #: ../parts/class-content-headings.php:73
 msgid "Author Archives :"
@@ -1377,12 +1377,12 @@ msgstr "Enlace permanente a %s"
 msgid "Comment(s) on"
 msgstr "Comentario(s) en"
 
-#: ../parts/class-content-page.php:48 ../parts/class-content-post.php:53
+#: ../parts/class-content-page.php:46 ../parts/class-content-post.php:53
 #: ../parts/class-content-post_list.php:132
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Continuar leyendo <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-page.php:50 ../parts/class-content-post.php:54
+#: ../parts/class-content-page.php:48 ../parts/class-content-post.php:54
 #: ../parts/class-content-post_list.php:133
 msgid "Pages:"
 msgstr "P&aacute;ginas:"

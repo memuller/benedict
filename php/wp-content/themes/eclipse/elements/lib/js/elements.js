@@ -18,28 +18,28 @@
 
 jQuery(window).load(function ($) {
 
-	if ($(window).width() > 767) {
+	if (jQuery(window).width() > 767) {
 		setTimeout(function () {
-			$('#widget_boxes_container .box').css('height', $('#widget_boxes_container').height() - 20)
+			jQuery('#widget_boxes_container .box').css('height', jQuery('#widget_boxes_container').height() - 20)
 		}, 500);
 	}
 
-	$('.boxes .box').each(function () {
-		var url = $(this).children('.box-link').attr('href');
-		$(this).hover(function () {
+	jQuery('.boxes .box').each(function () {
+		var url = jQuery(this).children('.box-link').attr('href');
+		jQuery(this).hover(function () {
 				if (url && url != '')
-					$(this).css('cursor', 'pointer');
+					jQuery(this).css('cursor', 'pointer');
 			},
 			function () {
-				$(this).css('cursor', 'default');
+				jQuery(this).css('cursor', 'default');
 			});
-		$(this).click(function () {
+		jQuery(this).click(function () {
 			if (url && url != '')
 				window.location = url;
 		})
 	});
 
 	//starts carousel cycle
-	$('.carousel').carousel('cycle');
+	jQuery('.carousel').carousel('cycle');
 
 });

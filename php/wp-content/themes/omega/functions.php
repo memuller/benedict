@@ -14,7 +14,7 @@ function omega_theme_setup() {
 
 	/* Load omega functions */
 	require get_template_directory() . '/lib/hooks.php';
-
+	
 	/* The best thumbnail/image script ever. */
 	add_theme_support( 'get-the-image' );
 	

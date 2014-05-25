@@ -20,18 +20,16 @@ class TC_customize {
     function __construct () {
 
         self::$instance =& $this;
-
 		//add control class
 		add_action ( 'customize_register'				, array( $this , 'tc_add_controls_class' ) ,10,1);
-		
 		//control scripts and style
 		add_action ( 'customize_controls_enqueue_scripts'	, array( $this , 'tc_customize_controls_js_css' ));
-
 		//add the customizer built with the builder below
 		add_action ( 'customize_register'				, array( $this , 'tc_customize_register' ) , 20, 1 );
-
 		//preview scripts
 		add_action ( 'customize_preview_init'			, array( $this , 'tc_customize_preview_js' ));
+		//Hide donate button
+		add_action ( 'wp_ajax_hide_donate'				, array( $this ,  'tc_hide_donate' ) );
     }
 
 
@@ -252,14 +250,17 @@ class TC_customize {
 			$page_dropdowns[] 	= 'tc_theme_options[tc_featured_page_'. $id.']';
 			$text_fields[]		= 'tc_theme_options[tc_featured_text_'. $id.']';
 		}
-
+		
 		//localizes
 		wp_localize_script( 
 	        'tc-customizer-controls', 
 	        'TCControlParams',
 	        apply_filters('tc_js_customizer_control_params' ,
 		        array(
-		        	'FPControls' => array_merge( $fp_controls , $page_dropdowns , $text_fields )
+		        	'FPControls' => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
+		        	'AjaxUrl'          	=> admin_url( 'admin-ajax.php' ),
+		        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
+		        	'HideDonate' 		=> tc__f('__get_option' ,'tc_hide_donate'),
 		        )
 		    )
         );
@@ -296,6 +297,19 @@ class TC_customize {
       return $fonts_url;
     }
 
+
+
+    /**
+	* Update donate options handled in ajax
+	* @package Customizr
+	* @since Customizr 3.1.14
+	*/
+    function tc_hide_donate() {
+    	check_ajax_referer( 'tc-customizer-nonce', 'TCnonce' );
+    	$options = get_option('tc_theme_options');
+    	$options['tc_hide_donate'] = true;
+    	update_option( 'tc_theme_options', $options );
+    }
 
 
 }//end of class
