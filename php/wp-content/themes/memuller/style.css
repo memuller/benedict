@@ -1,0 +1,32 @@
+/*
+Theme Name: memuller
+Theme URI: http://memuller.com
+Author: Matheus E. Muller
+Author URI: http://memuller.com/
+Description: Theme for memuller.com ; based on fiver, from Stinkyink.
+Version: 0.0.1a
+Tags: black, white, light, one-column, two-columns, fixed-width, custom-background, sticky-post, threaded-comments
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+template: fiver
+*/
+
+@import url('../fiver/style.css');
+
+body {
+  font-family: Ubuntu;
+}
+
+header h1 {
+  font-family: Ubuntu Mono;
+  letter-spacing: inherit;
+  text-shadow: none;
+  font-size: 2.5em;
+  font-weight: normal;
+}
+
+header h1 span { float: left; }
+
+header h1 span.section{
+  color: #444;
+}
