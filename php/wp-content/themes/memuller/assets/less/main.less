@@ -1,0 +1,145 @@
+@default: #434343;
+
+body {
+    font-family: Ubuntu;
+    background-color: white;
+    font-size: 10pt;
+    color: @default;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: inherit !important;
+    text-shadow: none !important;
+}
+
+.negative {
+    background-color: black ;
+    color: white ;
+}
+
+#wrapper {
+    background-color: white;
+    section {
+        margin-top: 5px;
+        width: 580px;
+    }
+}
+
+.has_sidebar nav {
+    width: 130px;
+}
+
+article:last-of-type, ul.prevnext {
+    border-bottom: none;
+}
+
+article:first-of-type {
+    margin-top: -2em;
+}
+
+header {
+   
+    h1 {
+        text-align: right;
+        a, a:hover { color: black; }
+        a { 
+            padding-left: 25px;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed #ccc; 
+        }
+        font-family: Ubuntu Mono;
+        font-size: 24pt;
+        font-weight: normal;
+        .section {
+            color: lighten(black, 20%);
+        }
+    }
+
+}
+
+footer { padding: 0px; }
+
+a:hover {
+    color: lighten(@default, 50%);
+}
+
+article {
+
+    h1.title {
+        font-family: Ubuntu Mono ;
+        font-weight: bold ;
+        font-size: 18pt ;
+        a:before {
+            content: '> '
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        margin-bottom: 5px;
+    }
+    .content {
+        margin-left: 23px;
+    }
+    details {
+        display: block;
+        margin-bottom: 15px; 
+        color: lighten(@default, 30%);
+        
+        time { display: inline; margin: 0px; }
+        >* { padding-right: 10px; }
+    }
+    
+    border-bottom: none ;
+    margin: 0px ;
+
+    ol, p, ul {
+        line-height: 1.2em;
+        margin-top: 0px;
+        margin-bottom: 5pt;
+    }
+
+    ul {
+        list-style: none;
+        li { text-indent: -2em; }
+        li:before { content: '> '; }
+    }
+
+    h2 {
+        font-size: 16pt;
+        font-family: Ubuntu Mono;
+        font-weight: bold;
+        margin-bottom: 5pt;
+        margin-top: 15pt;
+
+    } h2:before { content: '> '; }
+    
+    h3 {
+        font-weight: normal;
+        font-size: 14pt;
+        margin-bottom: 4pt;
+        margin-top: 15pt;
+    }
+    h4 {
+
+        font-size: 13pt;
+        font-weight: normal;
+        font-style: italic;
+        margin-bottom: 4pt;
+        margin-top: 13pt;
+    }
+    h5 {
+        font-size: 12pt;
+        font-family: Ubuntu Mono;
+        font-weight: normal;
+        margin-bottom: 2pt;
+        margin-top: 10pt;
+        color: lighten(@default, 20%);
+    }
+
+    pre {
+        font-family: Ubuntu Mono;
+        font-size: 10pt;
+    }
+
+}

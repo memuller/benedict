@@ -12,21 +12,3 @@ template: fiver
 */
 
 @import url('../fiver/style.css');
-
-body {
-  font-family: Ubuntu;
-}
-
-header h1 {
-  font-family: Ubuntu Mono;
-  letter-spacing: inherit;
-  text-shadow: none;
-  font-size: 2.5em;
-  font-weight: normal;
-}
-
-header h1 span { float: left; }
-
-header h1 span.section{
-  color: #444;
-}
