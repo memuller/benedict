@@ -154,6 +154,9 @@ article {
 #copyright {
   margin-top: 20px;
 }
+.single .col.span_9 img {
+  margin: 0px 15px 30px 0px;
+}
 article ul {
   list-style: none !important;
   margin-bottom: 1rem;
