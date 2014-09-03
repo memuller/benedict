@@ -4,3 +4,6 @@
 [submodule "php/wp-content/plugins/benedict"]
 	path = php/wp-content/plugins/benedict
 	url = https://github.com/memuller/benedict_plugin.git
+[submodule "php/wp-content/plugins/editor-experiments"]
+	path = php/wp-content/plugins/editor-experiments
+	url = git@github.com:avryl/editor-experiments.git
