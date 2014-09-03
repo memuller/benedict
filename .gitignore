@@ -1,4 +1,6 @@
 .c9revisions
+/data/
+/php/wp-config.php
 /php/wp-content/uploads
 /php/nginx.conf
 node_modules
