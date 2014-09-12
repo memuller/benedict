@@ -310,12 +310,39 @@ endif;
 if(!function_exists('glg_header_slider')) :
 	function glg_header_slider($id, $type) {
 		$header = get_post_meta($id, 'glg_header', true);
-		if(get_custom_header()->url == '' && $header == 'header'):
+		if(get_custom_header()->url == '' && get_option('adm_port_slideshow') == 'true' && is_page_template('page-portfolio.php')):
+			$output = '<div class="flexslider" id="header-slider"><ul class="slides">';
+			for($i = 1; $i <= 5; $i++) {
+				$current = get_option('adm_port_slide_'.$i);
+				if($current != '') {
+					$output .= '<li style="background-image: url('.$current.');"></li>';
+				}
+			}
+			$output .= '</ul></div>';
+		elseif(get_custom_header()->url == '' && get_option('adm_blog_slideshow') == 'true' && (is_page_template('page-blog.php') || is_home())):
+			$output = '<div class="flexslider" id="header-slider"><ul class="slides">';
+			for($i = 1; $i <= 5; $i++) {
+				$current = get_option('adm_blog_slide_'.$i);
+				if($current != '') {
+					$output .= '<li style="background-image: url('.$current.');"></li>';
+				}
+			}
+			$output .= '</ul></div>';
+		elseif(get_custom_header()->url == '' && get_option('adm_home_slideshow') == 'true' && is_page_template('page-home.php')):
+			$output = '<div class="flexslider" id="header-slider"><ul class="slides">';
+			for($i = 1; $i <= 5; $i++) {
+				$current = get_option('adm_home_slide_'.$i);
+				if($current != '') {
+					$output .= '<li style="background-image: url('.$current.');"></li>';
+				}
+			}
+			$output .= '</ul></div>';
+		elseif(get_custom_header()->url == '' && $header == 'header'):
 			$output = '<div class="flexslider" id="header-slider"><ul class="slides">';
 			$url = get_post_meta($id, 'glg_header_img', true);
 			$output .= '<li style="background-image: url('.$url.');"></li>';
 			$output .= '</ul></div>';
-		elseif(get_custom_header()->url == '' || is_home()):
+		elseif(get_custom_header()->url == ''):
 			$args = array(
 				'post_type' => 'any',
 				'showposts' => -1,
@@ -500,7 +527,7 @@ function get_the($field){
 			$url = get_stylesheet_directory_uri().$url ;
 		}
 
-		$path = str_replace(home_url(), ABSPATH, $url);
+		$path = str_replace(WP_CONTENT_URL, WP_CONTENT_DIR, $url);
 		if($url == '') die ($path);
 		require $path ;
 	}
