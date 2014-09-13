@@ -1,9 +1,9 @@
 === Plugin Name ===
-Contributors: bravenewcode, duanestorey, dalemugford
+Contributors: bravenewcode, duanestorey, dalemugford, martin kuplens-ewart
 Tags: wptouch, iphone, ipod, bravenewcode, mobile, android, blackberry, smartphone, responsive, design, mobile plugin, ios, mobile theme
 Requires at least: 3.6
-Stable tag: 3.3.1
-Tested up to: 3.9.1
+Stable tag: 3.4.9
+Tested up to: 4.0
 License: GPLv2
 
 Create a slick mobile WordPress website with just a few clicks.
@@ -40,9 +40,89 @@ For more information visit [WPtouch.com](http://www.wptouch.com/?utm_campaign=wp
 
 == Changelog ==
 
-= Version 3.3.1 (May 22nd, 2014) =
+= Version 3.4.9 (September 5th, 2014) =
 
-* Updated: Product compatibility
+* Fixed: Some customers reported ongoing issues with MIME-type detection for uploaded images.
+* Updated: Compatibility with WordPress 4.0
+
+= Version 3.4.8 (August 28th, 2014) =
+
+* Fixed: Issue with uploading image files on servers that don’t advertise MIME type
+* Updated: Compatibility with WordPress 4.0
+
+= Version 3.4.7 (August 27th, 2014)
+
+* Changed: Only images (png, jpg, gif, svg) will be accepted for home screens and icons.
+* Fixed: Issue with internal version upgrade notification
+
+= Version 3.4.6 (August 26th, 2014) =
+
+* Fixed: Featured slider showing selected pages
+* Fixed: Display of comment count at top of posts in Bauhaus after comments have closed
+* Fixed: Shortcodes are now processed properly in the Multi-ads extension advertising code (Pro only)
+* Fixed: RTL issues with related posts
+* Changed: Now allow mid-content advertisements in Multi-ads (Pro only)* Fixed: Display of comment count at top of posts in Bauhaus after comments have closed
+
+= Version 3.4.5 (August 7th, 2014) =
+
+* Fixed: Comments remain visible after commenting has been closed for a given post/page
+
+* Fixed: Custom Post Type module sometimes showed an error when searches were performed
+* Fixed: Featured Slider now shows posts from custom post types enabled for mobile display
+* Fixed: An issue which could cause the switch link to not store a cookie remembering the user's choice
+* Fixed: Bauhaus with off-canvas and fly-in login form issue
+* Changed: Improved off-canvas menu in Bauhaus
+* Changed: Reduced Custom Post Type module memory consumption
+* Note: Security issue found by Securi was already fixed in the previous release (3.4.3)
+
+= Version 3.4.3 (July 12th, 2014) =
+
+* Added: Bauhaus - off-canvas menu
+* Fixed: An issue with homescreen icons on Android
+* Fixed: Bauhaus: search and custom post types
+* Fixed: Minor admin issues
+* Fixed: Security issue with file uploads and authenticated users (found by Sucuri, Inc.)
+* Fixed: Custom post type support for customers whose web servers strip array indices from form fields
+* Updated: Custom post type content is included in category/taxonomy/tag archive listings
+* Updated: Fastclick js library to 1.0.2
+* Changed: Menu Setup in admin now refers to menus by name instead of location for consistency
+
+= Version 3.4.2 (June 27th, 2014) =
+
+* Fixed: Issue with date/time in Bauhaus
+
+= Version 3.4 (June 26th, 2014) =
+
+* Added: New theme: Prose (Pro Only)
+* Added: New extension: Multi-Ads - multiple ad units per page view for Small Business+ customers (Pro Only)
+* Fixed: An issue with load more links in Web-App Mode with persistence enabled (Pro Only)
+* Fixed: CMS - an issue with blog listings on Firefox Mobile  (Pro Only)
+* Fixed: An issue with date formats and non-English languages
+* Fixed: An issue where an unwritable logfile would cause errors with debug enabled
+* Changed: Updated all language files
+
+= Version 3.3.4 (June 5th, 2014) =
+
+* Fixed: An issue which caused mobile themes to be shown inside Twitter app on iPads
+* Fixed: Improved Android Firefox browser and older browsers and OS versions support
+
+= Version 3.3.3 (May 30th, 2014) =
+
+* Fixed: Issue with custom post type array_flip warning message
+
+= Version 3.3.2 (May 29th, 2014) =
+
+* Fixed: The ability to switch languages in the free version of WPtouch
+* Added: Style support for Contact Form 7 forms in posts and pages
+* Fixed: Titles sometimes included HTML entities in shared Twitter content
+* Fixed: Links to posts and comments in Web-App Mode not working correctly
+* Changed: When enabled, related posts are now displayed before the next/previous links
+* Changed: Custom post types for display are now saved differently, allowing for more reliable settings behaviour and display
+
+= Version 3.3.1 (May 19th, 2014) =
+
+* Fixed: Increased theme/add-on caching time
+* Updated: Compatibility with WordPress 3.9.1
 
 = Version 3.3 (May 15th, 2014) =
 
@@ -916,7 +996,6 @@ For more information visit [WPtouch.com](http://www.wptouch.com/?utm_campaign=wp
 * More style enhancements and tweaks, fixes
 * Switched to Snoopy from CURL for the admin news section (thanks to Joost de Valk (yoast.com)
 
-
 = Version 1.1 =
 
 * The ability to disable advanced javascript effects (fixes effects not working for some, speeds up the load time considerably)
@@ -940,7 +1019,6 @@ For more information visit [WPtouch.com](http://www.wptouch.com/?utm_campaign=wp
 
 * Initial release
 
-
 == Installation ==
 
 = WordPress 3.5+ =
@@ -951,6 +1029,8 @@ Once you have installed and activated WPtouch, visit the admin page via the side
 = User Manual =
 
 You can download the user manual from within the WPtouch administration panel.  It contains information on how to configure WPtouch.
+
+For more information visit [WPtouch.com](http://www.wptouch.com/?utm_campaign=wptouch-front-readme&utm_medium=web&utm_source=wordpressdotorg "WPtouch.com").
 
 == Frequently Asked Questions ==
 
@@ -971,6 +1051,8 @@ We even automatically put a little snippet of code into your current desktop the
 = Will it slow down my blog, or increase my server load? =
 
 No. The entire *WPtouch* footprint is small. In fact, it should reduce load, because of its streamlined approach to serving optimized content to mobile visitors. It was designed to be as lightweight and speedy as possible, while still serving your site's content in a richly presented way, sparing no essential features like search, login, categories, tags, comments etc.
+
+For more information visit [WPtouch.com](http://www.wptouch.com/?utm_campaign=wptouch-front-readme&utm_medium=web&utm_source=wordpressdotorg "WPtouch.com").
 
 == Upgrade Notice ==
 

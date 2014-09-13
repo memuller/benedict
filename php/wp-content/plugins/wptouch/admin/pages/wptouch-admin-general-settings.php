@@ -179,7 +179,7 @@ function wptouch_render_general_page( $page_options ) {
 				WPTOUCH_SETTING_ADVANCED,
 				'3.0'
 			),
-			wptouch_add_setting(
+			wptouch_add_pro_setting(
 				'radiolist',
 				'mobile_switch_link_target',
 				__( 'Choose the target for the mobile switch link', 'wptouch-pro' ),
@@ -191,7 +191,7 @@ function wptouch_render_general_page( $page_options ) {
 					'home_page' => __( 'Home page', 'wptouch-pro ')
 				)
 			),
-			wptouch_add_setting(
+			wptouch_add_pro_setting(
 				'radiolist',
 				'switch_link_method',
 				__( 'Desktop theme switch buttons', 'wptouch-pro' ),
@@ -230,7 +230,7 @@ function wptouch_render_general_page( $page_options ) {
 		__( 'Custom Stylesheet', 'wptouch-pro' ),
 		'setup-custom-styles',
 		array(
-			wptouch_add_setting(
+			wptouch_add_pro_setting(
 				'text',
 				'custom_css_file',
 				__( 'URL to a custom CSS file to load', 'wptouch-pro' ),
@@ -281,7 +281,7 @@ function wptouch_render_general_page( $page_options ) {
 		__( 'Desktop Theme', 'wptouch-pro' ),
 		'desktop-theme-compatibility',
 		array(
-			wptouch_add_setting(
+			wptouch_add_pro_setting(
 				'checkbox',
 				'include_functions_from_desktop_theme',
 				__( 'Try to include desktop theme functions.php file', 'wptouch-pro' ),
@@ -331,7 +331,7 @@ function wptouch_render_general_page( $page_options ) {
 		__( 'Backup &amp; Import', 'wptouch-pro' ),
 		'setup-backup',
 		array(
-			wptouch_add_setting(
+			wptouch_add_pro_setting(
 				'checkbox',
 				'automatically_backup_settings',
 				sprintf( __( 'Automatically backup settings to the %s folder', 'wptouch-pro' ),
@@ -340,7 +340,7 @@ function wptouch_render_general_page( $page_options ) {
 				WPTOUCH_SETTING_BASIC,
 				'3.0'
 			),
-			wptouch_add_setting( 'custom', 'backup' )
+			wptouch_add_pro_setting( 'custom', 'backup' )
 		),
 		$page_options
 	);
@@ -386,7 +386,7 @@ function wptouch_render_general_page( $page_options ) {
 		__( 'WordPress Plugins', 'wptouch-pro' ),
 		'setup-general-plugin-compat',
 		array(
-			wptouch_add_setting(
+			wptouch_add_pro_setting(
 				'custom',
 				'plugin-compat'
 			)

@@ -48,7 +48,12 @@
 				</nav><!-- #site-navigation -->
 		</div>	
 		
-		<?php get_template_part('slider', 'nivo'); ?>
+		<?php
+			if ( of_get_option('slide1',true) == 1 ) :
+				 get_template_part('defaults/slider');
+			else :
+				get_template_part('slider', 'nivo');
+			endif; ?>
 		
 		</div><!--#top-section-->
 	

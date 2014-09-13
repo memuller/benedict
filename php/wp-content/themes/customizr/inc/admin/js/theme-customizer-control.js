@@ -44,8 +44,8 @@
     var html = '';
     html += '  <div id="tc-donate-customizer">';
     html += '    <span class="tc-close-request button">X</span>';           
-    html += '    <h3>We do our best do make Customizr the perfect free theme for you!</h3>';
-    html += '    <span class="tc-notice"> Please help support it\'s continued development with a donation of $20, $50, or even $100.</span>';
+    html += '    <h3>Hi! This is <a href="https://twitter.com/nicguillaume" target="_blank">Nicolas</a>, developer of the Customizr theme :-).</h3>';
+    html += '    <span class="tc-notice"> I\'m doing my best to make Customizr the perfect free theme for you. If you think it helped you build a better web presence, please support it\'s continued development with a donation of $20, $50, ... .</span>';
     html += '      <a class="tc-donate-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=8CTH6YFDBQYGU" target="_blank" rel="nofollow">';
     html += '        <img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Make a donation for Customizr">';
     html += '      </a>';

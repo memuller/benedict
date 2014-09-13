@@ -200,14 +200,12 @@ function wptouch_get_content_classes() {
 }
 
 function wptouch_the_time( $format = false ) {
-	echo wptouch_get_the_time();
+	echo wptouch_get_the_time( $format );
 }
 
 function wptouch_get_the_time( $format = false ) {
 	if ( !$format ) {
 		$date_format = get_option( 'date_format' );
-		$time_format = get_option( 'time_format' );
-
 		$format = $date_format;
 	}
 
@@ -296,6 +294,16 @@ function wptouch_the_footer_message() {
 function wptouch_get_the_footer_message() {
 	$settings = wptouch_get_settings();
 	return apply_filters( 'wptouch_footer_message', $settings->footer_message );
+}
+
+function wptouch_have_comments() {
+	$comment_count = wptouch_get_comment_count();
+
+	if ( $comment_count > 0 ) {
+		return true;
+	}
+
+	return false;
 }
 
 function wptouch_the_comment_count() {

@@ -57,7 +57,7 @@ function omega_customize_css_register( $wp_customize ) {
 		array(
 			'title'      => esc_html__( 'CSS', 'omega' ),
 			'priority'   => 150,
-			'capability' => 'edit_theme_options'
+			'capability' => 'unfiltered_html'
 		)
 	);
 
@@ -67,7 +67,7 @@ function omega_customize_css_register( $wp_customize ) {
 		array(
 			'default'              => '',
 			'type'                 => 'theme_mod',
-			'capability'           => 'edit_theme_options',
+			'capability' 		   => 'unfiltered_html',
 			'sanitize_callback'    => 'custom_css_sanitize',
 			//'sanitize_js_callback' => 'omega_customize_sanitize',
 			'transport'            => 'postMessage',

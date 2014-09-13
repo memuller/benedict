@@ -64,7 +64,7 @@
 								<ul class="padded">
 								<?php foreach( $section->settings as $setting ) { ?>
 									<?php if ( wptouch_admin_can_render_setting( $setting ) ) { ?>
-									<li class="wptouch-setting" id="setting-<?php echo wptouch_convert_to_class_name( $setting->name ); ?>">
+									<li class="wptouch-setting<?php if ( $setting->is_pro ) echo " pro-setting"; ?>" id="setting-<?php echo wptouch_convert_to_class_name( $setting->name ); ?>">
 										<?php wptouch_admin_render_setting( $setting ); ?>
 									</li>
 									<?php } ?>

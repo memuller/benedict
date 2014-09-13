@@ -22,8 +22,10 @@
 	    				if ($caption != "")
 	    				{
 		    				echo "<div id='caption_".$i."' class='nivo-html-caption'>";
-		    				echo "<a href='".esc_url(of_get_option('slideurl'.$i, true))."'><div class='slide-title'>".of_get_option('slidetitle'.$i, true)."</div></a>";
-		    				echo "<div class='slide-description'>".of_get_option('slidedesc'.$i, true)."</div>";
+		    				echo "<a href='".esc_url(of_get_option('slideurl'.$i, true))."'><div class='slide-title'><span>".of_get_option('slidetitle'.$i, true)."</span></div></a>";
+		    				if ( of_get_option('slidedesc'.$i, true) != "" ) {
+		    					echo "<div class='slide-description'>".of_get_option('slidedesc'.$i, true)."</div>";
+		    				}
 		    				echo "</div>";
 	    				}
 	    			}	

@@ -11,7 +11,7 @@ if ( ! function_exists( 'omega_content_nav' ) ) :
 /**
  * Display navigation to next/previous pages when applicable
  */
-function omega_content_nav( $nav_id ) {
+function omega_content_nav() {
 	global $wp_query, $post;
 
 	// Don't print empty markup on single pages if there's nowhere to navigate.
@@ -19,11 +19,11 @@ function omega_content_nav( $nav_id ) {
 		$previous = ( is_attachment() ) ? get_post( $post->post_parent ) : get_adjacent_post( false, '', true );
 		$next = get_adjacent_post( false, '', false );
 
-		if ( (!$next && !$previous) || omega_get_setting( 'single_nav' ) )
+		if ( (!$next && !$previous) )
 			return;
 	}
 
-	if ( is_singular('page') ) {
+	if ( is_singular() && !get_theme_mod( 'single_nav' ) ) {
 		return;
 	}
 
@@ -34,9 +34,9 @@ function omega_content_nav( $nav_id ) {
 	$nav_class = ( is_single() ) ? 'post-navigation' : 'paging-navigation';
 	
 	?>
-	<nav role="navigation" id="<?php echo esc_attr( $nav_id ); ?>" class="navigation  <?php echo $nav_class; ?>">
+	<nav role="navigation" id="nav-below" class="navigation  <?php echo $nav_class; ?>">
 
-	<?php if ( is_single() && !omega_get_setting( 'single_nav' ) ) : // navigation links for single posts ?>
+	<?php if ( is_single() && get_theme_mod( 'single_nav' ) ) : // navigation links for single posts ?>
 
 		<?php previous_post_link( '<div class="nav-previous alignleft">%link</div>', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'omega' ) . '</span> %title' ); ?>
 		<?php next_post_link( '<div class="nav-next alignright">%link</div>', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'omega' ) . '</span>' ); ?>
@@ -44,22 +44,12 @@ function omega_content_nav( $nav_id ) {
 	<?php elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) : // navigation links for home, archive, and search pages ?>
 
 		<?php
-		if (current_theme_supports( 'loop-pagination' ) && ( 'numeric' == omega_get_setting( 'posts_nav' ) ) ) {
-			loop_pagination();	
-		} else {
-			if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous alignleft"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Previous Page', 'omega' )); ?></div>
-			<?php endif; ?>
-
-			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next alignright"><?php previous_posts_link( __( 'Next Page <span class="meta-nav">&rarr;</span>', 'omega' )); ?></div>
-			<?php endif;
-		}
+		loop_pagination();
 		?>
 
 	<?php endif; ?>
 
-	</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
+	</nav><!-- #nav-below -->
 	<?php
 }
 endif; // omega_content_nav

@@ -3,8 +3,8 @@ Theme Name: Radiate
 Theme URI: http://themegrill.com/themes/radiate/
 Author: ThemeGrill
 Author URI: http://themegrill.com/
-Description: Radiate is a clean, creative and light retina ready responsive blogging theme supporting parallax header image. It integrates primary color option, custom background, custom css and few other features through WordPress customizer. The theme is translation ready and you can get free support on http://themegrill.com/support-forum. View demo at http://demo.themegrill.com/radiate. Available Translations -> French and German.
-Version: 1.0.5
+Description: Radiate is a clean, creative and light retina ready responsive blogging theme supporting parallax header image. It integrates primary color option, custom background, custom css and few other features through WordPress customizer. The theme is translation ready and you can get free support on http://themegrill.com/support-forum. View demo at http://demo.themegrill.com/radiate. Available Translations -> French, German and Russian.
+Version: 1.0.7
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: radiate
@@ -1308,6 +1308,9 @@ object {
 		float: none;
 		width: 100%;
 	}
+	.site-branding {
+		margin-right: 0;
+	}
 	.menu-toggle,
 	.main-navigation.toggled .nav-menu {
 		display: block;
@@ -1323,6 +1326,14 @@ object {
 		margin: 10px 25px 0 0;
 		margin: 1rem 2.5rem 0 0;
 	}
+	.site-header .menu-toggle {
+		background-color: #FFFFFF;
+		color: #632E9B;
+	}
+	.site-header .menu-toggle:hover {
+		color: #632E9B;
+		background-color: #FFFFFF;
+	}
 	.main-small-navigation ul {
 		width: 200px;
 		margin-left: -134px;
@@ -1336,6 +1347,9 @@ object {
 	}
 }
 @media only screen and (max-width: 600px) {
+	body {
+		margin-top: 0 !important;
+	}
 	.header-wrap {
 		position: relative;
 	}	

@@ -43,7 +43,7 @@
 
 				</div><!-- .attachment-meta -->
 
-				<?php omega_content_nav( 'nav-below' ); ?>
+				<?php omega_content_nav( ); ?>
 				
 				<?php comments_template(); // Loads the comments.php template. ?>
 

@@ -84,7 +84,7 @@ function omega_get_theme_link() {
  * @return string
  */
 function omega_get_author_uri() {
-	$theme = wp_get_theme( get_template() );
+	$theme = wp_get_theme();
 	$uri   = $theme->get( 'AuthorURI' );
 	$name  = $theme->display( 'Author', false, true );
 

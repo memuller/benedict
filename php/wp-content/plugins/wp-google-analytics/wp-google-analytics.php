@@ -3,14 +3,14 @@
  * Plugin Name: WP Google Analytics
  * Plugin URI: http://bluedogwebservices.com/wordpress-plugin/wp-google-analytics/
  * Description: Lets you use <a href="http://analytics.google.com">Google Analytics</a> to track your WordPress site statistics
- * Version: 1.4.0
+ * Version: 1.4.1
  * Author: Aaron D. Campbell
  * Author URI: http://ran.ge/
  * License: GPLv2 or later
  * Text Domain: wp-google-analytics
  */
 
-define('WGA_VERSION', '1.4.0');
+define('WGA_VERSION', '1.4.1');
 
 /*  Copyright 2006  Aaron D. Campbell  (email : wp_plugins@xavisys.com)
 
@@ -69,7 +69,7 @@ class wpGoogleAnalytics {
 	}
 
 	public function init() {
-		load_plugin_textdomain( 'jetpack', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'wp-google-analytics', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 		$this->tokens = array(
 				array(
@@ -525,8 +525,7 @@ class wpGoogleAnalytics {
 	 * If we track outgoing links, this will enqueue our javascript file
 	 */
 	public function track_outgoing() {
-		$wga = $this->_get_options();
-		if ( 'true' == $wga['log_outgoing'] && (!defined('XMLRPC_REQUEST') || !XMLRPC_REQUEST) && ( ! is_admin() || $wga['ignore_admin_area'] == 'false') )
+		if ( 'true' == $this->_get_options( 'log_outgoing' ) && (!defined('XMLRPC_REQUEST') || !XMLRPC_REQUEST) && ( ! is_admin() || 'false' == $this->_get_options( 'ignore_admin_area' ) ) )
 			wp_enqueue_script( 'wp-google-analytics', plugin_dir_url( __FILE__ ) . 'wp-google-analytics.js', array( 'jquery' ), '0.0.3' );
 	}
 

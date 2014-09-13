@@ -417,7 +417,7 @@ class Omega {
 
 			/* Load the main admin file. */
 			require_once( trailingslashit( OMEGA_ADMIN ) . 'admin.php' );
-			require_once( trailingslashit( OMEGA_ADMIN ) . 'omega-upgrade.php' );
+			//require_once( trailingslashit( OMEGA_ADMIN ) . 'omega-upgrade.php' );
 		}
 	}
 

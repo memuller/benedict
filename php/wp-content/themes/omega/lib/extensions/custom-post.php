@@ -160,7 +160,6 @@ function omega_customize_post_register( $wp_customize ) {
 	foreach ( (array) $sizes as $name => $size ) {
 		$imagesizes[esc_attr( $name )] = esc_attr( $name ) . ' (' . absint( $size['width'] ) . ' &#x000D7; ' . absint( $size['height'] ) . ')';
 	}
-		//echo '<option value="' . esc_attr( $name ) . '"' . selected( omega_get_setting( 'image_size' ), $name, FALSE ) . '>' . esc_html( $name ) . ' (' . absint( $size['width'] ) . ' &#x000D7; ' . absint( $size['height'] ) . ')</option>' . "\n";
 		
 	$wp_customize->add_control( 
 		'image_size',
@@ -173,6 +172,28 @@ function omega_customize_post_register( $wp_customize ) {
 			'choices' => $imagesizes,
 		)
 	);
+
+	/* Add the 'no_more_link_scroll' setting. */
+	$wp_customize->add_setting(
+		"single_nav",
+		array(
+			'default'              => '0',
+			'type'                 => 'theme_mod',
+			'capability'           => 'edit_theme_options',
+		)
+	);
+
+	/* Add the checkbox control for the 'more_link_scroll' setting. */
+	$wp_customize->add_control( 
+		'single_nav',
+		array(
+			'priority'   => 7,
+			'type' => 'checkbox',
+			'label'    => esc_html__( 'Enable single post Prev Next navigation links?', 'omega' ),
+			'section'  => 'post_section',
+			'settings' => 'single_nav',
+		)
+	);	
 
 	wp_enqueue_style( 'omega-customizer', trailingslashit( OMEGA_CSS ) . "customizer.css" );
 	

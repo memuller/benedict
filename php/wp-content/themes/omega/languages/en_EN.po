@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Omega WordPress Theme\n"
-"POT-Creation-Date: 2014-04-11 21:04+0700\n"
-"PO-Revision-Date: 2014-04-11 21:04+0700\n"
+"POT-Creation-Date: 2014-07-01 11:57+0700\n"
+"PO-Revision-Date: 2014-07-01 11:57+0700\n"
 "Last-Translator: Hence Wijaya <hence.wijaya@gmail.com>\n"
 "Language-Team: ThemeHall <hello@themehall.com>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-KeywordsList: _e;__;esc_attr_e;esc_attr__;esc_html_e;esc_html__;_x;"
 "_n;_x:1,2c;_n:1,2;_;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ../\n"
@@ -29,7 +29,7 @@ msgid ""
 "below."
 msgstr ""
 
-#: attachment-image.php:27 lib/hooks.php:252
+#: attachment-image.php:27 lib/hooks.php:227
 msgid "Pages:"
 msgstr ""
 
@@ -51,20 +51,28 @@ msgstr ""
 msgid "(Edit)"
 msgstr ""
 
-#: functions.php:39
+#: functions.php:38
 msgid "Content"
 msgstr ""
 
-#: functions.php:40
+#: functions.php:39
 msgid "Content / Sidebar"
 msgstr ""
 
-#: functions.php:41
+#: functions.php:40
 msgid "Sidebar / Content"
 msgstr ""
 
 #: lib/admin/meta-box-post-template.php:38
 msgid "Template"
+msgstr ""
+
+#: lib/admin/omega-upgrade.php:37
+#, php-format
+msgid ""
+"Thanks for updating Omega Theme.  Please <a href=\"%1$s\" target=\"_blank"
+"\">read about important changes</a> in this version and give your site a "
+"quick check. <a href=\"%2$s\">Dismiss notice</a>"
 msgstr ""
 
 #: lib/classes/customize-control-background-image.php:37
@@ -228,7 +236,7 @@ msgstr ""
 msgid "Content Character Limit"
 msgstr ""
 
-#: lib/classes/widget-featured-page.php:222
+#: lib/classes/widget-featured-page.php:222 lib/extensions/custom-post.php:119
 msgid "More Text"
 msgstr ""
 
@@ -361,7 +369,7 @@ msgstr ""
 msgid "No Content"
 msgstr ""
 
-#: lib/classes/widget-featured-posts.php:402
+#: lib/classes/widget-featured-posts.php:402 lib/extensions/custom-post.php:95
 msgid "Limit content to"
 msgstr ""
 
@@ -391,7 +399,7 @@ msgstr ""
 msgid "Browse:"
 msgstr ""
 
-#: lib/extensions/breadcrumb-trail.php:175 lib/functions/omega-extras.php:113
+#: lib/extensions/breadcrumb-trail.php:175 lib/functions/extras.php:106
 msgid "Home"
 msgstr ""
 
@@ -401,7 +409,7 @@ msgid "404 Not Found"
 msgstr ""
 
 #: lib/extensions/breadcrumb-trail.php:177
-#: lib/functions/template-general.php:276 lib/hooks.php:391
+#: lib/functions/template-general.php:276 lib/hooks.php:366
 msgid "Archives"
 msgstr ""
 
@@ -694,6 +702,20 @@ msgstr ""
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
+#: lib/extensions/custom-comment.php:20
+msgid "Comments"
+msgstr ""
+
+#: lib/extensions/custom-comment.php:45
+msgid "Enable comments on pages "
+msgstr ""
+
+#: lib/extensions/custom-comment.php:48
+msgid ""
+"This option will enable comments on pages. Comments can also be disabled per "
+"page basis when creating/editing pages."
+msgstr ""
+
 #: lib/extensions/custom-css.php:58
 msgid "CSS"
 msgstr ""
@@ -704,6 +726,40 @@ msgstr ""
 
 #: lib/extensions/custom-logo.php:45
 msgid "Logo"
+msgstr ""
+
+#: lib/extensions/custom-post.php:20
+msgid "Posts"
+msgstr ""
+
+#: lib/extensions/custom-post.php:70
+msgid "More Link Page Scroll"
+msgstr ""
+
+#: lib/extensions/custom-post.php:73
+msgid ""
+"By default, clicking the .more-link anchor opens and scrolls the page to "
+"section of the document containing the named anchor. This section is where "
+"you put the <!--more--> tag within a post type."
+msgstr ""
+
+#: lib/extensions/custom-post.php:98
+msgid ""
+"Select \"Display post excerpts\" will limit the text and strip all "
+"formatting from the text displayed. Set 0 characters will display the first "
+"55 words (default)"
+msgstr ""
+
+#: lib/extensions/custom-post.php:141
+msgid "Include the Featured Image?"
+msgstr ""
+
+#: lib/extensions/custom-post.php:169
+msgid "Image size"
+msgstr ""
+
+#: lib/extensions/custom-post.php:192
+msgid "Enable single post Prev Next navigation links?"
 msgstr ""
 
 #: lib/extensions/featured-header.php:198
@@ -792,28 +848,6 @@ msgstr ""
 msgid "Post Thumbnail"
 msgstr ""
 
-#: lib/functions/omega-extras.php:87
-msgid "Theme Settings"
-msgstr ""
-
-#: lib/functions/omega-template-tags.php:37
-msgctxt "Previous post link"
-msgid "&larr;"
-msgstr ""
-
-#: lib/functions/omega-template-tags.php:38
-msgctxt "Next post link"
-msgid "&rarr;"
-msgstr ""
-
-#: lib/functions/omega-template-tags.php:47
-msgid "<span class=\"meta-nav\">&larr;</span> Previous Page"
-msgstr ""
-
-#: lib/functions/omega-template-tags.php:51
-msgid "Next Page <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
-
 #: lib/functions/shortcodes-post.php:31
 msgid "ago"
 msgstr ""
@@ -892,55 +926,65 @@ msgctxt "taxonomy terms separator"
 msgid ", "
 msgstr ""
 
+#: lib/functions/template-tags.php:41
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr ""
+
+#: lib/functions/template-tags.php:42
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr ""
+
 #: lib/functions/utility.php:79
 msgid "(Untitled)"
 msgstr ""
 
-#: lib/hooks.php:58
+#: lib/hooks.php:55
 msgctxt "nav menu location"
 msgid "Primary"
 msgstr ""
 
-#: lib/hooks.php:74
+#: lib/hooks.php:70
 msgctxt "sidebar"
 msgid "Primary"
 msgstr ""
 
-#: lib/hooks.php:75
+#: lib/hooks.php:71
 msgid ""
 "The main sidebar. It is displayed on either the left or right side of the "
 "page based on the chosen layout."
 msgstr ""
 
-#: lib/hooks.php:178
+#: lib/hooks.php:153
 msgid "Copyright &#169; [the-year] [site-link]."
 msgstr ""
 
-#: lib/hooks.php:178
+#: lib/hooks.php:153
 msgid "Theme by [author-uri]."
 msgstr ""
 
-#: lib/hooks.php:364
+#: lib/hooks.php:339
 #, php-format
 msgid "Search Results for: %s"
 msgstr ""
 
-#: lib/hooks.php:374
+#: lib/hooks.php:349
 #, php-format
 msgid "Author: %s"
 msgstr ""
 
-#: lib/hooks.php:382
+#: lib/hooks.php:357
 #, php-format
 msgid "Day: %s"
 msgstr ""
 
-#: lib/hooks.php:385
+#: lib/hooks.php:360
 #, php-format
 msgid "Month: %s"
 msgstr ""
 
-#: lib/hooks.php:388
+#: lib/hooks.php:363
 #, php-format
 msgid "Year: %s"
 msgstr ""
@@ -981,12 +1025,8 @@ msgstr ""
 msgid "Posted "
 msgstr ""
 
-#: partials/entry-byline.php:10
+#: partials/entry-byline.php:9
 msgid "on [post_date] [post_comments] [post_edit before=\" | \"]"
-msgstr ""
-
-#: partials/entry-byline.php:12
-msgid "on [post_date] [post_edit before=\" | \"]"
 msgstr ""
 
 #: partials/entry-footer.php:3

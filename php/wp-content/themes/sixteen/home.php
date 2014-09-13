@@ -18,7 +18,11 @@ get_header(); ?>
 	
 				<?php while ( have_posts() ) : the_post(); ?>
 	
-					<?php get_template_part( 'content', 'home' ); ?>
+					<?php if ( of_get_option('facebook',true) != 1 ) : /* Verify any Default Value */
+					 		get_template_part( 'content', 'home' );
+					 else :
+					 		get_template_part('defaults/content', 'default');
+					 endif; ?>
 	
 					<?php
 						// If comments are open or we have at least one comment, load up the comment template

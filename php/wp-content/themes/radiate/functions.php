@@ -102,7 +102,7 @@ function radiate_scripts() {
 
 	$radiate_user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
 	if(preg_match('/(?i)msie [1-8]/',$radiate_user_agent)) {
-		wp_enqueue_script( 'html5', get_template_directory_uri() . '/js/html5shiv.js', true ); 
+		wp_enqueue_script( 'html5', get_template_directory_uri() . '/js/html5shiv.min.js', true ); 
 	}
 }
 add_action( 'wp_enqueue_scripts', 'radiate_scripts' );

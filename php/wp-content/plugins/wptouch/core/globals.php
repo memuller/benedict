@@ -122,7 +122,7 @@ function wptouch_is_device_real_ipad() {
 
 function wptouch_capture_include_file( $file_name ) {
 	ob_start();
-	require_once( $file_name );
+	require( $file_name );
 	$contents = ob_get_contents();
 	ob_end_clean();
 
@@ -330,7 +330,7 @@ function wptouch_get_bloginfo( $setting_name ) {
 			$setting = $total_icons;
 			break;
 		case 'support_licenses_remaining':
-			$licenses = $wptouch_pro->bnc_api->user_list_licenses( 'wptouch-pro' );
+			$licenses = $wptouch_pro->bnc_api->user_list_licenses();
 			if ( $licenses ) {
 				$setting = $licenses['remaining'];
 			} else {
@@ -338,7 +338,7 @@ function wptouch_get_bloginfo( $setting_name ) {
 			}
 			break;
 		case 'support_licenses_total':
-			$licenses = $wptouch_pro->bnc_api->get_total_licenses( 'wptouch-pro' );
+			$licenses = $wptouch_pro->bnc_api->get_total_licenses();
 			if ( $licenses ) {
 				$setting = $licenses;
 			} else {

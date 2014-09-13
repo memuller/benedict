@@ -42,6 +42,11 @@ For more info visit <a title="This WordPress plugin home page" href="http://4cod
 1. YSlow speed test after installation
 
 == Changelog ==
+= 0.3.1 =
+* Translated into Serbian language (by Borisa Djuraskovic)
+= 0.3.0 =
+* Relative "Cache directory" path
+* Ready to translate (PO file added)
 = 0.2.9 =
 * "wp_remote_get" methods exception was handled
 * Notices in WP_DEBUG mode are eliminated

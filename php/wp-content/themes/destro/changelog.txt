@@ -1,4 +1,8 @@
 
+Version: 2.8.48
+----------------
+Some code formatting.
+
 Version: 2.8.47
 ----------------
 Moved $content_width into setup function.

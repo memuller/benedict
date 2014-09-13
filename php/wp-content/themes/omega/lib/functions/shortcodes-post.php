@@ -220,7 +220,7 @@ function omega_post_comments_shortcode( $atts ) {
 	);
 	$atts = shortcode_atts( $defaults, $atts, 'post_comments' );
 
-	if ( ( ! omega_get_setting( 'comments_posts' ) || ! comments_open() ) && 'enabled' === $atts['hide_if_off'] )
+	if ( ( ! comments_open() ) && 'enabled' === $atts['hide_if_off'] )
 		return;
 
 	// Darn you, WordPress!

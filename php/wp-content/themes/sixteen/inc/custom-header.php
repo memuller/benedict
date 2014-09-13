@@ -58,6 +58,7 @@ function sixteen_header_style() {
 		#header-image {
 			background: url(<?php echo get_header_image(); ?>) no-repeat #111;
 			background-position: center top;
+			background-size: cover;
 		}
 	<?php endif; ?>	
 	</style>

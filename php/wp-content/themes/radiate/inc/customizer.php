@@ -200,8 +200,8 @@ function radiate_customizer_css() {
 			#content .comments-area article header cite a:hover, #content .comments-area a.comment-edit-link:hover, #content .comments-area a.comment-permalink:hover { color: '.$primary_color.'; }
 			.comments-area .comment-author-link a:hover { color: '.$primary_color.'; }
 			.comment .comment-reply-link:hover { color: '.$primary_color.'; }
-			.site-header .menu-toggle { background: '.$primary_color.'; }
-			.site-header .menu-toggle:hover { background: '.$primary_color.'; }
+			.site-header .menu-toggle { color: '.$primary_color.'; }
+			.site-header .menu-toggle:hover { color: '.$primary_color.'; }
 			.main-small-navigation li:hover { background: '.$primary_color.'; }
 			.main-small-navigation ul > .current_page_item, .main-small-navigation ul > .current-menu-item { background: '.$primary_color.'; }
 			.main-small-navigation ul li ul li a:hover, .main-small-navigation ul li ul li:hover > a, .main-small-navigation ul li.current-menu-item ul li a:hover { background-color: '.$primary_color.'; }

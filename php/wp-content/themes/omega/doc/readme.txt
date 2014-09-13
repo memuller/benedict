@@ -1,4 +1,4 @@
-﻿Omega WordPress theme
+Omega WordPress theme
 ---------------------
 Omega is a parent theme for WordPress and Omega child
 
@@ -38,6 +38,15 @@ Copyright: @afarkas @jdalton @jon_neal @rem
 
 Changelog
 ---------
+1.0.5
+- add omega_after_loop action
+
+1.0.4
+- fixed child theme info
+
+1.0.3
+- add single post Prev Next links
+
 1.0.0
 - update CSS and markup structure for accessibility
 - add customizer options

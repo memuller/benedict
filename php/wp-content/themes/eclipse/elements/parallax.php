@@ -20,7 +20,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
 
-if ( !class_exists( 'CyberchimpsParallax' ) ) {
+if ( !class_exists( 'CyberChimpsParallax' ) ) {
 	class CyberChimpsParallax {
 
 		protected static $instance;

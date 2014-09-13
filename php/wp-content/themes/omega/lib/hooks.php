@@ -27,6 +27,8 @@ add_action( 'omega_footer', 'omega_footer_markup_close', 15 );
 /* load content */
 add_action( 'omega_content', 'omega_content');
 
+add_action( 'omega_after_loop', 'omega_content_nav'); 
+
 /* Add the title, byline, and entry meta before and after the entry.*/
 add_action( 'omega_before_entry', 'omega_entry_header' );
 add_action( 'omega_entry', 'omega_entry' );
@@ -231,7 +233,7 @@ function omega_entry() {
 
 
 function omega_excerpt_more( $more ) {
-	return ' ... <a class="more-link" href="'. get_permalink( get_the_ID() ) . '">' . omega_get_setting( 'content_archive_more' ) . '</a>';
+	return ' ... <a class="more-link" href="'. get_permalink( get_the_ID() ) . '">' . get_theme_mod( 'more_text' ) . '</a>';
 }
 add_filter('excerpt_more', 'omega_excerpt_more');
 
@@ -315,7 +317,7 @@ function omega_index_content() {
 	
 		endwhile; 
 
-		omega_content_nav( 'nav-below' ); 
+		do_action( 'omega_after_loop');	
 
 	else :
 
@@ -385,7 +387,7 @@ function omega_content() {
 				get_template_part( 'partials/content' );
 		endwhile; 
 		
-		omega_content_nav( 'nav-below' );
+		do_action( 'omega_after_loop');	
 
 		comments_template(); // Loads the comments.php template.  
 

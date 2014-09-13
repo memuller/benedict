@@ -24,7 +24,7 @@ Template Name: Blog Excerpt (summary)
 get_header();
 ?>
 
-<div id="content-blog" class="<?php echo implode( ' ', responsive_get_content_classes() ); ?>">
+<div id="content-blog" class="<?php echo esc_attr( implode( ' ', responsive_get_content_classes() ) ); ?>">
 
 	<?php get_template_part( 'loop-header' ); ?>
 
@@ -32,8 +32,7 @@ get_header();
 	global $wp_query, $paged;
 	if( get_query_var( 'paged' ) ) {
 		$paged = get_query_var( 'paged' );
-	}
-	elseif( get_query_var( 'page' ) ) {
+	}elseif( get_query_var( 'page' ) ) {
 		$paged = get_query_var( 'page' );
 	}
 	else {
@@ -63,8 +62,7 @@ get_header();
 					<?php endif; ?>
 					<?php the_excerpt(); ?>
 					<?php wp_link_pages( array( 'before' => '<div class="pagination">' . __( 'Pages:', 'responsive' ), 'after' => '</div>' ) ); ?>
-				</div>
-				<!-- end of .post-entry -->
+				</div><!-- end of .post-entry -->
 
 				<?php get_template_part( 'post-data' ); ?>
 
