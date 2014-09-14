@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ $1 = 'send' ]]; then
+  rsync -va data/** 5276f1ce4382ecd615000082@benedict-memuller.rhcloud.com:~/app-root/data/
+else
+  rsync -va 5276f1ce4382ecd615000082@benedict-memuller.rhcloud.com:~/app-root/data/uploads data/
+fi
