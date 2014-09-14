@@ -1,6 +1,9 @@
 #!/bin/bash
 if [[ $1 = 'send' ]]; then
-  rsync -va data/** 5276f1ce4382ecd615000082@benedict-memuller.rhcloud.com:~/app-root/data/
+  rsync -va data/** benedict:~/app-root/data/
 else
-  rsync -va 5276f1ce4382ecd615000082@benedict-memuller.rhcloud.com:~/app-root/data/uploads data/
+  rsync -va benedict:~/app-root/data/uploads data/
+  ssh benedict 'mysqldump -h $OPENSHIFT_MYSQL_DB_HOST -P ${OPENSHIFT_MYSQL_DB_PORT:-3306} -u ${OPENSHIFT_MYSQL_DB_USERNAME:-"admin"} --password="$OPENSHIFT_MYSQL_DB_PASSWORD" --all-databases > ~/app-root/data/dump.sql'
+  scp benedict:~/app-root/data/dump.sql data/
 fi
+
