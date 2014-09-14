@@ -5,5 +5,4 @@ fi
             
 ln -sf $OPENSHIFT_DATA_DIR/uploads $OPENSHIFT_REPO_DIR/php/wp-content/
 ln -sf $OPENSHIFT_DATA_DIR/wp-config.php $OPENSHIFT_REPO_DIR/php/wordpress/wp-config.php
-ln -sf $OPENSHIFT_DATA_DIR/.htaccess.main $OPENSHIFT_REPO_DIR/php/.htaccess
-ln -sf $OPENSHIFT_DATA_DIR/.htaccess.wordpress $OPENSHIFT_REPO_DIR/php/wordpress/.htaccess
+ln -sf $OPENSHIFT_DATA_DIR/.htaccess $OPENSHIFT_REPO_DIR/php/.htaccess
