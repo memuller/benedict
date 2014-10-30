@@ -50,35 +50,37 @@ class GCE_Event {
 	 * 
 	 * @since 2.0.0
 	 */
-	function get_days() {
-		//Round start date to nearest day
-		$start_time = mktime( 0, 0, 0, date( 'm', $this->start_time ), date( 'd', $this->start_time ) , date( 'Y', $this->start_time ) );
+	function get_days() {	
+		
+		if( $this->start_time !== null ) {
+			//Round start date to nearest day
+			$start_time = mktime( 0, 0, 0, date( 'm', $this->start_time ), date( 'd', $this->start_time ) , date( 'Y', $this->start_time ) );
 
-		$days = array();
+			$days = array();
 
-		//If multiple day events should be handled, and this event is a multi-day event, add multiple day event to required days
-		if ( $this->feed->multiple_day_events && ( 'MPD' == $this->day_type || 'MWD' == $this->day_type ) ) {
-			$on_next_day = true;
-			$next_day = $start_time;
+			//If multiple day events should be handled, and this event is a multi-day event, add multiple day event to required days
+			if ( $this->feed->multiple_day_events && ( 'MPD' == $this->day_type || 'MWD' == $this->day_type ) ) {
+				$on_next_day = true;
+				$next_day = $start_time;
 
-			while ( $on_next_day ) {
-				//If the end time of the event is after 00:00 on the next day (therefore, not doesn't end on this day)
-				if ( $this->end_time > $next_day ) {
-					//If $next_day is within the event retrieval date range (specified by retrieve events from / until settings)
-					if ( $next_day >= $this->feed->start && $next_day < $this->feed->end ) {
+				while ( $on_next_day ) {
+					//If the end time of the event is after 00:00 on the next day (therefore, not doesn't end on this day)
+					if ( $this->end_time > $next_day ) {
 						$days[] = $next_day;
+					} else {
+						$on_next_day = false;
 					}
-				} else {
-					$on_next_day = false;
+					$next_day += 86400;
 				}
-				$next_day += 86400;
+			} else {
+				//Add event into array of events for that day
+				$days[] = $start_time;
 			}
-		} else {
-			//Add event into array of events for that day
-			$days[] = $start_time;
-		}
 
-		return $days;
+			return $days;
+		} else {
+			return array();
+		}
 	}
 
 	/**
@@ -87,10 +89,6 @@ class GCE_Event {
 	 * @since 2.0.0
 	 */
 	function get_event_markup( $display_type, $num_in_day, $num ) {
-		
-		
-		
-		
 		//Set the display type (either tooltip or list)
 		$this->type = $display_type;
 
@@ -192,7 +190,12 @@ class GCE_Event {
 		//If link should be displayed add to $markup
 		if ( isset($display_options['display_link'] ) ) {
 			$target = ( ! empty( $display_options['display_link_target'] ) ? 'target="blank"' : '' );
-			$markup .= '<p class="gce-' . $this->type . '-link"><a href="' . esc_url( $this->link ) . '&amp;ctz=' . esc_html( $this->feed->timezone_offset ) . '" ' . $target . '>' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
+			
+			$ctz  = get_option( 'timezone_string' );
+			
+			$link = $this->link . ( ! empty( $ctz ) ? '&ctz=' . $ctz : '' );
+			
+			$markup .= '<p class="gce-' . $this->type . '-link"><a href="' . esc_url( $link ) . '" ' . $target . '>' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
 		}
 
 		return $markup;
@@ -361,10 +364,12 @@ class GCE_Event {
 
 			case 'link':
 				$new_window = ( $newwindow ) ? ' target="_blank"' : '';
-				return $m[1] . '<a href="' . esc_url( $this->link . '&ctz=' . $this->feed->timezone_offset ) . '"' . $new_window . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
+				$ctz  = get_option( 'timezone_string' );
+				$link = $this->link . ( ! empty( $ctz ) ? '&ctz=' . $ctz : '' );
+				return $m[1] . '<a href="' . esc_url( $link ) . '"' . $new_window . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
 
 			case 'url':
-				return $m[1] . esc_url( $this->link . '&ctz=' . $this->feed->timezone_offset ) . $m[6];
+				return $m[1] . esc_url( $this->link ) . $m[6];
 
 			case 'feed-id':
 				return $m[1] . intval( $this->feed->id ) . $m[6];
