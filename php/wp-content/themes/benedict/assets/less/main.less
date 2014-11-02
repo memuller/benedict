@@ -17,7 +17,23 @@ footer.row {
 
 article {font-size: 14px;} 
 
-#social {   margin-top: 60px; min-height: 300px; } 
+#social {   
+    margin-top: 60px; min-height: 300px; 
+    .meta.box.horizontal.sharing {
+        .meta {
+            margin-left: 0px !important ;
+            float: right;
+        }
+
+        .sharedaddy {
+            float: right;
+            .sd-social-icon {
+                margin-top: -5px;
+            }
+        }
+    }
+
+} 
 
 .container.row.main { min-height: 500px; }
 
@@ -34,6 +50,7 @@ article ul {
         margin-right: .3rem;
     }
 }
+
 
 #navigation {
     margin-top: 50px;

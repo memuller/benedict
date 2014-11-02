@@ -148,6 +148,16 @@ article {
   margin-top: 60px;
   min-height: 300px;
 }
+#social .meta.box.horizontal.sharing .meta {
+  margin-left: 0px !important ;
+  float: right;
+}
+#social .meta.box.horizontal.sharing .sharedaddy {
+  float: right;
+}
+#social .meta.box.horizontal.sharing .sharedaddy .sd-social-icon {
+  margin-top: -5px;
+}
 .container.row.main {
   min-height: 500px;
 }
