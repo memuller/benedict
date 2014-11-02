@@ -58,9 +58,20 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
                 <?php if ( get_previous_post() != null ) : ?>
                   <li class="previous">
                     <span class="nav-previous">
-                      <?php 
+                      <?php
                         $singular_nav_previous_text   = apply_filters( 'tc_singular_nav_previous_text', _x( '&larr;' , 'Previous post link' , 'customizr' ) );
-                        previous_post_link( '%link' , '<span class="meta-nav">' . $singular_nav_previous_text . '</span> %title' ); 
+                        $previous_post_link_args      = apply_filters(
+                          'tc_previous_single_post_link_args' , 
+                          array(
+                            'format'        => '%link',
+                            'link'          => '<span class="meta-nav">' . $singular_nav_previous_text . '</span> %title',
+                            'in_same_term'  => false,
+                            'excluded_terms' => '',
+                            'taxonomy'      => 'category'
+                          ) 
+                        );
+                        extract( $previous_post_link_args , EXTR_OVERWRITE );
+                        previous_post_link( $format , $link , $in_same_term, $excluded_terms, $taxonomy );
                       ?>
                     </span>
                   </li>
@@ -68,9 +79,20 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
                 <?php if ( get_next_post() != null ) : ?>
                   <li class="next">
                     <span class="nav-next">
-                      <?php
+                        <?php
                         $singular_nav_next_text       = apply_filters( 'tc_singular_nav_next_text', _x( '&rarr;' , 'Next post link' , 'customizr' ) );
-                        next_post_link( '%link' , '%title <span class="meta-nav">' . $singular_nav_next_text . '</span>' ); 
+                        $next_post_link_args      = apply_filters(
+                          'tc_next_single_post_link_args' , 
+                          array(
+                            'format'        => '%link',
+                            'link'          => '%title <span class="meta-nav">' . $singular_nav_next_text . '</span>',
+                            'in_same_term'  => false,
+                            'excluded_terms' => '',
+                            'taxonomy'      => 'category'
+                          ) 
+                        );
+                        extract( $next_post_link_args , EXTR_OVERWRITE );
+                        next_post_link( $format , $link , $in_same_term, $excluded_terms, $taxonomy );
                         ?>
                     </span>
                   </li>
@@ -94,8 +116,15 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
                   <li class="previous">
                     <span class="nav-previous">
                       <?php
-                        $list_nav_next_text           = apply_filters( 'tc_list_nav_next_text', __( '<span class="meta-nav">&larr;</span> Older posts' , 'customizr' ) );
-                        next_posts_link( $list_nav_next_text ); 
+                        $next_posts_link_args      = apply_filters(
+                          'tc_next_posts_link_args' , 
+                          array(
+                            'label'        => apply_filters( 'tc_list_nav_next_text', __( '<span class="meta-nav">&larr;</span> Older posts' , 'customizr' ) ),
+                            'max_pages'    => 0
+                          ) 
+                        );
+                        extract( $next_posts_link_args , EXTR_OVERWRITE );
+                        next_posts_link( $label , $max_pages ); 
                       ?>
                     </span>
                   </li>
@@ -107,8 +136,15 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
                   <li class="next">
                     <span class="nav-next">
                       <?php
-                        $list_nav_previous_text       = apply_filters( 'tc_list_nav_previous_text', __( 'Newer posts <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
-                        previous_posts_link( $list_nav_previous_text );
+                        $previous_posts_link_args      = apply_filters(
+                          'tc_previous_posts_link_args' , 
+                          array(
+                            'label'        => apply_filters( 'tc_list_nav_previous_text', __( 'Newer posts <span class="meta-nav">&rarr;</span>' , 'customizr' ) ),
+                            'max_pages'    => 0
+                          ) 
+                        );
+                        extract( $previous_posts_link_args , EXTR_OVERWRITE );
+                        previous_posts_link( $label , $max_pages );
                       ?>
                     </span>
                   </li>

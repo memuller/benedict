@@ -37,17 +37,16 @@
 * All classes files (except the class__.php file which loads the other) are named with the following convention : class-[group]-[class_name].php
 * 
 * The theme is entirely built on an extensible filter and action hooks API, which makes customizations easy as breeze, without ever needing to modify the core structure.
-* Customizr's code acts like a collection of plugins that can be enabled, disabled or extended.
+* Customizr's code acts like a collection of plugins that can be enabled, disabled or extended. More here : http://themesandco.com/customizr/hooks-api
 * 
 */
 
 
+//Fire Customizr
+require_once( get_template_directory() . '/inc/init.php' );
 
 /**
 * The best and safest way to extend Customizr with your own custom functions is to create a child theme.
 * You can add functions here but they will be lost on upgrade. If you use a child theme, you are safe!
 * More informations on how to create a child theme with Customizr here : http://themesandco.com/customizr/#child-theme
 */
-
-//Fire Customizr
-require_once( get_template_directory() . '/inc/init.php' );
