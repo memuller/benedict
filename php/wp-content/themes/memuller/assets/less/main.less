@@ -45,7 +45,7 @@ header {
         a { 
             padding-left: 25px;
             padding-bottom: 5px;
-            border-bottom: 1px dashed #ccc; 
+            border-bottom: none; 
         }
         font-family: Ubuntu Mono;
         font-size: 24pt;
@@ -59,9 +59,17 @@ header {
 
 footer { padding: 0px; }
 
+a {
+    text-decoration: none;
+    border-bottom: 1px dashed #ccc;
+    color: #666;
+}
+
 a:hover {
     color: lighten(@default, 50%);
 }
+
+.menu a { border-bottom: none; }
 
 article {
 
@@ -86,15 +94,27 @@ article {
         margin-bottom: 15px; 
         color: lighten(@default, 30%);
         
-        time { display: inline; margin: 0px; }
-        >* { padding-right: 10px; }
+        time {  }
+        >* {
+            a {
+                color: lighten(@default, 30%);
+            }
+            padding-right: 10px;
+            display: inline; 
+            margin: 0px; 
+        }
     }
     
     border-bottom: none ;
     margin: 0px ;
 
+
+    p a {
+        text-decoration: none;
+    }
+
     ol, p, ul {
-        line-height: 1.2em;
+        line-height: 1.4em;
         margin-top: 0px;
         margin-bottom: 5pt;
     }

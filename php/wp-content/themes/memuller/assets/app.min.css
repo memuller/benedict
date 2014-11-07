@@ -47,7 +47,7 @@ header h1 a:hover {
 header h1 a {
   padding-left: 25px;
   padding-bottom: 5px;
-  border-bottom: 1px dashed #ccc;
+  border-bottom: none;
 }
 header h1 .section {
   color: #333333;
@@ -55,8 +55,16 @@ header h1 .section {
 footer {
   padding: 0px;
 }
+a {
+  text-decoration: none;
+  border-bottom: 1px dashed #ccc;
+  color: #666;
+}
 a:hover {
   color: #c3c3c3;
+}
+.menu a {
+  border-bottom: none;
 }
 article {
   border-bottom: none ;
@@ -83,17 +91,21 @@ article details {
   margin-bottom: 15px;
   color: #909090;
 }
-article details time {
+article details > * {
+  padding-right: 10px;
   display: inline;
   margin: 0px;
 }
-article details > * {
-  padding-right: 10px;
+article details > * a {
+  color: #909090;
+}
+article p a {
+  text-decoration: none;
 }
 article ol,
 article p,
 article ul {
-  line-height: 1.2em;
+  line-height: 1.4em;
   margin-top: 0px;
   margin-bottom: 5pt;
 }
