@@ -10,3 +10,6 @@
 [submodule "php/wordpress"]
 	path = php/wordpress
   url = https://github.com/WordPress/WordPress.git
+[submodule "php/wp-content/themes/memuller"]
+	path = php/wp-content/themes/memuller
+	url = https://github.com/memuller/memuller_theme.git
