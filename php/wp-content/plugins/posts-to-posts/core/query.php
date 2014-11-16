@@ -130,6 +130,9 @@ class P2P_Query {
 			'p2p:per_page' => -1
 		) );
 
+		// FIX PRIVATE POSTS: if we are getting the current post, we use current post's post_status
+      	$qv = array_merge( $qv, array('post_status' => 'any') );
+
 		if ( 'any' != $this->items )
 			$qv['p2p:include'] = _p2p_normalize( $this->items );
 
