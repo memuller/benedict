@@ -11,7 +11,7 @@
 					<span class="post_tags"><?php the_tags('', ', ' ,  ''); ?></span>
 				</details>
 				
-				<?php the_content('Read the rest of this entry &raquo;'); ?>
+				<?php the_content(); ?>
 
 				<hr class="clearfix" />
 

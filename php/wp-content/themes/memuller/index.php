@@ -2,27 +2,16 @@
 	<?php if (have_posts()) : ?>
 		<?php while (have_posts()) : the_post(); ?>
 			<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
-				<h1 class='title'>
-					<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
-						<?php the_title(); ?>
-					</a>
-				</h1>
-				<div class="content">
-					<details>
-						<time>
-							<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
-								<?php the_time(get_option('date_format')) ?>
-							</a>
-						</time>
-						<?php $categories = get_the_category(); if($categories){ ?>
-							<span class="category">
-								<?php echo $categories[0]->name ; ?>	
-							</span>
-						<?php } ?>
-					</details>
-					<?php the_content('Read the rest of this entry &raquo;'); ?>	
 				
-				
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
+					<h2><?php the_title(); ?></h2>
+				</a>	
+				<details>
+					<time><?php the_time(get_option('date_format')) ?></time>
+					<span class="category"><?php the_category(', ');?></span> 
+					<span class="post_tags"><?php the_tags('', ', ' ,  ''); ?></span>
+				</details>
+				<?php the_content('Read the rest of this entry &raquo;'); ?>		
 
 				<hr class="clearfix" />
 
@@ -32,7 +21,6 @@
 					<?php edit_post_link('Edit', '', ' | '); ?>  
 					<?php comments_popup_link('Share your thoughts', '1 Comment', '% Comments'); ?>
 				</p>
-				</div>
 			</article>
 
 		<?php endwhile; ?>
