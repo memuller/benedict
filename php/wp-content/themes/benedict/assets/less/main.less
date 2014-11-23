@@ -1,5 +1,5 @@
 @purple: #652C90;
-@grey: ##C6BFAE;
+@grey: #C6BFAE;
 @dark-beige: rgb(198, 190, 173);
 @light-beige: rgb(247, 242, 231);
 @blue: rgb(39, 169, 225);
@@ -178,4 +178,33 @@ ul.primary-menu {
         }
     }
 
+}
+
+body.single.single-dossier {
+    article {
+        ul li:before {
+            display: none;
+        }
+        ul {
+            li:nth-child(odd){ background: @light-beige; }
+            li:nth-child(even){ background: lighten(@light-beige, 10%); }
+            
+            li {
+                padding: 5px 10px;
+
+                h4 { font-style: normal; margin-top: 0.1rem; display:inline-block;}
+                .tool { font-style: italic; color: @grey !important; }
+                .status { 
+                    float: right; 
+                    font-style: italic; 
+                    color: @grey; 
+                    text-align: right;
+                    date { display: block; }
+                    &.underway {
+                        color: @purple;
+                    }
+                }
+            }
+        }
+    }
 }

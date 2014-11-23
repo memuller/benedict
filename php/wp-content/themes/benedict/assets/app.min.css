@@ -292,6 +292,39 @@ ul.primary-menu li svg {
   color: #c6bead;
   text-align: center;
 }
+body.single.single-dossier article ul li:before {
+  display: none;
+}
+body.single.single-dossier article ul li:nth-child(odd) {
+  background: #f7f2e7;
+}
+body.single.single-dossier article ul li:nth-child(even) {
+  background: #ffffff;
+}
+body.single.single-dossier article ul li {
+  padding: 5px 10px;
+}
+body.single.single-dossier article ul li h4 {
+  font-style: normal;
+  margin-top: 0.1rem;
+  display: inline-block;
+}
+body.single.single-dossier article ul li .tool {
+  font-style: italic;
+  color: #c6bfae !important;
+}
+body.single.single-dossier article ul li .status {
+  float: right;
+  font-style: italic;
+  color: #c6bfae;
+  text-align: right;
+}
+body.single.single-dossier article ul li .status date {
+  display: block;
+}
+body.single.single-dossier article ul li .status.underway {
+  color: #652c90;
+}
 
 .meta.box {
   width: 100%;
