@@ -91,12 +91,12 @@ add_filter( 'post_updated_messages', 'gce_feed_messages' );
  * @since 2.0.0
  */
 function gce_cpt_meta() {
-	add_meta_box( 'gce_feed_meta', 'Feed Settings', 'gce_display_meta', 'gce_feed', 'advanced', 'core' );
+	add_meta_box( 'gce_feed_meta', __( 'Feed Settings', 'gce' ), 'gce_display_meta', 'gce_feed', 'advanced', 'core' );
 
 	// Sidebar meta box below publish section.
 	add_meta_box( 'gce_feed_sidebar_help', __( 'Helpful Links', 'gce' ), 'gce_feed_sidebar_help', 'gce_feed', 'side', 'core' );
 
-	add_meta_box( 'gce_display_options_meta', 'Display Options', 'gce_display_options_meta', 'gce_feed', 'side', 'core' );
+	add_meta_box( 'gce_display_options_meta', __( 'Display Options', 'gce' ), 'gce_display_options_meta', 'gce_feed', 'side', 'core' );
 }
 add_action( 'add_meta_boxes', 'gce_cpt_meta' );
 
@@ -133,7 +133,7 @@ function gce_display_options_meta() {
  * @since 2.0.0
  */
 function gce_save_meta( $post_id ) {
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 			return $post_id;
 	}
 
@@ -182,7 +182,15 @@ function gce_save_meta( $post_id ) {
 		foreach ( $post_meta_fields as $pmf ) {
 			if ( isset( $_POST[$pmf] ) && ! empty( $_POST[$pmf] ) ) {
 				if( $pmf == 'gce_feed_url' ) {
-					update_post_meta( $post_id, $pmf, esc_url( $_POST[$pmf] ) );
+					
+					$str = $_POST[$pmf];
+					
+					// convert from URL if user enters a URL link (like the old versions required)
+					$id = str_replace( 'https://www.google.com/calendar/feeds/', '', $str );
+					$id = str_replace( '/public/basic', '', $id );
+					$id = str_replace( '%40', '@', $id );
+					
+					update_post_meta( $post_id, $pmf, $id );
 				} else {
 					update_post_meta( $post_id, $pmf, stripslashes( $_POST[$pmf] ) );
 				}

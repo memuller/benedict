@@ -52,5 +52,3 @@ abstract class apiCache {
    */
   abstract function delete($key);
 }
-
-

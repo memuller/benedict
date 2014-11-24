@@ -17,6 +17,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
+      private $is_wp_version_before_4_0;
 
       function __construct () {
           self::$instance =& $this;
@@ -27,6 +28,9 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
           add_filter ( 'tc_add_section_map'                   , array( $this ,  'tc_update_section_map') );
           //update setting_control_map
           add_filter ( 'tc_add_setting_control_map'           , array( $this ,  'tc_update_setting_control_map'), 100 );
+          //declare a private property to check wp version >= 4.0
+          global $wp_version;
+          $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
       }//end of construct
 
 
@@ -333,9 +337,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       );//end of add_sections array
       $add_section = apply_filters( 'tc_add_section_map', $add_section );
 
-
-
-
       //specifies the transport for some options
       $get_setting    = array(
               'get_setting'       =>   array(
@@ -383,7 +384,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $skin_option_map    = array(
               //skin select
               'tc_theme_options[tc_skin]'     => array(
-                                'default'   =>  'blue.css' ,
+                                'default'   =>  'blue3.css' ,
                                 'label'     =>  __( 'Choose a predefined skin' , 'customizr' ),
                                 'section'   =>  'tc_skins_settings' ,
                                 'type'      =>  'select' ,
@@ -766,7 +767,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Enable/disable retina support' , 'customizr' ),
                                 'section'     => 'tc_image_settings' ,
                                 'type'        => 'checkbox' ,
-                                'notice'    => __( 'If enabled, your website will include support for high resolution devices.' , 'customizr' ),
+                                'notice'    => sprintf('%1$s <strong>%2$s</strong> : <a href="%4$splugin-install.php?tab=plugin-information&plugin=regenerate-thumbnails" title="%5$s" target="_blank">%3$s</a>.',
+                                    __( 'If enabled, your website will include support for high resolution devices.' , 'customizr' ),
+                                    __( "It is strongly recommended to regenerate your media library images in high definition with this free plugin" , 'customizr'),
+                                    __( "regenerate thumbnails" , 'customizr'),
+                                    admin_url(),
+                                    __( "Open the description page of the Regenerate thumbnails plugin" , 'customizr')
+                                )
               ),
                'tc_theme_options[tc_display_slide_loader]'  =>  array(
                                 'default'       => 0,
@@ -833,7 +840,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Add your custom css here and design live! (for advanced users)' , 'customizr' ),
                                 'section'     => 'tc_custom_css' ,
                                 'type'        => 'textarea' ,
-                                'notice'    => __( 'Always use this field to add your custom css instead of editing directly the style.css file : it will not be deleted during theme updates. You can also paste your custom css in the style.css file of a child theme.' , 'customizr' )
+                                'notice'    => sprintf('%1$s <a href="http://themesandco.com/snippet/creating-child-theme-customizr/" title="%3$s" target="_blank">%2$s</a>',
+                                    __( "Use this field to test small chunks of CSS code. For important CSS customizations, you'll want to modify the style.css file of a" , 'customizr' ),
+                                    __( 'child theme.' , 'customizr'),
+                                    __( 'How to create and use a child theme ?' , 'customizr')
+                                )
               )
       );//end of custom_css_options
       $custom_css_option_map = apply_filters( 'tc_custom_css_option_map', $custom_css_option_map , $get_default );
@@ -935,11 +946,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-      function tc_update_remove_sections( $_unchanged ) {
-      global $wp_version;
-      if ( ! version_compare( $wp_version, '4.0', '>=' ) )
-        return $_unchanged;
-
+    function tc_update_remove_sections( $_unchanged ) {
       return array(
         'remove_section'       =>   array(
                               'background_image' ,
@@ -960,10 +967,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     * @since Customizr 3.2.0
     */
     function tc_update_section_map( $_unchanged ) {
-      global $wp_version;
-      if ( ! version_compare( $wp_version, '4.0', '>=' ) )
-        return $_unchanged;
-      
       //For nav menus option
       $locations      = get_registered_nav_menus();
       $menus          = wp_get_nav_menus();
@@ -973,93 +976,93 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                   'add_section'       =>   array(
                         'tc_skins_settings'         => array(
                                             'title'     =>  __( 'Skin' , 'customizr' ),
-                                            'priority'    =>  10,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 1 : 10,
                                             'description' =>  __( 'Select a skin for Customizr' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_social_settings'        => array(
                                             'title'     =>  __( 'Social links' , 'customizr' ), 
-                                            'priority'    =>  20,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 9 : 20,
                                             'description' =>  __( 'Set up your social links' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_links_settings'         => array(
                                             'title'     =>  __( 'Links style and effects' , 'customizr' ),
-                                            'priority'    =>  30,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 22 : 30,
                                             'description' =>  __( 'Various links settings' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_titles_icons_settings'        => array(
                                             'title'     =>  __( 'Titles icons settings' , 'customizr' ),
-                                            'priority'    =>  40,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 18 : 40,
                                             'description' =>  __( 'Set up the titles icons options' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_image_settings'         => array(
                                             'title'     =>  __( 'Image settings' , 'customizr' ),
-                                            'priority'    =>  50,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 95 : 50,
                                             'description' =>  __( 'Various images settings' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_responsive'           => array(
                                             'title'     =>  __( 'Responsive settings' , 'customizr' ),
-                                            'priority'    =>  60,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 96 : 60,
                                             'description' =>  __( 'Various settings for responsive display' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_header_layout'         => array(
-                                            'title'    => __( 'Design and layout', 'customizr' ),
-                                            'priority' => 20,
+                                            'title'    => $this -> is_wp_version_before_4_0 ? __( 'Header design and layout', 'customizr' ) : __( 'Design and layout', 'customizr' ),
+                                            'priority' => $this -> is_wp_version_before_4_0 ? 5 : 20,
                                             'panel'   => 'tc-header-panel'
                         ),
                         'title_tagline'         => array(
                                             'title'    => __( 'Site Title & Tagline', 'customizr' ),
-                                            'priority' => 20,
+                                            'priority' => $this -> is_wp_version_before_4_0 ? 7 : 20,
                                             'panel'   => 'tc-header-panel'
                         ),
                         'tc_logo_settings'            => array(
                                             'title'     =>  __( 'Logo &amp; Favicon' , 'customizr' ),
-                                            'priority'    =>  30,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 8 : 30,
                                             'description' =>  __( 'Set up logo and favicon options' , 'customizr' ),
                                             'panel'   => 'tc-header-panel'
                         ),
                         'nav'           => array(
                                   'title'          => __( 'Navigation' , 'customizr' ),
                                   'theme_supports' => 'menus',
-                                  'priority'       => 40,
+                                  'priority'       => $this -> is_wp_version_before_4_0 ? 10 : 40,
                                   'description'    => sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations ), number_format_i18n( $num_locations ) ) . "\n\n" . __('You can edit your menu content on the Menus screen in the Appearance section.'),
                                   'panel'   => 'tc-header-panel'
                         ),
 
                         'tc_frontpage_settings'       => array(
                                             'title'     =>  __( 'Front Page' , 'customizr' ),
-                                            'priority'    =>  10,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 12 : 10,
                                             'description' =>  __( 'Set up front page options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
 
                         'tc_layout_settings'        => array(
                                             'title'     =>  __( 'Pages &amp; Posts Layout' , 'customizr' ),
-                                            'priority'    =>  15,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 15 : 15,
                                             'description' =>  __( 'Set up layout options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
 
                         'tc_post_list_settings'        => array(
                                             'title'     =>  __( 'Post lists : blog, archives, ...' , 'customizr' ),
-                                            'priority'    =>  20,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 16 : 20,
                                             'description' =>  __( 'Set up post lists options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
                         'tc_single_post_settings'        => array(
                                             'title'     =>  __( 'Single posts' , 'customizr' ),
-                                            'priority'    =>  24,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 17 : 24,
                                             'description' =>  __( 'Set up single posts options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
                         'tc_breadcrumb_settings'        => array(
                                             'title'     =>  __( 'Breadcrumb' , 'customizr' ),
-                                            'priority'    =>  30,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 11 : 30,
                                             'description' =>  __( 'Set up breadcrumb options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
@@ -1073,25 +1076,25 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                         ),*/
                         'tc_post_metas_settings'        => array(
                                             'title'     =>  __( 'Post metas (category, tags, custom taxonomies)' , 'customizr' ),
-                                            'priority'    =>  50,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 20 : 50,
                                             'description' =>  __( 'Set up post metas options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
                         'tc_page_comments'          => array(
                                             'title'     =>  __( 'Comments' , 'customizr' ),
-                                            'priority'    =>  60,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 25 : 60,
                                             'description' =>  __( 'Set up comments options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
                         'tc_footer_global_settings'          => array(
                                             'title'     =>  __( 'Footer global settings' , 'customizr' ),
-                                            'priority'    =>  10,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 40 : 10,
                                             'description' =>  __( 'Set up footer global options' , 'customizr' ),
                                             'panel'   => 'tc-footer-panel'
                         ),
                         'tc_custom_css'           => array(
                                             'title'     =>  __( 'Custom CSS' , 'customizr' ),
-                                            'priority'    =>  10,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 100 : 10,
                                             'description' =>  __( 'Add your own CSS' , 'customizr' ),
                                             'panel'   => 'tc-advanced-panel'
                         )
@@ -1301,6 +1304,30 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 60,
                                 'transport'     => 'postMessage',
               ),
+              'tc_theme_options[tc_sticky_transparent_on_scroll]'  =>  array(
+                                'default'       => 1,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Sticky header : semi-transparent on scroll" , "customizr" ),
+                                'section'       => 'tc_header_layout' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 67,
+                                'transport'     => 'postMessage',
+              ),
+              'tc_theme_options[tc_sticky_z_index]'  =>  array(
+                                'default'       => 100,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Set the header z-index" , "customizr" ),
+                                'section'       => 'tc_header_layout' ,
+                                'type'          => 'number' ,
+                                'step'          => 1,
+                                'min'           => 0,
+                                'priority'      => 70,
+                                'transport'     => 'postMessage',
+                                'notice'    => sprintf('%1$s <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/z-index" target="_blank">%2$s</a> ?',
+                                    __( "What is" , 'customizr' ),
+                                    __( "the z-index" , 'customizr')
+                                ),
+              ),
 
               /* Menu */
               'tc_theme_options[tc_menu_position]'  =>  array(
@@ -1333,6 +1360,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox' ,
                                 'priority'      => 40,
                                 'transport'     => 'postMessage',
+              ),
+              'tc_theme_options[tc_menu_resp_dropdown_limit_to_viewport]'  =>  array(
+                                'default'       => 1,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "In responsive mode, limit the height of the dropdown menu block to the visible viewport" , "customizr" ),
+                                'section'       => 'nav' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 50,
+                                //'transport'     => 'postMessage',
               ),
               /* Links */
               'tc_theme_options[tc_link_hover_effect]'  =>  array(
@@ -1665,8 +1701,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Add your custom css here and design live! (for advanced users)' , 'customizr' ),
                                 'section'     => 'tc_custom_css' ,
                                 'type'        => 'textarea' ,
-                                'notice'    => __( 'Always use this field to add your custom css instead of editing directly the style.css file : it will not be deleted during theme updates. You can also paste your custom css in the style.css file of a child theme.' , 'customizr' ),
-                                'transport' => 'postMessage'
+                                'notice'    => sprintf('%1$s <a href="http://themesandco.com/snippet/creating-child-theme-customizr/" title="%3$s" target="_blank">%2$s</a>',
+                                    __( "Use this field to test small chunks of CSS code. For important CSS customizations, you'll want to modify the style.css file of a" , 'customizr' ),
+                                    __( 'child theme.' , 'customizr'),
+                                    __( 'How to create and use a child theme ?' , 'customizr')
+                                )
               ),
               //Default slider's height
               'tc_theme_options[tc_slider_default_height]' => array(

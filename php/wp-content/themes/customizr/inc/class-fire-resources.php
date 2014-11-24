@@ -19,12 +19,15 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	        self::$instance =& $this;
 	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_styles' ) );
 	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_scripts' ) );
-	        
+	        //Write font icon
+	        add_action ( 'wp_head'                 					, array( $this , 'tc_write_inline_font_icons_css' ), apply_filters( 'tc_font_icon_priority', 0 ) );
 	        //Custom CSS
 	        add_action ( 'wp_head'                 					, array( $this , 'tc_write_custom_css' ), apply_filters( 'tc_custom_css_priority', 20 ) );
-
 	        //Customizer user defined style options
-	        add_action( 'wp_enqueue_scripts'						, array( $this ,  'tc_customizer_user_options_style' ) );
+	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_customizer_user_options_style' ) );
+	        //Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
+	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
+	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script') );
 	    }
 
 
@@ -58,12 +61,46 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		    wp_enqueue_script( 'jquery-ui-core' );
 		    //load modernizr.js in footer
 		    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
-		    //tc-scripts.js includes :
-		    //1) Twitter Bootstrap scripts
-		    //2) Holder.js
-		    //3) FancyBox - jQuery Plugin
-		    //4) Customizr scripts
-		    wp_enqueue_script( 'tc-scripts' , TC_BASE_URL . 'inc/assets/js/tc-scripts.min.js' ,array( 'jquery' ), CUSTOMIZR_VER, $in_footer = apply_filters('tc_load_script_in_footer' , false) );
+		    
+		   	if ( apply_filters('tc_load_concatenated_front_scripts' , true ) )
+		   	{
+			    //tc-scripts.min.js includes :
+			    //1) Twitter Bootstrap scripts
+			    //2) FancyBox - jQuery Plugin
+			    //3) Customizr scripts
+			    wp_enqueue_script( 
+			    	'tc-scripts' , 
+			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'tc-scripts.js' : 'tc-scripts.min.js' ),
+			    	array( 'jquery' ), 
+			    	CUSTOMIZR_VER, 
+			    	$in_footer = apply_filters('tc_load_script_in_footer' , false) 
+			    );
+			}
+			else
+			{
+				//in production script are minified 
+		    	wp_enqueue_script(
+			    	'params-dev-mode', 
+			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'params-dev-mode.js' : 'params-dev-mode.min.js'),
+			    	array( 'jquery' ), 
+			    	CUSTOMIZR_VER, 
+			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
+		    	);
+		    	wp_enqueue_script(
+			    	'dev-bootstrap', 
+			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'bootstrap.js' : 'bootstrap.min.js'),
+			    	array( 'params-dev-mode' ), 
+			    	CUSTOMIZR_VER, 
+			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
+		    	);
+		    	wp_enqueue_script(
+			    	'dev-fancybox', 
+			    	sprintf( '%1$sinc/assets/js/fancybox/%2$s' , TC_BASE_URL , 'jquery.fancybox-1.3.4.min.js' ),
+			    	array( 'params-dev-mode' ), 
+			    	CUSTOMIZR_VER, 
+			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
+		    	);
+			}//end of load concatenate script if
 
 		    //fancybox options
 			$tc_fancybox 		= ( 1 == tc__f( '__get_option' , 'tc_fancybox' ) ) ? true : false;
@@ -93,7 +130,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	      	$right_sb_class     = sprintf( '.%1$s.right.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
 
 			wp_localize_script( 
-		        'tc-scripts', 
+		        (defined('WP_DEBUG') && true === WP_DEBUG ) ? 'params-dev-mode' : 'tc-scripts',
 		        'TCParams',
 		        apply_filters('tc_customizr_script_params' , array(
 			          	'FancyBoxState' 		=> $tc_fancybox,
@@ -107,11 +144,11 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			          	'HasComments' 			=> $has_post_comments,
 			          	'LeftSidebarClass' 		=> $left_sb_class,
 			          	'RightSidebarClass' 	=> $right_sb_class,
-			          	'LoadBootstrap' 		=> apply_filters( 'tc_load_bootstrap' , true ),
 			          	'LoadModernizr' 		=> apply_filters( 'tc_load_modernizr' , true ),
-			          	'LoadCustomizrScript' 	=> apply_filters( 'tc_load_customizr_script' , true ),
 			          	'stickyCustomOffset' 	=> apply_filters( 'tc_sticky_custom_offset' , 0 ),
-			          	'stickyHeader' 			=> esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) )
+			          	'stickyHeader' 			=> esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) ),
+			          	'dropdowntoViewport' 	=> esc_attr( tc__f( '__get_option' , 'tc_menu_resp_dropdown_limit_to_viewport') ),
+			          	'timerOnScrollAllBrowsers' => apply_filters('tc_timer_on_scroll_for_all_browser' , true) //<= if false, for ie only
 		        	),
 		        	tc__f('__ID')
 		       	)//end of filter
@@ -140,6 +177,23 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 
 
+		/**
+	    * Write the font icon in head
+	    * 
+	    * @package Customizr
+	    * @since Customizr 3.2.3
+	    */
+		function tc_write_inline_font_icons_css() {
+			$_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
+			echo apply_filters(
+				'tc_inline_font_icons' ,
+				sprintf('<style type="text/css" id="customizr-inline-fonts">%1$s</style>',
+					"@font-face{font-family:genericons;src:url('{$_path}/fonts/fonts/genericons-regular-webfont.eot');src:url('{$_path}/fonts/fonts/genericons-regular-webfont.eot?#iefix') format('embedded-opentype'),url('{$_path}/fonts/fonts/genericons-regular-webfont.woff') format('woff'),url('{$_path}/fonts/fonts/genericons-regular-webfont.ttf') format('truetype'),url('{$_path}/fonts/fonts/genericons-regular-webfont.svg#genericonsregular') format('svg')}@font-face{font-family:entypo;src:url('{$_path}/fonts/fonts/entypo.eot);src:url({$_path}/fonts/fonts/entypo.eot?#iefix') format('embedded-opentype'),url('{$_path}/fonts/fonts/entypo.woff') format('woff'),url('{$_path}/fonts/fonts/entypo.ttf') format('truetype'),url('{$_path}/fonts/fonts/entypo.svg#genericonsregular') format('svg')}"
+				)
+			);
+		}
+
+
 
 	    /**
 	    * Get the sanitized custom CSS from options array : fonts, custom css, and echoes the stylesheet
@@ -154,6 +208,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	        		html_entity_decode($tc_custom_css)
 	        	);
 	    }//end of function
+
 
 
 
@@ -200,6 +255,15 @@ if ( ! class_exists( 'TC_resources' ) ) :
 						}
 						.sticky-enabled .tc-shrink-on .brand .site-title {
 							{$_title_font}
+						}";
+			}
+
+			//HEADER Z-INDEX
+		    if ( 100 != esc_attr( tc__f( '__get_option' , 'tc_sticky_z_index') ) ) {
+		    	$_custom_z_index 	= esc_attr( tc__f( '__get_option' , 'tc_sticky_z_index') );
+			    $_css .= "
+			    		.tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header {
+							z-index:{$_custom_z_index}
 						}";
 			}
 
@@ -256,5 +320,21 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		  	wp_add_inline_style( 'customizr-skin', $_css );
 		}
 
+		/*
+		* Writes the livereload script in dev mode (if Grunt watch livereload is enabled)
+		*@since v3.2.4
+		*/
+		function tc_add_livereload_script() {
+			if ( TC_utils::$instance -> tc_is_customizing() )
+				return;
+			?>
+			<script id="tc-dev-live-reload" type="text/javascript">
+			    document.write('<script src="http://'
+			        + ('localhost').split(':')[0]
+			        + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>')
+			    console.log('When WP_DEBUG mode is enabled, activate the watch Grunt task to enable live reloading. This script can be disabled with the following code to paste in your functions.php file : add_filter("tc_live_reload_in_dev_mode" , "__return_false")');
+			</script>
+			<?php
+		}
 	}//end of TC_ressources
 endif;

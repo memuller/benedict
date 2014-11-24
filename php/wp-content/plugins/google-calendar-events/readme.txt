@@ -42,6 +42,7 @@ This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a
 * Norwegian - Provided by Tore Hjartland of [aliom.no](http://www.aliom.no/).
 * Polish - Provided by Michał Pasternak of [iplweb.pl](http://iplweb.pl/).
 * Lithuanian - Provided by Andrius Mazeika of [mazeika.info](http://mazeika.info/).
+* Dutch - Provided by Henri van Werkhoven.
 
 == Installation ==
 
@@ -86,6 +87,35 @@ There are three ways to install this plugin.
 1. Event display builder editor
 
 == Changelog ==
+
+= 2.1.3 =
+
+* Only load plugin scripts and stylesheets when the viewable page is rendering output from this plugin.
+* Fixed bugs with simple display options.
+* Added better error checking and output options to help in debugging GCal feeds.
+* Added Dutch translation - Provided by Henri van Werkhoven.
+
+= 2.1.2 =
+
+* Fixed bug with quick edit clearing out feed settings.
+* Fix bug with pagination creating extra DOM elements.
+* Localization string fixes - Pull Request by @Jojaba
+* Added HTML to group events of the same day semantically - Pull Request by @martinburchell
+* Fixed bug with [cal-id] event builder code.
+* Add in post data resets.
+
+= 2.1.1 =
+
+* Fixed bug with all day events not displaying.
+* Added missing timezone parameter to internal query.
+
+= 2.1.0 = 
+
+* Updated to use Google Calendar API version 3. Version 2 deprecated on Nov. 17, 2014.
+
+= 2.0.7.1 =
+
+* As of Nov. 17, 2014 the GCal API v2 is deprecated, which breaks all calendar feed displays. This update will temporarily hide the display while we work on a solution that uses GCal API v3.
 
 = 2.0.7 = 
 
@@ -304,6 +334,6 @@ There are three ways to install this plugin.
 
 == Upgrade Notice ==
 
-= 2.0.0 = 
+= 2.1.0 =
 
-This is a major upgrade to a new code base and structure. PLEASE make sure you backup your site before upgrading.
+Updated to use Google Calendar API version 3. Version 2 deprecated on Nov. 17, 2014.

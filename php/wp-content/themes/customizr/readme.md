@@ -1,11 +1,11 @@
-![Customizr - Free Wordpress Theme - v3.2.0](/screenshot.png)  
+![Customizr - Free Wordpress Theme - v3.2.0](/screenshot.png) 
 
-*Enjoy designing your website live from the WP customizer : skin, logo, social profiles, slider, layout, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Engage your visitors with beautiful sliders and call to actions on any page or post. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 14 languages. Ready for WooCommerce, bbPress, qTranslate (and others), the code is easily extensible with a comprehensive API hooks.*
+*Enjoy designing a beautiful website live with the WP customizer : 17 color skins, logo upload, social profiles, sliders, layout choices, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 23 languages. Ready for WooCommerce, bbPress, qTranslate, the code is easily extensible with a comprehensive API of hooks.*
 
 # Copyright
-**Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>))  
+**Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>)) 
 Feel free to use, modify and redistribute this theme as you like.
-You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D.  
+You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D. 
 Customizr is distributed under the terms of the GNU GPL v2.0 or later
 
 
@@ -39,13 +39,78 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 3.2.5 November 15th 2014 =
+* added (lang) Thai language (th), thanks to <a href="http://new.forest.go.th" target="_blank">Wee Sritippho</a>
+* updated (lang) French translation
+* improved (grunt) skin generation
+* updated (css) rtl skins
+* updated (css) set outline : none for a.tc-carousel-control. Fixes a visual bug reported on Firefox.
+
+= 3.2.4 =
+* added customizer : new header z-index option
+* fixed Logo centered link bug fix. Added a clear both property to .navbar-wrapper
+* fixed menu on tablets landscape, if menu was set to "open on hover", submenus could not be revealed. Fixed by forcing the click behaviour if wp_is_mobile()
+* improved  front scripts concatenation boolean filter : 'tc_load_concatenated_front_scripts' default to true. js files can be loaded loaded separetely in dev mode Load bootstrap param not used anymore
+* improved customizer sections for wp<4.0 : set conditional priorities ( based on is_wp_version_before_4_0) to reoder the section more consistently skin, header, content, footer....
+* fixed Customizer frozen bug. case default control : falls back to no input attr if wp version < 4.0 because input_attrs() was introduced in 4.0
+* improved customizer panels : remove useless check if wp version >= 4.0 new private property : is_wp_version_before_4_0
+* added Grunt : dev mode, customizer control script is a concatenation of libraries and _control.js
+* added Grunt : in dev mode, tc-scripts is a concatenation of main.js + params-dev-mode.js + fancybox + bootstrap
+* added Livereload script loaded on dev mode TC_DEV constant is true added in customize_controls_print_scripts when customizing and in wp_head when live
+* added Grunt : ftp push enabled for all files Grunt : tc-scripts.min.js concatenates params-dev-mode.js, bootstrap.js, jquery.fancybox-1.3.4.min.js, tc-scripts.js Grunt : tc-script.js jshint @to finish
+* fixed menu : 'tc-submenu-fade' is applied if option 'tc_menu_submenu_fade_effect' is true AND ! wp_is_mobile()
+* fixed TCparams (localized params) was not defined as a js var
+* updated lang : pl_PL, thanks to Marcin Paweł Sadowski
+* updated lang : de_DE , thanks to Martin Bangemann
+
+
+= 3.2.3 November 5th 2014 =
+* fixed (php, class-header-header_main.php) remove space after filter declaration for tc_tagline_text
+* added (php, class-content-post_list.php) new boolean filter tc_show_post_in_post_list + condition on $post global variable
+* added (php, class-fire-admin_page.php) New action hooks__system_config_before, __system_config_after
+* fixed (php, class-content-featured_pages.php, class-content-post_thumbnails.php, class-header-header_main.php) JetPack photon bug fixed on the wp_get_attachment_image_src() return value array
+* changed (php, class-header-header_main.php) New method : tc_prepare_logo_title_display() hooked on '__header' in place of tc_logo_title_display(), fires 2 new methods tc_logo_view() and tc_title_view()
+* fixed (php, class-header-header_main.php) in tc_prepare_logo_title_display() the logo filetype is now checked with a custom function TC_utils::tc_check_filetype(), instead of wp_check_filetype(). This new method checks the filetype on the whole string instead of at the very end of it => fixes the JetPack photon bug for logo
+* added (php, class-fire-utils) tc_check_filetype() method
+* added (php, class-content-post_thumbnails.php) new filter named tc_thumbnail_link_class => array of css classes
+* removed (php, class-content-post_thumbnails.php) 'tc_no_round_thumb' filter, now handled by the 'tc_thumbnail_link_class'  filter
+* added (php, class-content-post_thumbnails.php) new filter 'tc_post_thumbnail_img_attributes'
+* improved (php, class-content-post_thumbnails.php ) better handling of dynamic inline style for thumbnails img with height || width < to default thumbnails dimensions
+* improved (php) get_the_title() has been replaced by esc_attr( strip_tags( get_the_title() ) ) when used as title attribute
+* improved (css) set a high z-index (10000) to header.tc-header
+* improved (js, tc-script.js) localized params (TCParams) falls back to a default object if they are not loaded (=> typically happens whith a misconfigured cache plugin with combined js files)
+* improved (css,php:class-fire-resources.php) font icons have been extracted from the skin stylesheet and are now inlining early in head. New filters : 'tc_font_icon_priority' (default = 0 ), tc_font_icons_path (default : TC_BASE_URL . 'inc/assets/css'), 'tc_inline_font_icons' (default = html string of the inline style)
+* improved (js, php:class-fire-resources.php) when debug mode enabled : tc-script.js is loaded not minified. Boostrap is loaded separately and not minified
+* added (js:bootstrap.js, php:class-fire-utils_settings_map.php,class-fire-resources.php) new checkbox option in the customizer 'tc_menu_resp_dropdown_limit_to_viewport'.In responsive mode, users can now choose whether the dropdown menu has to be fully deployed or limited to the viewport's height.
+* updated (lang) nl_NL : thanks to Joris Dutmer
+* added (php:class-fire-utils_settings_map.php) New checkbox option in the customizer 'tc_sticky_transparent_on_scroll' => allow user to disable the semi-transparency of the sticky header on scroll. Default => Enabled (true)
+* added (php:class-content-comments.php) New filter 'tc_list_comments_args'. Default value = array( 'callback' => array ( $this , 'tc_comment_callback' ) , 'style' => 'ul' )
+* added (php:class-fire-init.php) Added add_theme_support( 'title-tag' ) recommended way for themes to display titles as of WP4.1. source : https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
+* fixed (css) Bug : since v3.2.1 upgrade, left sidebar was not displayed under 980px https://wordpress.org/support/topic/left-sidebar-disappeared-in-responsive-design-after-todays-upgrade?replies=3
+* fixed (lang, php:class-content-comments.php) plural translation string wrapped in _n() where not translated
+* improved (js) In customizing mode, jQuery plugins icheck, stepper, selecter are loaded only when necessary. For example : 'function' != typeof(jQuery.fn.stepper) => avoir double loading if a plugin already uses this $ module.
+* improved (js, theme-customizr-control.js) icheck : init only if necessary (  0 == $(this).closest('div[class^="icheckbox"]').length )=> beacause it can have been already initiated by a plugin.
+* improved (css, class-fire-admin_init.php) admincss handle for enqueuing has been prefixed with tc-, like all other resources of the theme
+* improved (css, tc_admin.css) Now minified
+* fixed (php, class-fire-utils.php) bbPress compatibility issue. Was generating a notice bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init(). This was due to the tc_get_default_options(), using is_user_logged_in(), called too early. Now hooked in "after_setup_theme" and compatible with bbPress
+* updated (lang) es_ES : thanks to María Digo
+* improved (js, tc-script.js) Smooth Scrolling option : to avoid potential conflicts with plugins using the 'click' event on anchor's links, the scope of targeted links has been limited to the the #content wrapper : $('a[href^="#"]', '#content')
+* fixed (css) Back to top arrow : Better backgroundstyle for ie9+
+* fixed (css) ie9- Support : fixed tagline displayed twice issue
+* fixed (css) .social-block is displayed and centered for @media (max-width: 320px)
+* updated(css) blue3.css is now the default skin, color #27CDA5
+* fixed (php, class-fire-init.php) Better handling of the retina mode. the original file is now generated in high definition @x2
+* updated : the default slider images have been re-designed and their @x2 version (for high definitation devices) has been added in inc/assets/img
+* updated : screenshot of the theme
+
+
 = 3.2.2 October 30th 2014 =
 * fixed (js, tc-script.js) the 'touchstart' event don't trigger the responsive menu toggle anymore => was generating a major bug on responsive devices reported here : https://wordpress.org/support/topic/321-responsive-menu-wont-stay-open?replies=18, and here : https://wordpress.org/support/topic/bug-report-44?replies=4
 * added (php, class-fire-admin_page.php) New hooks in admin : '__before_welcome_panel' '__after_welcome_panel
-* added (php) new class TC_admin_page handling the welcome panel including the changelog and user system infos.
+* added (php) new class TC_admin_page handling the welcome panel including the changelog and user system infos
 * updated (lang) ru_RU : thanks to <a href="http://bootwalksnews.com/" target="_blank">Evgeny Sudakov</a>
 * updated (lang) es_ES : thanks to María Digo
-* updated (lang) zh_CN : thanks to Luckue Joy
+* updated (lang) zh_CN : thanks to Luckie Joy
 * updated (lang) hu_HU : thanks to Ferencz Székely
 * updated (lang) ca_ES : thanks to Jaume Albaigès
 * updated (lang) sk_SK : thanks to <a href="http://www.pcipservis.eu/" target="_blank">Tomáš Lojek</a>

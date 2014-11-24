@@ -7,7 +7,21 @@
  */
 function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $widget = false ) {
 	
-	$defaults = array( 
+	// Load style
+	wp_enqueue_style( GCE_PLUGIN_SLUG . '-public' );
+	
+	// Load scripts
+	wp_enqueue_script( GCE_PLUGIN_SLUG . '-qtip' );
+	wp_enqueue_script( GCE_PLUGIN_SLUG . '-public' );
+	
+	wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce', 
+				array( 
+					'ajaxurl'     => admin_url( 'admin-ajax.php' ),
+					'ajaxnonce'   => wp_create_nonce( 'gce_ajax_nonce' ),
+					'loadingText' => __( 'Loading...', 'gce' )
+				) );
+	
+	$defaults = array(
 			'title_text'      => '',
 			'sort'            => 'asc',
 			'grouped'         => 0,
@@ -94,7 +108,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			$i++;
 		}
 	}
-	
+
 	return $markup;
 }
 
@@ -237,3 +251,4 @@ function gce_ga_campaign_url( $base_url, $source, $medium, $campaign ) {
 
 	return $url;
 }
+
