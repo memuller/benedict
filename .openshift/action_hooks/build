@@ -2,7 +2,20 @@
 if [ ! -d $OPENSHIFT_DATA_DIR/uploads ]; then
     mkdir $OPENSHIFT_DATA_DIR/uploads
 fi
-            
+
+if [ ! -d $OPENSHIFT_DATA_DIR/cache ]; then
+    mkdir $OPENSHIFT_DATA_DIR/cache
+fi
+
+if [ ! -d $OPENSHIFT_DATA_DIR/w3tc-config ]; then
+    mkdir $OPENSHIFT_DATA_DIR/w3tc-config
+fi
+
 ln -sf $OPENSHIFT_DATA_DIR/uploads $OPENSHIFT_REPO_DIR/php/wp-content/
 ln -sf $OPENSHIFT_DATA_DIR/wp-config.php $OPENSHIFT_REPO_DIR/php/wp-config.php
 ln -sf $OPENSHIFT_DATA_DIR/.htaccess $OPENSHIFT_REPO_DIR/php/.htaccess
+
+ln -sf $OPENSHIFT_DATA_DIR/cache $OPENSHIFT_REPO_DIR/php/wp-content/
+ln -sf $OPENSHIFT_DATA_DIR/w3tc-config $OPENSHIFT_REPO_DIR/php/wp-content/
+ln -sf $OPENSHIFT_DATA_DIR/advanced-cache.php $OPENSHIFT_REPO_DIR/php/wp-content/
+ln -sf $OPENSHIFT_DATA_DIR/w3tc-wp-loader.php $OPENSHIFT_REPO_DIR/php/wp-content/plugins/w3tc-wp-loader.php
