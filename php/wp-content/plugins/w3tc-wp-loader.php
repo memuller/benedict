@@ -1,4 +1,0 @@
-
-<?php
-    if (W3TC_WP_LOADING)
-        require_once '/Users/memuller/Repos/cityspots/wordpress/wp-load.php';
